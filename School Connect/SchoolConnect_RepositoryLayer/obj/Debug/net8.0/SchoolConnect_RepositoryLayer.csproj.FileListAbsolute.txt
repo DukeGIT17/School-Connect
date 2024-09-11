@@ -1,0 +1,15 @@
+C:\Users\Lukhanyo\source\repos\SchoolConnect_RepositoryLayer\bin\Debug\net8.0\SchoolConnect_RepositoryLayer.deps.json
+C:\Users\Lukhanyo\source\repos\SchoolConnect_RepositoryLayer\bin\Debug\net8.0\SchoolConnect_RepositoryLayer.dll
+C:\Users\Lukhanyo\source\repos\SchoolConnect_RepositoryLayer\bin\Debug\net8.0\SchoolConnect_RepositoryLayer.pdb
+C:\Users\Lukhanyo\source\repos\SchoolConnect_RepositoryLayer\bin\Debug\net8.0\SchoolConnect_DomainLayer.dll
+C:\Users\Lukhanyo\source\repos\SchoolConnect_RepositoryLayer\bin\Debug\net8.0\SchoolConnect_DomainLayer.pdb
+C:\Users\Lukhanyo\source\repos\SchoolConnect_RepositoryLayer\obj\Debug\net8.0\SchoolConnect_RepositoryLayer.csproj.AssemblyReference.cache
+C:\Users\Lukhanyo\source\repos\SchoolConnect_RepositoryLayer\obj\Debug\net8.0\SchoolConnect_RepositoryLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lukhanyo\source\repos\SchoolConnect_RepositoryLayer\obj\Debug\net8.0\SchoolConnect_RepositoryLayer.AssemblyInfoInputs.cache
+C:\Users\Lukhanyo\source\repos\SchoolConnect_RepositoryLayer\obj\Debug\net8.0\SchoolConnect_RepositoryLayer.AssemblyInfo.cs
+C:\Users\Lukhanyo\source\repos\SchoolConnect_RepositoryLayer\obj\Debug\net8.0\SchoolConnect_RepositoryLayer.csproj.CoreCompileInputs.cache
+C:\Users\Lukhanyo\source\repos\SchoolConnect_RepositoryLayer\obj\Debug\net8.0\SchoolCo.1D001A85.Up2Date
+C:\Users\Lukhanyo\source\repos\SchoolConnect_RepositoryLayer\obj\Debug\net8.0\SchoolConnect_RepositoryLayer.dll
+C:\Users\Lukhanyo\source\repos\SchoolConnect_RepositoryLayer\obj\Debug\net8.0\refint\SchoolConnect_RepositoryLayer.dll
+C:\Users\Lukhanyo\source\repos\SchoolConnect_RepositoryLayer\obj\Debug\net8.0\SchoolConnect_RepositoryLayer.pdb
+C:\Users\Lukhanyo\source\repos\SchoolConnect_RepositoryLayer\obj\Debug\net8.0\ref\SchoolConnect_RepositoryLayer.dll
