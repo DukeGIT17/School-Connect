@@ -1,0 +1,36 @@
+﻿<!DOCTYPE>
+<link rel="stylesheet" href="~/css/SysAdminCSS/SysAdminLandingPage.css"/>
+
+@{
+    ViewBag.Title = "System Landing Page";
+}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Optional Header -->
+    <div class="header">
+       
+        <span class="header-title">System Admin Panel</span>
+    </div>
+
+    <div class="container">
+        <h2>Welcome To The System Admin Panel</h2>
+        <a asp-controller="SysAdmin" asp-action="SchoolReg" class="button">Register School</a>
+        <a asp-controller="SysAdmin" asp-action="RolesReg" class="button">Register Roles</a>
+        <a href="" class="button logout-button">LOGOUT</a>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</>
+

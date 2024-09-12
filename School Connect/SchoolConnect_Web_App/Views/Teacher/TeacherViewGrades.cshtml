@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Subject Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/TeacherCSS/TeacherViewGrades.css" />
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <!-- <button class="back-button" onclick="window.history.back()">&larr;</button> -->
+            <div class="title">Subject</div>
+        </div>
+
+        <div>
+            <div class="section-title">GEOGRAPHY</div>
+            <div class="section-title">CLASSES TAUGHT</div>
+            <div class="section-subtitle">Grade 10</div>
+
+            <div>
+                <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">10B</a>
+                <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">10C</a>
+            </div>
+
+            <div class="section-subtitle">Grade 12</div>
+            <div>
+                <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">12B</a>
+                <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">12C</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function navigateToSubject(className) {
+            window.location.href = `/teacher/${className}.html`;
+        }
+    </script>
+
+</body>
+</html>
+
