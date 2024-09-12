@@ -50,22 +50,6 @@ using (var scope = app.Services.CreateScope())
             await roleManager.CreateAsync(new IdentityRole(role));
         }
     }
-
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
-    string email = "admin@gmail.com";
-    string password = "Test!123";
-
-    if (await userManager.FindByEmailAsync(email) == null)
-    {
-        var user = new IdentityUser
-        {
-            UserName = email,
-            Email = password
-        };
-
-        await userManager.CreateAsync(user);
-        await userManager.AddToRoleAsync(user, "System Admin");
-    }
 }
 
 app.Run();

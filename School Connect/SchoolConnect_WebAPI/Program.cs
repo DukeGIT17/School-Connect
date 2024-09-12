@@ -7,8 +7,6 @@ using SchoolConnect_RepositoryLayer.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-//builder.Services.AddDbContext<SQLServerDbContext>(options 
-//    => options.UseSqlServer(builder.Configuration.GetConnectionString("AzureSQLServerConnectionString")));
 builder.Services.AddDbContext<SchoolConnectDbContext>(options 
     => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString")));
 builder.Services.AddDbContext<SignInDbContext>(options
