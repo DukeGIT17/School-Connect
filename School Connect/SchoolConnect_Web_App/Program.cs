@@ -11,7 +11,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<SchoolConnectDbContext>(options 
     => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString")));
 builder.Services.AddDbContext<SignInDbContext>(options
-    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString")));
+    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString"), 
+    b => b.MigrationsAssembly(nameof(SchoolConnect_WebAPI))));
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<SignInDbContext>();

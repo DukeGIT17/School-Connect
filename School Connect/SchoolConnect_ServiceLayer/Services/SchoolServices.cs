@@ -24,7 +24,7 @@ namespace SchoolConnect_ServiceLayer.Services
             {
                 StringBuilder buildString = new();
                 buildString.Append(SchoolBasePath);
-                buildString.Append("Schools");
+                buildString.Append("Schools/");
 
                 var response = await _httpClient.GetAsync(buildString.ToString());
                 response.EnsureSuccessStatusCode();
@@ -32,7 +32,7 @@ namespace SchoolConnect_ServiceLayer.Services
                 if (schools == null)
                 {
                     _returnDictionary.Add("Success", false);
-                    _returnDictionary.Add("ErrorMessage", "Schools is null. Class: SchoolServices");
+                    _returnDictionary.Add("ErrorMessage", "Failed to acquire Schools from API.");
                     return _returnDictionary;
                 }
 
@@ -67,7 +67,6 @@ namespace SchoolConnect_ServiceLayer.Services
                 };
 
                 var response = await _httpClient.SendAsync(request);
-                //throw new Exception($"{response.StatusCode} - {request.RequestUri} - {schoolJsonString}");
                 response.EnsureSuccessStatusCode();
 
                 _returnDictionary.Add("Success", true);

@@ -4,7 +4,8 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
 {
     public interface ISysAdmin
     {
-        Task<Dictionary<string, object>> Get(long sysAdminId);
+        Task<Dictionary<string, object>> GetAdminById(long sysAdminId);
+        Task<Dictionary<string, object>> GetAdminByStaffNr(long staffNr);
         Task<Dictionary<string, object>> Update(SysAdmin sysAdmin);
     }
 }

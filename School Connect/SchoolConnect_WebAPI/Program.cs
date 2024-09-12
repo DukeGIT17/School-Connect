@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SchoolConnect_DomainLayer.Data;
@@ -10,12 +11,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SchoolConnectDbContext>(options 
     => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString")));
 builder.Services.AddDbContext<SignInDbContext>(options
-    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString")));
+    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString"), 
+    b => b.MigrationsAssembly(nameof(SchoolConnect_WebAPI))));
 builder.Services.AddDefaultIdentity<IdentityUser>(options
     => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<SignInDbContext>();
 builder.Services.AddScoped<ISchool, SchoolRepository>();
+builder.Services.AddScoped<ISysAdmin, SystemAdminRepository>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
