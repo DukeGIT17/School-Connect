@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SchoolConnect_DomainLayer
-build_property.ProjectDir = C:\Users\KHAYE\source\repos\School Connect\SchoolConnect_DomainLayer\
+build_property.ProjectDir = C:\Users\KHAYE\OneDrive\Desktop\git-school connect\School Connect\SchoolConnect_DomainLayer\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

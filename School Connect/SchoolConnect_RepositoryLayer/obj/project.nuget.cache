@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rz0srQ5DcQ8=",
+  "dgSpecHash": "mDmJoqnijpE=",
   "success": true,
-  "projectFilePath": "C:\\Users\\KHAYE\\source\\repos\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj",
+  "projectFilePath": "C:\\Users\\KHAYE\\OneDrive\\Desktop\\git-school connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\KHAYE\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\KHAYE\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
