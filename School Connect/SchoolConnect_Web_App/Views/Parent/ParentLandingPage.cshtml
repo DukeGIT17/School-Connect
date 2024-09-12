@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parent Page</title>
+    <link rel="stylesheet" href="~/css/ParentCSS/ParentLandingPage.css">
+</head>
+<body>
+    <header>
+        <!-- <button class="back-button" onclick="goBack()">&larr; Back</button> -->
+        <h1>Parent Page</h1>
+    </header>
+
+    <main>
+        <div class="profile">
+            <div class="profile-icon">&#128100;</div>
+            <h2>Mrs April Poti</h2>
+        </div>
+
+        <a asp-controller="Parent" asp-action="ParentViewProfile" class="button">View Profile</a>
+
+        <h3>LIST OF SCHOOLS:</h3>
+        <a asp-controller="Parent" asp-action="ParentSchoolProfile" class="button">HARMONIA COMBINED</a>
+        <a asp-controller="Parent" asp-action="ParentSchoolProfile" class="button">BOKAMOSO PRIMARY</a>
+        <a asp-controller="Parent" asp-action="ParentSchoolProfile" class="button">LICERIA HIGH</a>
+
+        <button class="button logout-button" onclick="logout()">LOG OUT</button>
+    </main>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+
+        function logout() {
+            window.location.href = '/Accounts/accounts.html';
+        }
+    </script>
+</body>
+</html>
+

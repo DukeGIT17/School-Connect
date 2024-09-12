@@ -1,0 +1,103 @@
+﻿@{
+    ViewData["Title"] = "Report";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/ParentCSS/ParentViewReports.css" />
+</head>
+<body>
+
+    <header>
+        <!-- Uncomment this line if you want the back button visible -->
+        <!-- <button onclick="window.history.back()">←</button> -->
+        <h1>Report Page</h1>
+    </header>
+
+    <main>
+        <h2>Learner Progress Report</h2>
+
+        <table>
+            <tr>
+                <td>Name: Thembile Poti</td>
+                <td></td>
+                <td>Grade: 10B</td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <th>Work Done</th>
+                <th>Date</th>
+                <th>Mark</th>
+            </tr>
+            <tr>
+                <td><img src="icon-book.png" alt="Icon" class="icon">ASSIGNMENT</td>
+                <td>6/27/2024</td>
+                <td>25/40</td>
+            </tr>
+            <tr>
+                <td><img src="icon-book.png" alt="Icon" class="icon">ESSAY</td>
+                <td>8/27/2024</td>
+                <td>100/100</td>
+            </tr>
+            <tr>
+                <td><img src="icon-book.png" alt="Icon" class="icon">TERM TEST</td>
+                <td>10/27/2024</td>
+                <td>48/50</td>
+            </tr>
+        </table>
+
+        <h2 class="bold">Report Card</h2>
+
+        <table class="bordered">
+            <tr>
+                <th>Subjects</th>
+                <th>Percentage</th>
+                <th>Level</th>
+            </tr>
+            <tr>
+                <td>English First Additional Language</td>
+                <td>75%</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>Sesotho Home Language</td>
+                <td>86%</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>Computer Applications Technology</td>
+                <td>92%</td>
+                <td>7</td>
+            </tr>
+            <tr>
+                <td>Mathematics</td>
+                <td>73%</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>Life Orientation</td>
+                <td>56%</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Life Sciences</td>
+                <td>69%</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>Physical Sciences</td>
+                <td>70%</td>
+                <td>6</td>
+            </tr>
+        </table>
+    </main>
+
+</body>
+</html>
+

@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Profile</title>
+    <link rel="stylesheet" href="~/css/PrincipalCSS/PrincipalGradeLandingPage.css"> <!-- Link to the external CSS file -->
+</head>
+<body>
+    <div class="header">
+        <button class="back-button" onclick="window.history.back()">&larr;</button>
+        <div class="header-title">Teacher Profile</div>
+    </div>
+
+    <div class="container">
+        <div class="profile-icon">
+            <span>&#128100;</span>
+        </div>
+        <div class="info">
+            <div class="info-item">Name: Kgopolo</div>
+            <div class="info-item">Surname: Mooi</div>
+            <div class="info-item">Cellphone: 0762875968</div>
+            <div class="info-item">Email: lekker2@gmail.com</div>
+            <!-- <div class="info-item">Password: Back123!?</div> -->
+        </div>
+        <a asp-controller="Principal" asp-action="PrincipalViewAttendance" class="button">View Attendance</a>
+        <a asp-controller="Principal" asp-action="PrincipalViewReports" class="button">View Report</a>
+    </div>
+
+    <script>
+        function updateProfile() {
+            // Handle update logic
+            alert('Profile updated');
+            window.history.back();
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

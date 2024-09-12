@@ -1,0 +1,49 @@
+﻿<!DOCTYPE> 
+<link rel="stylesheet" href="~/css/SysAdminCSS/SchoolReg.css" />
+
+@{
+    ViewBag.Title = "School Registration";
+}
+
+<div class="container">
+    <div class="icon" style="font-size: 50px; margin-bottom: 20px;">🏫</div>
+    <div class="text" style="font-size: 18px; margin-bottom: 30px;">Please enter the school's information here</div>
+
+    <div class="form-group" style="margin-bottom: 20px;">
+        <label for="emisNumber" style="display: block; font-weight: bold; margin-bottom: 5px;">EMIS Number</label>
+        <input type="text" id="emisNumber" placeholder="Please enter the school's EMIS number." style="width: 100%; padding: 10px;">
+    </div>
+
+    <div class="form-group" style="margin-bottom: 20px;">
+        <label for="schoolName" style="display: block; font-weight: bold; margin-bottom: 5px;">School Name</label>
+        <input type="text" id="schoolName" placeholder="What's the name of your school?" style="width: 100%; padding: 10px;">
+    </div>
+
+    <div class="form-group" style="margin-bottom: 20px;">
+        <label for="address" style="display: block; font-weight: bold; margin-bottom: 5px;">Address</label>
+        <input type="text" id="address" placeholder="Where is your school located?" style="width: 100%; padding: 10px;">
+    </div>
+
+    <div class="form-group" style="margin-bottom: 30px;">
+        <label for="schoolType" style="display: block; font-weight: bold; margin-bottom: 5px;">School Type</label>
+        <select id="schoolType" style="width: 100%; padding: 10px;">
+            <option value="Primary School" selected>Primary School</option>
+            <option value="High School">High School</option>
+            <option value="Combined School">Combined School</option>
+        </select>
+    </div>
+
+    <a asp-controller="SysAdmin" asp-action="SysAdminLandingPage" class="button">REGISTER</a>
+</div>
+
+@section Scripts {
+    <script>
+        function register() {
+            alert('You have successfully registered your school');
+            document.getElementById('emisNumber').value = '';
+            document.getElementById('schoolName').value = '';
+            document.getElementById('address').value = '';
+            window.location.href = '/Accounts/systemAdmin2';
+        }
+    </script>
+}

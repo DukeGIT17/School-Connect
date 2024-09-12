@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Teacher Profile";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/TeacherCSS/TeacherViewProfile.css" />
+</head>
+<body>
+
+    <div class="header">
+        <!-- <button class="back-button" onclick="window.history.back()">&larr;</button> -->
+        <div class="header-title">Teacher Profile</div>
+    </div>
+
+    <div class="container">
+        <div class="profile-icon">
+            <span>&#128100;</span>
+        </div>
+        <div class="info">
+            <div class="info-item">Name: Kgopolo</div>
+            <div class="info-item">Surname: Mooi</div>
+            <div class="info-item">ID: 0406036598789</div>
+            <div class="info-item">Cellphone: 0762875968</div>
+            <div class="info-item">Email: lekker2@gmail.com</div>
+        </div>
+        <a asp-controller="Teacher" asp-action="TeacherLandingPage" class="button">UPDATE</a>
+        <a asp-controller="Teacher" asp-action="TeacherLandingPage" class="button">BACK</a>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>
+

@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Subject Page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/TeacherCSS/TeacherSubjectPage.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Uncomment if you want a back button -->
+            <!-- <div class="back-button" onclick="window.history.back()">&#8592;</div>
+            <h1>Subject Page</h1> -->
+        </div>
+        <div>
+            <div class="header">GEOGRAPHY</div>
+            <div class="subheader">GRADE: 10B</div>
+
+           
+            <a asp-controller="Teacher" asp-action="TeacherMakeReports" class="button">MAKE REPORTS</a>
+
+            <a asp-controller="Teacher" asp-action="TeacherViewLearnerProfile" class="button">Khaya Mathebula</a>
+            <a asp-controller="Teacher" asp-action="TeacherViewLearnerProfile" class="button">Thembile Poti</a>
+            <a asp-controller="Teacher" asp-action="TeacherViewLearnerProfile" class="button">Puleng Senyatso</a>
+            <a asp-controller="Teacher" asp-action="TeacherViewLearnerProfile" class="button">Lebohang Senyane</a>
+            <a asp-controller="Teacher" asp-action="TeacherViewLearnerProfile" class="button">Lukhanyo Mayekiso</a>
+            <a asp-controller="Teacher" asp-action="TeacherViewLearnerProfile" class="button">Thabiso Soaisa</a>
+            </div>
+
+            <!-- Chat screen -->
+            <!-- <div class="chat-screen">
+                <h3>Chat with Other Students</h3>
+                <p><a href="/Communication/chat screen.html">Go to Chat Screen</a></p>
+            </div> -->
+        </div>
+        <button class="fab" onclick="window.location.href='/Communication/chat screen.html'">
+            <span>&#128172;</span>
+        </button>
+    </div>
+</body>
+</html>
+
