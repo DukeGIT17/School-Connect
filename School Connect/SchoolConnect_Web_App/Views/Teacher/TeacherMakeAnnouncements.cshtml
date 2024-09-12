@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "Teacher Announcement Form";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/TeacherCSS/TeacherMakeAnnouncements.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Announcement</h1>
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title">
+            </div>
+            <div class="form-group">
+                <label for="recipients">Recipients:</label>
+                <select id="recipients" name="recipients">
+                    <option value="all">All Parents</option>
+                    <option value="specify">Specify</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Message:</label>
+                <textarea id="message" name="message"></textarea>
+            </div>
+            <div class="checkbox-group">
+                <label><input type="checkbox" name="mail_sms"> Send an email and an SMS</label>
+                <label><input type="checkbox" name="schedule"> Schedule your announcement</label>
+                <label><input type="checkbox" name="show_on"> Show On</label>
+            </div>
+            <div class="date-picker">
+                <label for="date">Select Date:</label>
+                <input type="date" id="date" name="date" min="2024-01-01" max="2024-12-31">
+            </div>
+            <div class="time-picker">
+                <label for="time">Select Time:</label>
+                <input type="time" id="time" name="time">
+            </div>
+            <a asp-controller="Teacher" asp-action="TeacherLandingPage" class="button">SEND</a>
+        </form>
+    </div>
+</body>
+</html>
+

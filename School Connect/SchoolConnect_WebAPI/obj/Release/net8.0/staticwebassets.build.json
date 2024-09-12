@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "I3r+WJCxdL31N7mOxV7OPKB5lpWAxwSl06FfgnocNws=",
+  "Source": "SchoolConnect_WebAPI",
+  "BasePath": "_content/SchoolConnect_WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

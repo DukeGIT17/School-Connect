@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Class Roster";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/TeacherCSS/TeacherClassRoaster.css" />
+</head>
+<body>
+    <div class="container">
+        <!-- Uncomment the following lines if you want to include a back button -->
+        <!-- <button onclick="window.history.back()"
+            style="background: transparent; border: none; font-size: 24px; color: #2196F3; margin-bottom: 20px;">&larr;
+            Back</button> -->
+        <div class="header">CLASS ROSTER</div>
+        <div class="subheader">GRADE: 10B</div>
+
+        <a asp-controller="Teacher" asp-action="TeacherMarkAttendance" class="button">MARK ATTENDANCE</a>
+        <a asp-controller="Teacher" asp-action="TeacherMakeReports" class="button">MAKE REPORTS</a>
+
+        <a asp-controller="Teacher" asp-action="TeacherViewLearnerProfile" class="button">Khaya Mathebula</a>
+        <a asp-controller="Teacher" asp-action="TeacherViewLearnerProfile" class="button">Thembile Poti</a>
+        <a asp-controller="Teacher" asp-action="TeacherViewLearnerProfile" class="button">Puleng Senyatso</a>
+        <a asp-controller="Teacher" asp-action="TeacherViewLearnerProfile" class="button">Lebohang Senyane</a>
+        <a asp-controller="Teacher" asp-action="TeacherViewLearnerProfile" class="button">Lukhanyo Mayekiso</a>
+        <a asp-controller="Teacher" asp-action="TeacherViewLearnerProfile" class="button">Thabiso Soaisa</a>
+
+        <button class="chat-button" onclick="window.location.href='/Communication/contactList'">
+            <span class="chat-icon">💬</span>
+        </button>
+    </div>
+</body>
+</html>
+
