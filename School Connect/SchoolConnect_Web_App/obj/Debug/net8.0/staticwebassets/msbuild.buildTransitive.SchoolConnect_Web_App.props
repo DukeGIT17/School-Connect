@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\SchoolConnect_Web_App.props" />
-</Project>
