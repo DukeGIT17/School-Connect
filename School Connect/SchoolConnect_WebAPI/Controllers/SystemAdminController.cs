@@ -8,13 +8,32 @@ namespace SchoolConnect_WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SysAdminController : ControllerBase
+    public class SystemAdminController : ControllerBase
     {
         private readonly ISysAdmin _systemAdmin;
 
-        public SysAdminController(ISysAdmin systemAdmin)
+        public SystemAdminController(ISysAdmin systemAdmin)
         {
             _systemAdmin = systemAdmin;
+        }
+
+        [HttpPost(nameof(CreateAdmin))]
+        public async Task<IActionResult> CreateAdmin(SysAdmin admin)
+        {
+            try
+            {
+                var resultDictionary = await _systemAdmin.CreateAdmin(admin);
+                var success = resultDictionary.GetValueOrDefault("Success") ?? throw new Exception("Could not find the Success Key. Please have Lukhanyo review the Repository.");
+
+                if (!(bool)success)
+                    return BadRequest(resultDictionary.GetValueOrDefault("ErrorMessage") as string ?? "Operation unsuccessful. Error Message Key not found. Please have Lukhanyo review the Repository.");
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet(nameof(GetSystemAdminById))]

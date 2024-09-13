@@ -1,16 +1,12 @@
 ﻿using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_ServiceLayer.IServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace SchoolConnect_ServiceLayer.Services
 {
-    internal class SystemAdminService : ISystemAdminService
+    public class SystemAdminService : ISystemAdminService
     {
         public readonly HttpClient _client;
         public const string BasePath = "/api/SystemAdmin/";
@@ -20,6 +16,39 @@ namespace SchoolConnect_ServiceLayer.Services
         {
             _client = client;
             _returnDictionary = [];
+        }
+
+        public async Task<Dictionary<string, object>> CreateAdmin(SysAdmin systemAdmin)
+        {
+            _returnDictionary = [];
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("https://localhost:7091");
+                buildString.Append(BasePath);
+                buildString.Append("CreateAdmin/");
+
+                var adminJsonString = JsonSerializer.Serialize(systemAdmin);
+
+                var request = new HttpRequestMessage
+                {
+                    Content = new StringContent(adminJsonString, Encoding.UTF8, "application/json"),
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(buildString.ToString())
+                };
+
+                var response = await _client.SendAsync(request);
+                response.EnsureSuccessStatusCode();
+
+                _returnDictionary.Add("Success", true);
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary.Add("Success", false);
+                _returnDictionary.Add("ErrorMessage", ex.Message);
+                return _returnDictionary;
+            }
         }
 
         public async Task<Dictionary<string, object>> GetAdminById(long systemAdminId)

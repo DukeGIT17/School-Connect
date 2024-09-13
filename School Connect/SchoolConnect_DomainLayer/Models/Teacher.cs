@@ -30,6 +30,9 @@ namespace SchoolConnect_DomainLayer.Models
         [EmailAddress]
         public string EmailAddress { get; set; }
 
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
         #region Foreign Key Properties
         [ForeignKey(nameof(TeacherSchoolNP))]
         public long SchoolID { get; set; }

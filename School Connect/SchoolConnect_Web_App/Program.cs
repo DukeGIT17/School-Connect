@@ -18,6 +18,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<SignInDbContext>();
 builder.Services.AddHttpClient<ISchoolService, SchoolServices>(c =>
 c.BaseAddress = new Uri("https://localhost:7091"));
+builder.Services.AddScoped<ISystemAdminService, SystemAdminService>();
 
 var app = builder.Build();
 

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SchoolConnect_WebAPI.Migrations
+namespace SchoolConnect_WebAPI.Migrations.SignInDb
 {
     /// <inheritdoc />
     public partial class IdentityMigration : Migration

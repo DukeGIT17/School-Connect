@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SchoolConnect_DomainLayer.Migrations
+namespace SchoolConnect_WebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial_Migration_1 : Migration
+    public partial class Initial_Migration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,6 +20,7 @@ namespace SchoolConnect_DomainLayer.Migrations
                     IdNo = table.Column<long>(type: "INTEGER", nullable: false),
                     ParentType = table.Column<string>(type: "TEXT", maxLength: 15, nullable: false),
                     EmailAddress = table.Column<string>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false),
                     ProfileImage = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
                     Surname = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
@@ -39,7 +40,8 @@ namespace SchoolConnect_DomainLayer.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     StaffNr = table.Column<long>(type: "INTEGER", nullable: false),
                     EmailAddress = table.Column<string>(type: "TEXT", nullable: false),
-                    PhoneNumber = table.Column<long>(type: "INTEGER", nullable: false),
+                    PhoneNumber = table.Column<long>(type: "INTEGER", nullable: true),
+                    Password = table.Column<string>(type: "TEXT", nullable: false),
                     ProfileImage = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
                     Surname = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
@@ -156,6 +158,7 @@ namespace SchoolConnect_DomainLayer.Migrations
                     StaffNr = table.Column<long>(type: "INTEGER", nullable: false),
                     EmailAddress = table.Column<string>(type: "TEXT", nullable: false),
                     PhoneNumber = table.Column<long>(type: "INTEGER", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false),
                     SchoolID = table.Column<long>(type: "INTEGER", nullable: false),
                     ProfileImage = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),
@@ -186,6 +189,7 @@ namespace SchoolConnect_DomainLayer.Migrations
                     ClassIDs = table.Column<string>(type: "TEXT", nullable: false),
                     PhoneNumber = table.Column<long>(type: "INTEGER", nullable: false),
                     EmailAddress = table.Column<string>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false),
                     SchoolID = table.Column<long>(type: "INTEGER", nullable: false),
                     ProfileImage = table.Column<string>(type: "TEXT", nullable: true),
                     Name = table.Column<string>(type: "TEXT", maxLength: 30, nullable: false),

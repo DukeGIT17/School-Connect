@@ -2,19 +2,91 @@
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using SQLitePCL;
+using Microsoft.AspNetCore.Identity;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
     public class SystemAdminRepository : ISysAdmin
     {
         private readonly SchoolConnectDbContext _context;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private Dictionary<string, object> _returnDictionary;
 
-        public SystemAdminRepository(SchoolConnectDbContext context)
+        public SystemAdminRepository(SchoolConnectDbContext context, SignInManager<IdentityUser> signInManager)
         {
             _context = context;
             _returnDictionary = [];
+            _signInManager = signInManager;
+        }
+
+        public async Task<Dictionary<string, object>> CreateAdmin(SysAdmin systemAdmin)
+        {
+            _returnDictionary = [];
+            try
+            {
+                var admin = _context.SystemAdmins.FirstOrDefault(a => a.StaffNr == systemAdmin.StaffNr);
+
+                if (admin != null)
+                {
+                    _returnDictionary.Add("Success", false);
+                    _returnDictionary.Add("ErrorMessage", $"A system admin containing the staff number {systemAdmin.StaffNr} already exists.");
+                    return _returnDictionary;
+                }
+
+                var user = await _signInManager.UserManager.FindByEmailAsync(systemAdmin.EmailAddress);
+
+                if (user != null)
+                {
+                    _returnDictionary.Add("Success", false);
+                    _returnDictionary.Add("ErrorMessage", $"A user with the email address {systemAdmin.EmailAddress} already exists.");
+                    return _returnDictionary;
+                }
+
+                user = new IdentityUser
+                {
+                    Email = systemAdmin.EmailAddress,
+                    UserName = systemAdmin.EmailAddress,
+                    PhoneNumber = systemAdmin.PhoneNumber.ToString(),
+                };
+
+                var signInResult = await _signInManager.UserManager.CreateAsync(user, admin!.Password);
+
+                if (!signInResult.Succeeded)
+                {
+                    _returnDictionary.Add("Success", false);
+                    _returnDictionary.Add("ErrorMessage", $"Failed to create an account for {systemAdmin.EmailAddress}. ({signInResult.Errors})");
+                    return _returnDictionary;
+                }
+
+                var identityResult = await _signInManager.UserManager.AddToRoleAsync(user, systemAdmin.Role);
+
+                if (!identityResult.Succeeded)
+                {
+                    var idResult = await _signInManager.UserManager.DeleteAsync(user);
+                    if (!idResult.Succeeded)
+                    {
+                        _returnDictionary.Add("Success", false);
+                        _returnDictionary.Add("ErrorMessage", $"CATASTROPHIC ERROR!!! A user '{systemAdmin.EmailAddress}' now exists without an assigned Role. ERROR!! ERROR!!.");
+                        return _returnDictionary;
+                    }
+
+                    _returnDictionary.Add("Success", false);
+                    _returnDictionary.Add("ErrorMessage", $"Something went wrong when assigning user '{systemAdmin.EmailAddress}' to specified role.");
+                    return _returnDictionary;
+                }
+
+                _context.Add(systemAdmin);
+                _context.SaveChanges();
+
+                _returnDictionary.Add("Success", true);
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary.Add("Success", false);
+                _returnDictionary.Add("ErrorMessage", ex.Message);
+                return _returnDictionary;
+            }
         }
 
         public async Task<Dictionary<string, object>> GetAdminById(long sysAdminId)

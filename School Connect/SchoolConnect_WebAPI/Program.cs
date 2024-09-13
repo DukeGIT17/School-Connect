@@ -9,7 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<SchoolConnectDbContext>(options 
-    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString")));
+    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString"),
+    b => b.MigrationsAssembly(nameof(SchoolConnect_WebAPI))));
 builder.Services.AddDbContext<SignInDbContext>(options
     => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString"), 
     b => b.MigrationsAssembly(nameof(SchoolConnect_WebAPI))));
@@ -19,6 +20,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options
     .AddEntityFrameworkStores<SignInDbContext>();
 builder.Services.AddScoped<ISchool, SchoolRepository>();
 builder.Services.AddScoped<ISysAdmin, SystemAdminRepository>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -7,7 +7,7 @@ using SchoolConnect_DomainLayer.Data;
 
 #nullable disable
 
-namespace SchoolConnect_DomainLayer.Migrations
+namespace SchoolConnect_WebAPI.Migrations
 {
     [DbContext(typeof(SchoolConnectDbContext))]
     partial class SchoolConnectDbContextModelSnapshot : ModelSnapshot
@@ -262,6 +262,10 @@ namespace SchoolConnect_DomainLayer.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ProfileImage")
                         .HasColumnType("TEXT");
 
@@ -300,6 +304,10 @@ namespace SchoolConnect_DomainLayer.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(30)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<long>("PhoneNumber")
@@ -393,7 +401,11 @@ namespace SchoolConnect_DomainLayer.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("PhoneNumber")
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<long?>("PhoneNumber")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ProfileImage")
@@ -445,6 +457,10 @@ namespace SchoolConnect_DomainLayer.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(30)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<long>("PhoneNumber")

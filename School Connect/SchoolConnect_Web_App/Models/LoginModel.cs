@@ -1,11 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SchoolConnect_DomainLayer.Models;
+using System.ComponentModel.DataAnnotations;
 
-namespace SchoolConnect_DomainLayer.Models
+namespace SchoolConnect_Web_App.Models
 {
     public class LoginModel
     {
         [Required]
-        [Display(Name = "Email Address")]
         [EmailAddress]
         public string EmailAddress { get; set; }
 

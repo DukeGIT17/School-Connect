@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_ServiceLayer.IServices;
+using SchoolConnect_Web_App.Models;
 
 namespace schoolconnect.Controllers
 {
