@@ -49,7 +49,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     PhoneNumber = systemAdmin.PhoneNumber.ToString(),
                 };
 
-                var signInResult = await _signInManager.UserManager.CreateAsync(user, admin!.Password);
+                var signInResult = await _signInManager.UserManager.CreateAsync(user, systemAdmin.Password);
 
                 if (!signInResult.Succeeded)
                 {

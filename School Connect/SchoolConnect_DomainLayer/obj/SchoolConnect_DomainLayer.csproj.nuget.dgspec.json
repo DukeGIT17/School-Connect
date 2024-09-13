@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\KHAYE\\OneDrive\\Desktop\\git-school connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {}
+    "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\KHAYE\\OneDrive\\Desktop\\git-school connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
+    "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\KHAYE\\OneDrive\\Desktop\\git-school connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj",
         "projectName": "SchoolConnect_DomainLayer",
-        "projectPath": "C:\\Users\\KHAYE\\OneDrive\\Desktop\\git-school connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj",
-        "packagesPath": "C:\\Users\\KHAYE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\KHAYE\\OneDrive\\Desktop\\git-school connect\\School Connect\\SchoolConnect_DomainLayer\\obj\\",
+        "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj",
+        "packagesPath": "C:\\Users\\Lukhanyo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\KHAYE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lukhanyo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

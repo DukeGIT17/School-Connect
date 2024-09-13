@@ -27,7 +27,14 @@ namespace SchoolConnect_ServiceLayer.Services
                 buildString.Append("Schools/");
 
                 var response = await _httpClient.GetAsync(buildString.ToString());
-                response.EnsureSuccessStatusCode();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    _returnDictionary.Add("Success", false);
+                    _returnDictionary.Add("ErrorMessage", response.ReasonPhrase ?? "Operation failed; reason not provided.");
+                    return _returnDictionary;
+                }
+
                 var schools = await response.Content.ReadFromJsonAsync<IEnumerable<School>>();
                 if (schools == null)
                 {
@@ -67,7 +74,13 @@ namespace SchoolConnect_ServiceLayer.Services
                 };
 
                 var response = await _httpClient.SendAsync(request);
-                response.EnsureSuccessStatusCode();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    _returnDictionary.Add("Success", false);
+                    _returnDictionary.Add("ErrorMessage", response.ReasonPhrase ?? "Operation failed; reason not provided.");
+                    return _returnDictionary;
+                }
 
                 _returnDictionary.Add("Success", true);
                 _returnDictionary.Add("Result", response);

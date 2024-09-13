@@ -38,7 +38,16 @@ namespace SchoolConnect_ServiceLayer.Services
                 };
 
                 var response = await _client.SendAsync(request);
-                response.EnsureSuccessStatusCode();
+                
+                if (!response.IsSuccessStatusCode)
+                {
+                    string errorMessage = response.ReasonPhrase ?? "Operation failed; reason not provided.";
+                    errorMessage += " {" + response.StatusCode + "}";
+
+                    _returnDictionary.Add("Success", false);
+                    _returnDictionary.Add("ErrorMessage", errorMessage);
+                    return _returnDictionary;
+                }
 
                 _returnDictionary.Add("Success", true);
                 return _returnDictionary;
@@ -62,7 +71,14 @@ namespace SchoolConnect_ServiceLayer.Services
                 buildString.Append(systemAdminId + "/");
 
                 var response = await _client.GetAsync(buildString.ToString());
-                response.EnsureSuccessStatusCode();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    _returnDictionary.Add("Success", false);
+                    _returnDictionary.Add("ErrorMessage", response.ReasonPhrase ?? "Operation failed; reason not provided.");
+                    return _returnDictionary;
+                }
+
                 var admin = await response.Content.ReadFromJsonAsync<SysAdmin>();
 
                 if (admin == null)
@@ -95,7 +111,14 @@ namespace SchoolConnect_ServiceLayer.Services
                 buildString.Append(staffNr + "/");
 
                 var response = await _client.GetAsync(buildString.ToString());
-                response.EnsureSuccessStatusCode();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    _returnDictionary.Add("Success", false);
+                    _returnDictionary.Add("ErrorMessage", response.ReasonPhrase ?? "Operation failed; reason not provided.");
+                    return _returnDictionary;
+                }
+
                 var admin = await response.Content.ReadFromJsonAsync<SysAdmin>();
 
                 if (admin == null)
@@ -137,7 +160,13 @@ namespace SchoolConnect_ServiceLayer.Services
                 };
 
                 var response = await _client.SendAsync(request);
-                response.EnsureSuccessStatusCode();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    _returnDictionary.Add("Success", false);
+                    _returnDictionary.Add("ErrorMessage", response.ReasonPhrase ?? "Operation failed; reason not provided.");
+                    return _returnDictionary;
+                }
 
                 _returnDictionary.Add("Success", true);
                 return _returnDictionary;
