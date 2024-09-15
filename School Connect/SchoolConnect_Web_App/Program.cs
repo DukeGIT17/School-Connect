@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SchoolConnect_DomainLayer.Data;
-using SchoolConnect_ServiceLayer.IServices;
-using SchoolConnect_ServiceLayer.Services;
+using SchoolConnect_Web_App.IServices;
+using SchoolConnect_Web_App.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

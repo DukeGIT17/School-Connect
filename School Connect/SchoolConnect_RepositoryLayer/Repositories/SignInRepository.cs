@@ -3,7 +3,7 @@ using SchoolConnect_RepositoryLayer.Interfaces;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
-    public class SignInRepository : ISignIn
+    public class SignInRepository : ISignInRepo
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private Dictionary<string, object> _returnDictionary;

@@ -8,9 +8,9 @@ namespace SchoolConnect_WebAPI.Controllers
     [ApiController]
     public class SignInController : ControllerBase
     {
-        private readonly ISignIn _signInRepo;
+        private readonly ISignInRepo _signInRepo;
 
-        public SignInController(ISignIn signIn)
+        public SignInController(ISignInRepo signIn)
         {
             _signInRepo = signIn;
         }

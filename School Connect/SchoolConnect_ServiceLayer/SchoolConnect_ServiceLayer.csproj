@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SchoolConnect_DomainLayer\SchoolConnect_DomainLayer.csproj" />
+    <ProjectReference Include="..\SchoolConnect_RepositoryLayer\SchoolConnect_RepositoryLayer.csproj" />
   </ItemGroup>
 
 </Project>

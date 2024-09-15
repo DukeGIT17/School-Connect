@@ -868,3 +868,5 @@ C:\Users\Lukhanyo\Desktop\git-school connect\School-Connect\School Connect\Schoo
 C:\Users\Lukhanyo\Desktop\git-school connect\School-Connect\School Connect\SchoolConnect_WebAPI\obj\Debug\net8.0\SchoolConnect_WebAPI.pdb
 C:\Users\Lukhanyo\Desktop\git-school connect\School-Connect\School Connect\SchoolConnect_WebAPI\obj\Debug\net8.0\SchoolConnect_WebAPI.genruntimeconfig.cache
 C:\Users\Lukhanyo\Desktop\git-school connect\School-Connect\School Connect\SchoolConnect_WebAPI\obj\Debug\net8.0\ref\SchoolConnect_WebAPI.dll
+C:\Users\Lukhanyo\Desktop\git-school connect\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\SchoolConnect_ServiceLayer.dll
+C:\Users\Lukhanyo\Desktop\git-school connect\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\SchoolConnect_ServiceLayer.pdb

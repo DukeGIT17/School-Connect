@@ -1,6 +1,6 @@
 ﻿using SchoolConnect_DomainLayer.Models;
 
-namespace SchoolConnect_ServiceLayer.IServices
+namespace SchoolConnect_Web_App.IServices
 {
     public interface ISystemAdminService
     {

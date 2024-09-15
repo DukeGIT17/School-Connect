@@ -1,9 +1,10 @@
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_RepositoryLayer.Repositories;
+using SchoolConnect_ServiceLayer.ISystemAdminServices;
+using SchoolConnect_ServiceLayer.SystemAdminServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options
     .AddEntityFrameworkStores<SignInDbContext>();
 builder.Services.AddScoped<ISchool, SchoolRepository>();
 builder.Services.AddScoped<ISysAdmin, SystemAdminRepository>();
-builder.Services.AddScoped<ISignIn, SignInRepository>();
+builder.Services.AddScoped<ISignInRepo, SignInRepository>();
+builder.Services.AddScoped<ISystemAdminService, SystemAdminService>();
 
 
 builder.Services.AddControllers();

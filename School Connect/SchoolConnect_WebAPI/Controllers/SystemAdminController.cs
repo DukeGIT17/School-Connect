@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_RepositoryLayer.Interfaces;
-using System.Reflection.Metadata.Ecma335;
+using SchoolConnect_ServiceLayer.ISystemAdminServices;
 
 namespace SchoolConnect_WebAPI.Controllers
 {
@@ -10,11 +9,11 @@ namespace SchoolConnect_WebAPI.Controllers
     [ApiController]
     public class SystemAdminController : ControllerBase
     {
-        private readonly ISysAdmin _systemAdmin;
+        private readonly ISystemAdminService _systemAdminService;
 
-        public SystemAdminController(ISysAdmin systemAdmin)
+        public SystemAdminController(ISystemAdminService systemAdminService)
         {
-            _systemAdmin = systemAdmin;
+            _systemAdminService = systemAdminService;
         }
 
         [HttpPost(nameof(CreateAdmin))]
@@ -22,11 +21,11 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                var resultDictionary = await _systemAdmin.CreateAdmin(admin);
-                var success = resultDictionary.GetValueOrDefault("Success") ?? throw new Exception("Could not find the Success Key. Please have Lukhanyo review the Repository.");
+                var resultDictionary = await _systemAdminService.CreateAdmin(admin);
+                var success = resultDictionary["Success"];
 
                 if (!(bool)success)
-                    return BadRequest(resultDictionary.GetValueOrDefault("ErrorMessage") as string ?? "Operation unsuccessful. Error Message Key not found. Please have Lukhanyo review the Repository.");
+                    return BadRequest(resultDictionary["ErrorMessage"] as string ?? "Operation failed.");
 
                 return Ok();
             }
@@ -41,13 +40,12 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                var admin = await _systemAdmin.GetAdminById(id);
-                var success = admin.GetValueOrDefault("Success") ?? throw new Exception("Could not find the Success Key in the System Admin Repository. Please contact Lukhanyo. Ungacofacofi!!!! :(");
+                var result = await _systemAdminService.GetAdminById(id);
+                var success = result["Success"];
 
                 if (!(bool)success)
-                    return BadRequest(admin.GetValueOrDefault("ErrorMessage") as string ?? "Something went wrong, operation was unsuccessful.");
+                    return BadRequest(result);
 
-                var result = admin.GetValueOrDefault("Result") as SysAdmin ?? throw new Exception("Something went wrong! Please contact Lukhanyo. Ungacofacofi!!!! :(");
                 return Ok(result);
             }
             catch (Exception ex)
@@ -61,7 +59,7 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                var admin = await _systemAdmin.GetAdminByStaffNr(staffNr);
+                var admin = await _systemAdminService.GetAdminByStaffNr(staffNr);
                 var success = admin.GetValueOrDefault("Success") ?? throw new Exception("Could not find the Success Key in the System Admin Repository. Please contact Lukhanyo. Ungacofacofi!!!! :(");
 
                 if (!(bool)success)
@@ -81,11 +79,11 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                var result = await _systemAdmin.Update(systemAdmin);
-                var success = result.GetValueOrDefault("Success") ?? throw new Exception("Could not find the Success Key in the System Admin Repository. Please contact Lukhanyo. Ungacofacofi!!!! :(");
+                var result = await _systemAdminService.UpdateSystemAdmin(systemAdmin);
+                var success = result["Success"];
 
                 if (!(bool)success)
-                    return BadRequest(result.GetValueOrDefault("ErrorMessage") as string ?? "Something went wrong, operationw as unsuccessful.");
+                    return BadRequest(result["ErrorMessage"]);
 
                 return Ok();
             }

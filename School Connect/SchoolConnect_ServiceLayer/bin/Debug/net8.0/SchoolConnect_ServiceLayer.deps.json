@@ -10,7 +10,8 @@
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.8",
           "Microsoft.AspNetCore.Identity.UI": "8.0.8",
-          "SchoolConnect_DomainLayer": "1.0.0"
+          "SchoolConnect_DomainLayer": "1.0.0",
+          "SchoolConnect_RepositoryLayer": "1.0.0"
         },
         "runtime": {
           "SchoolConnect_ServiceLayer.dll": {}
@@ -788,6 +789,17 @@
         "runtime": {
           "SchoolConnect_DomainLayer.dll": {}
         }
+      },
+      "SchoolConnect_RepositoryLayer/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.8",
+          "Microsoft.AspNetCore.Identity.UI": "8.0.8",
+          "Microsoft.EntityFrameworkCore.Sqlite": "8.0.8",
+          "SchoolConnect_DomainLayer": "1.0.0"
+        },
+        "runtime": {
+          "SchoolConnect_RepositoryLayer.dll": {}
+        }
       }
     }
   },
@@ -1295,6 +1307,11 @@
       "hashPath": "system.windows.extensions.6.0.0.nupkg.sha512"
     },
     "SchoolConnect_DomainLayer/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SchoolConnect_RepositoryLayer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -13,8 +13,6 @@
           "Microsoft.EntityFrameworkCore.Design": "8.0.8",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.5",
           "SchoolConnect_DomainLayer": "1.0.0",
-          "SchoolConnect_RepositoryLayer": "1.0.0",
-          "SchoolConnect_ServiceLayer": "1.0.0",
           "SchoolConnect_WebAPI": "1.0.0"
         },
         "runtime": {
@@ -2200,7 +2198,8 @@
         "dependencies": {
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.8",
           "Microsoft.AspNetCore.Identity.UI": "8.0.8",
-          "SchoolConnect_DomainLayer": "1.0.0"
+          "SchoolConnect_DomainLayer": "1.0.0",
+          "SchoolConnect_RepositoryLayer": "1.0.0"
         },
         "runtime": {
           "SchoolConnect_ServiceLayer.dll": {}
@@ -2215,7 +2214,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.8",
           "Microsoft.EntityFrameworkCore.Sqlite": "8.0.8",
           "SchoolConnect_DomainLayer": "1.0.0",
-          "SchoolConnect_RepositoryLayer": "1.0.0",
+          "SchoolConnect_ServiceLayer": "1.0.0",
           "Swashbuckle.AspNetCore": "6.4.0"
         },
         "runtime": {

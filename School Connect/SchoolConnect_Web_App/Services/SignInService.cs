@@ -1,8 +1,8 @@
-﻿using SchoolConnect_ServiceLayer.IServices;
+﻿using SchoolConnect_Web_App.IServices;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace SchoolConnect_ServiceLayer.Services
+namespace SchoolConnect_Web_App.Services
 {
     public class SignInService : ISignInService
     {

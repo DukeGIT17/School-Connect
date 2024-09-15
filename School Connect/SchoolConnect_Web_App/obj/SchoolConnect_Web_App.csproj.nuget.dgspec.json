@@ -215,6 +215,9 @@
             "projectReferences": {
               "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
                 "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj"
+              },
+              "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj": {
+                "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj"
               }
             }
           }
@@ -295,8 +298,8 @@
               "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
                 "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj"
               },
-              "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj": {
-                "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj"
+              "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj": {
+                "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj"
               }
             }
           }
@@ -411,12 +414,6 @@
             "projectReferences": {
               "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
                 "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj"
-              },
-              "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj": {
-                "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj"
-              },
-              "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj": {
-                "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj"
               },
               "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\SchoolConnect_WebAPI.csproj": {
                 "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\SchoolConnect_WebAPI.csproj"

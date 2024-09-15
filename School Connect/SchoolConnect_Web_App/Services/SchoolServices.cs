@@ -1,10 +1,9 @@
 ﻿using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_ServiceLayer.IServices;
-using System.Net.Http.Json;
+using SchoolConnect_Web_App.IServices;
 using System.Text;
 using System.Text.Json;
 
-namespace SchoolConnect_ServiceLayer.Services
+namespace SchoolConnect_Web_App.Services
 {
     public class SchoolServices : ISchoolService
     {

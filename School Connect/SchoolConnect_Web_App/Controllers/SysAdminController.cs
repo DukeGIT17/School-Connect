@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.FlowAnalysis.DataFlow;
 using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_ServiceLayer.IServices;
+using SchoolConnect_Web_App.IServices;
 
 namespace schoolconnect.Controllers
 {
@@ -28,7 +27,7 @@ namespace schoolconnect.Controllers
                 if (ModelState.IsValid)
                 {
                     var result = await _systemAdminService.CreateAdmin(admin);
-                    var success = result.GetValueOrDefault("Success") ?? throw new Exception("Could not find the Success Key");
+                    var success = result["Success"];
 
                     if (!(bool)success)
                     {

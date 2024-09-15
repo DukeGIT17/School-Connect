@@ -1355,6 +1355,22 @@
         "runtime": {
           "bin/placeholder/SchoolConnect_DomainLayer.dll": {}
         }
+      },
+      "SchoolConnect_RepositoryLayer/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.8",
+          "Microsoft.AspNetCore.Identity.UI": "8.0.8",
+          "Microsoft.EntityFrameworkCore.Sqlite": "8.0.8",
+          "SchoolConnect_DomainLayer": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SchoolConnect_RepositoryLayer.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SchoolConnect_RepositoryLayer.dll": {}
+        }
       }
     }
   },
@@ -3600,13 +3616,19 @@
       "type": "project",
       "path": "../SchoolConnect_DomainLayer/SchoolConnect_DomainLayer.csproj",
       "msbuildProject": "../SchoolConnect_DomainLayer/SchoolConnect_DomainLayer.csproj"
+    },
+    "SchoolConnect_RepositoryLayer/1.0.0": {
+      "type": "project",
+      "path": "../SchoolConnect_RepositoryLayer/SchoolConnect_RepositoryLayer.csproj",
+      "msbuildProject": "../SchoolConnect_RepositoryLayer/SchoolConnect_RepositoryLayer.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.8",
       "Microsoft.AspNetCore.Identity.UI >= 8.0.8",
-      "SchoolConnect_DomainLayer >= 1.0.0"
+      "SchoolConnect_DomainLayer >= 1.0.0",
+      "SchoolConnect_RepositoryLayer >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3644,6 +3666,9 @@
           "projectReferences": {
             "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
               "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj"
+            },
+            "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj": {
+              "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\git-school connect\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj"
             }
           }
         }

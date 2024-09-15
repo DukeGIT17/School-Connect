@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SchoolConnect_ServiceLayer.IServices;
+using SchoolConnect_Web_App.IServices;
 using SchoolConnect_Web_App.Models;
 
 namespace schoolconnect.Controllers
