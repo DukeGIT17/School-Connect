@@ -10,11 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<SchoolConnectDbContext>(options 
-    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString"),
-    b => b.MigrationsAssembly(nameof(SchoolConnect_WebAPI))));
+    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString")/*,
+    b => b.MigrationsAssembly(nameof(SchoolConnect_WebAPI))*/));
 builder.Services.AddDbContext<SignInDbContext>(options
-    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString"), 
-    b => b.MigrationsAssembly(nameof(SchoolConnect_WebAPI))));
+    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString")/*, 
+    b => b.MigrationsAssembly(nameof(SchoolConnect_WebAPI))*/));
 builder.Services.AddDefaultIdentity<IdentityUser>(options
     => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
