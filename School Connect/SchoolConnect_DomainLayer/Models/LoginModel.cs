@@ -1,7 +1,6 @@
-﻿using SchoolConnect_DomainLayer.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace SchoolConnect_Web_App.Models
+namespace SchoolConnect_DomainLayer.Models
 {
     public class LoginModel
     {

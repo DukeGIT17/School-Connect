@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
@@ -14,15 +15,15 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             _returnDictionary = [];
         }
 
-        public async Task<Dictionary<string, object>> SignInAsync(string email, string password)
+        public async Task<Dictionary<string, object>> SignInAsync(LoginModel model)
         {
             _returnDictionary = [];
             try
             {
-                var result = await _signInManager.PasswordSignInAsync(email, password, false, false);
+                var result = await _signInManager.PasswordSignInAsync(model.EmailAddress, model.Password, false, false);
 
                 if (!result.Succeeded)
-                    throw new Exception($"Failed to sign user '{email}'.");
+                    throw new Exception($"Failed to sign user '{model.EmailAddress}'.");
 
                 _returnDictionary["Success"] = true;
                 return _returnDictionary;

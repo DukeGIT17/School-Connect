@@ -1,5 +1,7 @@
-﻿using SchoolConnect_Web_App.IServices;
+﻿using SchoolConnect_DomainLayer.Models;
+using SchoolConnect_Web_App.IServices;
 using System.Text;
+using System.Text.Json;
 
 namespace SchoolConnect_Web_App.Services
 {
@@ -15,20 +17,19 @@ namespace SchoolConnect_Web_App.Services
             _returnDictionary = [];
         }
 
-        public Dictionary<string, object> SignInWithEmailAndPasswordAsync(string email, string password)
+        public Dictionary<string, object> SignInWithEmailAndPassword(LoginModel model)
         {
-            _returnDictionary = [];
             try
             {
                 StringBuilder buildString = new();
-                buildString.Append("https://localhost:7091/");
+                buildString.Append("https://localhost:7091");
                 buildString.Append(BasePath);
-                buildString.Append("SignIn?email=");
-                buildString.Append(email + "/");
+                buildString.Append("SignIn");
 
+                var loginmodelJsonString = JsonSerializer.Serialize(model);
                 var request = new HttpRequestMessage
                 {
-                    Content = new StringContent(password, Encoding.UTF8, "application/json"),
+                    Content = new StringContent(loginmodelJsonString, Encoding.UTF8, "application/json"),
                     Method = HttpMethod.Post,
                     RequestUri = new Uri(buildString.ToString())
                 };
@@ -36,11 +37,9 @@ namespace SchoolConnect_Web_App.Services
                 var response = _client.SendAsync(request).Result;
 
                 if (!response.IsSuccessStatusCode)
-                    throw new Exception("An error occurred while trying to sign in.");
+                    throw new Exception(response.Content.ReadAsStringAsync().Result);
 
-                _returnDictionary = response.Content.ReadFromJsonAsync<Dictionary<string, object>>().Result
-                    ?? throw new Exception("Failed to acquire result dictionary from API.");
-
+                _returnDictionary["Success"] = true;
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -51,7 +50,7 @@ namespace SchoolConnect_Web_App.Services
             }
         }
 
-        public void SignOutAsync()
+        public void SignOut()
         {
             StringBuilder buildString = new();
             buildString.Append(BasePath);

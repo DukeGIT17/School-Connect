@@ -1,8 +1,10 @@
-﻿namespace SchoolConnect_Web_App.IServices
+﻿using SchoolConnect_DomainLayer.Models;
+
+namespace SchoolConnect_Web_App.IServices
 {
     public interface ISignInService
     {
-        Dictionary<string, object> SignInWithEmailAndPasswordAsync(string email, string password);
-        void SignOutAsync();
+        Dictionary<string, object> SignInWithEmailAndPassword(LoginModel model);
+        void SignOut();
     }
 }

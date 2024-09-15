@@ -1,5 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Identity;
+using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.ISystemAdminServices;
 
@@ -20,27 +21,27 @@ namespace SchoolConnect_ServiceLayer.SystemAdminServices
             _returnDictionary = [];
         }
 
-        public async Task<Dictionary<string, object>> SignInAsync(string email, string password)
+        public async Task<Dictionary<string, object>> SignInAsync(LoginModel model)
         {
             _returnDictionary = [];
             try
             {
                 string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
-                bool isValid = Regex.IsMatch(email, pattern);
+                bool isValid = Regex.IsMatch(model.EmailAddress, pattern);
 
                 if (!isValid)
                 {
-                    throw new Exception($"{email} is an invalid email address.");
+                    throw new Exception($"{model.EmailAddress} is an invalid email address.");
                 }
 
                 var userManager = _userManager;
                 IdentityUser user = new();
-                var identityResult = await _passwordValidator.ValidateAsync(userManager, user, password);
+                var identityResult = await _passwordValidator.ValidateAsync(userManager, user, model.Password);
 
                 if (!identityResult.Succeeded)
                     throw new Exception("Please enter a valid password");
 
-                _returnDictionary = await _signInRepository.SignInAsync(email, password);
+                _returnDictionary = await _signInRepository.SignInAsync(model);
                 return _returnDictionary;
             }
             catch (Exception ex)

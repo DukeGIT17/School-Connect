@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
-using SchoolConnect_Web_App.Models;
 
 namespace schoolconnect.Controllers
 {
@@ -30,7 +30,7 @@ namespace schoolconnect.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _resultDictionary = _signInService.SignInWithEmailAndPasswordAsync(model.EmailAddress, model.Password);
+                    _resultDictionary = _signInService.SignInWithEmailAndPassword(model);
 
                     if (!(bool)_resultDictionary["Success"])
                         throw new Exception($"Invalid Credentials. Issue: {_resultDictionary["ErrorMessage"]}");

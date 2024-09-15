@@ -20,6 +20,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<SignInDbContext>();
 builder.Services.AddScoped<ISchool, SchoolRepository>();
+builder.Services.AddScoped<PasswordValidator<IdentityUser>>();
 builder.Services.AddScoped<ISysAdmin, SystemAdminRepository>();
 builder.Services.AddScoped<ISignInRepo, SignInRepository>();
 builder.Services.AddScoped<ISystemAdminService, AdminService>();
