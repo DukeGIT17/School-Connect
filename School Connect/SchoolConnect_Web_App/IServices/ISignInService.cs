@@ -2,7 +2,7 @@
 {
     public interface ISignInService
     {
-        Task<Dictionary<string, object>> SignInWithEmailAndPasswordAsync(string email, string password);
-        Task<Dictionary<string, object>> SignOutAsync();
+        Dictionary<string, object> SignInWithEmailAndPasswordAsync(string email, string password);
+        void SignOutAsync();
     }
 }

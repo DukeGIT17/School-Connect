@@ -1,6 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using SchoolConnect_RepositoryLayer.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
+using SchoolConnect_ServiceLayer.ISystemAdminServices;
 
 namespace SchoolConnect_WebAPI.Controllers
 {
@@ -8,25 +7,25 @@ namespace SchoolConnect_WebAPI.Controllers
     [ApiController]
     public class SignInController : ControllerBase
     {
-        private readonly ISignInRepo _signInRepo;
+        private readonly ISignInService _signInService;
 
-        public SignInController(ISignInRepo signIn)
+        public SignInController(ISignInService signIn)
         {
-            _signInRepo = signIn;
+            _signInService = signIn;
         }
 
         [HttpPost("SignIn")]
-        public IActionResult SignInWithEmailAndPassword(string email, string password)
+        public IActionResult SignInWithEmailAndPassword([FromQuery] string email, [FromBody] string password)
         {
             try
             {
-                var result = _signInRepo.SignInAsync(email, password).Result;
-                var success = result.GetValueOrDefault("Success") ?? throw new Exception("Could not find the Success Key");
+                var result = _signInService.SignInAsync(email, password).Result;
+                var success = result["Success"];
 
                 if (!(bool)success)
-                    return BadRequest(result.GetValueOrDefault("ErrorMessage") ?? "Operation failed. Error: Could not retrieve the ErrorMessage.");
+                    return BadRequest(result["ErrorMessage"]);
 
-                return Ok();
+                return Ok(result["Result"]);
             }
             catch (Exception ex)
             {
@@ -39,7 +38,7 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                _signInRepo.SignOutAsync().Wait();
+                _signInService.SignOutAsync();
                 return Ok();
             }
             catch (Exception ex)

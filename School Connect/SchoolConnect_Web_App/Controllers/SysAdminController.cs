@@ -13,39 +13,6 @@ namespace schoolconnect.Controllers
             _systemAdminService = systemAdminService;
         }
 
-        [HttpGet]
-        public IActionResult RegisterAdmin()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> RegisterAdmin(SysAdmin admin)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    var result = await _systemAdminService.CreateAdmin(admin);
-                    var success = result["Success"];
-
-                    if (!(bool)success)
-                    {
-                        ModelState.AddModelError(string.Empty, result.GetValueOrDefault("ErrorMessage") as string ?? "Something went wrong");
-                        return View(admin);
-                    }
-
-                    return RedirectToAction(nameof(SysAdminLandingPage));
-                }
-                return View(admin);
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError(string.Empty, ex.Message);
-                return View(admin);
-            }
-        }
-
         public IActionResult SysAdminLandingPage()
         {
             return View();

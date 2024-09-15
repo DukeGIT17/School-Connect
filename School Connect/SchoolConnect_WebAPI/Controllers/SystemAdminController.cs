@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_ServiceLayer.ISystemAdminServices;
 
@@ -16,25 +15,6 @@ namespace SchoolConnect_WebAPI.Controllers
             _systemAdminService = systemAdminService;
         }
 
-        [HttpPost(nameof(CreateAdmin))]
-        public async Task<IActionResult> CreateAdmin(SysAdmin admin)
-        {
-            try
-            {
-                var resultDictionary = await _systemAdminService.CreateAdmin(admin);
-                var success = resultDictionary["Success"];
-
-                if (!(bool)success)
-                    return BadRequest(resultDictionary["ErrorMessage"] as string ?? "Operation failed.");
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
         [HttpGet(nameof(GetSystemAdminById))]
         public async Task<IActionResult> GetSystemAdminById(long id)
         {
@@ -44,7 +24,7 @@ namespace SchoolConnect_WebAPI.Controllers
                 var success = result["Success"];
 
                 if (!(bool)success)
-                    return BadRequest(result);
+                    return BadRequest(result["ErrorMessage"]);
 
                 return Ok(result);
             }
@@ -60,12 +40,12 @@ namespace SchoolConnect_WebAPI.Controllers
             try
             {
                 var admin = await _systemAdminService.GetAdminByStaffNr(staffNr);
-                var success = admin.GetValueOrDefault("Success") ?? throw new Exception("Could not find the Success Key in the System Admin Repository. Please contact Lukhanyo. Ungacofacofi!!!! :(");
+                var success = admin["Success"];
 
                 if (!(bool)success)
-                    return BadRequest(admin.GetValueOrDefault("ErrorMessage") as string ?? "Something went wrong, operation was unsuccessful.");
+                    return BadRequest(admin["ErrorMessage"]);
 
-                var result = admin.GetValueOrDefault("Result") as SysAdmin ?? throw new Exception("Something went wrong! Please contact Lukhanyo. Ungacofacofi!!!! :(");
+                var result = admin["Result"] as SysAdmin;
                 return Ok(result);
             }
             catch (Exception ex)

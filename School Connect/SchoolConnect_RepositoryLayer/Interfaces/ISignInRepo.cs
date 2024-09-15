@@ -4,6 +4,6 @@
     {
 
         Task<Dictionary<string, object>> SignInAsync(string email, string password);
-        Task SignOutAsync();
+        void SignOutAsync();
     }
 }

@@ -22,7 +22,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options
 builder.Services.AddScoped<ISchool, SchoolRepository>();
 builder.Services.AddScoped<ISysAdmin, SystemAdminRepository>();
 builder.Services.AddScoped<ISignInRepo, SignInRepository>();
-builder.Services.AddScoped<ISystemAdminService, SystemAdminService>();
+builder.Services.AddScoped<ISystemAdminService, AdminService>();
+builder.Services.AddScoped<ISignInService, SignInService>();
 
 
 builder.Services.AddControllers();
@@ -54,5 +55,18 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var roles = new[] { "System Admin", "Principal", "Teacher", "Parent" };
+    foreach (var role in roles)
+    {
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole(role));
+        }
+    }
+}
 
 app.Run();

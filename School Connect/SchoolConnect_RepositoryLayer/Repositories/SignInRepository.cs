@@ -22,26 +22,22 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 var result = await _signInManager.PasswordSignInAsync(email, password, false, false);
 
                 if (!result.Succeeded)
-                {
-                    _returnDictionary.Add("Success", false);
-                    _returnDictionary.Add("ErrorMessage", "Failed to sign user '{email}'.");
-                    return _returnDictionary;
-                }
+                    throw new Exception($"Failed to sign user '{email}'.");
 
-                _returnDictionary.Add("Success", true);
+                _returnDictionary["Success"] = true;
                 return _returnDictionary;
             }
             catch (Exception ex)
             {
-                _returnDictionary.Add("Success", false);
-                _returnDictionary.Add("ErrorMessage", ex.Message);
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
             }
         }
 
-        public async Task SignOutAsync()
+        public void SignOutAsync()
         {
-            await _signInManager.SignOutAsync();
+            _signInManager.SignOutAsync().Wait();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SchoolConnect_Web_App.IServices;
 using SchoolConnect_Web_App.Models;
 
@@ -7,13 +6,15 @@ namespace schoolconnect.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ISchoolService _schoolService;
+        private readonly ISignInService _signInService;
+        private Dictionary<string, object> _resultDictionary;
 
-        public LoginController(SignInManager<IdentityUser> signInManager, ISchoolService schoolService)
+        public LoginController(ISchoolService schoolService, ISignInService signInService)
         {
-            _signInManager = signInManager;
             _schoolService = schoolService;
+            _signInService = signInService;
+            _resultDictionary = [];
         }
 
         [HttpGet]
@@ -23,17 +24,16 @@ namespace schoolconnect.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginModel model)
+        public IActionResult Login(LoginModel model)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var user = await _signInManager.UserManager.FindByEmailAsync(model.EmailAddress) ?? throw new Exception("Invalid Credentials.");
-                    var signInResult = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
+                    _resultDictionary = _signInService.SignInWithEmailAndPasswordAsync(model.EmailAddress, model.Password);
 
-                    if (!signInResult.Succeeded)
-                        throw new Exception("Invalid Credentials.");
+                    if (!(bool)_resultDictionary["Success"])
+                        throw new Exception($"Invalid Credentials. Issue: {_resultDictionary["ErrorMessage"]}");
 
                     return RedirectToAction(nameof(SecondLogin));
                 }                

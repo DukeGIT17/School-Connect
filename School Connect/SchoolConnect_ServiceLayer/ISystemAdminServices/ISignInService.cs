@@ -3,6 +3,6 @@
     public interface ISignInService
     {
         Task<Dictionary<string, object>> SignInAsync(string email, string password);
-        Task SignInAsync(string email, string password);
+        void SignOutAsync();
     }
 }

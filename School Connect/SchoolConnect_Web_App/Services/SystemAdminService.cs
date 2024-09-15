@@ -17,49 +17,7 @@ namespace SchoolConnect_Web_App.Services
             _returnDictionary = [];
         }
 
-        public async Task<Dictionary<string, object>> CreateAdmin(SysAdmin systemAdmin)
-        {
-            _returnDictionary = [];
-            try
-            {
-                StringBuilder buildString = new();
-                buildString.Append("https://localhost:7091");
-                buildString.Append(BasePath);
-                buildString.Append("CreateAdmin/");
-
-                var adminJsonString = JsonSerializer.Serialize(systemAdmin);
-
-                var request = new HttpRequestMessage
-                {
-                    Content = new StringContent(adminJsonString, Encoding.UTF8, "application/json"),
-                    Method = HttpMethod.Post,
-                    RequestUri = new Uri(buildString.ToString())
-                };
-
-                var response = await _client.SendAsync(request);
-                
-                if (!response.IsSuccessStatusCode)
-                {
-                    string errorMessage = response.ReasonPhrase ?? "Operation failed; reason not provided.";
-                    errorMessage += " {" + response.StatusCode + "}";
-
-                    _returnDictionary.Add("Success", false);
-                    _returnDictionary.Add("ErrorMessage", errorMessage);
-                    return _returnDictionary;
-                }
-
-                _returnDictionary.Add("Success", true);
-                return _returnDictionary;
-            }
-            catch (Exception ex)
-            {
-                _returnDictionary.Add("Success", false);
-                _returnDictionary.Add("ErrorMessage", ex.Message);
-                return _returnDictionary;
-            }
-        }
-
-        public async Task<Dictionary<string, object>> GetAdminById(long systemAdminId)
+        public Dictionary<string, object> GetAdminById(long systemAdminId)
         {
             _returnDictionary = [];
             try
@@ -69,37 +27,27 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append("GetSystemAdminById?id=");
                 buildString.Append(systemAdminId + "/");
 
-                var response = await _client.GetAsync(buildString.ToString());
+                var response = _client.GetAsync(buildString.ToString()).Result;
 
                 if (!response.IsSuccessStatusCode)
-                {
-                    _returnDictionary.Add("Success", false);
-                    _returnDictionary.Add("ErrorMessage", response.ReasonPhrase ?? "Operation failed; reason not provided.");
-                    return _returnDictionary;
-                }
+                    throw new Exception(response.ReasonPhrase ?? "Operation failed; reason not provided.");
 
-                var admin = await response.Content.ReadFromJsonAsync<SysAdmin>();
+                var admin = response.Content.ReadFromJsonAsync<SysAdmin>().Result 
+                    ?? throw new Exception("Failed to acquire Admin from the API using ID.");
 
-                if (admin == null)
-                {
-                    _returnDictionary.Add("Success", false);
-                    _returnDictionary.Add("ErrorMessage", "Failed to acquire Admin from the API using ID.");
-                    return _returnDictionary;
-                }
-
-                _returnDictionary.Add("Success", true);
-                _returnDictionary.Add("Result", admin);
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = admin;
                 return _returnDictionary;
             }
             catch (Exception ex)
             {
-                _returnDictionary.Add("Success", false);
-                _returnDictionary.Add("ErrorMessage", ex.Message);
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
             }
         }
         
-        public async Task<Dictionary<string, object>> GetAdminByStaffNr(long staffNr)
+        public Dictionary<string, object> GetAdminByStaffNr(long staffNr)
         {
             _returnDictionary = [];
             try
@@ -109,37 +57,27 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append("GetSystemAdminByStaffNr?staffNr=");
                 buildString.Append(staffNr + "/");
 
-                var response = await _client.GetAsync(buildString.ToString());
+                var response = _client.GetAsync(buildString.ToString()).Result;
 
                 if (!response.IsSuccessStatusCode)
-                {
-                    _returnDictionary.Add("Success", false);
-                    _returnDictionary.Add("ErrorMessage", response.ReasonPhrase ?? "Operation failed; reason not provided.");
-                    return _returnDictionary;
-                }
+                    throw new Exception(response.ReasonPhrase ?? "Operation failed; reason not provided.");
 
-                var admin = await response.Content.ReadFromJsonAsync<SysAdmin>();
+                var admin = response.Content.ReadFromJsonAsync<SysAdmin>().Result 
+                    ?? throw new Exception("Failed to acquire Admin from the API using staff number.");
 
-                if (admin == null)
-                {
-                    _returnDictionary.Add("Success", false);
-                    _returnDictionary.Add("ErrorMessage", "Failed to acquire Admin from the API using staff number.");
-                    return _returnDictionary;
-                }
-
-                _returnDictionary.Add("Success", true);
-                _returnDictionary.Add("Result", admin);
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = admin;
                 return _returnDictionary;
             }
             catch (Exception ex)
             {
-                _returnDictionary.Add("Success", false);
-                _returnDictionary.Add("ErrorMessage", ex.Message);
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
             }
         }
 
-        public async Task<Dictionary<string, object>> Update(SysAdmin systemAdmin)
+        public Dictionary<string, object> Update(SysAdmin systemAdmin)
         {
             _returnDictionary = [];
             try
@@ -158,22 +96,18 @@ namespace SchoolConnect_Web_App.Services
                     RequestUri = new Uri(buildString.ToString())
                 };
 
-                var response = await _client.SendAsync(request);
+                var response = _client.SendAsync(request).Result;
 
                 if (!response.IsSuccessStatusCode)
-                {
-                    _returnDictionary.Add("Success", false);
-                    _returnDictionary.Add("ErrorMessage", response.ReasonPhrase ?? "Operation failed; reason not provided.");
-                    return _returnDictionary;
-                }
+                    throw new Exception(response.ReasonPhrase ?? "Operation failed; reason not provided.");
 
-                _returnDictionary.Add("Success", true);
+                _returnDictionary["Success"] = true;
                 return _returnDictionary;
             }
             catch (Exception ex)
             {
-                _returnDictionary.Add("Success", false);
-                _returnDictionary.Add("ErrorMessage", ex.Message);
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
             }
         }

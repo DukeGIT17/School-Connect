@@ -1,5 +1,4 @@
 ﻿using SchoolConnect_Web_App.IServices;
-using System.Linq.Expressions;
 using System.Text;
 
 namespace SchoolConnect_Web_App.Services
@@ -16,19 +15,52 @@ namespace SchoolConnect_Web_App.Services
             _returnDictionary = [];
         }
 
-        public async Task<Dictionary<string, object>> SignInWithEmailAndPasswordAsync(string email, string password)
+        public Dictionary<string, object> SignInWithEmailAndPasswordAsync(string email, string password)
+        {
+            _returnDictionary = [];
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("https://localhost:7091/");
+                buildString.Append(BasePath);
+                buildString.Append("SignIn?email=");
+                buildString.Append(email + "/");
+
+                var request = new HttpRequestMessage
+                {
+                    Content = new StringContent(password, Encoding.UTF8, "application/json"),
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(buildString.ToString())
+                };
+
+                var response = _client.SendAsync(request).Result;
+
+                if (!response.IsSuccessStatusCode)
+                    throw new Exception("An error occurred while trying to sign in.");
+
+                _returnDictionary = response.Content.ReadFromJsonAsync<Dictionary<string, object>>().Result
+                    ?? throw new Exception("Failed to acquire result dictionary from API.");
+
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public void SignOutAsync()
         {
             StringBuilder buildString = new();
             buildString.Append(BasePath);
-            buildString.Append("SignIn/");
+            buildString.Append("SignOut/");
 
-            throw new NotImplementedException();
+            var response = _client.GetAsync(buildString.ToString()).Result;
 
-        }
-
-        public async Task SignOutAsync()
-        {
-            throw new NotImplementedException();
+            if (!response.IsSuccessStatusCode)
+                throw new Exception(response.ReasonPhrase ?? "Operation failed; reason not provided.");
         }
     }
 }

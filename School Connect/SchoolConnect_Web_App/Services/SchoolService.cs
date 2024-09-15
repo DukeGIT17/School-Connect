@@ -5,13 +5,13 @@ using System.Text.Json;
 
 namespace SchoolConnect_Web_App.Services
 {
-    public class SchoolServices : ISchoolService
+    public class SchoolService : ISchoolService
     {
         private readonly HttpClient _httpClient;
         private const string SchoolBasePath = "/api/School/";
         private Dictionary<string, object>? _returnDictionary;
 
-        public SchoolServices(HttpClient httpClient)
+        public SchoolService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }

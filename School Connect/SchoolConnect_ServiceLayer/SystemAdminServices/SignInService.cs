@@ -9,12 +9,14 @@ namespace SchoolConnect_ServiceLayer.SystemAdminServices
     {
         private readonly ISignInRepo _signInRepository;
         private readonly PasswordValidator<IdentityUser> _passwordValidator;
+        private readonly UserManager<IdentityUser> _userManager;
         private Dictionary<string, object> _returnDictionary;
         
-        public SignInService(ISignInRepo signInRepository, PasswordValidator<IdentityUser> passwordValidator)
+        public SignInService(ISignInRepo signInRepository, PasswordValidator<IdentityUser> passwordValidator, UserManager<IdentityUser> userManager)
         {
             _signInRepository = signInRepository;
             _passwordValidator = passwordValidator;
+            _userManager = userManager;
             _returnDictionary = [];
         }
 
@@ -31,14 +33,27 @@ namespace SchoolConnect_ServiceLayer.SystemAdminServices
                     throw new Exception($"{email} is an invalid email address.");
                 }
 
-                _passwordValidator.ValidateAsync();
-                if ()
+                var userManager = _userManager;
+                IdentityUser user = new();
+                var identityResult = await _passwordValidator.ValidateAsync(userManager, user, password);
+
+                if (!identityResult.Succeeded)
+                    throw new Exception("Please enter a valid password");
+
+                _returnDictionary = await _signInRepository.SignInAsync(email, password);
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
             }
         }
 
-        Task ISignInService.SignInAsync(string email, string password)
+        void ISignInService.SignOutAsync()
         {
-            throw new NotImplementedException();
+            _signInRepository.SignOutAsync();
         }
     }
 }
