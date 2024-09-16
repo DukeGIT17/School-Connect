@@ -5325,11 +5325,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\SchoolConnect_WebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\SchoolConnect_WebAPI.csproj",
       "projectName": "SchoolConnect_WebAPI",
-      "projectPath": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\SchoolConnect_WebAPI.csproj",
+      "projectPath": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\SchoolConnect_WebAPI.csproj",
       "packagesPath": "C:\\Users\\Lebohang\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\obj\\",
+      "outputPath": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lebohang\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -5347,11 +5347,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
-              "projectPath": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj"
+            "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
+              "projectPath": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj"
             },
-            "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj": {
-              "projectPath": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj"
+            "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj": {
+              "projectPath": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj"
             }
           }
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/hjH/KsZVnI=",
+  "dgSpecHash": "aAd52AFVYH4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\SchoolConnect_WebAPI.csproj",
+  "projectFilePath": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\SchoolConnect_WebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lebohang\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Lebohang\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

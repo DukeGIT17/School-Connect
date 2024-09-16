@@ -1,11 +1,32 @@
-﻿.container {
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
+}
+
+.login-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #0F2E34;
+    background-color: ghostwhite;
+
+}
+.login-container {
+    background: transparent;
+    background-color: #0F2E34;
+    width: 35%; 
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
 }
 
 .logo {
@@ -15,40 +36,76 @@
 }
 
 .form-group {
+    display: flex;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
     margin-bottom: 20px;
+    border-radius: 30px;
+    padding: 12px;
+    height: 40px;
+    position: relative;
 }
 
 .form-group label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
+    text-size-adjust: 10%;
 }
 
-.form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-}
+    .form-group input {
+        background: transparent;
+        border: none;
+        outline: none;
+        color: white;
+        width: 100%;
+        padding-left: 40px;
+        line-height: 12px;
+        border-radius: 25px;
+        
+    }
 
 .form-group input[type="password"] {
-    font-family: Arial, sans-serif; 
+    font-family: Arial, sans-serif;
 }
 
 .button {
-    display: block;
-    width: 100%;
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: #0F2E34;
     border: none;
     padding: 12px;
     font-size: 16px;
+    font-weight: bold;
+    border-radius: 30px;
     cursor: pointer;
-    border-radius: 4px;
-    text-align: center;
+    transition: background 0.3s ease;
+    border-radius: 30px;
+    line-height: 12px;
+    margin: 0 auto;
+    height: 35px;
+    width: 100%;
 }
 
+
+
 .button:hover {
-    background-color: #333;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    color: rgba(255, 255, 255, 0.5);
+    left: 10px;
+}
+
+.user-icon:before {
+    content: '\1F464'; /* Unicode for user icon */
+    font-size: 24px;
+}
+
+.lock-icon:before {
+    content: '\1F512'; /* Unicode for lock icon */
+    font-size: 24px;
 }
