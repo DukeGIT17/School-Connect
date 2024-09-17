@@ -34,6 +34,24 @@ namespace SchoolConnect_WebAPI.Controllers
             }
         }
 
+        [HttpPost(nameof(SetNewPassword))]
+        public IActionResult SetNewPassword(LoginModel model)
+        {
+            try
+            {
+                var result = _signInService.SetNewPasswordAsync(model).Result;
+
+                if (!(bool)result["Success"])
+                    return BadRequest(result["ErrorMessage"]);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost(nameof(SignOut))]
         public new IActionResult SignOut()
         {

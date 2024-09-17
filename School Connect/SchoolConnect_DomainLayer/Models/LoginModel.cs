@@ -11,5 +11,8 @@ namespace SchoolConnect_DomainLayer.Models
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [DataType(DataType.Password)]
+        public string? NewPassword { get; set; }
     }
 }

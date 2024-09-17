@@ -11,8 +11,8 @@ using SchoolConnect_DomainLayer.Data;
 namespace SchoolConnect_WebAPI.Migrations
 {
     [DbContext(typeof(SchoolConnectDbContext))]
-    [Migration("20240913020514_Initial_Migration")]
-    partial class Initial_Migration
+    [Migration("20240916183417_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

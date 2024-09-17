@@ -22,7 +22,7 @@ namespace SchoolConnect_Web_App.Services
             try
             {
                 StringBuilder buildString = new();
-                buildString.Append("https://localhost:7091");
+                buildString.Append("http://localhost:5293");
                 buildString.Append(BasePath);
                 buildString.Append("SignIn");
 
@@ -38,6 +38,41 @@ namespace SchoolConnect_Web_App.Services
 
                 if (!response.IsSuccessStatusCode)
                     throw new Exception(response.Content.ReadAsStringAsync().Result);
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public Dictionary<string, object> SetNewPassword(LoginModel model)
+        {
+            _returnDictionary = [];
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(BasePath);
+                buildString.Append("SetNewPassword");
+
+                var jsonString = JsonSerializer.Serialize(model);
+
+                var request = new HttpRequestMessage
+                {
+                    Content = new StringContent(jsonString, Encoding.UTF8, "application/json"),
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(buildString.ToString())
+                };
+
+                var response = _client.SendAsync(request).Result;
+
+                if (!response.IsSuccessStatusCode)
+                    throw new Exception(response.Content.ReadAsStringAsync().Result ?? "Something went wrong, could not acquire error content from API");
 
                 _returnDictionary["Success"] = true;
                 return _returnDictionary;

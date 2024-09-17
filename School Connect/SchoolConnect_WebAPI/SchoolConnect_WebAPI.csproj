@@ -29,8 +29,4 @@
     <ProjectReference Include="..\SchoolConnect_ServiceLayer\SchoolConnect_ServiceLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Database\" />
-  </ItemGroup>
-
 </Project>

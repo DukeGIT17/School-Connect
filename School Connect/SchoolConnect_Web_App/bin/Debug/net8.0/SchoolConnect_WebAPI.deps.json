@@ -1181,10 +1181,7 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "8.0.8"
         },
         "runtime": {
-          "SchoolConnect_DomainLayer.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "SchoolConnect_DomainLayer.dll": {}
         }
       },
       "SchoolConnect_RepositoryLayer/1.0.0": {
@@ -1195,10 +1192,7 @@
           "SchoolConnect_DomainLayer": "1.0.0"
         },
         "runtime": {
-          "SchoolConnect_RepositoryLayer.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "SchoolConnect_RepositoryLayer.dll": {}
         }
       },
       "SchoolConnect_ServiceLayer/1.0.0": {
@@ -1209,10 +1203,7 @@
           "SchoolConnect_RepositoryLayer": "1.0.0"
         },
         "runtime": {
-          "SchoolConnect_ServiceLayer.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "SchoolConnect_ServiceLayer.dll": {}
         }
       }
     }

@@ -6,6 +6,7 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
     {
 
         Task<Dictionary<string, object>> SignInAsync(LoginModel loginModel);
+        Task<Dictionary<string, object>> SetNewPasswordAsync(LoginModel loginModel);
         void SignOutAsync();
     }
 }

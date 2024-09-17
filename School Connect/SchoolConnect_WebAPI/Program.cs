@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SchoolConnect_DomainLayer.Data;
+using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_RepositoryLayer.Repositories;
 using SchoolConnect_ServiceLayer.ISystemAdminServices;
@@ -9,18 +10,18 @@ using SchoolConnect_ServiceLayer.SystemAdminServices;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<SchoolConnectDbContext>(options 
-    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString")/*,
-    b => b.MigrationsAssembly(nameof(SchoolConnect_WebAPI))*/));
+builder.Services.AddDbContext<SchoolConnectDbContext>(options
+    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString"),
+    b => b.MigrationsAssembly(nameof(SchoolConnect_WebAPI))));
 builder.Services.AddDbContext<SignInDbContext>(options
-    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString")/*, 
-    b => b.MigrationsAssembly(nameof(SchoolConnect_WebAPI))*/));
-builder.Services.AddDefaultIdentity<IdentityUser>(options
+    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString"),
+    b => b.MigrationsAssembly(nameof(SchoolConnect_WebAPI))));
+builder.Services.AddDefaultIdentity<CustomIdentityUser>(options
     => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<SignInDbContext>();
 builder.Services.AddScoped<ISchool, SchoolRepository>();
-builder.Services.AddScoped<PasswordValidator<IdentityUser>>();
+builder.Services.AddScoped<PasswordValidator<CustomIdentityUser>>();
 builder.Services.AddScoped<ISysAdmin, SystemAdminRepository>();
 builder.Services.AddScoped<ISignInRepo, SignInRepository>();
 builder.Services.AddScoped<ISystemAdminService, AdminService>();
@@ -68,6 +69,23 @@ using (var scope = app.Services.CreateScope())
             await roleManager.CreateAsync(new IdentityRole(role));
         }
     }
+
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<CustomIdentityUser>>();
+    string email = "Takatso@gmail.com",
+        name = "Takatso",
+        password = "TakiPassword123!";
+
+    var user = new CustomIdentityUser
+    {
+        UserName = name,
+        Email = email,
+        PhoneNumber = "0789512589",
+    };
+
+    if (await userManager.FindByEmailAsync(email) == null)
+        await userManager.CreateAsync(user, password);
+
+    await userManager.AddToRoleAsync(user, "System Admin");
 }
 
 app.Run();
