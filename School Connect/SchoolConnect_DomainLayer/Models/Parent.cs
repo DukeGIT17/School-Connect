@@ -21,9 +21,6 @@ namespace SchoolConnect_DomainLayer.Models
         [EmailAddress]
         public string EmailAddress { get; set; }
 
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-
         #region Navigation Properties
         public ICollection<LearnerParent> Children { get; set; }
         public ICollection<GroupActor>? GroupsNP { get; set; }

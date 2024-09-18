@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolConnect_DomainLayer.Data;
 
@@ -10,9 +11,11 @@ using SchoolConnect_DomainLayer.Data;
 namespace SchoolConnect_WebAPI.Migrations
 {
     [DbContext(typeof(SchoolConnectDbContext))]
-    partial class SchoolConnectDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240917132501_Remove_Password_Field")]
+    partial class Remove_Password_Field
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.8");

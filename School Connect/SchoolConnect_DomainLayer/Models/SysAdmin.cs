@@ -20,9 +20,6 @@ namespace SchoolConnect_DomainLayer.Models
         //[Phone]
         public long? PhoneNumber { get; set; }
 
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-
         #region Navigation Properties
         public School? SysAdminSchoolNP { get; set; }
         #endregion

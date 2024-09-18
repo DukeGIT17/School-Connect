@@ -9,10 +9,10 @@ namespace SchoolConnect_RepositoryLayer.Repositories
     public class SystemAdminRepository : ISysAdmin
     {
         private readonly SchoolConnectDbContext _context;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly SignInManager<CustomIdentityUser> _signInManager;
         private Dictionary<string, object> _returnDictionary;
 
-        public SystemAdminRepository(SchoolConnectDbContext context, SignInManager<IdentityUser> signInManager)
+        public SystemAdminRepository(SchoolConnectDbContext context, SignInManager<CustomIdentityUser> signInManager)
         {
             _context = context;
             _returnDictionary = [];
@@ -72,7 +72,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             SysAdmin? admin;
             try
             {
-                admin = await _context.SystemAdmins.FirstOrDefaultAsync(a => a.StaffNr == sysAdmin.StaffNr || a.Id == sysAdmin.Id);
+                admin = await _context.SystemAdmins.AsNoTracking().FirstOrDefaultAsync(a => a.StaffNr == sysAdmin.StaffNr || a.Id == sysAdmin.Id) ;
 
                 if (admin == null)
                     throw new Exception("No admin with the specified Id and staff numbers was found.");
