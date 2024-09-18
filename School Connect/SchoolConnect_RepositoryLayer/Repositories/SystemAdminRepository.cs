@@ -72,7 +72,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             SysAdmin? admin;
             try
             {
-                admin = await _context.SystemAdmins.FirstOrDefaultAsync(a => a.StaffNr == sysAdmin.StaffNr || a.Id == sysAdmin.Id);
+                admin = await _context.SystemAdmins.AsNoTracking().FirstOrDefaultAsync(a => a.StaffNr == sysAdmin.StaffNr || a.Id == sysAdmin.Id) ;
 
                 if (admin == null)
                     throw new Exception("No admin with the specified Id and staff numbers was found.");

@@ -29,7 +29,7 @@
     "ContainingType": "SchoolConnect_WebAPI.Controllers.SignInController",
     "Method": "SetNewPassword",
     "RelativePath": "api/SignIn/SetNewPassword",
-    "HttpMethod": "POST",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -103,7 +103,7 @@
     "ContainingType": "SchoolConnect_WebAPI.Controllers.SystemAdminController",
     "Method": "UpdateSystemAdmin",
     "RelativePath": "api/SystemAdmin/UpdateSystemAdmin",
-    "HttpMethod": "POST",
+    "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [

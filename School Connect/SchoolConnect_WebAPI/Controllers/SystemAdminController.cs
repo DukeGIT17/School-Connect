@@ -54,7 +54,7 @@ namespace SchoolConnect_WebAPI.Controllers
             }
         }
         
-        [HttpPost(nameof(UpdateSystemAdmin))]
+        [HttpPut(nameof(UpdateSystemAdmin))]
         public async Task<IActionResult> UpdateSystemAdmin(SysAdmin systemAdmin)
         {
             try

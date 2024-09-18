@@ -1,64 +1,68 @@
-﻿/* Global reset and font settings */
-* {
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
-/* Container styling */
 .container {
-    max-width: 700px;
+    max-width: 600px;
     margin: 0 auto;
-    padding: 30px;
-    background-color: #fff;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     text-align: center;
 }
 
-/* Icon styling */
-.icon {
-    font-size: 100px;
-    color: #888;
-    margin-bottom: 20px;
-}
-
-/* Input group styling */
 .input-group {
     margin-bottom: 20px;
-    text-align: left;
 }
 
     .input-group label {
         display: block;
+        text-align: left;
         margin-bottom: 5px;
         font-weight: bold;
     }
 
-    .input-group input,
-    .input-group select {
+    .input-group input, .input-group select {
         width: 100%;
-        padding: 12px;
+        padding: 10px;
         border: 1px solid #ccc;
-        border-radius: 20px;
+        border-radius: 5px;
         box-sizing: border-box;
-        font-size: 16px;
     }
 
-/* Button styling */
+.icon {
+    font-size: 100px;
+    color: #888;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    .btn:hover {
+        background-color: #333;
+    }
+
+.subject-select {
+    margin-top: 20px;
+}
+
 .button {
     display: inline-block;
-    padding: 12px 20px;
+    padding: 10px 20px;
     background-color: black;
     color: white;
     text-align: center;
     text-decoration: none;
-    border-radius: 55px;
+    border-radius: 5px;
     font-size: 16px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
 }
 
     .button:hover {

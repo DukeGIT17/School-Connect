@@ -21,9 +21,6 @@ namespace SchoolConnect_DomainLayer.Models
         [DataType(DataType.PhoneNumber)]
         public long PhoneNumber { get; set; }
 
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-
         #region Foreign Key Properties
         [ForeignKey(nameof(PrincipalSchoolNP))]
         public long SchoolID { get; set; }

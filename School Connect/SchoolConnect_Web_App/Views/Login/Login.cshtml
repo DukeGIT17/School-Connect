@@ -1,28 +1,29 @@
 ﻿ @model LoginModel
- @{
-     Layout = null;
- }
- <link rel="stylesheet" href="~/css/LoginCSS/Login.css" />
- <link rel="stylesheet" href="~/FontAwesome/css/all.css"/>
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="~/css/LoginCSS/Login.css" />
+<link rel="stylesheet" href="~/FontAwesome/css/all.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
- <div class="login-body">
-     <div class="login-container">
-         <form asp-controller="Login" asp-action="Login" class="container">
-             <img src="~/images/logo.png" alt="Logo" class="logo">
-             <div asp-validation-summary="All"></div>
-             <div class="form-group">
+<div class="login-body">
+    <div class="login-container">
+        <form asp-action="Login" class="container">
+            <img src="~/images/logo.png" alt="Logo" class="logo">
+            <div asp-validation-summary="All"></div>
+            <div class="form-group">
                 <i class="fas fa-user"></i>
-                 <input asp-for="EmailAddress" id="email" placeholder="Enter Email Address">
-                 <span asp-validation-for="EmailAddress"></span>
-             </div>
-             <div class="form-group">
+                <input asp-for="EmailAddress" id="email" placeholder="Enter Email Address">
+                <span asp-validation-for="EmailAddress"></span>
+            </div>
+            <div class="form-group">
                 <i class="fas fa-lock"></i>
-                 <input asp-for="Password" id="password" placeholder="Enter Password">
-             </div>
-            <a asp-controller="Login" asp-action="SetNewPassword" class="button">LOGIN</a>
-         </form>
-     </div>
+                <input asp-for="Password" id="password" placeholder="Enter Password">
+                <span asp-validation-for="Password"></span>
+            </div>
+            <a class="button">LOGIN</a>
+        </form>
+    </div>
 
- </div>
+</div>
 

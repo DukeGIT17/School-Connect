@@ -2,26 +2,8 @@
     Layout = null;
 }
 <link rel="stylesheet" href="~/css/SysAdminCSS/SysAdminLandingPage.css" />
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-</head>
-<body>
-
-    <!-- Optional Header -->
-   
-    
-    <div class="container">
-       
-        <a asp-controller="SysAdmin" asp-action="SchoolReg" class="button">Register School</a>
-        <a asp-controller="SysAdmin" asp-action="RolesReg" class="button">Register Roles</a>
-        <a href="" class="button logout-button">LOGOUT</a>
-    </div>
-
-</body>
-</html>
+<div class="container">
+    <a asp-controller="SysAdmin" asp-action="SchoolReg" class="button">Register School</a>
+    <a asp-controller="SysAdmin" asp-action="RolesReg" class="button">Register Roles</a>
+    <a href="" class="button logout-button">LOGOUT</a>
+</div>

@@ -24,9 +24,9 @@ namespace SchoolConnect_WebAPI.Controllers
                 var success = result["Success"];
 
                 if (!(bool)success)
-                    return BadRequest(result["ErrorMessage"]);
+                    return BadRequest(result);
 
-                return Ok();
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -34,7 +34,7 @@ namespace SchoolConnect_WebAPI.Controllers
             }
         }
 
-        [HttpPost(nameof(SetNewPassword))]
+        [HttpPut(nameof(SetNewPassword))]
         public IActionResult SetNewPassword(LoginModel model)
         {
             try
@@ -44,7 +44,7 @@ namespace SchoolConnect_WebAPI.Controllers
                 if (!(bool)result["Success"])
                     return BadRequest(result["ErrorMessage"]);
 
-                return Ok();
+                return Ok(result["ResetPassword"]);
             }
             catch (Exception ex)
             {
