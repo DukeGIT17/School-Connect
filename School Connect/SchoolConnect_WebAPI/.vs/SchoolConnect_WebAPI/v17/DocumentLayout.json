@@ -1,30 +1,51 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\",
+  "WorkspaceRootPath": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6C87F068-702B-4D3B-A5DD-EAC1D923E13F}|SchoolConnect_WebAPI.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_webapi\\controllers\\signincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C87F068-702B-4D3B-A5DD-EAC1D923E13F}|SchoolConnect_WebAPI.csproj|solutionrelative:controllers\\signincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\lebohang\\onedrive - central university of technology free state\\desktop\\gitrepo\\school-connect\\school connect\\schoolconnect_web_app\\views\\login\\setnewpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\lebohang\\onedrive - central university of technology free state\\desktop\\gitrepo\\school-connect\\school connect\\schoolconnect_web_app\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\services\\signinservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\lebohang\\onedrive - central university of technology free state\\desktop\\gitrepo\\school-connect\\school connect\\schoolconnect_web_app\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8960FA26-AFA1-4BDE-9701-70BA1EE08720}|..\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_repositorylayer\\repositories\\signinrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\lebohang\\onedrive - central university of technology free state\\desktop\\gitrepo\\school-connect\\school connect\\schoolconnect_web_app\\wwwroot\\css\\teachercss\\teacherlandingpage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FFBFC0B0-C521-4A57-8D4B-DAF40AC5A600}|..\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_servicelayer\\systemadminservices\\signinservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\lebohang\\onedrive - central university of technology free state\\desktop\\gitrepo\\school-connect\\school connect\\schoolconnect_web_app\\views\\teacher\\teacherlandingpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6C87F068-702B-4D3B-A5DD-EAC1D923E13F}|SchoolConnect_WebAPI.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C87F068-702B-4D3B-A5DD-EAC1D923E13F}|SchoolConnect_WebAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\lebohang\\onedrive - central university of technology free state\\desktop\\gitrepo\\school-connect\\school connect\\schoolconnect_web_app\\views\\sysadmin\\rolesreg.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{6C87F068-702B-4D3B-A5DD-EAC1D923E13F}|SchoolConnect_WebAPI.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_webapi\\controllers\\systemadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{6C87F068-702B-4D3B-A5DD-EAC1D923E13F}|SchoolConnect_WebAPI.csproj|solutionrelative:controllers\\systemadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\lebohang\\onedrive - central university of technology free state\\desktop\\gitrepo\\school-connect\\school connect\\schoolconnect_web_app\\wwwroot\\css\\sysadmincss\\rolesreg.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\lebohang\\onedrive - central university of technology free state\\desktop\\gitrepo\\school-connect\\school connect\\schoolconnect_web_app\\wwwroot\\css\\sysadmincss\\sysadminlandingpage.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\lebohang\\onedrive - central university of technology free state\\desktop\\gitrepo\\school-connect\\school connect\\schoolconnect_web_app\\views\\sysadmin\\sysadminlandingpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\lebohang\\onedrive - central university of technology free state\\desktop\\gitrepo\\school-connect\\school connect\\schoolconnect_web_app\\wwwroot\\css\\sysadmincss\\schoolreg.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\lebohang\\onedrive - central university of technology free state\\desktop\\gitrepo\\school-connect\\school connect\\schoolconnect_web_app\\views\\sysadmin\\schoolreg.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\lebohang\\onedrive - central university of technology free state\\desktop\\gitrepo\\school-connect\\school connect\\schoolconnect_web_app\\views\\principal\\principallandingpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8960FA26-AFA1-4BDE-9701-70BA1EE08720}|..\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj|c:\\users\\lebohang\\onedrive - central university of technology free state\\desktop\\gitrepo\\school-connect\\school connect\\schoolconnect_repositorylayer\\repositories\\signinrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\LoginController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\Data\\SignInDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,98 +55,200 @@
       "DocumentGroups": [
         {
           "DockedWidth": 206,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SetNewPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Login\\SetNewPassword.cshtml",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Views\\Login\\SetNewPassword.cshtml",
+              "ToolTip": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Login\\SetNewPassword.cshtml",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Views\\Login\\SetNewPassword.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-18T09:52:09.244Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "SignInService.cs",
-              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Services\\SignInService.cs",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Services\\SignInService.cs",
-              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Services\\SignInService.cs",
-              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Services\\SignInService.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAYwC0AAABtAAAA",
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T23:00:57.705Z",
+              "WhenOpened": "2024-09-18T09:51:44.149Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "SignInRepository.cs",
-              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\Repositories\\SignInRepository.cs",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_RepositoryLayer\\Repositories\\SignInRepository.cs",
-              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\Repositories\\SignInRepository.cs",
-              "RelativeToolTip": "..\\SchoolConnect_RepositoryLayer\\Repositories\\SignInRepository.cs",
-              "ViewState": "AQIAADAAAAAAAAAAAAAYwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T22:53:52.457Z",
+              "Title": "TeacherLandingPage.css",
+              "DocumentMoniker": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherLandingPage.css",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherLandingPage.css",
+              "ToolTip": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherLandingPage.css",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherLandingPage.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-17T22:32:16.392Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "SignInService.cs",
-              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SystemAdminServices\\SignInService.cs",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_ServiceLayer\\SystemAdminServices\\SignInService.cs",
-              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SystemAdminServices\\SignInService.cs",
-              "RelativeToolTip": "..\\SchoolConnect_ServiceLayer\\SystemAdminServices\\SignInService.cs",
-              "ViewState": "AQIAACUAAAAAAAAAAAAkwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T22:53:19.499Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "LoginController.cs",
-              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
-              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
-              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAYwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T22:52:35.309Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SignInController.cs",
-              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\Controllers\\SignInController.cs",
-              "RelativeDocumentMoniker": "Controllers\\SignInController.cs",
-              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\Controllers\\SignInController.cs",
-              "RelativeToolTip": "Controllers\\SignInController.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAA1wBkAAAAjAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T19:48:46.87Z",
+              "Title": "TeacherLandingPage.cshtml",
+              "DocumentMoniker": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Teacher\\TeacherLandingPage.cshtml",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Views\\Teacher\\TeacherLandingPage.cshtml",
+              "ToolTip": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Teacher\\TeacherLandingPage.cshtml",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Views\\Teacher\\TeacherLandingPage.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAsAAAByAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-17T22:31:49.193Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAkwCAAAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T18:48:44.597Z",
+              "Title": "RolesReg.cshtml",
+              "DocumentMoniker": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\SysAdmin\\RolesReg.cshtml",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Views\\SysAdmin\\RolesReg.cshtml",
+              "ToolTip": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\SysAdmin\\RolesReg.cshtml",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Views\\SysAdmin\\RolesReg.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAoAAAByAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-17T20:37:48.395Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "SystemAdminController.cs",
-              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\Controllers\\SystemAdminController.cs",
-              "RelativeDocumentMoniker": "Controllers\\SystemAdminController.cs",
-              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\Controllers\\SystemAdminController.cs",
-              "RelativeToolTip": "Controllers\\SystemAdminController.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAQwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-17T17:30:27.611Z",
+              "Title": "RolesReg.css",
+              "DocumentMoniker": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\RolesReg.css",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\RolesReg.css",
+              "ToolTip": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\RolesReg.css",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\RolesReg.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-17T20:36:52.62Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Login\\Login.cshtml",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Views\\Login\\Login.cshtml",
+              "ToolTip": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Login\\Login.cshtml",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Views\\Login\\Login.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAoAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-16T20:15:36.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SysAdminLandingPage.css",
+              "DocumentMoniker": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\SysAdminLandingPage.css",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\SysAdminLandingPage.css",
+              "ToolTip": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\SysAdminLandingPage.css",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\SysAdminLandingPage.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAADAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-17T20:56:23.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SysAdminLandingPage.cshtml",
+              "DocumentMoniker": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\SysAdmin\\SysAdminLandingPage.cshtml",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Views\\SysAdmin\\SysAdminLandingPage.cshtml",
+              "ToolTip": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\SysAdmin\\SysAdminLandingPage.cshtml",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Views\\SysAdmin\\SysAdminLandingPage.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-17T20:52:59.992Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "SchoolReg.cshtml",
+              "DocumentMoniker": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\SysAdmin\\SchoolReg.cshtml",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Views\\SysAdmin\\SchoolReg.cshtml",
+              "ToolTip": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\SysAdmin\\SchoolReg.cshtml",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Views\\SysAdmin\\SchoolReg.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACsAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-17T17:18:07.057Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SchoolReg.css",
+              "DocumentMoniker": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\SchoolReg.css",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\SchoolReg.css",
+              "ToolTip": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\SchoolReg.css",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\SchoolReg.css",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAE0AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-09-17T13:28:02.343Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "PrincipalLandingPage.cshtml",
+              "DocumentMoniker": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalLandingPage.cshtml",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalLandingPage.cshtml",
+              "ToolTip": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalLandingPage.cshtml",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalLandingPage.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-09-17T16:45:09.132Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "SignInRepository.cs",
+              "DocumentMoniker": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\Repositories\\SignInRepository.cs",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_RepositoryLayer\\Repositories\\SignInRepository.cs",
+              "ToolTip": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\Repositories\\SignInRepository.cs",
+              "RelativeToolTip": "..\\SchoolConnect_RepositoryLayer\\Repositories\\SignInRepository.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAFEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-17T12:32:00.053Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "SignInDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\Data\\SignInDbContext.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\Data\\SignInDbContext.cs",
+              "ToolTip": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\Data\\SignInDbContext.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\Data\\SignInDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T20:26:20.581Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "..\\..\\..\\..\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-15T20:18:50.64Z"
             }
           ]
         }

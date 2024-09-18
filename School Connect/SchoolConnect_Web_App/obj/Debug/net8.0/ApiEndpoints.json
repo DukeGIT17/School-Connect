@@ -27,6 +27,22 @@
   },
   {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.SignInController",
+    "Method": "SetNewPassword",
+    "RelativePath": "api/SignIn/SetNewPassword",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "SchoolConnect_DomainLayer.Models.LoginModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.SignInController",
     "Method": "SignInWithEmailAndPassword",
     "RelativePath": "api/SignIn/SignIn",
     "HttpMethod": "POST",

@@ -3632,24 +3632,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\KHAYE\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Lebohang\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj",
+      "projectUniqueName": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj",
       "projectName": "SchoolConnect_ServiceLayer",
-      "projectPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj",
-      "packagesPath": "C:\\Users\\KHAYE\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\obj\\",
+      "projectPath": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj",
+      "packagesPath": "C:\\Users\\Lebohang\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\KHAYE\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Lebohang\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3664,11 +3659,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
-              "projectPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj"
+            "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
+              "projectPath": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj"
             },
-            "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj": {
-              "projectPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj"
+            "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj": {
+              "projectPath": "C:\\Users\\Lebohang\\OneDrive - Central University of Technology Free State\\Desktop\\gitRepo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj"
             }
           }
         }
@@ -3713,7 +3708,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

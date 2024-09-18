@@ -60,7 +60,7 @@ namespace SchoolConnect_Web_App.Services
             try
             {
                 StringBuilder buildString = new();
-                buildString.Append("http://localhost:5293");
+                buildString.Append("https://localhost:7091");
                 buildString.Append(SchoolBasePath);
                 buildString.Append("RegisterSchool/");
                 var schoolJsonString = JsonSerializer.Serialize(school);

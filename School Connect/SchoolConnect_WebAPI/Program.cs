@@ -27,11 +27,6 @@ builder.Services.AddScoped<ISignInRepo, SignInRepository>();
 builder.Services.AddScoped<ISystemAdminService, AdminService>();
 builder.Services.AddScoped<ISignInService, SignInService>();
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-});
-
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -57,8 +52,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("AllowAll");
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -79,33 +72,20 @@ using (var scope = app.Services.CreateScope())
 
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<CustomIdentityUser>>();
     string email = "Takatso@gmail.com",
+        name = "Takatso",
         password = "TakiPassword123!";
-
-    string email1 = "Lukhanyomayekiso98@gmail.com",
-        password1 = "Lukhanyo12345!";
 
     var user = new CustomIdentityUser
     {
-        UserName = email,
+        UserName = name,
         Email = email,
         PhoneNumber = "0789512589",
-    };
-
-    var user1 = new CustomIdentityUser
-    {
-        UserName = email1,
-        Email = email1,
-        PhoneNumber = "0739002497",
     };
 
     if (await userManager.FindByEmailAsync(email) == null)
         await userManager.CreateAsync(user, password);
 
-    if (await userManager.FindByEmailAsync(email1) == null)
-        await userManager.CreateAsync(user1, password1);
-
     await userManager.AddToRoleAsync(user, "System Admin");
-    await userManager.AddToRoleAsync(user1, "System Admin");
 }
 
 app.Run();

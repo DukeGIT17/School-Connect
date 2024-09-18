@@ -35,10 +35,7 @@ namespace schoolconnect.Controllers
                     if (!(bool)_resultDictionary["Success"])
                         throw new Exception($"Invalid Credentials. Issue: {_resultDictionary["ErrorMessage"]}");
 
-                    if (!(bool)_resultDictionary["ResetPassword"])
-                        return RedirectToAction(nameof(SetNewPassword));
-
-                    return RedirectToAction("SysAdminLandingPage", nameof(SysAdminController));
+                    return RedirectToAction(nameof(SetNewPassword));
                 }                
                 return View(model);
             }
@@ -53,45 +50,6 @@ namespace schoolconnect.Controllers
         public IActionResult SetNewPassword()
         {
             return View();
-        }
-
-        [HttpPost]
-        public IActionResult SetNewPassword(LoginModel model)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    if (string.IsNullOrEmpty(model.NewPassword) || string.IsNullOrWhiteSpace(model.NewPassword))
-                    {
-                        ModelState.AddModelError(nameof(model.NewPassword), "Please enter a new password");
-                        return View(model);
-                    }
-
-                    if (string.IsNullOrEmpty(model.ConfirmPassword) || string.IsNullOrWhiteSpace(model.ConfirmPassword))
-                    {
-                        ModelState.AddModelError(nameof(model.ConfirmPassword), "Please repeat your new password");
-                        return View(model);
-                    }
-
-                    model.NewPassword = model.NewPassword.Trim();
-                    model.ConfirmPassword = model.ConfirmPassword.Trim();
-                    model.EmailAddress = model.EmailAddress.Trim();
-                    _resultDictionary = _signInService.SetNewPassword(model);
-
-                    if (!(bool)_resultDictionary["Success"]) 
-                        throw new Exception(_resultDictionary["ErrorMessage"] as string 
-                            ?? "Something went wrong, reason was not provided. Please contact administrators.");
-
-                    return RedirectToAction("SysAdminLandingPage", nameof(SysAdminController));
-                }
-                return View(model);
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-                return View(model);
-            }
         }
     }
 }

@@ -37,13 +37,9 @@ namespace SchoolConnect_Web_App.Services
                 var response = _client.SendAsync(request).Result;
 
                 if (!response.IsSuccessStatusCode)
-                {
-                    _returnDictionary = response.Content.ReadFromJsonAsync<Dictionary<string, object>>().Result!;
-                    throw new Exception(_returnDictionary["ErrorMessage"] as string ?? "Something went wrong, could not acquire error message from the API.");
-                }
-                    
+                    throw new Exception(response.Content.ReadAsStringAsync().Result);
 
-                _returnDictionary = response.Content.ReadFromJsonAsync<Dictionary<string, object>>().Result!;
+                _returnDictionary["Success"] = true;
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -69,7 +65,7 @@ namespace SchoolConnect_Web_App.Services
                 var request = new HttpRequestMessage
                 {
                     Content = new StringContent(jsonString, Encoding.UTF8, "application/json"),
-                    Method = HttpMethod.Put,
+                    Method = HttpMethod.Post,
                     RequestUri = new Uri(buildString.ToString())
                 };
 

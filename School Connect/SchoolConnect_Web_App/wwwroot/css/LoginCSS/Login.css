@@ -12,6 +12,7 @@
     height: 100vh;
     background: #0F2E34;
     background-color: ghostwhite;
+    
 
 }
 .login-container {
@@ -44,6 +45,7 @@
     padding: 12px;
     height: 40px;
     position: relative;
+   
 }
 
 .form-group label {
@@ -96,8 +98,9 @@
     position: absolute;
     width: 24px;
     height: 24px;
-    color: rgba(255, 255, 255, 0.5);
+    color: ghostwhite;
     left: 10px;
+
 }
 
 .user-icon:before {

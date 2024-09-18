@@ -262,6 +262,10 @@ namespace SchoolConnect_WebAPI.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("ProfileImage")
                         .HasColumnType("TEXT");
 
@@ -300,6 +304,10 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(30)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<long>("PhoneNumber")
@@ -391,6 +399,10 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(30)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<long?>("PhoneNumber")

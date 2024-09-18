@@ -13,7 +13,6 @@ namespace schoolconnect.Controllers
             _systemAdminService = systemAdminService;
         }
 
-        [HttpGet]
         public IActionResult SysAdminLandingPage()
         {
             return View();
