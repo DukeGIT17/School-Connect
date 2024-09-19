@@ -1,5 +1,4 @@
-﻿<!DOCTYPE> 
-<link rel="stylesheet" href="~/css/SysAdminCSS/SchoolReg.css" />
+﻿<link rel="stylesheet" href="~/css/SysAdminCSS/SchoolReg.css" />
 
 @{
     ViewBag.Title = "School Registration";
@@ -35,15 +34,3 @@
 
     <a asp-controller="SysAdmin" asp-action="SysAdminLandingPage" class="button">REGISTER</a>
 </div>
-
-@section Scripts {
-    <script>
-        function register() {
-            alert('You have successfully registered your school');
-            document.getElementById('emisNumber').value = '';
-            document.getElementById('schoolName').value = '';
-            document.getElementById('address').value = '';
-            window.location.href = '/Accounts/systemAdmin2';
-        }
-    </script>
-}

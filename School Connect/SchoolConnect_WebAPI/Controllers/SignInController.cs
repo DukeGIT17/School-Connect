@@ -24,9 +24,9 @@ namespace SchoolConnect_WebAPI.Controllers
                 var success = result["Success"];
 
                 if (!(bool)success)
-                    return BadRequest(result);
+                    return BadRequest(result["ErrorMessage"]);
 
-                return Ok(result);
+                return Ok(result["ResetPassword"]);
             }
             catch (Exception ex)
             {

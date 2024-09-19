@@ -2,7 +2,7 @@
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 
-namespace schoolconnect.Controllers
+namespace SchoolConnect_Web_App.Controllers
 {
     public class LoginController : Controller
     {
@@ -35,10 +35,10 @@ namespace schoolconnect.Controllers
                     if (!(bool)_resultDictionary["Success"])
                         throw new Exception($"Invalid Credentials. Issue: {_resultDictionary["ErrorMessage"]}");
 
-                    if (!(bool)_resultDictionary["ResetPassword"])
+                    if ((bool)_resultDictionary["ResetPassword"])
                         return RedirectToAction(nameof(SetNewPassword));
 
-                    return RedirectToAction("SysAdminLandingPage", nameof(SysAdminController));
+                    return RedirectToAction("SysAdminLandingPage", "SysAdmin");
                 }                
                 return View(model);
             }

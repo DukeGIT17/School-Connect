@@ -36,14 +36,14 @@ namespace SchoolConnect_Web_App.Services
 
                 var response = _client.SendAsync(request).Result;
 
-                if (!response.IsSuccessStatusCode)
+				if (!response.IsSuccessStatusCode)
                 {
-                    _returnDictionary = response.Content.ReadFromJsonAsync<Dictionary<string, object>>().Result!;
-                    throw new Exception(_returnDictionary["ErrorMessage"] as string ?? "Something went wrong, could not acquire error message from the API.");
+                    _ = string.IsNullOrEmpty(response.Content.ReadAsStringAsync().Result) ? throw new Exception("Response from the API was null or empty.") : "";
+                    throw new Exception(response.Content.ReadAsStringAsync().Result);
                 }
-                    
 
-                _returnDictionary = response.Content.ReadFromJsonAsync<Dictionary<string, object>>().Result!;
+                _returnDictionary["Success"] = true;
+                _returnDictionary["ResetPassword"] = Convert.ToBoolean(response.Content.ReadAsStringAsync().Result);
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -57,8 +57,8 @@ namespace SchoolConnect_Web_App.Services
         public Dictionary<string, object> SetNewPassword(LoginModel model)
         {
             _returnDictionary = [];
-            try
-            {
+            //try
+            //{
                 StringBuilder buildString = new();
                 buildString.Append("http://localhost:5293");
                 buildString.Append(BasePath);
@@ -80,13 +80,13 @@ namespace SchoolConnect_Web_App.Services
 
                 _returnDictionary["Success"] = true;
                 return _returnDictionary;
-            }
-            catch (Exception ex)
-            {
-                _returnDictionary["Success"] = false;
-                _returnDictionary["ErrorMessage"] = ex.Message;
-                return _returnDictionary;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    _returnDictionary["Success"] = false;
+            //    _returnDictionary["ErrorMessage"] = ex.Message;
+            //    return _returnDictionary;
+            //}
         }
 
         public void SignOut()

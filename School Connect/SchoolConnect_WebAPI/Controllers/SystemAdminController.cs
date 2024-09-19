@@ -9,10 +9,12 @@ namespace SchoolConnect_WebAPI.Controllers
     public class SystemAdminController : ControllerBase
     {
         private readonly ISystemAdminService _systemAdminService;
+        private Dictionary<string, object> _returnDictionary;
 
         public SystemAdminController(ISystemAdminService systemAdminService)
         {
             _systemAdminService = systemAdminService;
+            _returnDictionary = [];
         }
 
         [HttpGet(nameof(GetSystemAdminById))]
@@ -20,13 +22,9 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                var result = await _systemAdminService.GetAdminById(id);
-                var success = result["Success"];
-
-                if (!(bool)success)
-                    return BadRequest(result["ErrorMessage"]);
-
-                return Ok(result);
+                _returnDictionary = await _systemAdminService.GetAdminById(id);
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary["Result"]);
             }
             catch (Exception ex)
             {
@@ -39,14 +37,9 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                var admin = await _systemAdminService.GetAdminByStaffNr(staffNr);
-                var success = admin["Success"];
-
-                if (!(bool)success)
-                    return BadRequest(admin["ErrorMessage"]);
-
-                var result = admin["Result"] as SysAdmin;
-                return Ok(result);
+                _returnDictionary = await _systemAdminService.GetAdminByStaffNr(staffNr);
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary["Result"]);
             }
             catch (Exception ex)
             {
@@ -59,11 +52,15 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                var result = await _systemAdminService.UpdateSystemAdmin(systemAdmin);
-                var success = result["Success"];
+                _returnDictionary = await _systemAdminService.UpdateSystemAdmin(systemAdmin);
+                if (!(bool)_returnDictionary["Success"])
+                {
+                    List<string> error = _returnDictionary.GetValueOrDefault("Errors") as List<string> 
+                        ?? throw new Exception(_returnDictionary["ErrorMessage"] as string 
+                        ?? "Something could went wrong, could not acquire error messages.");
 
-                if (!(bool)success)
-                    return BadRequest(result["ErrorMessage"]);
+                    return BadRequest(error);
+                }
 
                 return Ok();
             }

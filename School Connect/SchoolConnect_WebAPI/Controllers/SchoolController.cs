@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_RepositoryLayer.Interfaces;
+using SchoolConnect_ServiceLayer.ISchoolServices;
 
 namespace SchoolConnect_WebAPI.Controllers
 {
@@ -9,45 +8,52 @@ namespace SchoolConnect_WebAPI.Controllers
     [ApiController]
     public class SchoolController : ControllerBase
     {
-        private readonly ISchool _school;
+        private readonly ISchoolService _school;
+        private Dictionary<string, object> _resultDictionary;
 
-        public SchoolController(ISchool school)
+        public SchoolController(ISchoolService school)
         {
             _school = school;
+            _resultDictionary = [];
         }
 
         [HttpGet(nameof(Schools))]
         public async Task<IActionResult> Schools() 
         {
-            var schools = await _school.GetSchools();
-            var success = schools.GetValueOrDefault("Success") ?? throw new Exception("Could not find the Success key.");
-            
-            if (success == null)
-                return BadRequest("Dictionary Key: 'Success', not found. Pleave review the SchoolRepository class or have Lukhanyo review it.");
-            else if (!(bool)success)
-                return BadRequest(schools.GetValueOrDefault("ErrorMessage"));
-            else
-                return Ok(schools.GetValueOrDefault("Result") as List<School>);
+            try
+            {
+                _resultDictionary = await _school.GetSchoolsAsync();
+
+                if (!(bool)_resultDictionary["Success"])
+                    return BadRequest(_resultDictionary["ErrorMessage"]);
+
+                return Ok(_resultDictionary["Result"]);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpPost(nameof(RegisterSchool))]
         public async Task<IActionResult> RegisterSchool(School school)
         {
-            if (school != null)
+            try
             {
-                var result = await _school.RegisterSchool(school);
-                var success = result.GetValueOrDefault("Success");
+                if (school == null) 
+                    throw new Exception("School object passed was null."); 
 
-                if (success == null)
-                    return BadRequest("Dictionary Key: 'Success', not found! Pleave review the SchoolRepository class or have Lukhanyo review it.");
-                
-                if (!(bool)success)
-                    return BadRequest(result.GetValueOrDefault("ErrorMessage"));
+                _resultDictionary = await _school.RegisterSchoolAsync(school);
 
-                return Ok("Success");
+                if (!(bool)_resultDictionary["Success"])
+                    return BadRequest(_resultDictionary["ErrorMessage"]);
+
+                return Ok(_resultDictionary["Success"]);
             }
-
-            return BadRequest("The school parameter that was passed in is null.");
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

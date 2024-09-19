@@ -1,6 +1,4 @@
-﻿/* Global body styling */
-/* Global body styling with background image */
-body {
+﻿body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -9,16 +7,11 @@ body {
     background-position: center; /* Center the background */
     background-attachment: fixed; /* Keep the image fixed while scrolling */
     height: 100vh; /* Full height of the viewport */
-    display: flex; /* Enable flexbox */
     justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
+    align-items: center; /* Center content vertically */    
 }
 
-/* Header styling */
-/**/
-
-/* Container styling */
-.container {
+.admin-landing-page-container {
     background-color: #fff;
     padding: 20px;
     border-radius: 10px;

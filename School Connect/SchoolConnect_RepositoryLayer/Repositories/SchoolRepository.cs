@@ -15,7 +15,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             _context = context;
         }
 
-        public async Task<Dictionary<string, object>> RegisterSchool(School school)
+        public async Task<Dictionary<string, object>> RegisterSchoolAsync(School school)
         {
             _returnDictionary = [];
             School? result;
@@ -46,7 +46,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             return _returnDictionary;
         }
 
-        public async Task<Dictionary<string, object>> GetSchools()
+        public async Task<Dictionary<string, object>> GetSchoolsAsync()
         {
             _returnDictionary = [];
             List<School>? schools;

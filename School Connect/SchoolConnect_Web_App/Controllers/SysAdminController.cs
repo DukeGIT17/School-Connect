@@ -2,7 +2,7 @@
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 
-namespace schoolconnect.Controllers
+namespace SchoolConnect_Web_App.Controllers
 {
     public class SysAdminController : Controller
     {

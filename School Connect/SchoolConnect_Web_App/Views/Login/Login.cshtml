@@ -10,18 +10,22 @@
     <div class="login-container">
         <form asp-action="Login" class="container">
             <img src="~/images/logo.png" alt="Logo" class="logo">
-            <div asp-validation-summary="All"></div>
-            <div class="form-group">
-                <i class="fas fa-user"></i>
-                <input asp-for="EmailAddress" id="email" placeholder="Enter Email Address">
-                <span asp-validation-for="EmailAddress"></span>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="outer-input-div">
+                <div class="form-group">
+					<label asp-for="EmailAddress"><i class="fas fa-user"></i></label>
+                    <input asp-for="EmailAddress" id="email" placeholder="Enter Email Address">
+                </div>
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <i class="fas fa-lock"></i>
-                <input asp-for="Password" id="password" placeholder="Enter Password">
-                <span asp-validation-for="Password"></span>
+            <div class="outer-input-div">
+                <div class="form-group">
+					<label asp-for="Password"><i class="fas fa-lock"></i></label>
+                    <input asp-for="Password" id="password" placeholder="Enter Password">
+				</div>
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <a class="button">LOGIN</a>
+            <button type="submit" class="button">LOGIN</button>
         </form>
     </div>
 

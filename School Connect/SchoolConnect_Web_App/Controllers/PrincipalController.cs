@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace schoolconnect.Controllers
+namespace SchoolConnect_Web_App.Controllers
 {
     public class PrincipalController : Controller
     {
