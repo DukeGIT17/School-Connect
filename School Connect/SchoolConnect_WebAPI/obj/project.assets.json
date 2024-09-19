@@ -5320,24 +5320,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\KHAYE\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Lebohang\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\SchoolConnect_WebAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Lebohang\\Downloads\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\SchoolConnect_WebAPI.csproj",
       "projectName": "SchoolConnect_WebAPI",
-      "projectPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\SchoolConnect_WebAPI.csproj",
-      "packagesPath": "C:\\Users\\KHAYE\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\obj\\",
+      "projectPath": "C:\\Users\\Lebohang\\Downloads\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\SchoolConnect_WebAPI.csproj",
+      "packagesPath": "C:\\Users\\Lebohang\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Lebohang\\Downloads\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\KHAYE\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Lebohang\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5352,11 +5347,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
-              "projectPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj"
+            "C:\\Users\\Lebohang\\Downloads\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
+              "projectPath": "C:\\Users\\Lebohang\\Downloads\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj"
             },
-            "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj": {
-              "projectPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj"
+            "C:\\Users\\Lebohang\\Downloads\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj": {
+              "projectPath": "C:\\Users\\Lebohang\\Downloads\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj"
             }
           }
         }
@@ -5436,7 +5431,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
