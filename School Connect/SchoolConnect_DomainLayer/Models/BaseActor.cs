@@ -3,8 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SchoolConnect_DomainLayer.Models
 {
+    /// <summary>
+    /// The class containing properties shared by all actors.
+    /// </summary>
     public abstract class BaseActor
     {
+        /// <summary>
+        /// The primary form of identification for all actors in the School Connect system.
+        /// </summary>
         [Key]
         [Display(Name = "ID")]
         public long Id { get; set; }
@@ -27,6 +33,7 @@ namespace SchoolConnect_DomainLayer.Models
         [Gender]
         public string Gender { get; set; }
 
+        [ValidRoles("System Admin", "Principal", "Teacher", "Parent")]
         [Required(ErrorMessage = "Please specify role.")]
         [StringLength(15, ErrorMessage = "Role should not exceed 15 characters.")]
         [RegularExpression(@"^[a-zA-Z ]+$", ErrorMessage = "Only alphabetical values allowed.")]

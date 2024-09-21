@@ -8,78 +8,53 @@ namespace SchoolConnect_RepositoryLayer.Repositories
     public class SchoolRepository : ISchool
     {
         private readonly SchoolConnectDbContext _context;
-        private Dictionary<string, object>? _returnDictionary;
+        private Dictionary<string, object> _returnDictionary;
 
         public SchoolRepository(SchoolConnectDbContext context)
         {
             _context = context;
+            _returnDictionary = [];
         }
 
         public async Task<Dictionary<string, object>> RegisterSchoolAsync(School school)
         {
-            _returnDictionary = [];
-            School? result;
             try
             {
-                _returnDictionary.Clear();
-                result = await _context.Schools.FirstOrDefaultAsync(x => x.EmisNumber == school.EmisNumber);
-
+                //TODO: Implement restrictions to ensure an admin cannot register more than one school.
+                var result = await _context.Schools.FirstOrDefaultAsync(x => x.EmisNumber == school.EmisNumber);
                 if (result != null)
-                {
-
-                    _returnDictionary.Add("Success", false);
-                    _returnDictionary.Add("ErrorMessage", $"A school possessing the emis number: '{school.EmisNumber}', already exists within the database.");
-                    return _returnDictionary;
-                }
+                    throw new Exception($"A school possessing the emis number: '{school.EmisNumber}', already exists within the database.");
 
                 await _context.AddAsync(school);
                 await _context.SaveChangesAsync();
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
             }
             catch (Exception ex)
             {
-                _returnDictionary.Add("Success", false);
-                _returnDictionary.Add("ErrorMessage", ex.Message);
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
             }
-
-            _returnDictionary.Add("Success", true);
-            return _returnDictionary;
         }
 
         public async Task<Dictionary<string, object>> GetSchoolsAsync()
         {
-            _returnDictionary = [];
-            List<School>? schools;
-            List<SysAdmin>? systemAdmins;
             try
             {
-                _returnDictionary.Clear();
-                schools = await _context.Schools.ToListAsync();
-                systemAdmins = await _context.SystemAdmins.ToListAsync();
-
-                foreach (var school in schools)
-                {
-                    throw new Exception($"{systemAdmins.FirstOrDefault(s => s.Id == school.Id).Name} - System Admin ID in School {school.Id} - School {school.Name}");
-                    school.SchoolSysAdminNP = systemAdmins.FirstOrDefault(s => s.Id == school.Id);
-                }
-
-                if (schools == null || schools.Count == 0)
-                {
-                    _returnDictionary.Add("Success", false);
-                    _returnDictionary.Add("ErrorMessage", "Fetching schools resolved to a null or empty list.");
-                    return _returnDictionary;
-                }
+                var schools = await _context.Schools.ToListAsync();
+                if (schools == null || schools.Count < 1) throw new Exception("No schools in the database.");
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = schools;
+                return _returnDictionary;
             }
             catch (Exception ex)
             {
-                _returnDictionary.Add("Success", false);
-                _returnDictionary.Add("ErrorMessage", ex.Message);
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
             }
-
-            _returnDictionary.Add("Success", true);
-            _returnDictionary.Add("Result", schools);
-            return _returnDictionary;
         }
 
         public Task<Dictionary<string, object>> GetSchoolsByChild(long childId)

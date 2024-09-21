@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_ServiceLayer.ISystemAdminServices;
+using SchoolConnect_ServiceLayer.IServerSideServices;
 
 namespace SchoolConnect_WebAPI.Controllers
 {

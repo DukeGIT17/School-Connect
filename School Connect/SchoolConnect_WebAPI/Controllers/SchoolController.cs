@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_ServiceLayer.ISchoolServices;
+using SchoolConnect_ServiceLayer.IServerSideServices;
 
 namespace SchoolConnect_WebAPI.Controllers
 {
@@ -43,6 +43,7 @@ namespace SchoolConnect_WebAPI.Controllers
                 if (school == null) 
                     throw new Exception("School object passed was null."); 
 
+                school.DateRegistered = DateTime.Now;
                 _resultDictionary = await _school.RegisterSchoolAsync(school);
 
                 if (!(bool)_resultDictionary["Success"])

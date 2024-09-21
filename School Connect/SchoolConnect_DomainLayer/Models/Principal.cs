@@ -6,6 +6,27 @@ namespace SchoolConnect_DomainLayer.Models
 {
     public class Principal : BaseActor
     {
+        public Principal()
+        {
+            PrincipalSchoolNP = new School
+            {
+                EmisNumber = 15985654,
+                Logo = "Default Pic",
+                Name = "Dummy School",
+                DateRegistered = DateTime.Now,
+                Type = "High",
+                SystemAdminId = 1,
+                SchoolAddress = new Address
+                {
+                    Street = "1234",
+                    Suburb = "Dummy Address",
+                    City = "Dummy City",
+                    PostalCode = 1234,
+                    Province = "Dummy Province"
+                },
+            };
+        }
+
         [Required(ErrorMessage = "Please provide staff number.")]
         [Display(Name = "Staff Number")]
         [Range(10000, 9999999, ErrorMessage = "Staff Number should contain between 5 and 7 digits.")]
@@ -17,7 +38,6 @@ namespace SchoolConnect_DomainLayer.Models
 
         [Required(ErrorMessage = "Please provide phone number.")]
         [Display(Name = "Phone Number")]
-        [NumberLength(10, ErrorMessage = "Phone number should contain exactly 10 digits")]
         [DataType(DataType.PhoneNumber)]
         public long PhoneNumber { get; set; }
 

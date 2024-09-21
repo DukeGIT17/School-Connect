@@ -19,6 +19,45 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             _returnDictionary = [];
         }
 
+        public async Task<Dictionary<string, object>> CreateUserAccountAsync(string email, string role, string? phoneNumber = null)
+        {
+            try
+            {
+                string password = "Default12345!";
+                var user = new CustomIdentityUser
+                {
+                    Email = email,
+                    UserName = email,
+                    PhoneNumber = phoneNumber,
+                    ResetPassword = true
+                };
+
+                var result = await _signInManager.UserManager.CreateAsync(user, password);
+                if (!result.Succeeded)
+                    throw new Exception($"Failed to create account for user '{email}'. {result.Errors.First()} - plus {result.Errors.Count()} more");
+
+                await _signInManager.UserManager.AddToRoleAsync(user, role);
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        /// <summary>
+        /// Attempts to sign in an existing user asynchronously using the provided email address and password provided in the login model parameter.
+        /// </summary>
+        /// <param name="model">
+        /// A login model containing essential login details, e.g., email address, and password.
+        /// </param>
+        /// <returns>
+        /// On success, returns a dictionary containing a field indicating success, and a field indicating whether the user has to reset their log in
+        /// details. On failure, returns a dictionary containing a field indicating success, and a field containing the error messsage.
+        /// </returns>
         public async Task<Dictionary<string, object>> SignInAsync(LoginModel model)
         {
             _returnDictionary = [];

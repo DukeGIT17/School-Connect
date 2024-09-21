@@ -4,8 +4,8 @@ using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_RepositoryLayer.Repositories;
-using SchoolConnect_ServiceLayer.ISystemAdminServices;
-using SchoolConnect_ServiceLayer.SystemAdminServices;
+using SchoolConnect_ServiceLayer.IServerSideServices;
+using SchoolConnect_ServiceLayer.ServerSideServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +21,9 @@ builder.Services.AddDefaultIdentity<CustomIdentityUser>(options
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<SignInDbContext>();
 builder.Services.AddScoped<ISchool, SchoolRepository>();
+builder.Services.AddScoped<ISchoolService, SchoolService>();
+builder.Services.AddScoped<IPrincipal, PrincipalRepository>();
+builder.Services.AddScoped<IPrincipalService, PrincipalService>();
 builder.Services.AddScoped<PasswordValidator<CustomIdentityUser>>();
 builder.Services.AddScoped<ISysAdmin, SystemAdminRepository>();
 builder.Services.AddScoped<ISignInRepo, SignInRepository>();

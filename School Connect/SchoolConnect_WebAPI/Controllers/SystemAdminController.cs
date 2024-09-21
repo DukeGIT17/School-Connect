@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_ServiceLayer.ISystemAdminServices;
+using SchoolConnect_ServiceLayer.IServerSideServices;
 
 namespace SchoolConnect_WebAPI.Controllers
 {
@@ -55,13 +55,11 @@ namespace SchoolConnect_WebAPI.Controllers
                 _returnDictionary = await _systemAdminService.UpdateSystemAdmin(systemAdmin);
                 if (!(bool)_returnDictionary["Success"])
                 {
-                    List<string> error = _returnDictionary.GetValueOrDefault("Errors") as List<string> 
-                        ?? throw new Exception(_returnDictionary["ErrorMessage"] as string 
+                    List<string> error = _returnDictionary.GetValueOrDefault("Errors") as List<string>
+                        ?? throw new Exception(_returnDictionary["ErrorMessage"] as string
                         ?? "Something could went wrong, could not acquire error messages.");
-
                     return BadRequest(error);
                 }
-
                 return Ok();
             }
             catch (Exception ex)

@@ -116,3 +116,18 @@ C:\Users\innoc\Desktop\School-Connect\School Connect\SchoolConnect_DomainLayer\o
 C:\Users\innoc\Desktop\School-Connect\School Connect\SchoolConnect_DomainLayer\obj\Debug\net8.0\SchoolConnect_DomainLayer.pdb
 C:\Users\innoc\Desktop\School-Connect\School Connect\SchoolConnect_DomainLayer\obj\Debug\net8.0\SchoolConnect_DomainLayer.genruntimeconfig.cache
 C:\Users\innoc\Desktop\School-Connect\School Connect\SchoolConnect_DomainLayer\obj\Debug\net8.0\ref\SchoolConnect_DomainLayer.dll
+C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\bin\Debug\net8.0\SchoolConnect_DomainLayer.deps.json
+C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\bin\Debug\net8.0\SchoolConnect_DomainLayer.runtimeconfig.json
+C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\bin\Debug\net8.0\SchoolConnect_DomainLayer.dll
+C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\bin\Debug\net8.0\SchoolConnect_DomainLayer.pdb
+C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\obj\Debug\net8.0\SchoolConnect_DomainLayer.csproj.AssemblyReference.cache
+C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\obj\Debug\net8.0\SchoolConnect_DomainLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\obj\Debug\net8.0\SchoolConnect_DomainLayer.AssemblyInfoInputs.cache
+C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\obj\Debug\net8.0\SchoolConnect_DomainLayer.AssemblyInfo.cs
+C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\obj\Debug\net8.0\SchoolConnect_DomainLayer.csproj.CoreCompileInputs.cache
+C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\obj\Debug\net8.0\SchoolConnect_DomainLayer.sourcelink.json
+C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\obj\Debug\net8.0\SchoolConnect_DomainLayer.dll
+C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\obj\Debug\net8.0\refint\SchoolConnect_DomainLayer.dll
+C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\obj\Debug\net8.0\SchoolConnect_DomainLayer.pdb
+C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\obj\Debug\net8.0\SchoolConnect_DomainLayer.genruntimeconfig.cache
+C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\obj\Debug\net8.0\ref\SchoolConnect_DomainLayer.dll
