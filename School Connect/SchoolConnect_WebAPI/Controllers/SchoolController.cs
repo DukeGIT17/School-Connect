@@ -40,9 +40,6 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                if (school == null) 
-                    throw new Exception("School object passed was null."); 
-
                 school.DateRegistered = DateTime.Now;
                 _resultDictionary = await _school.RegisterSchoolAsync(school);
 

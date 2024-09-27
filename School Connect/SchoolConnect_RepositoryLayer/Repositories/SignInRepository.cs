@@ -36,7 +36,10 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 if (!result.Succeeded)
                     throw new Exception($"Failed to create account for user '{email}'. {result.Errors.First()} - plus {result.Errors.Count()} more");
 
-                await _signInManager.UserManager.AddToRoleAsync(user, role);
+                result = await _signInManager.UserManager.AddToRoleAsync(user, role);
+                if (!result.Succeeded)
+                    throw new Exception($"Failed to add user to the {role} role. Action may have to be taken to clear malformed or incomplete user data in the database.");
+
                 _returnDictionary["Success"] = true;
                 return _returnDictionary;
             }

@@ -54,21 +54,8 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         {
             try
             {
-                var validationResults = new List<ValidationResult>();
-                var validationContext = new ValidationContext(admin, serviceProvider: null, items: null);
-                bool isValid = Validator.TryValidateObject(admin, validationContext, validationResults);
-                List<string>? errors = [];
-
-                if (!isValid)
-                {
-                    foreach (var validationResult in validationResults)
-                        errors.Add(validationResult.ErrorMessage 
-                            ?? "Something went wrong: Check the System Admin Service in the ServiceLayer.");
-
-                    _returnDictionary["Success"] = false;
-                    _returnDictionary["Errors"] = errors;
-                    return _returnDictionary;
-                }
+                _returnDictionary = SharedValidationService.AttemptObjectValidation(admin);
+                if (!(bool)_returnDictionary["Success"]) return _returnDictionary;
 
                 _returnDictionary = await _sysAdminRepo.Update(admin);
                 return _returnDictionary;

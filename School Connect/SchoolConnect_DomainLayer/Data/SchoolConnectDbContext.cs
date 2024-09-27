@@ -142,6 +142,14 @@ namespace SchoolConnect_DomainLayer.Data
                 .HasKey(lp => new { lp.LearnerID, lp.ParentID });
 
             modelBuilder.Entity<LearnerParent>()
+                .HasIndex(lp => lp.LearnerIdNo)
+                .IsUnique(false);
+
+            modelBuilder.Entity<LearnerParent>()
+                .HasIndex(lp => lp.ParentIdNo)
+                .IsUnique(false);
+
+            modelBuilder.Entity<LearnerParent>()
                 .HasOne(learner => learner.Learner)
                 .WithMany(parents => parents.Parents)
                 .HasForeignKey(lp => lp.LearnerID)

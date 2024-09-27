@@ -22,12 +22,16 @@ builder.Services.AddDefaultIdentity<CustomIdentityUser>(options
     .AddEntityFrameworkStores<SignInDbContext>();
 builder.Services.AddScoped<ISchool, SchoolRepository>();
 builder.Services.AddScoped<ISchoolService, SchoolService>();
+builder.Services.AddScoped<ISysAdmin, SystemAdminRepository>();
+builder.Services.AddScoped<ISystemAdminService, AdminService>();
 builder.Services.AddScoped<IPrincipal, PrincipalRepository>();
 builder.Services.AddScoped<IPrincipalService, PrincipalService>();
+builder.Services.AddScoped<ILearner, LearnerRepository>();
+builder.Services.AddScoped<ILearnerService, LearnerService>();
+builder.Services.AddScoped<ITeacher, TeacherRepository>();
+builder.Services.AddScoped<ITeacherService, TeacherService>();
 builder.Services.AddScoped<PasswordValidator<CustomIdentityUser>>();
-builder.Services.AddScoped<ISysAdmin, SystemAdminRepository>();
 builder.Services.AddScoped<ISignInRepo, SignInRepository>();
-builder.Services.AddScoped<ISystemAdminService, AdminService>();
 builder.Services.AddScoped<ISignInService, SignInService>();
 
 builder.Services.AddCors(options =>

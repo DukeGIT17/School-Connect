@@ -1,8 +1,10 @@
-﻿using SchoolConnect_DomainLayer.CustomAttributes;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SchoolConnect_DomainLayer.Models
 {
+    /// <summary>
+    /// A class that represents a single System Admin entity.
+    /// </summary>
     public class SysAdmin : BaseActor
     {
         [Required(ErrorMessage = "Please provide staff number.")]
@@ -15,9 +17,9 @@ namespace SchoolConnect_DomainLayer.Models
         [EmailAddress]
         public string EmailAddress { get; set; }
 
-        //[Required(ErrorMessage = "Please provide phone number.")]
+        [Required(ErrorMessage = "Please provide phone number.")]
         [Display(Name = "Phone Number")]
-        //[Phone]
+        [Phone]
         public long? PhoneNumber { get; set; }
 
         #region Navigation Properties

@@ -16,16 +16,28 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             _returnDictionary = [];
         }
 
-        public async Task<Dictionary<string, object>> RegisterSchoolAsync(School school)
+        public async Task<Dictionary<string, object>> RegisterSchoolAsync(School newSchool)
         {
             try
             {
-                //TODO: Implement restrictions to ensure an admin cannot register more than one school.
-                var result = await _context.Schools.FirstOrDefaultAsync(x => x.EmisNumber == school.EmisNumber);
-                if (result != null)
-                    throw new Exception($"A school possessing the emis number: '{school.EmisNumber}', already exists within the database.");
+                var schools = await _context.Schools.ToListAsync();
+                var school = schools.FirstOrDefault(x => x.SystemAdminId == newSchool.SystemAdminId);
+                if (school != null)
+                {
+                    var admin = await _context.SystemAdmins.FirstOrDefaultAsync(a => a.Id == newSchool.SystemAdminId);
+                    if (admin == null)
+                        throw new Exception($"An admin can only register a single school, admin with the ID {school.SystemAdminId} already has a school associated with them in the system.");
 
-                await _context.AddAsync(school);
+                    throw new Exception($"An admin can only register a single school, admin {admin.Name} {admin.Surname} with the ID {newSchool.SystemAdminId} already has a school associated with them in the system.");
+                }
+
+                school = schools.FirstOrDefault(x => x.EmisNumber == newSchool.EmisNumber);
+                if (school != null)
+                    throw new Exception($"A school possessing the emis number, '{newSchool.EmisNumber}', already exists within the database.");
+
+                newSchool.SchoolAddress.SchoolID = schools.Count + 1;
+
+                await _context.AddAsync(newSchool);
                 await _context.SaveChangesAsync();
 
                 _returnDictionary["Success"] = true;

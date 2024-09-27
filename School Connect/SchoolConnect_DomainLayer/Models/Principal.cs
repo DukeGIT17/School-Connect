@@ -4,6 +4,9 @@ using SchoolConnect_DomainLayer.CustomAttributes;
 
 namespace SchoolConnect_DomainLayer.Models
 {
+    /// <summary>
+    /// A class that represents a single Principal entity.
+    /// </summary>
     public class Principal : BaseActor
     {
         public Principal()

@@ -22,8 +22,8 @@ namespace SchoolConnect_WebAPI.Controllers
         public IActionResult Create(Principal principal)
         {
             //TODO: On the frontend, don't forget to retrieve the school ID value on the School Admin navigation property and asign it to all actors they
-            // register onto the system. This is to ensure that the admin can only register actors to his school as well as using the value to search for
-            // school's data in the database.
+            // register onto the system. This is to ensure that the admin can only register actors to their school as well as giving us the ability to use
+            // the value to search for school's data in the database.
             try
             {
                 if (principal == null)
@@ -31,9 +31,17 @@ namespace SchoolConnect_WebAPI.Controllers
 
                 _returnDictionary = _principalService.Create(principal).Result;
                 if (!(bool)_returnDictionary["Success"])
-                    throw new Exception(_returnDictionary["ErrorMessage"] as string);
+                {
+                    if (_returnDictionary.ContainsKey("Errors"))
+                    {
+                        var errorList = _returnDictionary["Errors"] as List<string>;
+                        throw new Exception(errorList!.First());
+                    }
 
-                return Ok();
+                    throw new Exception(_returnDictionary["ErrorMessage"] as string);
+                }
+
+                return Ok(_returnDictionary["Success"]);
             }
             catch (Exception ex)
             {

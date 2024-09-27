@@ -228,9 +228,19 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Property<long>("ParentID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<long>("LearnerIdNo")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("ParentIdNo")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("LearnerID", "ParentID");
 
+                    b.HasIndex("LearnerIdNo");
+
                     b.HasIndex("ParentID");
+
+                    b.HasIndex("ParentIdNo");
 
                     b.ToTable("LearnerParent");
                 });
@@ -394,6 +404,7 @@ namespace SchoolConnect_WebAPI.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<long?>("PhoneNumber")
+                        .IsRequired()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ProfileImage")
@@ -445,10 +456,6 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<long>("PhoneNumber")

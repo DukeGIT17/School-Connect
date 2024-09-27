@@ -31,30 +31,27 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, object>> GetSchoolsAsync()
+        public async Task<Dictionary<string, object>> GetSchoolsAsync()
         {
-            throw new NotImplementedException();
+            try 
+            {
+                _returnDictionary = await _schoolRepo.GetSchoolsAsync();
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
         }
 
         public async Task<Dictionary<string, object>> RegisterSchoolAsync(School school)
         {
             try
             {
-                var validationResults = new List<ValidationResult>();
-                var validationContext = new ValidationContext(school, serviceProvider: null, items: null);
-                bool isValid = Validator.TryValidateObject(school, validationContext, validationResults);
-                List<string>? errors = [];
-
-                if (!isValid)
-                {
-                    foreach (var validationResult in validationResults)
-                        errors.Add(validationResult.ErrorMessage
-                            ?? "Something went wrong: Check the School Service in the ServiceLayer.");
-
-                    _returnDictionary["Success"] = false;
-                    _returnDictionary["Errors"] = errors;
-                    return _returnDictionary;
-                }
+                _returnDictionary = SharedValidationService.AttemptObjectValidation(school);
+                if (!(bool)_returnDictionary["Success"]) return _returnDictionary;
 
                 _returnDictionary = await _schoolRepo.RegisterSchoolAsync(school);
                 return _returnDictionary;

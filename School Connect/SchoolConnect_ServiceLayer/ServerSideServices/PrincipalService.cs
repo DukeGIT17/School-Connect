@@ -21,21 +21,9 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         {
             try
             {
-                var validationResults = new List<ValidationResult>();
-                var validationContext = new ValidationContext(principal, serviceProvider: null, items: null);
-                bool isValid = Validator.TryValidateObject(principal, validationContext, validationResults);
-                List<string>? errors = [];
-
-                if (!isValid)
-                {
-                    foreach(var validationResult in validationResults)
-                        errors.Add(validationResult.ErrorMessage
-                            ?? "Something went wrong: Check the School Service in the ServiceLayer.");
-
-                    _returnDictionary["Success"] = false;
-                    _returnDictionary["Errors"] = errors;
+                _returnDictionary = SharedValidationService.AttemptObjectValidation(principal);
+                if (!(bool)_returnDictionary["Success"])
                     return _returnDictionary;
-                }
 
                 _returnDictionary = await _principalRepo.Create(principal);
                 return _returnDictionary;

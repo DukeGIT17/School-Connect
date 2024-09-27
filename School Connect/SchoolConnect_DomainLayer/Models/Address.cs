@@ -4,8 +4,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SchoolConnect_DomainLayer.Models
 {
+    /// <summary>
+    /// An Address class that represents an address belonging to a single school.
+    /// </summary>
     public class Address
     {
+        /// <summary>
+        /// An address's primary key within the School Connect Database.
+        /// </summary>
         [Key]
         [Display(Name = "Address ID")]
         public int AddressID { get; set; }
@@ -40,7 +46,12 @@ namespace SchoolConnect_DomainLayer.Models
         #endregion
 
         #region Navigation Property
-        public School? School { get; set; }
+        public School School { get; set; } = new School
+        {
+            EmisNumber = 00000000,
+            Name = "Dummy Value",
+            Type = "Dummy Value"
+        };
         #endregion
     }
 }
