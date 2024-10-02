@@ -8,7 +8,7 @@ namespace SchoolConnect_DomainLayer.Models
         [Key]
         public int GroupId { get; set; }
 
-        public ICollection<long> GroupMemberIDs { get; set; }
+        public IList<long> GroupMemberIDs { get; set; }
 
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Group names should contain between 50 and 3 characters.")]
         public string GroupName { get; set; }
@@ -20,7 +20,7 @@ namespace SchoolConnect_DomainLayer.Models
 
         #region Navigation Properties
         public School GroupSchoolNP { get; set; }
-        public ICollection<GroupActor> GroupActorNP { get; set; }
+        public IList<GroupActor> GroupActorNP { get; set; }
         #endregion
     }
 }

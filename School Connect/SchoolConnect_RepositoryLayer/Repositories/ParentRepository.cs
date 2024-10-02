@@ -1,17 +1,20 @@
 ﻿using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
     public class ParentRepository : IParent
     {
         private readonly SchoolConnectDbContext _context;
+        private readonly ISignInRepo _signInRepo;
         private Dictionary<string, object> _returnDictionary;
 
-        public ParentRepository(SchoolConnectDbContext context)
+        public ParentRepository(SchoolConnectDbContext context, ISignInRepo signInRepo)
         {
             _context = context;
+            _signInRepo = signInRepo;
             _returnDictionary = [];
         }
 
@@ -22,11 +25,42 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 var result = _context.Parents.FirstOrDefault(p => p.IdNo == parent.IdNo);
                 if (result != null) throw new("A parent with the specified Id number already exists.");
 
-                foreach (var child in parent.Children)
+                List<Learner> learnersToAttach = [];
+                List<LearnerParent> nonExistentLearner = [];
+                List<string> errors = [];
+                foreach (var child in parent.Children!)
+
                 {
-                    var learner = _context.Learners.FirstOrDefault(l => l.Id == child.LearnerID) 
-                        ?? throw new Exception($"A learner with the ID '{child.LearnerID}' does not exist.");
+                    var learner = await _context.Learners.FirstOrDefaultAsync(l => l.IdNo == child.LearnerIdNo);
+                    if (learner == null)
+                    {
+                        nonExistentLearner.Add(child);
+                        parent.Children.Remove(child);
+                        errors.Add($"A learner with the ID number {child.LearnerIdNo} does not exist, please create an account for them " +
+                            "and link them to this parent.");
+                    }
+
+                    if (learner != null)
+                    {
+                        _context.Learners.Attach(learner);
+                        learnersToAttach.Add(learner);
+                    }
                 }
+
+                if (errors.Count >= parent.Children.Count)
+                    throw new("All the learners provided do not exist within the database thus this new parent has no children to be linked to. " +
+                        "Please provide valid ID numbers or create profiles for the learners first.");
+
+                foreach (var learner in learnersToAttach)
+                {
+                    var lp = parent.Children.FirstOrDefault(l => l.LearnerIdNo == learner.IdNo);
+                    if (lp != null)
+                        lp.Learner = learner;
+                }
+
+                _returnDictionary = await _signInRepo.CreateUserAccountAsync(parent.EmailAddress, parent.Role, parent.PhoneNumber.ToString());
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                _returnDictionary["AdditionalInformation"] = errors;
 
                 await _context.AddAsync(parent);
                 await _context.SaveChangesAsync();

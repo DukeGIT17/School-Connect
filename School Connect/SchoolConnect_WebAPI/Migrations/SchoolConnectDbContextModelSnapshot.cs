@@ -193,7 +193,6 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasMaxLength(15)
                         .HasColumnType("TEXT");
 
                     b.Property<long>("SchoolID")
@@ -242,7 +241,7 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.HasIndex("ParentIdNo");
 
-                    b.ToTable("LearnerParent");
+                    b.ToTable("LearnerParents");
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Parent", b =>
@@ -269,15 +268,16 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.Property<string>("ParentType")
                         .IsRequired()
-                        .HasMaxLength(15)
                         .HasColumnType("TEXT");
+
+                    b.Property<long>("PhoneNumber")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ProfileImage")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasMaxLength(15)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Surname")
@@ -320,7 +320,6 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasMaxLength(15)
                         .HasColumnType("TEXT");
 
                     b.Property<long>("SchoolID")
@@ -370,7 +369,6 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasMaxLength(15)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -412,7 +410,6 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasMaxLength(15)
                         .HasColumnType("TEXT");
 
                     b.Property<long>("StaffNr")
@@ -466,7 +463,6 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasMaxLength(15)
                         .HasColumnType("TEXT");
 
                     b.Property<long>("SchoolID")

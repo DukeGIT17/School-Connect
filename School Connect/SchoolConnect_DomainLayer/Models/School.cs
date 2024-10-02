@@ -48,9 +48,8 @@ namespace SchoolConnect_DomainLayer.Models
         /// <summary>
         /// The type or level of school this is, e.g., High School.
         /// </summary>
+        [AllowedValues("Primary", "High", "Combined", ErrorMessage = "Please specify propery school type value. (e.g., Primary, High, Combined)")]
         [Required(ErrorMessage = "School level is required.")]
-        [StringLength(15, MinimumLength = 3, ErrorMessage = "School level should be between 15 and 3 characters. (e.g., High, Primary)")]
-        [RegularExpression(@"^[a-zA-Z]+$")]
         public string Type { get; set; }
 
         #region Foreign Key Properties
@@ -68,10 +67,10 @@ namespace SchoolConnect_DomainLayer.Models
         public Address SchoolAddress { get; set; }
         public SysAdmin? SchoolSysAdminNP { get; set; }
         public Principal? SchoolPrincipalNP { get; set; }
-        public ICollection<Learner>? SchoolLearnersNP { get; set; }
-        public ICollection<Teacher>? SchoolTeachersNP { get; set; }
-        public ICollection<Announcement>? SchoolAnnouncementNP { get; set; }
-        public ICollection<Group>? SchoolGroupsNP { get; set; }
+        public IList<Learner>? SchoolLearnersNP { get; set; }
+        public IList<Teacher>? SchoolTeachersNP { get; set; }
+        public IList<Announcement>? SchoolAnnouncementNP { get; set; }
+        public IList<Group>? SchoolGroupsNP { get; set; }
         #endregion
     }
 }

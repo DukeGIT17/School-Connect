@@ -32,22 +32,6 @@ namespace SchoolConnect_DomainLayer.Models
                     Province = "Dummy Province"
                 },
             };
-
-            var parent = new Parent
-            {
-                Name = "Dummy Value"
-            };
-            
-            var learner = new Learner
-            {
-                Name = "Dummy Value"
-            };
-
-            Parents!.Add(new LearnerParent
-            {
-                Parent = parent,
-                Learner = learner
-            });
         }
 
         /// <summary>
@@ -64,13 +48,13 @@ namespace SchoolConnect_DomainLayer.Models
         [Required(ErrorMessage = "Please provide learner class ID")]
         [Display(Name = "Class ID")]
         [StringLength(4, MinimumLength = 1, ErrorMessage = "Please specify a valid class. (E.g., 8D)")]
-        [RegularExpression(@"^[A-Z0-9]+$", ErrorMessage = "Please specify a valid class. No special or lower case characters allowed.")]
+        [RegularExpression(@"^[0-9A-Z]+$", ErrorMessage = "Please specify a valid class. No special or lower case characters allowed.")]
         public string ClassID { get; set; }
 
         /// <summary>
         /// A collection of all the subjects this learner is undertaking.
         /// </summary>
-        public IEnumerable<string> Subjects { get; set; }
+        public IList<string> Subjects { get; set; }
 
         #region Foreign Key Properties
         /// <summary>
@@ -89,7 +73,8 @@ namespace SchoolConnect_DomainLayer.Models
         /// <summary>
         /// A navigation property referencing the bridging LearnerParent class. All of this learner's parents can be accessed through it.
         /// </summary>
-        public ICollection<LearnerParent> Parents { get; set; }
+        [MaxItems(2)]
+        public IList<LearnerParent> Parents { get; set; }
         #endregion
     }
 }

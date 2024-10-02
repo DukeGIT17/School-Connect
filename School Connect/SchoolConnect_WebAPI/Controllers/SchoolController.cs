@@ -41,6 +41,7 @@ namespace SchoolConnect_WebAPI.Controllers
             try
             {
                 school.DateRegistered = DateTime.Now;
+                school.SchoolAddress.SchoolID = (long)school.SystemAdminId!;
                 _resultDictionary = await _school.RegisterSchoolAsync(school);
 
                 if (!(bool)_resultDictionary["Success"])

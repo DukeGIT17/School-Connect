@@ -1,4 +1,5 @@
-﻿using SchoolConnect_DomainLayer.Models;
+﻿using Microsoft.AspNetCore.Routing;
+using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
 
@@ -22,6 +23,16 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
                 _returnDictionary = SharedValidationService.AttemptObjectValidation(learner);
                 if (!(bool)_returnDictionary["Success"])
                     return _returnDictionary;
+
+                foreach (var parent in learner.Parents)
+                {
+                    if (parent.Parent != null)
+                    {
+                        _returnDictionary = SharedValidationService.AttemptObjectValidation(parent.Parent);
+                        if (!(bool)_returnDictionary["Success"])
+                            return _returnDictionary;
+                    }
+                }
 
                 _returnDictionary = await _learnerRepo.CreateAsync(learner);
                 return _returnDictionary;

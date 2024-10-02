@@ -30,6 +30,8 @@ builder.Services.AddScoped<ILearner, LearnerRepository>();
 builder.Services.AddScoped<ILearnerService, LearnerService>();
 builder.Services.AddScoped<ITeacher, TeacherRepository>();
 builder.Services.AddScoped<ITeacherService, TeacherService>();
+builder.Services.AddScoped<IParent, ParentRepository>();
+builder.Services.AddScoped<IParentService, ParentService>();
 builder.Services.AddScoped<PasswordValidator<CustomIdentityUser>>();
 builder.Services.AddScoped<ISignInRepo, SignInRepository>();
 builder.Services.AddScoped<ISignInService, SignInService>();

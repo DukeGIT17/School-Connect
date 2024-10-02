@@ -60,8 +60,8 @@ namespace SchoolConnect_DomainLayer.Models
 
         #region Navigation Properties
         public School TeacherSchoolNP { get; set; }
-        public ICollection<Announcement>? AnnouncementsNP { get; set; }
-        public ICollection<GroupActor>? GroupsNP { get; set; }
+        public IList<Announcement>? AnnouncementsNP { get; set; }
+        public IList<GroupActor>? GroupsNP { get; set; }
         #endregion
     }
 }

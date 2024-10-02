@@ -48,10 +48,8 @@ namespace SchoolConnect_DomainLayer.Models
         /// <summary>
         /// The role of this actor within the School Connect System.
         /// </summary>
-        [ValidRoles("System Admin", "Principal", "Teacher", "Parent", "Learner")]
-        [Required(ErrorMessage = "Please specify role.")]
-        [StringLength(15, ErrorMessage = "Role should not exceed 15 characters.")]
-        [RegularExpression(@"^[a-zA-Z ]+$", ErrorMessage = "Only alphabetical values allowed.")]
+        [Required(ErrorMessage = "Please specify a role.")]
+        [AllowedValues("System Admin", "Principal", "Teacher", "Parent", "Learner", ErrorMessage = "Please enter a valid role.")]
         public string Role { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace SchoolConnect_DomainLayer.Data
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Parent> Parents { get; set; }
         public DbSet<Learner> Learners { get; set; }
+        public DbSet<LearnerParent> LearnerParents { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Group> Groups { get; set; }
 

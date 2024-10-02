@@ -23,8 +23,7 @@ namespace SchoolConnect_DomainLayer.Models
         /// </summary>
         [Required(ErrorMessage = "Please provide learner type.")]
         [Display(Name = "Parent Type")]
-        [StringLength(15, MinimumLength = 6)]
-        [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Only alphabetical values allowed.")]
+        [AllowedValues("Mother", "Father", "Guardian", ErrorMessage = "Please enter a valid parent type. (e.g., Mother, Father, Guardian)")]
         public string ParentType { get; set; }
 
         /// <summary>
@@ -35,16 +34,21 @@ namespace SchoolConnect_DomainLayer.Models
         [EmailAddress]
         public string EmailAddress { get; set; }
 
+        [Required(ErrorMessage = "Please provide phone number.")]
+        [Display(Name = "Phone Number")]
+        [DataType(DataType.PhoneNumber)]
+        public long PhoneNumber { get; set; }
+
         #region Navigation Properties
         /// <summary>
         /// The navigation property that references the bridging LearnerParent class. All of this parent's children can be accessed through it.
         /// </summary>
-        public ICollection<LearnerParent> Children { get; set; }
+        public IList<LearnerParent>? Children { get; set; }
 
         /// <summary>
-        /// The navigation property that references the bridging GroupActor class. All groups the parent is associated with can be access throug it.
+        /// The navigation property that references the bridging GroupActor class. All groups the parent is associated with can be access through it.
         /// </summary>
-        public ICollection<GroupActor>? GroupsNP { get; set; }
+        public IList<GroupActor>? GroupsNP { get; set; }
         #endregion
     }
 }

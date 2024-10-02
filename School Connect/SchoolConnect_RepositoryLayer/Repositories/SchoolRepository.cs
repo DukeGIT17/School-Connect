@@ -20,6 +20,9 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
+                // TODO: Don't forget to ensure that SchoolID Foreign Key property in the school.Address property is the same as the admin registering
+                // the school.
+
                 var schools = await _context.Schools.ToListAsync();
                 var school = schools.FirstOrDefault(x => x.SystemAdminId == newSchool.SystemAdminId);
                 if (school != null)
@@ -69,17 +72,22 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public Task<Dictionary<string, object>> GetSchoolsByChild(long childId)
+        public Task<Dictionary<string, object>> GetSchoolByAdmin(long staffNr, long Id = -1)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, object>> GetSchoolsById(long schoolId)
+        public Task<Dictionary<string, object>> GetSchoolByChild(long childId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, object>> GetSchoolsByName(string schoolName)
+        public Task<Dictionary<string, object>> GetSchoolById(long schoolId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Dictionary<string, object>> GetSchoolByName(string schoolName)
         {
             throw new NotImplementedException();
         }

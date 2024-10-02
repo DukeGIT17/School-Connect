@@ -51,7 +51,7 @@ namespace SchoolConnect_DomainLayer.Models
 
         #region Navigation Properties
         public School PrincipalSchoolNP { get; set; }
-        public ICollection<Announcement>? AnnouncementsNP { get; set; }
+        public IList<Announcement>? AnnouncementsNP { get; set; }
         #endregion
     }
 }

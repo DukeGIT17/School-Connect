@@ -18,8 +18,22 @@ namespace SchoolConnect_WebAPI.Controllers
             try
             {
                 _returnDictionary = _learnerService.CreateAsync(learner).Result;
-                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
-                return Ok(_returnDictionary);
+                if (!(bool)_returnDictionary["Success"])
+                {
+                    var itIsAnErrorMessage = _returnDictionary.GetValueOrDefault("ErrorMessage") != null;
+                    if (itIsAnErrorMessage)
+                        throw new(_returnDictionary["ErrorMessage"] as string);
+                    else
+                    {
+                        string errorStrings = "";
+                        List<string>? errors = _returnDictionary["Errors"] as List<string> ?? throw new("Something went wrong, could not acquired the list of errors.");
+                        foreach (var error in errors)
+                            errorStrings += error + "\n\n";
+
+                        throw new(errorStrings);
+                    }
+                }
+                return Ok(_returnDictionary["Success"]);
             }
             catch (Exception ex)
             {

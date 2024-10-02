@@ -32,13 +32,19 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     ResetPassword = true
                 };
 
-                var result = await _signInManager.UserManager.CreateAsync(user, password);
-                if (!result.Succeeded)
-                    throw new Exception($"Failed to create account for user '{email}'. {result.Errors.First()} - plus {result.Errors.Count()} more");
+                if (await _signInManager.UserManager.FindByEmailAsync(email) == null)
+                {
+                    var result = await _signInManager.UserManager.CreateAsync(user, password);
+                    if (!result.Succeeded)
+                        throw new Exception($"Failed to create account for user '{email}'. {result.Errors.First()} - plus {result.Errors.Count()} more");
 
-                result = await _signInManager.UserManager.AddToRoleAsync(user, role);
-                if (!result.Succeeded)
-                    throw new Exception($"Failed to add user to the {role} role. Action may have to be taken to clear malformed or incomplete user data in the database.");
+                    result = await _signInManager.UserManager.AddToRoleAsync(user, role);
+                    if (!result.Succeeded)
+                        throw new Exception($"Failed to add user to the {role} role. Action may have to be taken to clear malformed or incomplete user data in the database.");
+
+                    _returnDictionary["Success"] = true;
+                    return _returnDictionary;
+                }
 
                 _returnDictionary["Success"] = true;
                 return _returnDictionary;

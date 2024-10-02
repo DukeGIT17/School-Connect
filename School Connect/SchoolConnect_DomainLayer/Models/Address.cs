@@ -46,12 +46,7 @@ namespace SchoolConnect_DomainLayer.Models
         #endregion
 
         #region Navigation Property
-        public School School { get; set; } = new School
-        {
-            EmisNumber = 00000000,
-            Name = "Dummy Value",
-            Type = "Dummy Value"
-        };
+        public School? School { get; set; }
         #endregion
     }
 }
