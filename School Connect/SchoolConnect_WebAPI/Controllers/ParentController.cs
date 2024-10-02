@@ -10,16 +10,31 @@ namespace SchoolConnect_WebAPI.Controllers
     public class ParentController(IParentService parentService) : ControllerBase
     {
         private readonly IParentService _parentService = parentService;
-        private Dictionary<string, object> _resultDictionary = [];
+        private Dictionary<string, object> _returnDictionary = [];
 
         [HttpPost(nameof(Create))]
         public IActionResult Create(Parent parent)
         {
             try
             {
-                _resultDictionary = _parentService.CreateAsync(parent).Result;
-                if (!(bool)_resultDictionary["Success"]) return BadRequest(_resultDictionary["ErrorMessage"]);
-                return Ok(_resultDictionary["Success"]);
+                _returnDictionary = _parentService.CreateAsync(parent).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary["Success"]);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet(nameof(GetParentById))]
+        public IActionResult GetParentById(long id)
+        {
+            try
+            {
+                _returnDictionary = _parentService.GetById(id).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary["Success"]);
             }
             catch (Exception ex)
             {

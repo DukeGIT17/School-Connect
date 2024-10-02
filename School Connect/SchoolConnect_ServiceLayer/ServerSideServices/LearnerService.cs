@@ -44,5 +44,26 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
                 return _returnDictionary;
             }
         }
+
+        public async Task<Dictionary<string, object>> GetById(long id)
+        {
+            try
+            {
+                return id < 1 ?
+                    throw new($"The provided id '{id}' is less than one. Please provide a valid id.") :
+                    await _learnerRepo.GetById(id);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = true;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public Task<Dictionary<string, object>> GetByIdNo(long idNo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

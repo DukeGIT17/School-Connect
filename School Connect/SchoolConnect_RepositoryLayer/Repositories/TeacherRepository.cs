@@ -3,6 +3,7 @@ using SchoolConnect_DomainLayer.Data;
 using Microsoft.AspNetCore.Identity;
 using SchoolConnect_DomainLayer.Models;
 using Microsoft.EntityFrameworkCore;
+using SchoolConnect_RepositoryLayer.CommonAction;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -51,9 +52,18 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public Task<Dictionary<string, object>> Get(long teacherId)
+        public async Task<Dictionary<string, object>> GetById(long teacherId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await CommonActions.GetActorById(teacherId, new Teacher(), _context);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = true;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
         }
 
         public Task<Dictionary<string, object>> GetAll()

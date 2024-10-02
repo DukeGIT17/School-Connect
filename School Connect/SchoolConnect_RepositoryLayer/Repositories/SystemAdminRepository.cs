@@ -3,6 +3,7 @@ using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using SchoolConnect_RepositoryLayer.CommonAction;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -21,18 +22,9 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
         public async Task<Dictionary<string, object>> GetAdminById(long sysAdminId)
         {
-            _returnDictionary = [];
-            SysAdmin? admin;
             try
             {
-                admin = await _context.SystemAdmins.FirstOrDefaultAsync(a => a.Id == sysAdminId);
-
-                if (admin == null)
-                    throw new Exception($"Could not find admin with the ID: {sysAdminId}");
-
-                _returnDictionary["Success"] = true;
-                _returnDictionary["Result"] = admin;
-                return _returnDictionary;
+                return await CommonActions.GetActorById(sysAdminId, new SysAdmin(), _context);
             }
             catch (Exception ex)
             {

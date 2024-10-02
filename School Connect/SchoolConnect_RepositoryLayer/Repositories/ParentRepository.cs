@@ -2,6 +2,7 @@
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using SchoolConnect_RepositoryLayer.CommonAction;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -74,6 +75,25 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
             }
+        }
+
+        public async Task<Dictionary<string, object>> GetById(long parentId)
+        {
+            try
+            {
+                return await CommonActions.GetActorById(parentId, new Parent(), _context);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = true;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public Task<Dictionary<string, object>> GetByIdNo(long parentIdNo)
+        {
+            throw new NotImplementedException();
         }
     }
 }

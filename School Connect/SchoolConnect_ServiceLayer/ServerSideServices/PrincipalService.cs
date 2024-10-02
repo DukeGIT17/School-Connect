@@ -22,8 +22,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             try
             {
                 _returnDictionary = SharedValidationService.AttemptObjectValidation(principal);
-                if (!(bool)_returnDictionary["Success"])
-                    return _returnDictionary;
+                if (!(bool)_returnDictionary["Success"]) return _returnDictionary;
 
                 _returnDictionary = await _principalRepo.Create(principal);
                 return _returnDictionary;
@@ -36,9 +35,20 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
-        public Task<Dictionary<string, object>> GetById(long id)
+        public async Task<Dictionary<string, object>> GetById(long id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return id < 1 ?
+                    throw new($"The provided id '{id}' is less than one. Please provide a valid id.") :
+                    await _principalRepo.GetById(id);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = true;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
         }
 
         public Task<Dictionary<string, object>> GetByStaffNr(long staffNr)

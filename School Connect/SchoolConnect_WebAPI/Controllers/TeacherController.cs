@@ -37,5 +37,19 @@ namespace SchoolConnect_WebAPI.Controllers
             }
         }
 
+        [HttpGet(nameof(GetTeacherById))]
+        public IActionResult GetTeacherById(long id)
+        {
+            try
+            {
+                _returnDictionary = _teacherService.GetById(id).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary["Result"]);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -26,6 +26,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             string pattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
             return Regex.IsMatch(email, pattern);
         }
+
         private bool CheckPassword(string password)
         {
             var userManager = _userManager;
@@ -33,6 +34,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             var identityResult = _passwordValidator.ValidateAsync(userManager, user, password).Result;
             return identityResult.Succeeded;
         }
+
         public async Task<Dictionary<string, object>> SignInAsync(LoginModel model)
         {
             _returnDictionary = [];

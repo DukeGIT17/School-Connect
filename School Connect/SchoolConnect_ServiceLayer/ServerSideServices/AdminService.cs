@@ -1,7 +1,6 @@
 ﻿using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
-using System.ComponentModel.DataAnnotations;
 
 namespace SchoolConnect_ServiceLayer.ServerSideServices
 {

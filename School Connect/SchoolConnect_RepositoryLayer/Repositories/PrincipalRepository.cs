@@ -1,5 +1,6 @@
 ﻿using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
+using SchoolConnect_RepositoryLayer.CommonAction;
 using SchoolConnect_RepositoryLayer.Interfaces;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
@@ -32,9 +33,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 principal.PrincipalSchoolNP = school!;
 
                 _returnDictionary = await _signInRepo.CreateUserAccountAsync(principal.EmailAddress, principal.Role, principal.PhoneNumber.ToString());
-
-                if (!(bool)_returnDictionary["Success"])
-                    throw new Exception(_returnDictionary["ErrorMessage"] as string);
+                if (!(bool)_returnDictionary["Success"]) throw new Exception(_returnDictionary["ErrorMessage"] as string);
 
                 await _context.AddAsync(principal);
                 await _context.SaveChangesAsync();
@@ -50,9 +49,18 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public Task<Dictionary<string, object>> GetById(long principalId)
+        public async Task<Dictionary<string, object>> GetById(long principalId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await CommonActions.GetActorById(principalId, new Principal(), _context);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = true;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
         }
 
         public Task<Dictionary<string, object>> GetByStaffNr(long principalStaffNr)
