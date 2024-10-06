@@ -4,6 +4,7 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
 {
     public interface ILearner
     {
+        Task<Dictionary<string, object>> BatchLoadLearnersFromExcel(string fileName);
         Task<Dictionary<string, object>> CreateAsync(Learner learner);
         Task<Dictionary<string, object>> GetById(long learnerId);
         Task<Dictionary<string, object>> GetByIdNo(long learnerIdNo);

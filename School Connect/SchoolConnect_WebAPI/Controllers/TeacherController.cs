@@ -1,16 +1,34 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
+using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
 
 namespace SchoolConnect_WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TeacherController(ITeacherService teacherService) : ControllerBase
+    public class TeacherController(ITeacherService teacherService, SchoolConnectDbContext context, ISignInRepo signInRepo) : ControllerBase
     {
         private readonly ITeacherService _teacherService = teacherService;
+        private readonly ISignInRepo _signInRepo = signInRepo;
+        private readonly SchoolConnectDbContext _context = context;
         private Dictionary<string, object> _returnDictionary = [];
+
+        [HttpDelete(nameof(DeleteTeacherById))]
+        public IActionResult DeleteTeacherById(long id)
+        {
+            var teacher = _context.Teachers.FirstOrDefault(t => t.Id == id);
+            if (teacher != null)
+            {
+                _signInRepo.RemoveUserAccountAsync(teacher.EmailAddress, "Teacher");
+                _context.Remove(teacher);
+                _context.SaveChanges();
+                return Ok();
+            }
+            return BadRequest("Something went wrong.");
+        }
 
         [HttpPost(nameof(Create))]
         public IActionResult Create(Teacher teacher)

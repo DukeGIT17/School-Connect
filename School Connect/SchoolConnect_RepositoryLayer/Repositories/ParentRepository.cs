@@ -10,12 +10,14 @@ namespace SchoolConnect_RepositoryLayer.Repositories
     {
         private readonly SchoolConnectDbContext _context;
         private readonly ISignInRepo _signInRepo;
+        private readonly IGroup _groupRepo;
         private Dictionary<string, object> _returnDictionary;
 
-        public ParentRepository(SchoolConnectDbContext context, ISignInRepo signInRepo)
+        public ParentRepository(SchoolConnectDbContext context, ISignInRepo signInRepo, IGroup groupRepo)
         {
             _context = context;
             _signInRepo = signInRepo;
+            _groupRepo = groupRepo;
             _returnDictionary = [];
         }
 
@@ -59,8 +61,15 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                         lp.Learner = learner;
                 }
 
+                foreach (var learner in parent.Children)
+                {
+                    _returnDictionary = await _groupRepo.AddActorToGroup(parent.IdNo, learner.Learner!.SchoolID, "All");
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                }
+
                 _returnDictionary = await _signInRepo.CreateUserAccountAsync(parent.EmailAddress, parent.Role, parent.PhoneNumber.ToString());
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
                 _returnDictionary["AdditionalInformation"] = errors;
 
                 await _context.AddAsync(parent);
@@ -72,7 +81,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             catch (Exception ex)
             {
                 _returnDictionary["Success"] = true;
-                _returnDictionary["ErrorMessage"] = ex.Message;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
                 return _returnDictionary;
             }
         }

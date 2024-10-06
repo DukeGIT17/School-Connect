@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Routing;
-using SchoolConnect_DomainLayer.Models;
+﻿using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
 
@@ -14,6 +13,20 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         {
             _learnerRepo = learnerRepo;
             _returnDictionary = [];
+        }
+
+        public async Task<Dictionary<string, object>> LoadLearners(string fileName)
+        {
+            try
+            {
+                return await _learnerRepo.BatchLoadLearnersFromExcel(fileName);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
         }
 
         public async Task<Dictionary<string, object>> CreateAsync(Learner learner)

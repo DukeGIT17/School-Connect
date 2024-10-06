@@ -115,6 +115,28 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.ToTable("Announcements", (string)null);
                 });
 
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Grade", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("GradeDesignate")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("SchoolID")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GradeDesignate");
+
+                    b.HasIndex("SchoolID");
+
+                    b.ToTable("Grade");
+                });
+
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Group", b =>
                 {
                     b.Property<int>("GroupId")
@@ -134,6 +156,8 @@ namespace SchoolConnect_WebAPI.Migrations
                         .HasColumnType("INTEGER");
 
                     b.HasKey("GroupId");
+
+                    b.HasIndex("GroupMemberIDs");
 
                     b.HasIndex("SchoolID");
 
@@ -171,10 +195,13 @@ namespace SchoolConnect_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ClassID")
+                    b.Property<string>("ClassCode")
                         .IsRequired()
                         .HasMaxLength(4)
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("ClassID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Gender")
                         .IsRequired()
@@ -199,7 +226,6 @@ namespace SchoolConnect_WebAPI.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Subjects")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Surname")
@@ -208,6 +234,8 @@ namespace SchoolConnect_WebAPI.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ClassID");
 
                     b.HasIndex("IdNo")
                         .IsUnique();
@@ -287,7 +315,13 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmailAddress")
+                        .IsUnique();
+
                     b.HasIndex("IdNo")
+                        .IsUnique();
+
+                    b.HasIndex("PhoneNumber")
                         .IsUnique();
 
                     b.ToTable("Parents", (string)null);
@@ -334,6 +368,12 @@ namespace SchoolConnect_WebAPI.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmailAddress")
+                        .IsUnique();
+
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique();
 
                     b.HasIndex("SchoolID")
                         .IsUnique();
@@ -382,6 +422,35 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.ToTable("Schools", (string)null);
                 });
 
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.SubGrade", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ClassDesignate")
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("GradeId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long?>("MainTeacherId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClassDesignate");
+
+                    b.HasIndex("GradeId");
+
+                    b.HasIndex("MainTeacherId")
+                        .IsUnique();
+
+                    b.ToTable("SubGrade");
+                });
+
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.SysAdmin", b =>
                 {
                     b.Property<long>("Id")
@@ -422,6 +491,12 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmailAddress")
+                        .IsUnique();
+
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique();
+
                     b.HasIndex("StaffNr")
                         .IsUnique();
 
@@ -434,20 +509,12 @@ namespace SchoolConnect_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("ClassIDs")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("EmailAddress")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Gender")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("MainClass")
-                        .HasMaxLength(5)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
@@ -482,12 +549,44 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("EmailAddress")
+                        .IsUnique();
+
+                    b.HasIndex("PhoneNumber")
+                        .IsUnique();
+
                     b.HasIndex("SchoolID");
 
                     b.HasIndex("StaffNr")
                         .IsUnique();
 
                     b.ToTable("Teachers", (string)null);
+                });
+
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.TeacherGrade", b =>
+                {
+                    b.Property<long>("TeacherID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ClassID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ClassDesignate")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("StaffNr")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("TeacherID", "ClassID");
+
+                    b.HasIndex("ClassDesignate");
+
+                    b.HasIndex("ClassID");
+
+                    b.HasIndex("StaffNr");
+
+                    b.ToTable("TeacherGrade");
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Address", b =>
@@ -524,6 +623,17 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Navigation("PrincipalAnnouncementNP");
 
                     b.Navigation("TeacherAnnouncementNP");
+                });
+
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Grade", b =>
+                {
+                    b.HasOne("SchoolConnect_DomainLayer.Models.School", "GradeSchoolNP")
+                        .WithMany("SchoolGradeNP")
+                        .HasForeignKey("SchoolID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GradeSchoolNP");
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Group", b =>
@@ -566,11 +676,19 @@ namespace SchoolConnect_WebAPI.Migrations
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Learner", b =>
                 {
+                    b.HasOne("SchoolConnect_DomainLayer.Models.SubGrade", "Class")
+                        .WithMany("Learners")
+                        .HasForeignKey("ClassID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("SchoolConnect_DomainLayer.Models.School", "LearnerSchoolNP")
                         .WithMany("SchoolLearnersNP")
                         .HasForeignKey("SchoolID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Class");
 
                     b.Navigation("LearnerSchoolNP");
                 });
@@ -615,6 +733,24 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Navigation("SchoolSysAdminNP");
                 });
 
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.SubGrade", b =>
+                {
+                    b.HasOne("SchoolConnect_DomainLayer.Models.Grade", "Grade")
+                        .WithMany("Classes")
+                        .HasForeignKey("GradeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolConnect_DomainLayer.Models.Teacher", "MainTeacher")
+                        .WithOne("MainClass")
+                        .HasForeignKey("SchoolConnect_DomainLayer.Models.SubGrade", "MainTeacherId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Grade");
+
+                    b.Navigation("MainTeacher");
+                });
+
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Teacher", b =>
                 {
                     b.HasOne("SchoolConnect_DomainLayer.Models.School", "TeacherSchoolNP")
@@ -624,6 +760,30 @@ namespace SchoolConnect_WebAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("TeacherSchoolNP");
+                });
+
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.TeacherGrade", b =>
+                {
+                    b.HasOne("SchoolConnect_DomainLayer.Models.SubGrade", "Class")
+                        .WithMany("Teachers")
+                        .HasForeignKey("ClassID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SchoolConnect_DomainLayer.Models.Teacher", "Teacher")
+                        .WithMany("Classes")
+                        .HasForeignKey("TeacherID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Class");
+
+                    b.Navigation("Teacher");
+                });
+
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Grade", b =>
+                {
+                    b.Navigation("Classes");
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Group", b =>
@@ -655,6 +815,8 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.Navigation("SchoolAnnouncementNP");
 
+                    b.Navigation("SchoolGradeNP");
+
                     b.Navigation("SchoolGroupsNP");
 
                     b.Navigation("SchoolLearnersNP");
@@ -662,6 +824,13 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Navigation("SchoolPrincipalNP");
 
                     b.Navigation("SchoolTeachersNP");
+                });
+
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.SubGrade", b =>
+                {
+                    b.Navigation("Learners");
+
+                    b.Navigation("Teachers");
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.SysAdmin", b =>
@@ -673,7 +842,11 @@ namespace SchoolConnect_WebAPI.Migrations
                 {
                     b.Navigation("AnnouncementsNP");
 
+                    b.Navigation("Classes");
+
                     b.Navigation("GroupsNP");
+
+                    b.Navigation("MainClass");
                 });
 #pragma warning restore 612, 618
         }

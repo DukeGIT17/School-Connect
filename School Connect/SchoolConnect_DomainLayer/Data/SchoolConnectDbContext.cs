@@ -15,6 +15,7 @@ namespace SchoolConnect_DomainLayer.Data
         public DbSet<LearnerParent> LearnerParents { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Group> Groups { get; set; }
+        public DbSet<SubGrade> SubGrade { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -49,6 +50,14 @@ namespace SchoolConnect_DomainLayer.Data
             modelBuilder.Entity<SysAdmin>()
                 .HasIndex(admin => admin.StaffNr)
                 .IsUnique();
+            
+            modelBuilder.Entity<SysAdmin>()
+                .HasIndex(admin => admin.EmailAddress)
+                .IsUnique();
+            
+            modelBuilder.Entity<SysAdmin>()
+                .HasIndex(admin => admin.PhoneNumber)
+                .IsUnique();
 
             modelBuilder.Entity<School>()
                 .HasOne(principal => principal.SchoolPrincipalNP)
@@ -57,8 +66,23 @@ namespace SchoolConnect_DomainLayer.Data
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
 
+            modelBuilder.Entity<School>()
+                .HasMany(grades => grades.SchoolGradeNP)
+                .WithOne(school => school.GradeSchoolNP)
+                .HasForeignKey(grade => grade.SchoolID)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
             modelBuilder.Entity<Principal>()
                 .HasIndex(principal => principal.StaffNr)
+                .IsUnique();
+            
+            modelBuilder.Entity<Principal>()
+                .HasIndex(principal => principal.EmailAddress)
+                .IsUnique();
+            
+            modelBuilder.Entity<Principal>()
+                .HasIndex(principal => principal.PhoneNumber)
                 .IsUnique();
 
             modelBuilder.Entity<School>()
@@ -71,6 +95,42 @@ namespace SchoolConnect_DomainLayer.Data
             modelBuilder.Entity<Teacher>()
                 .HasIndex(teacher => teacher.StaffNr)
                 .IsUnique();
+            
+            modelBuilder.Entity<Teacher>()
+                .HasIndex(teacher => teacher.EmailAddress)
+                .IsUnique();
+            
+            modelBuilder.Entity<Teacher>()
+                .HasIndex(teacher => teacher.PhoneNumber)
+                .IsUnique();
+
+            modelBuilder.Entity<Teacher>()
+                .HasOne(grade => grade.MainClass)
+                .WithOne(teacher => teacher.MainTeacher)
+                .HasForeignKey<SubGrade>(grade => grade.MainTeacherId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired(false);
+
+            modelBuilder.Entity<TeacherGrade>()
+                .HasKey(tg => new { tg.TeacherID, tg.ClassID });
+
+            modelBuilder.Entity<TeacherGrade>()
+                .HasIndex(tg => tg.StaffNr);
+            
+            modelBuilder.Entity<TeacherGrade>()
+                .HasIndex(tg => tg.ClassDesignate);
+
+            modelBuilder.Entity<TeacherGrade>()
+                .HasOne(teacher => teacher.Teacher)
+                .WithMany(grades => grades.Classes)
+                .HasForeignKey(tg => tg.TeacherID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<TeacherGrade>()
+                .HasOne(grade => grade.Class)
+                .WithMany(teachers => teachers.Teachers)
+                .HasForeignKey(tg => tg.ClassID)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<School>()
                 .HasMany(learners => learners.SchoolLearnersNP)
@@ -99,6 +159,10 @@ namespace SchoolConnect_DomainLayer.Data
                 .HasForeignKey(announcements => announcements.PrincipalID)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(false);
+
+            modelBuilder.Entity<Group>()
+                .HasIndex(g => g.GroupMemberIDs)
+                .IsUnique(false);
 
             modelBuilder.Entity<GroupActor>()
                 .HasKey(ga => new { ga.GroupId, ga.TeacherId, ga.ParentId });
@@ -135,6 +199,14 @@ namespace SchoolConnect_DomainLayer.Data
                 .HasIndex(parent => parent.IdNo)
                 .IsUnique();
             
+            modelBuilder.Entity<Parent>()
+                .HasIndex(parent => parent.EmailAddress)
+                .IsUnique();
+
+            modelBuilder.Entity<Parent>()
+                .HasIndex(parent => parent.PhoneNumber)
+                .IsUnique();
+            
             modelBuilder.Entity<Learner>()
                 .HasIndex(learner => learner.IdNo)
                 .IsUnique();
@@ -165,6 +237,27 @@ namespace SchoolConnect_DomainLayer.Data
             modelBuilder.Entity<Learner>()
                 .HasIndex(learner => learner.Subjects)
                 .IsUnique(false);
+
+            modelBuilder.Entity<Learner>()
+                .HasOne(grade => grade.Class)
+                .WithMany(learners => learners.Learners)
+                .HasForeignKey(learner => learner.ClassID)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Grade>()
+                .HasIndex(grade => grade.GradeDesignate)
+                .IsUnique(false);
+            
+            modelBuilder.Entity<SubGrade>()
+                .HasIndex(subGrade => subGrade.ClassDesignate)
+                .IsUnique(false);
+
+            modelBuilder.Entity<Grade>()
+                .HasMany(subGrades => subGrades.Classes)
+                .WithOne(grade => grade.Grade)
+                .HasForeignKey(subGrade => subGrade.GradeId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
         }
     }
 }

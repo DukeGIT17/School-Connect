@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using OfficeOpenXml;
 using Microsoft.EntityFrameworkCore;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
@@ -7,15 +7,16 @@ namespace SchoolConnect_RepositoryLayer.CommonAction
 {
     public static class CommonActions
     {
-        public static async Task<Dictionary<string, object>> GetActorById<T>(long actorId, T actor, SchoolConnectDbContext context)
+        
+        public static async Task<Dictionary<string, object>> GetActorById<T>(long actorId, T actor, SchoolConnectDbContext context) where T : BaseActor
         {
             try
             {
-                SysAdmin? admin = new();
-                Principal? principal = new();
-                Teacher? teacher = new();
-                Parent? parent = new();
-                Learner? learner = new();
+                SysAdmin? admin = null;
+                Principal? principal = null;
+                Teacher? teacher = null;
+                Parent? parent = null;
+                Learner? learner = null;
 
                 switch (actor!.GetType().Name)
                 {
@@ -80,7 +81,7 @@ namespace SchoolConnect_RepositoryLayer.CommonAction
                 }
                 else
                 {
-                    throw new("Something went wrong.");
+                    throw new($"Something went wrong, no actor with ID {actorId}.");
                 }
                 
             }

@@ -5,16 +5,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SchoolConnect_ServiceLayer.ServerSideServices
 {
-    public class SchoolService : ISchoolService
+    public class SchoolService(ISchool schoolRepo) : ISchoolService
     {
-        private readonly ISchool _schoolRepo;
-        private Dictionary<string, object> _returnDictionary;
-
-        public SchoolService(ISchool schoolRepo)
-        {
-            _schoolRepo = schoolRepo;
-            _returnDictionary = [];
-        }
+        private readonly ISchool _schoolRepo = schoolRepo;
+        private Dictionary<string, object> _returnDictionary = [];
 
         public Task<Dictionary<string, object>> DeleteSchoolAsync(School school)
         {

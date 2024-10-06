@@ -9,10 +9,12 @@ namespace SchoolConnect_WebAPI.Controllers
     public class SignInController : ControllerBase
     {
         private readonly ISignInService _signInService;
+        private Dictionary<string, object> _returnDictionary;
 
         public SignInController(ISignInService signIn)
         {
             _signInService = signIn;
+            _returnDictionary = [];
         }
 
         [HttpPost("SignIn")]
@@ -20,13 +22,9 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                var result = _signInService.SignInAsync(model).Result;
-                var success = result["Success"];
-
-                if (!(bool)success)
-                    return BadRequest(result["ErrorMessage"]);
-
-                return Ok(result["ResetPassword"]);
+                _returnDictionary = _signInService.SignInAsync(model).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {
@@ -39,12 +37,9 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                var result = _signInService.SetNewPasswordAsync(model).Result;
-
-                if (!(bool)result["Success"])
-                    return BadRequest(result["ErrorMessage"]);
-
-                return Ok(result["ResetPassword"]);
+                _returnDictionary = _signInService.SetNewPasswordAsync(model).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {

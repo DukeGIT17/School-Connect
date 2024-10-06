@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
@@ -29,16 +30,87 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 {
                     var admin = await _context.SystemAdmins.FirstOrDefaultAsync(a => a.Id == newSchool.SystemAdminId);
                     if (admin == null)
-                        throw new Exception($"An admin can only register a single school, admin with the ID {school.SystemAdminId} already has a school associated with them in the system.");
+                        throw new($"An admin can only register a single school, admin with the ID {school.SystemAdminId} already has a school associated with them in the system.");
 
-                    throw new Exception($"An admin can only register a single school, admin {admin.Name} {admin.Surname} with the ID {newSchool.SystemAdminId} already has a school associated with them in the system.");
+                    throw new($"An admin can only register a single school, admin {admin.Name} {admin.Surname} with the ID {newSchool.SystemAdminId} already has a school associated with them in the system.");
                 }
 
                 school = schools.FirstOrDefault(x => x.EmisNumber == newSchool.EmisNumber);
                 if (school != null)
-                    throw new Exception($"A school possessing the emis number, '{newSchool.EmisNumber}', already exists within the database.");
+                    throw new($"A school possessing the emis number, '{newSchool.EmisNumber}', already exists within the database.");
 
-                newSchool.SchoolAddress.SchoolID = schools.Count + 1;
+                newSchool.SchoolGroupsNP =
+                [
+                    new() {
+                        GroupName = "All",
+                        GroupMemberIDs = [],
+                        GroupActorNP = []
+                    }
+                ];
+
+                string primaryGrades = "R1234567";
+                string[] highGrades = ["8", "9", "10", "11", "12"],
+                    combinedGrades = ["R", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+
+                newSchool.SchoolGradeNP = [];
+
+                switch (newSchool.Type)
+                {
+                    case "Primary":
+                        foreach (var grade in primaryGrades)
+                        {
+                            Grade gr = new()
+                            {
+                                GradeDesignate = grade.ToString(),
+                                Classes = 
+                                [
+                                    new() 
+                                    {
+                                        ClassDesignate = grade.ToString() + "A"
+                                    }
+                                ]
+                            };
+                            newSchool.SchoolGradeNP.Add(gr);
+                        }
+                        break;
+
+                    case "High":
+                        foreach (var grade in highGrades)
+                        {
+                            Grade gr = new()
+                            {
+                                GradeDesignate = grade.ToString(),
+                                Classes =
+                                [
+                                    new()
+                                    {
+                                        ClassDesignate = grade.ToString() + "A"
+                                    }
+                                ]
+                            };
+                            newSchool.SchoolGradeNP.Add(gr);
+                        }
+                        break;
+                    case "Combined":
+                        foreach (var grade in combinedGrades)
+                        {
+                            Grade gr = new()
+                            {
+                                GradeDesignate = grade.ToString(),
+                                Classes =
+                                [
+                                    new()
+                                    {
+                                        ClassDesignate = grade.ToString() + "A"
+                                    }
+                                ]
+                            };
+                            newSchool.SchoolGradeNP.Add(gr);
+                        }
+                        break;
+                    default:
+                        throw new($"Something went wrong. The value {newSchool.Type} does not match any of the valid school type options.");
+                }
 
                 await _context.AddAsync(newSchool);
                 await _context.SaveChangesAsync();
@@ -49,7 +121,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             catch (Exception ex)
             {
                 _returnDictionary["Success"] = false;
-                _returnDictionary["ErrorMessage"] = ex.Message;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
                 return _returnDictionary;
             }
         }
@@ -59,7 +131,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             try
             {
                 var schools = await _context.Schools.ToListAsync();
-                if (schools == null || schools.Count < 1) throw new Exception("No schools in the database.");
+                if (schools.IsNullOrEmpty()) throw new Exception("No schools in the database.");
                 _returnDictionary["Success"] = true;
                 _returnDictionary["Result"] = schools;
                 return _returnDictionary;

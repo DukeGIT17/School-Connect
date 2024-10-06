@@ -1,8 +1,6 @@
 ﻿using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_DomainLayer.Data;
-using Microsoft.AspNetCore.Identity;
 using SchoolConnect_DomainLayer.Models;
-using Microsoft.EntityFrameworkCore;
 using SchoolConnect_RepositoryLayer.CommonAction;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
@@ -11,12 +9,14 @@ namespace SchoolConnect_RepositoryLayer.Repositories
     {
         private readonly SchoolConnectDbContext _context;
         private readonly ISignInRepo _signInRepo;
+        private readonly IGroup _groupRepo;
         private Dictionary<string, object> _returnDictionary;
 
-        public TeacherRepository(SchoolConnectDbContext context, ISignInRepo signInRepo)
+        public TeacherRepository(SchoolConnectDbContext context, ISignInRepo signInRepo, IGroup groupRepo)
         {
             _context = context;
             _signInRepo = signInRepo;
+            _groupRepo = groupRepo;
             _returnDictionary = [];
         }
 
@@ -25,18 +25,18 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             try
             {
                 var result = _context.Teachers.FirstOrDefault(t => t.StaffNr == teacher.StaffNr);
-                if (result != null)
-                    throw new Exception($"A teacher with the specified staff number '{teacher.StaffNr}' already exists within the database.");
+                if (result != null) throw new($"A teacher with the specified staff number '{teacher.StaffNr}' already exists within the database.");
 
-                var school = _context.Schools.FirstOrDefault(s => s.Id == teacher.SchoolID);
-                if (school == null)
-                    throw new Exception($"A school with the Id '{teacher.SchoolID}' does not exist. Has this school been registered yet?");
+                var school = _context.Schools.FirstOrDefault(s => s.Id == teacher.SchoolID) 
+                    ?? throw new($"A school with the Id '{teacher.SchoolID}' does not exist. Has this school been registered yet?");
 
-                teacher.TeacherSchoolNP = school!;
+                teacher.TeacherSchoolNP = school;
+
+                _returnDictionary = await _groupRepo.AddActorToGroup(teacher.StaffNr, teacher.SchoolID, "All");
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                 _returnDictionary = await _signInRepo.CreateUserAccountAsync(teacher.EmailAddress, teacher.Role, teacher.PhoneNumber.ToString());
-                if (!(bool)_returnDictionary["Success"])
-                    throw new Exception(_returnDictionary["ErrorMessage"] as string);
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                 await _context.AddAsync(teacher);
                 await _context.SaveChangesAsync();
@@ -47,7 +47,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             catch (Exception ex)
             {
                 _returnDictionary["Success"] = false;
-                _returnDictionary["ErrorMessage"] = ex.Message;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
                 return _returnDictionary;
             }
         }

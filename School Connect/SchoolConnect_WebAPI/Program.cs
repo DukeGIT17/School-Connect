@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
+using SchoolConnect_RepositoryLayer.CommonAction;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_RepositoryLayer.Repositories;
 using SchoolConnect_ServiceLayer.IServerSideServices;
@@ -20,8 +22,15 @@ builder.Services.AddDefaultIdentity<CustomIdentityUser>(options
     => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<SignInDbContext>();
+
+// Main Functionality Services
 builder.Services.AddScoped<ISchool, SchoolRepository>();
 builder.Services.AddScoped<ISchoolService, SchoolService>();
+builder.Services.AddScoped<IAnnouncement, AnnouncementRepo>();
+builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
+builder.Services.AddScoped<IGroup, GroupRepository>();
+
+// Actors Services
 builder.Services.AddScoped<ISysAdmin, SystemAdminRepository>();
 builder.Services.AddScoped<ISystemAdminService, AdminService>();
 builder.Services.AddScoped<IPrincipal, PrincipalRepository>();
@@ -32,6 +41,8 @@ builder.Services.AddScoped<ITeacher, TeacherRepository>();
 builder.Services.AddScoped<ITeacherService, TeacherService>();
 builder.Services.AddScoped<IParent, ParentRepository>();
 builder.Services.AddScoped<IParentService, ParentService>();
+
+// Sign In Services
 builder.Services.AddScoped<PasswordValidator<CustomIdentityUser>>();
 builder.Services.AddScoped<ISignInRepo, SignInRepository>();
 builder.Services.AddScoped<ISignInService, SignInService>();
@@ -81,40 +92,91 @@ using (var scope = app.Services.CreateScope())
     foreach (var role in roles)
     {
         if (!await roleManager.RoleExistsAsync(role))
-        {
             await roleManager.CreateAsync(new IdentityRole(role));
-        }
     }
 
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<CustomIdentityUser>>();
-    string email = "Takatso@gmail.com",
-        password = "TakiPassword123!";
+    var context = scope.ServiceProvider.GetRequiredService<SchoolConnectDbContext>();
 
-    string email1 = "Lukhanyomayekiso98@gmail.com",
-        password1 = "Lukhanyo12345!";
-
-    var user = new CustomIdentityUser
-    {
-        UserName = email,
-        Email = email,
-        PhoneNumber = "0789512589",
+    var systemAdmins = new SysAdmin[] {
+        new()
+        {
+            ProfileImage = "Default Pic",
+            Name = "Lukhanyo",
+            Surname = "Mayekiso",
+            Gender = "Male",
+            Role = "System Admin",
+            StaffNr = 14785,
+            EmailAddress = "Lukhanyo@gmail.com",
+            PhoneNumber = 739002497
+        },
+        new()
+        {
+            ProfileImage = "Default Pic",
+            Name = "Takatso",
+            Surname = "Senyatso",
+            Gender = "Female",
+            Role = "System Admin",
+            StaffNr = 12365,
+            EmailAddress = "Takatso@gmail.com",
+            PhoneNumber = 789516542
+        }
     };
-
-    var user1 = new CustomIdentityUser
+    var admins = await context.SystemAdmins.ToListAsync();
+    foreach (var systemAdmin in systemAdmins)
     {
-        UserName = email1,
-        Email = email1,
-        PhoneNumber = "0739002497",
-    };
+        if (admins.FirstOrDefault(a => a.EmailAddress == systemAdmin.EmailAddress) == null)
+            await context.AddAsync(systemAdmin);
+    }
+    await context.SaveChangesAsync();
 
-    if (await userManager.FindByEmailAsync(email) == null)
-        await userManager.CreateAsync(user, password);
+    admins = await context.SystemAdmins.ToListAsync();
+    if (!admins.IsNullOrEmpty())
+    {
+        foreach (var admin in admins)
+        {
+            if (await userManager.FindByEmailAsync(admin.EmailAddress) == null)
+            {
+                var newAdmin = new CustomIdentityUser
+                {
+                    Email = admin.EmailAddress,
+                    UserName = admin.EmailAddress,
+                    PhoneNumber = admin.PhoneNumber.ToString(),
+                    ResetPassword = false
+                };
 
-    if (await userManager.FindByEmailAsync(email1) == null)
-        await userManager.CreateAsync(user1, password1);
+                if (userManager.CreateAsync(newAdmin, "Default12345!").Result.Succeeded)
+                    await userManager.AddToRoleAsync(newAdmin, admin.Role);
+            }
+        }
+    }
 
-    await userManager.AddToRoleAsync(user, "System Admin");
-    await userManager.AddToRoleAsync(user1, "System Admin");
+    var schools = await context.Schools.Include("SchoolGroupsNP").ToListAsync();
+
+    if (!schools.IsNullOrEmpty())
+    {
+        foreach (var school in schools)
+        {
+            if (!school.SchoolGroupsNP.Any())
+            {
+                Group allGroup = new()
+                {
+                    GroupName = "All",
+                    GroupMemberIDs = [],
+                    GroupActorNP = [],
+                    SchoolID = school.Id
+                };
+
+                await context.AddAsync(allGroup);
+            }
+            else
+                Console.WriteLine($"\n\nTHERE ARE ALREADY GROUPS IN THE SCHOOL {school.Name.ToUpper()}!!\n\n");
+        }
+
+        await context.SaveChangesAsync();
+    }
+    else
+        Console.WriteLine("\n\nNO SCHOOLS IN THE DB YET!!\n\n");
 }
 
 app.Run();

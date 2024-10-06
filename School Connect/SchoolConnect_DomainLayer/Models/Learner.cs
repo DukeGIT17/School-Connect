@@ -10,31 +10,6 @@ namespace SchoolConnect_DomainLayer.Models
     public class Learner : BaseActor
     {
         /// <summary>
-        /// A default constructor meant to temporarily populate a newly created learner entity with dummy school details until the school in which they
-        /// are meant to be registered is found.
-        /// </summary>
-        public Learner()
-        {
-            LearnerSchoolNP = new School
-            {
-                EmisNumber = 15985654,
-                Logo = "Default Pic",
-                Name = "Dummy School",
-                DateRegistered = DateTime.Now,
-                Type = "High",
-                SystemAdminId = 1,
-                SchoolAddress = new Address
-                {
-                    Street = "1234",
-                    Suburb = "Dummy Address",
-                    City = "Dummy City",
-                    PostalCode = 1234,
-                    Province = "Dummy Province"
-                },
-            };
-        }
-
-        /// <summary>
         /// The learner's unique national ID number.
         /// </summary>
         [Required(ErrorMessage = "Please provide identity number.")]
@@ -46,15 +21,15 @@ namespace SchoolConnect_DomainLayer.Models
         /// The learner's class ID or designation.
         /// </summary>
         [Required(ErrorMessage = "Please provide learner class ID")]
-        [Display(Name = "Class ID")]
+        [Display(Name = "Class Code")]
         [StringLength(4, MinimumLength = 1, ErrorMessage = "Please specify a valid class. (E.g., 8D)")]
         [RegularExpression(@"^[0-9A-Z]+$", ErrorMessage = "Please specify a valid class. No special or lower case characters allowed.")]
-        public string ClassID { get; set; }
+        public string ClassCode { get; set; }
 
         /// <summary>
         /// A collection of all the subjects this learner is undertaking.
         /// </summary>
-        public IList<string> Subjects { get; set; }
+        public IList<string>? Subjects { get; set; }
 
         #region Foreign Key Properties
         /// <summary>
@@ -62,19 +37,24 @@ namespace SchoolConnect_DomainLayer.Models
         /// </summary>
         [ForeignKey(nameof(LearnerSchoolNP))]
         public long SchoolID { get; set; }
+
+        [ForeignKey(nameof(Class))]
+        public int ClassID { get; set; }
         #endregion
 
         #region Navigation Properties
         /// <summary>
         /// A navigation property referencing the school this learner is associated with.
         /// </summary>
-        public School LearnerSchoolNP { get; set; }
+        public School? LearnerSchoolNP { get; set; }
 
         /// <summary>
         /// A navigation property referencing the bridging LearnerParent class. All of this learner's parents can be accessed through it.
         /// </summary>
         [MaxItems(2)]
         public IList<LearnerParent> Parents { get; set; }
+
+        public SubGrade? Class { get; set; }
         #endregion
     }
 }

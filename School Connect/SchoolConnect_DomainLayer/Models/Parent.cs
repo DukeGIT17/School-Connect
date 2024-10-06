@@ -8,7 +8,6 @@ namespace SchoolConnect_DomainLayer.Models
     /// </summary>
     public class Parent : BaseActor
     {
-
         /// <summary>
         /// The parent's unique national ID number.
         /// </summary>

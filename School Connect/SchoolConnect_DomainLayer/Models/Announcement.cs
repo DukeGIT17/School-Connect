@@ -28,7 +28,7 @@ namespace SchoolConnect_DomainLayer.Models
         [Display(Name = "Send SMS")]
         public bool SendSMS { get; set; }
 
-        [Display(Name = "ViewedRecipients")]
+        [Display(Name = "Viewed Recipients")]
         public IEnumerable<string>? ViewedRecipients { get; set; }
 
         [Display(Name = "Schedule For Later")]
@@ -59,7 +59,7 @@ namespace SchoolConnect_DomainLayer.Models
         #region Navigation Properties
         public Principal? PrincipalAnnouncementNP { get; set; }
         public Teacher? TeacherAnnouncementNP { get; set; }
-        public School AnnouncementSchoolNP { get; set; }
+        public School? AnnouncementSchoolNP { get; set; }
         #endregion
     }
 }

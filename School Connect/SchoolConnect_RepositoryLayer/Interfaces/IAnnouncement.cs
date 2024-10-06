@@ -9,7 +9,7 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
         Task<Dictionary<string, object>> GetAllRelevantAnnouncements();
         Task<Dictionary<string, object>> GetAnnouncementsByTeacher(long teacherId);
         Task<Dictionary<string, object>> GetAnnouncementsById(int announcementId);
-        Task<Dictionary<string, object>> Create(Announcement announcement);
+        Task<Dictionary<string, object>> CreateAsync(Announcement announcement);
         Task<Dictionary<string, object>> Remove(int announcementId);
         Task<Dictionary<string, object>> Update(Announcement announcement);
     }

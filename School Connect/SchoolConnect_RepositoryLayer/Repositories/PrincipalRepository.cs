@@ -9,12 +9,14 @@ namespace SchoolConnect_RepositoryLayer.Repositories
     {
         private readonly SchoolConnectDbContext _context;
         private readonly ISignInRepo _signInRepo;
+        private readonly IGroup _groupRepo;
         private Dictionary<string, object> _returnDictionary;
 
-        public PrincipalRepository(SchoolConnectDbContext context, ISignInRepo signInRepo)
+        public PrincipalRepository(SchoolConnectDbContext context, ISignInRepo signInRepo, IGroup groupRepo)
         {
             _context = context;
             _signInRepo = signInRepo;
+            _groupRepo = groupRepo;
             _returnDictionary = [];
         }
 
@@ -24,16 +26,19 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             {
                 var result = _context.Principals.FirstOrDefault(p => p.StaffNr == principal.StaffNr);
                 if (result != null)
-                    throw new Exception($"A principal with the staff number '{principal.StaffNr}' already exists within the database.");
+                    throw new($"A principal with the staff number '{principal.StaffNr}' already exists within the database.");
 
                 var school = _context.Schools.FirstOrDefault(s => s.Id == principal.SchoolID);
                 if (school == null)
-                    throw new Exception($"School with the ID '{principal.SchoolID}' could not be found.");
+                    throw new($"School with the ID '{principal.SchoolID}' could not be found.");
 
                 principal.PrincipalSchoolNP = school!;
 
+                _returnDictionary = await _groupRepo.AddActorToGroup(principal.StaffNr, principal.SchoolID, "All");
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
                 _returnDictionary = await _signInRepo.CreateUserAccountAsync(principal.EmailAddress, principal.Role, principal.PhoneNumber.ToString());
-                if (!(bool)_returnDictionary["Success"]) throw new Exception(_returnDictionary["ErrorMessage"] as string);
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                 await _context.AddAsync(principal);
                 await _context.SaveChangesAsync();
@@ -44,7 +49,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             catch (Exception ex)
             {
                 _returnDictionary["Success"] = false;
-                _returnDictionary["ErrorMessage"] = ex.Message + "\ninner exception: " + ex.InnerException;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner exception: " + ex.InnerException;
                 return _returnDictionary;
             }
         }

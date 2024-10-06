@@ -9,27 +9,6 @@ namespace SchoolConnect_DomainLayer.Models
     /// </summary>
     public class Principal : BaseActor
     {
-        public Principal()
-        {
-            PrincipalSchoolNP = new School
-            {
-                EmisNumber = 15985654,
-                Logo = "Default Pic",
-                Name = "Dummy School",
-                DateRegistered = DateTime.Now,
-                Type = "High",
-                SystemAdminId = 1,
-                SchoolAddress = new Address
-                {
-                    Street = "1234",
-                    Suburb = "Dummy Address",
-                    City = "Dummy City",
-                    PostalCode = 1234,
-                    Province = "Dummy Province"
-                },
-            };
-        }
-
         [Required(ErrorMessage = "Please provide staff number.")]
         [Display(Name = "Staff Number")]
         [Range(10000, 9999999, ErrorMessage = "Staff Number should contain between 5 and 7 digits.")]
@@ -50,7 +29,7 @@ namespace SchoolConnect_DomainLayer.Models
         #endregion
 
         #region Navigation Properties
-        public School PrincipalSchoolNP { get; set; }
+        public School? PrincipalSchoolNP { get; set; }
         public IList<Announcement>? AnnouncementsNP { get; set; }
         #endregion
     }

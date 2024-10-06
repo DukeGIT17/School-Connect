@@ -34,7 +34,7 @@ namespace SchoolConnect_WebAPI.Controllers
             {
                 _returnDictionary = _parentService.GetById(id).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
-                return Ok(_returnDictionary["Success"]);
+                return Ok(_returnDictionary["Result"]);
             }
             catch (Exception ex)
             {

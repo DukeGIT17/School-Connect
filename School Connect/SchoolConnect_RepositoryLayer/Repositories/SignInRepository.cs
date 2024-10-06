@@ -154,5 +154,30 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             _signInManager.SignOutAsync().Wait();
         }
+
+        public async Task<Dictionary<string, object>> RemoveUserAccountAsync(string email, string role)
+        {
+            try
+            {
+                var user = await _signInManager.UserManager.FindByEmailAsync(email);
+                if (user == null)
+                    throw new($"User account with the email {email} could not be found.");
+
+                if (_signInManager.UserManager.RemoveFromRoleAsync(user, role).Result.Succeeded)
+                {
+                    SignOutAsync();
+                    if (!_signInManager.UserManager.DeleteAsync(user).Result.Succeeded)
+                        throw new($"Error. Could not delete user {email}.");
+                }
+
+                throw new("Something went wrong while deleting user {email}.");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
     }
 }

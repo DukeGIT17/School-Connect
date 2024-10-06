@@ -16,9 +16,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             {
                 _returnDictionary = SharedValidationService.AttemptObjectValidation(teacher);
                 if (!(bool)_returnDictionary["Success"]) return _returnDictionary;
-
-                _returnDictionary = await _teacherRepository.CreateAsync(teacher);
-                return _returnDictionary;
+                return await _teacherRepository.CreateAsync(teacher);
             }
             catch (Exception ex) 
             {

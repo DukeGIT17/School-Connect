@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_ServiceLayer.IServerSideServices;
 
@@ -11,6 +10,21 @@ namespace SchoolConnect_WebAPI.Controllers
     {
         private readonly ILearnerService _learnerService = learnerService;
         private Dictionary<string, object> _returnDictionary = [];
+
+        [HttpPost(nameof(LoadLearnersFromExcel))]
+        public IActionResult LoadLearnersFromExcel(string fileName)
+        {
+            try
+            {
+                _returnDictionary = _learnerService.LoadLearners(fileName).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary["Success"]);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpPost(nameof(Create))]
         public IActionResult Create(Learner learner)
@@ -48,7 +62,7 @@ namespace SchoolConnect_WebAPI.Controllers
             {
                 _returnDictionary = _learnerService.GetById(id).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
-                return Ok(_returnDictionary["Success"]);
+                return Ok(_returnDictionary["Result"]);
             }
             catch (Exception ex)
             {
