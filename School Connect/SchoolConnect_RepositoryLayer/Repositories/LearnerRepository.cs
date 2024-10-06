@@ -7,38 +7,68 @@ using SchoolConnect_RepositoryLayer.Interfaces;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
-    public class LearnerRepository : ILearner
+    public class LearnerRepository(SchoolConnectDbContext context, ISignInRepo signInRepo) : ILearner
     {
-        private readonly SchoolConnectDbContext _context;
-        private readonly ISignInRepo _signInRepo;
-        private Dictionary<string, object> _returnDictionary;
+        private readonly SchoolConnectDbContext _context = context;
+        private readonly ISignInRepo _signInRepo = signInRepo;
+        private Dictionary<string, object> _returnDictionary = [];
 
-        public LearnerRepository(SchoolConnectDbContext context, ISignInRepo signInRepo)
-        {
-            _context = context;
-            _signInRepo = signInRepo;
-            _returnDictionary = [];
-        }
-
-        private Dictionary<string, object> AddClasses(List<School> schools, List<SubGrade> classes)
+        private Dictionary<string, object> CheckAndAddParents(ref Learner learner, ref List<Parent> parents, ref List<Parent> parentsToAttach)
         {
             try
             {
-                foreach (var school in schools)
+                foreach (var parent in learner.Parents)
                 {
-                    foreach (var grade in school.SchoolGradeNP!)
+                    var existingParent = parents.FirstOrDefault(p => p.IdNo == parent.ParentIdNo);
+                    if (existingParent != null)
                     {
-                        var classesToAdd = classes.Where(c => c.ClassDesignate.StartsWith(grade.GradeDesignate) && c.GradeId == grade.Id);
-
-                        foreach (var cls in classesToAdd)
-                        {
-                            grade.Classes.Add(cls);
-                        }
+                        _context.Parents.Attach(existingParent);
+                        parentsToAttach.Add(existingParent);
                     }
+
+                    if (existingParent == null && parent.Parent == null)
+                        throw new($"An attempt was made to create a learner with a parent possessing the ID number '{parent.ParentIdNo}'. " +
+                            $"However, a parent with this ID number doesn't yet exist within the database. If you wish to register a new parent along " +
+                            $"with this learner, please provide the relevant parent data.");
+                }
+
+                foreach (var parent in parentsToAttach)
+                {
+                    var p = learner.Parents.FirstOrDefault(p => p.ParentIdNo == parent.IdNo);
+                    if (p != null)
+                        p.Parent = parent;
                 }
 
                 _returnDictionary["Success"] = true;
-                _returnDictionary["Result"] = schools;
+                return _returnDictionary;
+            }
+            catch (Exception ex) 
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+        private Dictionary<string, object> AddClassDetailsToLearner(ref Learner learner)
+        {
+            try
+            {
+                bool found = false;
+                foreach (var grade in learner.LearnerSchoolNP!.SchoolGradeNP!)
+                {
+                    var classCode = learner.ClassCode;
+                    var cls = grade.Classes.FirstOrDefault(c => c.ClassDesignate == classCode);
+                    if (cls != null)
+                    {
+                        learner.Class = cls;
+                        learner.ClassID = cls.Id;
+                        found = true;
+                    }
+                }
+
+                _returnDictionary["Success"] = found;
+                if (!found)
+                    _returnDictionary["ErrorMessage"] = $"The class {learner.ClassCode} could not be found.";
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -48,7 +78,6 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 return _returnDictionary;
             }
         }
-
         public async Task<Dictionary<string, object>> BatchLoadLearnersFromExcel(string fileName)
         {
             try
@@ -141,36 +170,18 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-
         public async Task<Dictionary<string, object>> CreateAsync(Learner learner)
         {
             try
             {
-                var schools = await _context.Schools.Include(s => s.SchoolGradeNP).ToListAsync();
-                var classes = await _context.SubGrade.ToListAsync();
-
-                _returnDictionary = AddClasses(schools, classes);
-                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
-                schools = _returnDictionary["Result"] as List<School>;
+                var schools = await _context.Schools.Include(s => s.SchoolGradeNP)!.ThenInclude(g => g.Classes).ToListAsync();
 
                 learner.LearnerSchoolNP = schools!.FirstOrDefault(s => s.Id == learner.SchoolID)
                     ?? throw new($"Learner registration failed. Could not find a school with the ID {learner.SchoolID}.");
 
-                bool found = false;
-                foreach (var grade in learner.LearnerSchoolNP.SchoolGradeNP!)
-                {
-                    var cls = grade.Classes.FirstOrDefault(c => c.ClassDesignate == learner.ClassCode);
-                    if (cls != null)
-                    {
-                        learner.Class = cls;
-                        learner.ClassID = cls.Id;
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (!found)
-                    throw new($"Could not find the class {learner.ClassCode} in this school.");
+                _returnDictionary = AddClassDetailsToLearner(ref learner);
+                if (!(bool)_returnDictionary["Success"])
+                    throw new(_returnDictionary["ErrorMessage"] as string);
 
                 List<Parent> parentsToAttach = [];
                 List<string> returnErrors = [];
@@ -181,27 +192,8 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 var parents = await _context.Parents.ToListAsync();
 
-                foreach (var parent in learner.Parents)
-                {
-                    var existingParent = parents.FirstOrDefault(p => p.IdNo == parent.ParentIdNo);
-                    if (existingParent != null)
-                    {
-                        _context.Parents.Attach(existingParent);
-                        parentsToAttach.Add(existingParent);
-                    }
-
-                    if (existingParent == null && parent.Parent == null)
-                        throw new($"An attempt was made to create a learner with a parent possessing the ID number '{parent.ParentIdNo}'. " +
-                            $"However, a parent with this ID number doesn't yet exist within the database. If you wish to register a new parent along " +
-                            $"with this learner, please provide the relevant parent data.");
-                }
-
-                foreach (var parent in parentsToAttach)
-                {
-                    var p = learner.Parents.FirstOrDefault(p => p.ParentIdNo == parent.IdNo);
-                    if (p != null)
-                        p.Parent = parent;
-                }
+                _returnDictionary = CheckAndAddParents(ref learner, ref parents, ref parentsToAttach);
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                 foreach (var parent in learner.Parents)
                 {

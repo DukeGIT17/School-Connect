@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SchoolConnect_DomainLayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f3bbbb7cca8fc409e0255c6f2b064c785865613c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d32190fcb9c0e0bca08ecc0ae0e17b48163bdd66")]
 [assembly: System.Reflection.AssemblyProductAttribute("SchoolConnect_DomainLayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SchoolConnect_DomainLayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

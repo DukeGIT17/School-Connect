@@ -1347,7 +1347,6 @@ C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebA
 C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
 C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\browser-wasm\nativeassets\net8.0\e_sqlite3.a
 C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\linux-arm\native\libe_sqlite3.so
 C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\linux-arm64\native\libe_sqlite3.so
@@ -1368,8 +1367,6 @@ C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebA
 C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
-C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
-C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
@@ -1935,3 +1932,9 @@ C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_W
 C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\obj\Debug\net8.0\SchoolConnect_WebAPI.pdb
 C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\obj\Debug\net8.0\SchoolConnect_WebAPI.genruntimeconfig.cache
 C:\Users\Lukhanyo\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\obj\Debug\net8.0\ref\SchoolConnect_WebAPI.dll
+C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\EPPlus.dll
+C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\EPPlus.Interfaces.dll
+C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\EPPlus.System.Drawing.dll
+C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_WebAPI\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll

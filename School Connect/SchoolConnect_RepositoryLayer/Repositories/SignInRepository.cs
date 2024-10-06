@@ -109,6 +109,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 _returnDictionary["Success"] = true;
                 _returnDictionary["ResetPassword"] = user.ResetPassword;
+                _returnDictionary["Role"] = role;
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -138,8 +139,13 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 var result = await _signInManager.UserManager.ChangePasswordAsync(user, model.Password, model.NewPassword!);
                 if (!result.Succeeded) throw new Exception(result.Errors.First().Description);
+                user.ResetPassword = false;
+
+                result = await _signInManager.UserManager.UpdateAsync(user);
+                if (!result.Succeeded) throw new(result.Errors.First().Description);
 
                 _returnDictionary["Success"] = true;
+                _returnDictionary["ErrorMessage"] = _signInManager.UserManager.GetRolesAsync(user).Result.First();
                 return _returnDictionary;
             }
             catch (Exception ex)
