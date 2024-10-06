@@ -28,7 +28,7 @@ builder.Services.AddScoped<ISchool, SchoolRepository>();
 builder.Services.AddScoped<ISchoolService, SchoolService>();
 builder.Services.AddScoped<IAnnouncement, AnnouncementRepo>();
 builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
-builder.Services.AddScoped<IGroup, GroupRepository>();
+builder.Services.AddScoped<IGroupRepo, GroupRepository>();
 
 // Actors Services
 builder.Services.AddScoped<ISysAdmin, SystemAdminRepository>();

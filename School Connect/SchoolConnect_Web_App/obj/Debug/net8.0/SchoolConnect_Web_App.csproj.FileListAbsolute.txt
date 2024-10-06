@@ -2387,3 +2387,7 @@ C:\Users\innoc\Desktop\School-Connect\School Connect\SchoolConnect_Web_App\obj\D
 C:\Users\innoc\Desktop\School-Connect\School Connect\SchoolConnect_Web_App\obj\Debug\net8.0\SchoolConnect_Web_App.pdb
 C:\Users\innoc\Desktop\School-Connect\School Connect\SchoolConnect_Web_App\obj\Debug\net8.0\SchoolConnect_Web_App.genruntimeconfig.cache
 C:\Users\innoc\Desktop\School-Connect\School Connect\SchoolConnect_Web_App\obj\Debug\net8.0\ref\SchoolConnect_Web_App.dll
+C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_Web_App\bin\Debug\net8.0\EPPlus.dll
+C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_Web_App\bin\Debug\net8.0\EPPlus.Interfaces.dll
+C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_Web_App\bin\Debug\net8.0\EPPlus.System.Drawing.dll
+C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_Web_App\bin\Debug\net8.0\Microsoft.IO.RecyclableMemoryStream.dll

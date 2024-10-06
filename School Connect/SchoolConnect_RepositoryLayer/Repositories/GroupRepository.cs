@@ -4,7 +4,7 @@ using SchoolConnect_RepositoryLayer.Interfaces;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
-    public class GroupRepository(SchoolConnectDbContext context) : IGroup
+    public class GroupRepository(SchoolConnectDbContext context) : IGroupRepo
     {
         private readonly SchoolConnectDbContext _context = context;
         private Dictionary<string, object> _returnDictionary = [];

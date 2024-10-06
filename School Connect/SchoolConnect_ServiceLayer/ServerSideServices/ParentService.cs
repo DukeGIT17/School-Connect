@@ -1,4 +1,5 @@
 ﻿using SchoolConnect_DomainLayer.Models;
+using SchoolConnect_RepositoryLayer.CommonAction;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
 
@@ -13,7 +14,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         {
             try
             {
-                _returnDictionary = SharedValidationService.AttemptObjectValidation(parent);
+                _returnDictionary = CommonActions.AttemptObjectValidation(parent);
                 if (!(bool)_returnDictionary["Success"])
                     return _returnDictionary;
 
@@ -21,7 +22,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
                 {
                     if (learner.Learner != null)
                     {
-                        _returnDictionary = SharedValidationService.AttemptObjectValidation(learner.Learner);
+                        _returnDictionary = CommonActions.AttemptObjectValidation(learner.Learner);
                         if (!(bool)_returnDictionary["Success"])
                             return _returnDictionary;
                     }

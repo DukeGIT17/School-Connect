@@ -93,7 +93,7 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Property<long?>("TeacherID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("TimeToPost")
+                    b.Property<DateTime?>("TimeToPost")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")

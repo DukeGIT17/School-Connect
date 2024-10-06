@@ -7,12 +7,31 @@ using SchoolConnect_RepositoryLayer.Interfaces;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
-    public class LearnerRepository(SchoolConnectDbContext context, ISignInRepo signInRepo) : ILearner
+    public class LearnerRepository(SchoolConnectDbContext context, ISignInRepo signInRepo, IGroupRepo groupRepo) : ILearner
     {
         private readonly SchoolConnectDbContext _context = context;
         private readonly ISignInRepo _signInRepo = signInRepo;
+        private readonly IGroupRepo _groupRepo = groupRepo;
         private Dictionary<string, object> _returnDictionary = [];
 
+        private async Task<Dictionary<string, object>> LearnerExistsAsync(Learner learner)
+        {
+            try
+            {
+                var result = await _context.Learners.FirstOrDefaultAsync(l => l.IdNo == learner.IdNo);
+                if (result != null)
+                    throw new($"Learner {learner.Name} registration failed. A learner with the specified ID number already exists.");
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
         private Dictionary<string, object> CheckAndAddParents(ref Learner learner, ref List<Parent> parents, ref List<Parent> parentsToAttach)
         {
             try
@@ -88,7 +107,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-                string folderPath = @"C:\Users\Lukhanyo\Documents\WIL\Project Excel Data Sheets\";
+                string folderPath = @"C:\Users\KHAYE\OneDrive\Documents\WIL\";
                 using (var stream = new FileStream(folderPath + fileName, FileMode.Open, FileAccess.Read))
                 using (var package = new ExcelPackage(stream))
                 {
@@ -97,7 +116,8 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     var rowCount = learnerWorksheet.Dimension.Rows;
                     var parentRowCount = parentWorksheet.Dimension.Rows;
 
-                    for (int row = 2; row < parentRowCount; row++)
+
+                    for (int row = 2; row <= parentRowCount; row++)
                     {
                         var parent = new Parent
                         {
@@ -111,6 +131,17 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                             PhoneNumber = Convert.ToInt64(parentWorksheet.Cells[row, 8].Value),
                             Role = "Parent"
                         };
+
+                        _returnDictionary = CommonActions.AttemptObjectValidation(parent);
+                        if (!(bool)_returnDictionary["Success"])
+                        {
+                            var errors = _returnDictionary["Errors"] as List<string>;
+                            string longErrorString = "";
+                            foreach (var error in errors!)
+                                longErrorString += error.ToString() + "\n";
+
+                            throw new(longErrorString);
+                        }
 
                         parents.Add(parent);
                         learnerIdNos.Add(Convert.ToInt64(parentWorksheet.Cells[row, 9].Value));
@@ -127,12 +158,12 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                             IdNo = Convert.ToInt64(learnerWorksheet.Cells[row, 5].Value),
                             ClassCode = learnerWorksheet.Cells[row, 6].Value?.ToString(),
                             Subjects = learnerWorksheet.Cells[row, 7].Value?.ToString()
-                            .Trim('[', ']')
-                            .Split(',', StringSplitOptions.RemoveEmptyEntries)
-                            .Select(item => item.Trim(' ', '"', '\''))
-                            .ToList(),
-                            SchoolID = Convert.ToInt64(learnerWorksheet.Cells[row, 4].Value),
-                            ClassID = Convert.ToInt32(learnerWorksheet.Cells[row, 4].Value),
+                        .Trim('[', ']')
+                        .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                        .Select(item => item.Trim(' ', '"', '\''))
+                        .ToList(),
+                            SchoolID = Convert.ToInt64(learnerWorksheet.Cells[row, 8].Value),
+                            ClassID = Convert.ToInt32(learnerWorksheet.Cells[row, 9].Value),
                             Parents =
                             [
                                 new()
@@ -145,6 +176,26 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                             Role = "Learner"
                         };
 
+                        _returnDictionary = await LearnerExistsAsync(learner);
+                        if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                        _returnDictionary = CommonActions.AttemptObjectValidation(learner);
+                        if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                        var school = await _context.Schools.Include(s => s.SchoolGradeNP).FirstOrDefaultAsync(s => s.Id == learner.SchoolID);
+                        var classes = await _context.SubGrade.ToListAsync();
+                        if (school == null) throw new($"Learner {learner.Name} registration failed. Could not find a school with the ID {learner.SchoolID}.");
+
+                        learner.LearnerSchoolNP = school;
+
+                        _returnDictionary = AddClassDetailsToLearner(ref learner);
+                        if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                        foreach (var parent in parents)
+                        {
+                            _returnDictionary = await _groupRepo.AddActorToGroup(parent.IdNo, learner.SchoolID, "All");
+                            if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                        }
                         learners.Add(learner);
                     }
                 }
@@ -165,7 +216,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             catch (Exception ex)
             {
                 _returnDictionary["Success"] = false;
-                _returnDictionary["ErrorMessage"] = ex.Message;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
                 return _returnDictionary;
             }
         }
@@ -175,8 +226,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             try
             {
                 var schools = await _context.Schools.Include(s => s.SchoolGradeNP)!.ThenInclude(g => g.Classes).ToListAsync();
-
-                learner.LearnerSchoolNP = schools!.FirstOrDefault(s => s.Id == learner.SchoolID)
+                learner.LearnerSchoolNP = schools!.FirstOrDefault(s => s.Id == learner.SchoolID) 
                     ?? throw new($"Learner registration failed. Could not find a school with the ID {learner.SchoolID}.");
 
                 _returnDictionary = AddClassDetailsToLearner(ref learner);
@@ -186,20 +236,17 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 List<Parent> parentsToAttach = [];
                 List<string> returnErrors = [];
 
-                var result = await _context.Learners.FirstOrDefaultAsync(l => l.IdNo == learner.IdNo);
-                if (result != null)
-                    throw new($"A learner with the specified ID number already exists.");
+                _returnDictionary = await LearnerExistsAsync(learner);
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                 var parents = await _context.Parents.ToListAsync();
-
                 _returnDictionary = CheckAndAddParents(ref learner, ref parents, ref parentsToAttach);
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                 foreach (var parent in learner.Parents)
                 {
                     _returnDictionary = await _signInRepo.CreateUserAccountAsync(parent.Parent!.EmailAddress, parent.Parent.Role, parent.Parent.PhoneNumber.ToString());
-                    if (!(bool)_returnDictionary["Success"])
-                        throw new(_returnDictionary["ErrorMessage"] as string);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 }
 
                 await _context.AddAsync(learner);

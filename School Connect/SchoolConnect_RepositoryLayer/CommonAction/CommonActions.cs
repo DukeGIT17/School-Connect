@@ -2,12 +2,44 @@
 using Microsoft.EntityFrameworkCore;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace SchoolConnect_RepositoryLayer.CommonAction
 {
     public static class CommonActions
     {
-        
+        public static Dictionary<string, object> AttemptObjectValidation<T>(T obj)
+        {
+            Dictionary<string, object> _returnDictionary = [];
+            try
+            {
+                var validationResults = new List<ValidationResult>();
+                var validationContext = new ValidationContext(obj!, serviceProvider: null, items: null);
+                bool isValid = Validator.TryValidateObject(obj!, validationContext, validationResults);
+                List<string>? errors = [];
+
+                if (!isValid)
+                {
+                    foreach (var validationResult in validationResults)
+                        errors.Add(validationResult.ErrorMessage
+                            ?? "Something went wrong: Check Common Actions Class in the Repository.");
+
+                    _returnDictionary["Success"] = false;
+                    _returnDictionary["Errors"] = errors;
+                    return _returnDictionary;
+                }
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["Errors"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
         public static async Task<Dictionary<string, object>> GetActorById<T>(long actorId, T actor, SchoolConnectDbContext context) where T : BaseActor
         {
             try

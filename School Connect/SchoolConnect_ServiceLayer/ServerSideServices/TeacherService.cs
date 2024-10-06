@@ -1,4 +1,5 @@
 ﻿using SchoolConnect_DomainLayer.Models;
+using SchoolConnect_RepositoryLayer.CommonAction;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
 using System.ComponentModel.DataAnnotations;
@@ -14,7 +15,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         {
             try
             {
-                _returnDictionary = SharedValidationService.AttemptObjectValidation(teacher);
+                _returnDictionary = CommonActions.AttemptObjectValidation(teacher);
                 if (!(bool)_returnDictionary["Success"]) return _returnDictionary;
                 return await _teacherRepository.CreateAsync(teacher);
             }

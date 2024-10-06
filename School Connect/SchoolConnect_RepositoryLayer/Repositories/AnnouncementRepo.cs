@@ -1,7 +1,7 @@
-﻿using SchoolConnect_DomainLayer.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
-using System.Linq.Expressions;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -14,6 +14,21 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
+                announcement.DateCreated = DateTime.Now;
+
+                if (announcement.TeacherID != null)
+                {
+                    var teacher = _context.Teachers.FirstOrDefaultAsync(t => t.Id == announcement.TeacherID).Result 
+                        ?? throw new($"Something went wrong, could not find a teacher with the specified ID. Please contact the administrator for assistance.");
+                }
+                else if (announcement.PrincipalID != null)
+                {
+                    var principal = _context.Principals.FirstOrDefaultAsync(p => p.Id == announcement.PrincipalID).Result
+                        ?? throw new($"Something went wrong, could not find a principal with the specified ID. Please contact the administrator for assistance.");
+                }
+                else
+                    throw new("Something went wrong, both teacher and principal IDs were null.");
+
                 await _context.AddAsync(announcement);
                 await _context.SaveChangesAsync();
 
@@ -28,9 +43,24 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public Task<Dictionary<string, object>> Get(int announcementId)
+        public async Task<Dictionary<string, object>> GetAnnById(int announcementId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var ann = await _context.Announcements.FirstOrDefaultAsync(a => a.AnnouncementId == announcementId);
+                if (ann == null)
+                    throw new($"Could not find an announcement with the specified ID");
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = ann;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
         }
 
         public Task<Dictionary<string, object>> GetAllRelevantAnnouncements()

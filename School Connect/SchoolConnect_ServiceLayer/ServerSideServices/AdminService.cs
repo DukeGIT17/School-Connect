@@ -1,4 +1,5 @@
 ﻿using SchoolConnect_DomainLayer.Models;
+using SchoolConnect_RepositoryLayer.CommonAction;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
 
@@ -53,7 +54,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         {
             try
             {
-                _returnDictionary = SharedValidationService.AttemptObjectValidation(admin);
+                _returnDictionary = CommonActions.AttemptObjectValidation(admin);
                 if (!(bool)_returnDictionary["Success"]) return _returnDictionary;
 
                 _returnDictionary = await _sysAdminRepo.Update(admin);

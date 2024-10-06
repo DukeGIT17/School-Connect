@@ -1,5 +1,6 @@
 ﻿using Microsoft.Identity.Client;
 using SchoolConnect_DomainLayer.Models;
+using SchoolConnect_RepositoryLayer.CommonAction;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
 using System.ComponentModel.DataAnnotations;
@@ -21,7 +22,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         {
             try
             {
-                _returnDictionary = SharedValidationService.AttemptObjectValidation(principal);
+                _returnDictionary = CommonActions.AttemptObjectValidation(principal);
                 if (!(bool)_returnDictionary["Success"]) return _returnDictionary;
 
                 _returnDictionary = await _principalRepo.Create(principal);

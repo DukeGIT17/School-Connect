@@ -10,10 +10,10 @@ namespace SchoolConnect_RepositoryLayer.Repositories
     {
         private readonly SchoolConnectDbContext _context;
         private readonly ISignInRepo _signInRepo;
-        private readonly IGroup _groupRepo;
+        private readonly IGroupRepo _groupRepo;
         private Dictionary<string, object> _returnDictionary;
 
-        public ParentRepository(SchoolConnectDbContext context, ISignInRepo signInRepo, IGroup groupRepo)
+        public ParentRepository(SchoolConnectDbContext context, ISignInRepo signInRepo, IGroupRepo groupRepo)
         {
             _context = context;
             _signInRepo = signInRepo;
