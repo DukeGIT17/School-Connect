@@ -1,62 +1,114 @@
-﻿@{
-    ViewData["Title"] = "Contact List";
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="~/css/ParentCSS/ParentChatList.css" />
+@{
+    Layout = null;
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/ParentCSS/ParentChatList.css" />
-</head>
 <body>
-
     <div class="container">
-        <div class="title">Communicate with a Teacher</div>
-
-        <div class="card">
-            <a asp-controller="Chat" asp-action="Chat" class="name">Mr John Hadden</a>
-            <h8>Geography</h8>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                Chats
+            </div>
+            <div class="sidebar-search">
+                <input type="text" id="search-input" placeholder="Search contacts...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="contacts" id="contacts-list">
+                <div class="contact" onclick="openChat('User 1', 'https://via.placeholder.com/40')">
+                    <img src="https://via.placeholder.com/40" alt="User 1">
+                    <div class="name">User 1</div>
+                </div>
+                <div class="contact" onclick="openChat('User 2', 'https://via.placeholder.com/40')">
+                    <img src="https://via.placeholder.com/40" alt="User 2">
+                    <div class="name">User 2</div>
+                </div>
+                <!-- Add more contacts as needed -->
+            </div>
         </div>
 
-        <div class="card">
-            <a href="/Communication/chat-screen.html">
-                <div class="name">Ms Selina Bochedi</div>
-                <div class="subject">Life Sciences</div>
-            </a>
+        <!-- Chat Section -->
+        <div class="chat-section" id="chat-section" style="display: none;">
+            <div class="chat-header">
+                <img id="profile-img" src="https://via.placeholder.com/40" alt="Profile" class="profile-img">
+                <div id="profile-name" class="profile-name">Chat with User 1</div>
+            </div>
+            <div class="subject-container">
+                <div class="subject-button" onclick="toggleOptions()">
+                    <span>Subject: Enquire</span>
+                    <div class="dots">•••</div>
+                </div>
+                <div id="options-menu" class="options-menu" style="display: none;">
+                    <div class="option" onclick="selectSubject('Enquire')">Enquire</div>
+                    <div class="option" onclick="selectSubject('Complaint')">Complaint</div>
+                    <div class="option" onclick="selectSubject('Report')">Report</div>
+                </div>
+            </div>
+
+
+            <div class="chat-messages">
+                <!-- Message bubbles will be inserted here dynamically -->
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chat-input" placeholder="Type a message">
+                <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
         </div>
 
-        <div class="card">
-            <a href="/Communication/chat-screen.html">
-                <div class="name">Mrs Puleng Mokoena</div>
-                <div class="subject">Mathematics</div>
-            </a>
+        <!-- Placeholder when no chat is selected -->
+        <div class="no-chat" id="no-chat">
+            <h2>Welcome to Teacher-Parent Chat</h2>
+            <p>Select a contact to start a conversation</p>
+            <p>created by SomethingTechy.</p>
         </div>
-
-        <div class="card">
-            <a href="/Communication/chat-screen.html">
-                <div class="name">Ms Jose Frika</div>
-                <div class="subject">Physical Sciences</div>
-            </a>
-        </div>
-
-        <div class="card">
-            <a href="/Communication/chat-screen.html">
-                <div class="name">Mr Frank Gene</div>
-                <div class="subject">English First Additional Language</div>
-            </a>
-        </div>
-
-        <div class="card">
-            <a href="/Communication/chat-screen.html">
-                <div class="name">Mr Futo Ren</div>
-                <div class="subject">isiXhosa</div>
-            </a>
-        </div>
-
-        <a href="/parents/childProfile.html" class="back-button" onclick="history.back()">BACK</a>
     </div>
 
+    <script>
+        const sendButton = document.getElementById('send-btn');
+        const chatInput = document.getElementById('chat-input');
+        const chatMessages = document.querySelector('.chat-messages');
+        const chatSection = document.getElementById('chat-section');
+        const noChatSection = document.getElementById('no-chat');
+
+        // Function to update chat header with selected contact's details and show the chat section
+        function openChat(name, imgSrc) {
+            document.getElementById('profile-name').textContent = 'Chat with ' + name;
+            document.getElementById('profile-img').src = imgSrc;
+            chatSection.style.display = 'flex';
+            noChatSection.style.display = 'none'; // Hide placeholder
+        }
+
+        // Function to send a message
+        sendButton.addEventListener('click', () => {
+            const messageText = chatInput.value;
+            if (messageText.trim() !== "") {
+                const newMessage = document.createElement('div');
+                newMessage.classList.add('message', 'sent');
+                newMessage.innerHTML = `<div class="message-text">${messageText}</div>`;
+                chatMessages.appendChild(newMessage);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                chatInput.value = "";
+            }
+        });
+
+        chatInput.addEventListener('keydown', (event) => {
+            if (event.key === "Enter") {
+                sendButton.click();
+            }
+        });
+
+        function toggleOptions() {
+            const optionsMenu = document.getElementById('options-menu');
+            optionsMenu.style.display = optionsMenu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function selectSubject(subject) {
+            const subjectButton = document.querySelector('.subject-button span');
+            subjectButton.textContent = `Subject: ${subject}`;
+            document.getElementById('options-menu').style.display = 'none'; // Hide options after selection
+        }
+
+
+    </script>
 </body>
-</html>

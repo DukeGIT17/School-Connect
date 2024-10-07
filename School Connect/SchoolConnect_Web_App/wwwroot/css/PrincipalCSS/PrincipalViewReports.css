@@ -1,77 +1,65 @@
 ﻿body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f5f5f5;
+    box-sizing: border-box;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevent horizontal overflow */
 }
 
-.header {
-    display: flex;
-    align-items: center;
-    background-color: #000;
-    color: #fff;
-    padding: 10px;
-    border-radius: 0 0 8px 8px;
-}
-
-.back-button {
-    background: transparent;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    margin-right: 20px;
-}
-
-.header-title {
-    font-size: 20px;
-    color: #fff;
-}
-
-.container {
-    padding: 16px;
-    max-width: 800px;
-    margin: 20px auto;
-    background-color: #fff;
+.table-container {
+    width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    overflow: auto; /* Allow both horizontal and vertical scrolling */
+    padding: 20px;
+    background-color: ghostwhite;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.profile-icon {
-    font-size: 75px;
-    color: #2196F3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
     text-align: center;
 }
 
-.info {
-    margin-top: 20px;
-    text-align: center;
-}
 
-.info-item {
-    font-size: 20px;
-    margin: 10px 0;
-}
 
-.button {
-    background-color: #000;
-    color: white;
-    border: none;
-    padding: 12px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
-    text-align: center;
-    display: block;
+/* Table styles */
+table {
+    border: 6px;
     width: 100%;
-    margin: 10px 0;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-    .button:hover {
-        background-color: #333;
+    table th, table td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
     }
 
-.button-back {
-    background-color: black;
-}body {
+th {
+    background-color: #0F2E34;
+    color: white;
+    text-transform: uppercase;
 }
+
+tbody tr:nth-child(even) {
+    background-color: lightgrey;
+}
+
+.h2 {
+    color: #0F2E34;
+    font-weight: bold;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    table th, table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+.material-icons {
+    color: #0F2E34; /* Consistent color for icons */
+    margin-right: 5px; /* Space between icon and text */
+}
+
+

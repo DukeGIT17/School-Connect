@@ -1,46 +1,39 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Parent Page</title>
-    <link rel="stylesheet" href="~/css/ParentCSS/ParentLandingPage.css">
-</head>
-<body>
-    <header>
-        <!-- <button class="back-button" onclick="goBack()">&larr; Back</button> -->
-        <h1>Parent Page</h1>
-    </header>
+﻿ <link rel="stylesheet" href="~/css/ParentCSS/ParentLandingPage.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <main>
-        <div class="profile">
-            <div class="profile-icon">&#128100;</div>
-            <h2>Mrs April Poti</h2>
-        </div>
+@{
+    Layout = null;
+}
 
+
+
+<div class="container">
+    <div class="icon"><i class="fas fa-user"></i></div>
+    <h2>Mrs April Poti</h2>
+    <div class="form-group-1">
         <a asp-controller="Parent" asp-action="ParentViewProfile" class="button">View Profile</a>
-
-        <h3>LIST OF SCHOOLS:</h3>
+    </div>
+    <br />
+    <br />
+    <div class="title">List of Schools:</div>
+    <br />
+    <div class="form-group">
         <a asp-controller="Parent" asp-action="ParentSchoolProfile" class="button">HARMONIA COMBINED</a>
+    </div>
+    <br />
+    <div class="form-group">
         <a asp-controller="Parent" asp-action="ParentSchoolProfile" class="button">BOKAMOSO PRIMARY</a>
+    </div>
+    <br />
+    <div class="form-group">
         <a asp-controller="Parent" asp-action="ParentSchoolProfile" class="button">LICERIA HIGH</a>
+    </div>
+    <br />
+    <br />
+    <br />
+    <a asp-controller="Login" asp-action="Login" class="logout-button">LOGOUT</a>
 
-        <button class="button logout-button" onclick="logout()">LOG OUT</button>
-    </main>
+</div>
 
-    <script>
-        function goBack() {
-            window.history.back();
-        }
 
-        function navigateTo(url) {
-            window.location.href = url;
-        }
-
-        function logout() {
-            window.location.href = '/Accounts/accounts.html';
-        }
-    </script>
-</body>
-</html>
 

@@ -1,109 +1,208 @@
-﻿* {
+﻿/* General Body Styles */
+body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-.login-body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: #0F2E34;
-    background-color: ghostwhite;
+    min-height: 100vh;
+    background-image: url('https://img.freepik.com/premium-vector/back-school-pattern-background-set-different-drawings-related-school-blue-color_153454-35.jpg?w=740');
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden; /* Disable scrolling */
 }
 
-.login-container {
-    background: transparent;
-    background-color: #0F2E34;
-    width: 35%;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+/* Form Container */
+.form-container {
+    width: 100%;
+    height: 100vh; /* Fill the whole screen */
+    padding: 20px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
     text-align: center;
-}
-
-.container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center content vertically and horizontally */
+    position: fixed; /* Fixes the form in place */
+    top: 0;
+    left: 0;
 }
 
-.logo {
-    display: block;
-    margin: 0 auto 20px;
-    max-width: 150px;
+/* Title */
+h1 {
+    font-size: 28px;
+    color: ghostwhite;
+    margin-bottom: 20px;
 }
 
-.form-group {
+/* Input Box */
+.input-box {
+    position: relative;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
-    background-color: rgba(255, 255, 255, 0.1);
+    justify-content: flex-start; /* Align the content to the start */
+    border-radius: 32px;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 12px 16px; /* Increase padding for better spacing */
+    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.5);
+    width: 100%;
+    max-width: 400px; /* Set a maximum width */
+    height: 30px; /* Adjust height for better spacing */
+}
+
+    .input-box i {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.7);
+        margin-right: 10px;
+    }
+
+    .input-box input {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        font-size: 16px;
+        background-color: transparent;
+        color: #fff;
+    }
+
+        .input-box input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .input-box input:focus {
+            outline: none;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 1);
+            transition: box-shadow 0.2s;
+        }
+
+/* Remember Me Section */
+.remember-me {
+    display: flex;
+    justify-content: space-evenly; /* Better spacing for checkbox and link */
+    align-items: center;
+    color: #fff;
+    font-size: 12px;
     margin-bottom: 20px;
-    border-radius: 30px;
-    padding:  0px 12px;
-    height: 40px;
-    position: relative;
+    margin-bottom:20px;
+    gap:220px;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    padding-right: 10px;
-    font-weight: bold;
-    text-size-adjust: 10%;
-}
+    .remember-me label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
 
-.form-group input {
-    background: transparent;
-    border: none;
-    outline: none;
-    color: white;
-    width: 100%;
-    padding: 10px 5px;
-    line-height: 12px;
-    border-radius: 25px;
-}
+    .remember-me input {
+        margin-right: 5px;
+    }
 
-.form-group input[type="password"] {
-    font-family: Arial, sans-serif;
-}
+    .remember-me a {
+        color: #fff;
+        text-decoration: underline;
+        font-size: 12px;
+    }
 
-.button {
-    background-color: white;
-    color: #0F2E34;
-    border: none;
-    padding: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    border-radius: 30px;
-    line-height: 12px;
+        .remember-me a:hover {
+            text-decoration: underline;
+        }
+
+/* Submit Button */
+.submit-btn {
     margin: 0 auto;
-    height: 35px;
-    width: 100%;
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 15px; /* Set a proper height for the button */
+    width: 60%; /* Adjust width to a more suitable percentage */
+    max-width: 400px; /* Add a maximum width for larger screens */
+    padding: 12px; /* Maintain padding for spacing */
+    font-size: 16px; /* Set a readable font size */
+    font-weight: 800; /* Bold font weight for emphasis */
+    border-radius: 32px; /* Rounded corners */
+    border: 2px solid rgba(255, 255, 255, 0.8); /* Add a border */
+    background-color: transparent; /* Keep the background transparent */
+    color: white; /* Text color */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+    text-decoration: none; /* Remove underline from link */
 }
 
-.button:hover {
-    background-color: rgba(255, 255, 255, 0.9);
+    /* Hover effect for better user experience */
+    .submit-btn:hover {
+        background-color: rgba(255, 255, 255, 0.2); /* Add a slight background color on hover */
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Add shadow on hover */
+    }
+
+
+/* Logo */
+.logo {
+    width: 170px;
+    height: 170px;
+    border-radius: 100%;
+    object-fit: cover;
+    margin-bottom: 20px; /* Add some margin to separate logo from the form */
 }
 
-.icon {
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    color: ghostwhite;
-    left: 10px;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 30px;
+        max-width: 90%;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .input-box input {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .submit-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .remember-me {
+        font-size: 12px;
+    }
 }
 
-.user-icon:before {
-    content: '\1F464'; /* Unicode for user icon */
-    font-size: 24px;
-}
+@media (max-width: 480px) {
+    .form-container {
+        padding: 20px;
+        max-width: 95%;
+    }
 
-.lock-icon:before {
-    content: '\1F512'; /* Unicode for lock icon */
-    font-size: 24px;
+    h1 {
+        font-size: 20px;
+    }
+
+    .input-box input {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .submit-btn {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .remember-me {
+        font-size: 11px;
+    }
 }

@@ -28,5 +28,10 @@ namespace SchoolConnect_Web_App.Controllers
         {
             return View();
         }
+        
+        public IActionResult SysAdminViewProfile()
+        { 
+            return View();
+        }
     }
 }

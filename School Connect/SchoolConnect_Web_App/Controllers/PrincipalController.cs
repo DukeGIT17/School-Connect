@@ -8,6 +8,10 @@ namespace SchoolConnect_Web_App.Controllers
         {
             return View();
         }
+        public IActionResult PrincipalViewProfile()
+        {
+            return View();
+        }
 
 		public IActionResult PrincipalMakeAnnouncements()
 		{
@@ -32,6 +36,11 @@ namespace SchoolConnect_Web_App.Controllers
         }
 
         public IActionResult PrincipalViewAttendance()
+        {
+            return View();
+        }
+
+        public IActionResult PrincipalLearnerProfile()
         {
             return View();
         }

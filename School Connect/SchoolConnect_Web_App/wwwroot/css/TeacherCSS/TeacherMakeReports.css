@@ -1,97 +1,145 @@
 ﻿body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: ghostwhite;
+    overflow: hidden;
+    height: 100vh; /* Add this to set body height to 100vh */
 }
 
 .container {
-    padding: 20px;
-    background-color: #fff;
-    margin: 20px auto;
+    background-color: #f5f5f5;
+    margin: 0; /* Remove margins to allow full width */
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 800px;
+    box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.4);
+    width: 100vw; /* Set width to 100% of the viewport */
+    height: 100vh; /* Set height to 100% of the viewport */
+    display: flex; /* Flexbox to structure internal content */
+    flex-direction: column; /* Arrange child elements vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    box-sizing: border-box; /* Ensure padding and borders don't affect width/height */
 }
 
 .header {
-    display: flex;
-    align-items: center;
-    background-color: #000;
+    background-color: #0F2E34;
     color: #fff;
-    padding: 10px;
-    border-radius: 8px 8px 0 0;
+    padding: 20px;
+    
+    text-align: center;
+    width: 100%;
+    margin: 0; /* Remove any margin to push it to the top */
 }
 
-.back-button {
-    background: transparent;
-    border: none;
-    color: #fff;
-    font-size: 24px;
-    cursor: pointer;
-    margin-right: 20px;
-}
+    /* Header Title */
+    .header h1 {
+        font-size: 26px;
+        margin: 0; /* Ensure no margin on h1 */
+        text-transform: uppercase;
+    }
 
-.title {
-    font-size: 18px;
-    font-weight: bold;
-}
 
+/* Table Styling */
 .table-container {
-    margin: 20px 0;
+    width: 70%;
+    height: auto;
 }
 
 .table {
     width: 100%;
     border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
     .table th, .table td {
         border: 1px solid #ddd;
-        padding: 8px;
+        padding: 12px;
+        text-align: left;
     }
 
     .table th {
-        background-color: #f2f2f2;
-        font-weight: bold;
+        background-color: #0F2E34;
+        color: white;
+        font-weight: 700;
     }
 
+
+/* Icon-text alignment */
+.icon-text {
+    display: flex;
+    align-items: center;
+}
+
+    .icon-text i {
+        margin-right: 8px;
+        font-size: 18px;
+    }
+
+/* Upload Section */
+.h2{
+    
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.fa-upload{
+    font-size: 25px;
+}
+
 .upload-container {
+    width: 70%;
     height: 150px;
-    border: 1px solid #ddd;
+    border: 2px dashed #ddd;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    transition: border-color 0.3s ease;
 }
+
+    .upload-container:hover {
+        border-color: #0F2E34;
+    }
 
     .upload-container button {
         background: transparent;
         border: none;
-        font-size: 24px;
+        font-size: 28px;
+        color: #0F2E34;
         cursor: pointer;
+        transition: color 0.3s ease;
     }
+
+        .upload-container button:hover {
+            color: #0F2E34;
+        }
 
     .upload-container p {
         margin: 10px 0 0 0;
+        color: #0F2E34;
+        font-weight: 600;
     }
-
-.btn {
-    background-color: #000;
-    color: white;
-    border: none;
+.button {
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 40px;
+    width: 10%;
     padding: 12px;
     font-size: 16px;
+    font-weight: 800;
+    border-radius: 32px;
+    border: 2px solid rgba(255, 255, 255, 0.8); /* Optional: Add a border */
+    background-color: #0F2E34;
+    color: ghostwhite;
     cursor: pointer;
-    border-radius: 4px;
-    text-align: center;
-    display: block;
-    width: 200px;
-    margin: 0 auto;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    text-decoration: none;
 }
 
-    .btn:hover {
-        background-color: #333;
+    .button:hover {
+        background-color: #0F2E34; /* Lighter shade on hover */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
     }

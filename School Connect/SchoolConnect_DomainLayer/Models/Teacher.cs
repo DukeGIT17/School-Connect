@@ -31,11 +31,11 @@ namespace SchoolConnect_DomainLayer.Models
         #endregion
 
         #region Navigation Properties
-        public School? TeacherSchoolNP { get; set; }
-        public IList<Announcement>? AnnouncementsNP { get; set; }
-        public IList<GroupActor>? GroupsNP { get; set; }
-        public IList<TeacherGrade>? Classes { get; set; }
         public SubGrade? MainClass { get; set; }
+        public IList<TeacherGrade>? Classes { get; set; }
+        public School? TeacherSchoolNP { get; set; }
+        public IList<GroupActor>? GroupsNP { get; set; }
+        public IList<Announcement>? AnnouncementsNP { get; set; }
         #endregion
     }
 }

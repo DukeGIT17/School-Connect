@@ -1,0 +1,119 @@
+﻿@{
+    Layout = null;
+}
+<link rel="stylesheet" href="~/css/PrincipalCSS/PrincipalViewProfile.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<div class="card">
+    <div class="left-container">
+        <div class="profile-image">
+            <div class="icon"><i class="fas fa-user"></i></div>
+        </div>
+        <h2 class="gradienttext">Phomolo Lou <br /> Principal </h2>
+    </div>
+    <div class="right-container">
+        <h3>Profile Details</h3>
+        <table>
+            <tr>
+                <td>Name</td>
+                <td>Phomolo<td>
+            </tr>
+            <tr>
+                <td>Surname</td>
+                <td>Lou</td>
+            </tr>
+            <tr>
+                <td>Identity Number</td>
+                <td>8809168965794</td>
+            </tr>
+            <tr>
+                <td>Staff No</td>
+                <td>68965794</td>
+            </tr>
+            <tr>
+                <td>Emis No</td>
+                <td>546789</td>
+            </tr>
+            <tr>
+                <td>Cell</td>
+                <td>
+                    <input type="text" id="cell" value="+27 89 678 4567" readonly>
+                    <button id="editCell" class="edit-btn">Edit</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>
+                    <input type="email" id="email" value="phomoloLou124@gmail.com" readonly>
+                    <button id="editEmail" class="edit-btn">Edit</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>
+                    <input type="password" id="password" value="12345password" readonly>
+                    <i class="fas fa-eye" id="togglePassword"></i>
+                    <button id="editPassword" class="edit-btn">Edit</button>
+                </td>
+            </tr>
+        </table>
+        <button id="saveChanges" class="save-btn">Save Changes</button>
+    </div>
+</div>
+
+<script>
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('password');
+    const editCellBtn = document.getElementById('editCell');
+    const editEmailBtn = document.getElementById('editEmail');
+    const editPasswordBtn = document.getElementById('editPassword');
+    const cellInput = document.getElementById('cell');
+    const emailInput = document.getElementById('email');
+    const saveChangesBtn = document.getElementById('saveChanges');
+
+    // Toggle password visibility
+    togglePassword.addEventListener('click', function () {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            togglePassword.classList.remove('fa-eye');
+            togglePassword.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            togglePassword.classList.remove('fa-eye-slash');
+            togglePassword.classList.add('fa-eye');
+        }
+    });
+
+    // Enable editing for cell number
+    editCellBtn.addEventListener('click', function () {
+        cellInput.readOnly = false;
+        cellInput.focus();
+        saveChangesBtn.style.display = 'inline-block';
+    });
+
+    // Enable editing for email
+    editEmailBtn.addEventListener('click', function () {
+        emailInput.readOnly = false;
+        emailInput.focus();
+        saveChangesBtn.style.display = 'inline-block';
+    });
+
+    // Enable editing for password
+    editPasswordBtn.addEventListener('click', function () {
+        passwordInput.readOnly = false;
+        passwordInput.focus();
+        saveChangesBtn.style.display = 'inline-block';
+    });
+
+    // Simulate saving changes
+    saveChangesBtn.addEventListener('click', function () {
+        cellInput.readOnly = true;
+        emailInput.readOnly = true;
+        passwordInput.readOnly = true;
+        saveChangesBtn.style.display = 'none';
+
+        // Here you would typically make an API call to save the updated data
+        alert('Changes saved successfully!');
+    });
+</script>
+

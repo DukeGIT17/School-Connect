@@ -1,32 +1,32 @@
-﻿<!DOCTYPE>
+﻿
 <link rel="stylesheet" href="~/css/PrincipalCSS/PrincipalLandingPage.css" />
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 @{
-    ViewBag.Title = "Principal Page";
+    Layout = null;
 }
 
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-    <link rel="stylesheet" type="text/css" href="~/css/principal.css" />
-</head>
-<body>
-    <div class="container">
-        <div class="icon">👩‍🏫</div>
-        <div class="principal-name">Mrs Phomolo Lou</div>
-        <div class="info-container">
-            <p>ID: 0406036598789</p>
-            <p>SCHOOL: HARMONIA SECONDARY</p>
-            <p>SCHOOL EMIS: 4410227</p>
-            <p>SCHOOL ADDRESS: 1104 Vill Hill, Welkom, 2411</p>
-        </div>
-        <a asp-controller="Principal" asp-action="PrincipalMakeAnnouncements" class="button">MAKE ANNOUNCEMENTS</a>
-        <a asp-controller="Principal" asp-action="PrincipalViewAnnouncements" class="button">VIEW ANNOUNCEMENTS</a>
-        <a asp-controller="Principal" asp-action="PrincipalViewGrades" class="button">GRADES</a>
-        <a asp-controller ="Principal" asp-action="" class="button">Logout</a>
+<div class="container">
+    <div class="icon"><i class="fas fa-user"></i></div>
+    <h2>Mrs Phomolo Lou</h2>
+    <div class="form-group-1">
+        <a asp-controller="Principal" asp-action="PrincipalViewProfile" class="button">View Profile</a>
     </div>
-</body>
-
+    <br />
+    <br />
+    <div class="form-group">
+        <a asp-controller="Principal" asp-action="PrincipalMakeAnnouncements" class="button">Make Announcements</a>
+    </div>
+    <br />
+    <div class="form-group">
+        <a asp-controller="Principal" asp-action="PrincipalViewAnnouncements" class="button">View Announcements</a>
+    </div>
+    <br />
+    <div class="form-group">
+        <a asp-controller="Principal" asp-action="PrincipalViewGrades" class="button">Grades</a>
+    </div>
+    <br />
+    <br />
+    <br />
+    <a asp-controller="Login" asp-action="Login" class="logout-button">LOGOUT</a>
+</div>
 

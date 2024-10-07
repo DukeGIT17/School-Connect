@@ -1,47 +1,39 @@
 ﻿@{
-    ViewData["Title"] = "Subject Page";
+    Layout = null;
 }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="~/css/TeacherCSS/TeacherViewGrades.css" />
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/TeacherCSS/TeacherViewGrades.css" />
-</head>
-<body>
 
-    <div class="container">
-        <div class="header">
-            <!-- <button class="back-button" onclick="window.history.back()">&larr;</button> -->
-            <div class="title">Subject</div>
-        </div>
+<header>
+    <div class="header-section">
+        <h1><i class="fas fa-school"></i> Teacher's Grade Overview</h1>
+    </div>
+</header>
 
-        <div>
-            <div class="section-title">GEOGRAPHY</div>
-            <div class="section-title">CLASSES TAUGHT</div>
-            <div class="section-subtitle">Grade 10</div>
-
-            <div>
-                <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">10B</a>
-                <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">10C</a>
-            </div>
-
-            <div class="section-subtitle">Grade 12</div>
-            <div>
-                <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">12B</a>
-                <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">12C</a>
-            </div>
+<div class="container">
+    
+    <div class="grade-section">
+        <h2>Grade 10</h2>
+        <div class="grade-buttons">
+            <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">10A</a>
+            <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">10B</a>
         </div>
     </div>
 
-    <script>
-        function navigateToSubject(className) {
-            window.location.href = `/teacher/${className}.html`;
-        }
-    </script>
+    <div class="grade-section">
+        <h2>Grade 11</h2>
+        <div class="grade-buttons">
+            <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">11A</a>
+            <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">11B</a>
+        </div>
+    </div>
 
-</body>
-</html>
-
+    <div class="grade-section">
+        <h2>Grade 12</h2>
+        <div class="grade-buttons">
+            <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">12A</a>
+            <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">12B</a>
+        </div>
+    </div>
+</div>

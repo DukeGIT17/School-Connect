@@ -1,25 +1,23 @@
 ﻿body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: ghostwhite;
 }
 
 header {
-    background-color: black;
+    background-color: #0F2E34;
     color: white;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.back-button {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
+h1 {
+    font-size: 28px;
+    margin: 0;
+    text-transform: uppercase;
 }
 
 .content {
@@ -37,32 +35,44 @@ header {
         max-width: 600px;
         height: auto;
         display: block;
-        margin: 0 auto;
+        margin: 0 auto 20px auto;
+        border-radius: 8px;
     }
 
-    .content h1 {
-        font-size: 20px;
-        font-weight: bold;
-        text-align: center;
-        margin: 10px 0;
-    }
+.profile-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .button {
-    display: block;
+    display: flex;
+    align-items: center;
     width: calc(100% - 32px);
     max-width: 400px;
-    background-color: black;
-    color: white;
+    background-color: #0F2E34;
+    color: ghostwhite;
     border: none;
     padding: 12px;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 20px;
     margin: 10px auto;
-    text-align: center;
+    text-align: left;
     text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
-    .button:hover {
-        background-color: #333;
-    }
+
+.profile-icon {
+    font-size: 25px; /* Adjust icon size */
+    color: ghostwhite; /* Bright color for the icon */
+    margin-right: 20px;
+    margin-left: 10px;/* Spacing between icon and text */
+}
+
+.arrow-icon {
+    font-size: 20px; /* Size of the arrow icon */
+    color: ghostwhite; /* Bright color for the arrow */
+    margin-left: 220px; /* Spacing between text and arrow */
+}

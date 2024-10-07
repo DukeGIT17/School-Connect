@@ -1,68 +1,85 @@
 ﻿@{
-    ViewData["Title"] = "Mark Attendance";
+    Layout = null;
 }
+<link rel="stylesheet" href="~/css/TeacherCSS/TeacherMarkAttendance.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/TeacherCSS/TeacherMarkAttendance.css" />
-</head>
+
 <body>
     <div class="container">
-        <div class="header">
-            <!-- Uncomment if you want a back button -->
-            <!-- <div class="back-button" onclick="window.history.back()">&#8592;</div>
-            <h1>Attendance Page</h1> -->
-        </div>
-        <h2>Mark Learner Attendance</h2>
         <div class="table-container">
+            <div class="header">
+                <h2>2024 Academic Year <i class="fas fa-book"></i> <br> Mark Learner Attendance : Grade 10B <i class="fa-solid fa-clipboard-user"></i></h2>
+            </div>
             <table>
                 <thead>
                     <tr>
                         <th>Learners</th>
                         <th>Monday</th>
                         <th>Tuesday</th>
-                        <th></th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Thembile Poti</td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td></td>
+                        <td>Khaya Poti</td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon absent" onclick="toggleAttendance(this)">&#10007;</span></td>
                     </tr>
                     <tr>
                         <td>Thabiso Soaisa</td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon absent" onclick="toggleAttendance(this)">&#10007;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
                     </tr>
                     <tr>
                         <td>Lukhanyo May</td>
-                        <td><span class="icon absent">&#10007;</span></td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td></td>
+                        <td><span class="icon absent" onclick="toggleAttendance(this)">&#10007;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
                     </tr>
                     <tr>
                         <td>Lebo Senyane</td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
                     </tr>
                     <tr>
                         <td>Puleng Senyatso</td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td></td>
+                        <td><span class="icon absent" onclick="toggleAttendance(this)">&#10007;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
+                        <td><span class="icon absent" onclick="toggleAttendance(this)">&#10007;</span></td>
+                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
+
+    <script>
+        function toggleAttendance(element) {
+            if (element.classList.contains('present')) {
+                element.classList.remove('present');
+                element.classList.add('absent');
+                element.innerHTML = '&#10007;'; // Cross
+            } else {
+                element.classList.remove('absent');
+                element.classList.add('present');
+                element.innerHTML = '&#10003;'; // Tick
+            }
+        }
+    </script>
 </body>
-</html>
 

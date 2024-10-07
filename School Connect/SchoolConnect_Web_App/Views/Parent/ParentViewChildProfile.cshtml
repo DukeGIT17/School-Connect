@@ -1,28 +1,24 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Child Profile</title>
-    <link rel="stylesheet" href="~/css/ParentCSS/ParentViewChildProfile.css"> <!-- Link to external stylesheet -->
-</head>
-<body>
+﻿@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/css/ParentCSS/ParentViewChildProfile.css"> <!-- Link to external stylesheet -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <header>
-        <button onclick="window.history.back()">←</button> <!-- Back button is now active -->
         <h1>Child Profile</h1>
     </header>
 
     <a class="container">
         <div class="profile-info">
-            <div class="icon">👤</div>
+            <div class="icon"><i class="fas fa-user"></i></div>
             <div class="name">Thembile Poti</div>
             <div class="grade">Grade 10B</div>
         </div>
 
         <div class="details-box">
-            <div>CLASS TEACHER: KGOPOLO MOOI</div>
-            <div>SUBJECTS:</div>
+            <div class="teacher">CLASS TEACHER: KGOPOLO MOOI</div>
+            <div class="subject">SUBJECTS:</div>
             <div>MATHEMATICS</div>
             <div>PHYSICS</div>
             <div>ENGLISH HL</div>
@@ -32,12 +28,10 @@
         </div>
 
         <a asp-controller="Parent" asp-action="ParentViewAnnouncements" class="button">ANNOUNCEMENTS</a>
-        <a asp-controller="Parent" asp-action="ParentViewReports" class="button">REPORT CARD</a>
+        <a asp-controller="Parent" asp-action="ParentViewReports" class="button">REPORT</a>
         <a asp-controller="Parent" asp-action="ParentViewAttendance" class="button">ATTENDANCE</a>
-
-       <a asp-controller="Parent" asp-action="ParentChatList" class="fab" >💬</a>
-    </div>
-
-</body>
-</html>
+        <a asp-controller="Teacher" asp-action="TeacherChatList" class="chat-button">
+            <i class="fas fa-comments chat-icon"></i>
+        </a>
+    </a> <!-- Add closing </a> tag -->
 

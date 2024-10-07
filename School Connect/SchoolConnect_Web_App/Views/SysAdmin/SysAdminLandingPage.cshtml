@@ -1,7 +1,28 @@
-﻿
+﻿@{
+    Layout = null;
+}
 <link rel="stylesheet" href="~/css/SysAdminCSS/SysAdminLandingPage.css" />
-<div class="admin-landing-page-container">
-    <a asp-controller="SysAdmin" asp-action="SchoolReg" class="button">Register School</a>
-    <a asp-controller="SysAdmin" asp-action="RolesReg" class="button">Register Roles</a>
-    <a href="" class="button logout-button">LOGOUT</a>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+<div class="container">
+    <div class="icon"><i class="fas fa-user"></i></div>
+    <h2>Khaya Mathe</h2>
+    <div class="form-group-1">
+        <a asp-controller="SysAdmin" asp-action="SysAdminViewProfile" class="button">View Profile</a>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        <a asp-controller="SysAdmin" asp-action="SchoolReg" class="button">Register School</a>
+    </div>
+    <br />
+    <div class="form-group">
+        <a asp-controller="SysAdmin" asp-action="RolesReg" class="button">Register Roles</a>
+    </div>
+    <br />
+    <br />
+    <br />
+    <a asp-controller="Login" asp-action="Login" class="logout-button">LOGOUT</a>
 </div>
+

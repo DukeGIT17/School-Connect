@@ -1,15 +1,21 @@
 ﻿body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
+   
+    background-color: #0F2E34;
     margin: 0;
     padding: 0;
 }
 
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
+    background-color: ghostwhite;
+    padding: 30px; /* Slightly reduced padding */
+    border-radius: 30px; /* Increased border-radius for a rounder look */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 85%; /* Further reduced width */
+    max-width: 600px; /* Smaller max-width */
+    text-align: center; /* Center the content inside the container */
+    margin:0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .input-group {
@@ -33,7 +39,8 @@
 
 .icon {
     font-size: 100px;
-    color: #888;
+    color: #0F2E34;
+    margin-bottom: 2px;
 }
 
 .btn {
@@ -55,16 +62,25 @@
 }
 
 .button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: black;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
+    display: flex; /* Use flexbox for centering */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    height: 15px;
+    width: 20%;
+    padding: 12px;
     font-size: 16px;
+    font-weight: 800;
+    border-radius: 32px;
+    border: 2px solid rgba(255, 255, 255, 0.8); /* Optional: Add a border */
+    background-color: #0F2E34;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    text-decoration: none;
 }
 
     .button:hover {
-        background-color: #333;
+        background-color: #0F2E34; /* Lighter shade on hover */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+        transform: translateY(-2px); /* Slight lift effect */
     }

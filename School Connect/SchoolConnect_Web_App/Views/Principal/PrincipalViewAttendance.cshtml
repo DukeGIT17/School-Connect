@@ -1,68 +1,62 @@
-﻿@{
-    ViewData["Title"] = "Mark Attendance";
+﻿<link rel="stylesheet" href="~/css/PrincipalCSS/PrincipalViewAttendance.css" />
+@{
+    Layout = null;
 }
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/PrincipalCSS/PrincipalViewAttendance.css" />
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <!-- Uncomment the following lines if you want to include a back button and title -->
-            <!-- <div class="back-button" onclick="window.history.back()">&#8592;</div>
-            <h1>Attendance Page</h1> -->
-        </div>
-        <h2>Mark Learner Attendance</h2>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Learners</th>
-                        <th>Monday</th>
-                        <th>Tuesday</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Thembile Poti</td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Thabiso Soaisa</td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Lukhanyo May</td>
-                        <td><span class="icon absent">&#10007;</span></td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Lebo Senyane</td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Puleng Senyatso</td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td><span class="icon present">&#10003;</span></td>
-                        <td></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</body>
-</html>
+<div class="table-container">
+    <h2>Learner Attendance <br /> Grade: 10B</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Learner</th>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><a asp-controller="Principal" asp-action="PrincipalLearnerProfile" class="learner-link">Thembile Poti</a></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon absent">&#10007;</span></td>
+            </tr>
+            <tr>
+                <td><a asp-controller="Principal" asp-action="PrincipalLearnerProfile" class="learner-link">Thabiso Soaisa</a></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+            </tr>
+            <tr>
+                <td><a asp-controller="Principal" asp-action="PrincipalLearnerProfile" class="learner-link">Lukhanyo May</a></td>
+                <td><span class="icon absent">&#10007;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon absent">&#10007;</span></td>
+                <td><span class="icon absent">&#10007;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+            </tr>
+            <tr>
+                <td><a asp-controller="Principal" asp-action="PrincipalLearnerProfile" class="learner-link">Lebo Senyane</a></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+            </tr>
+            <tr>
+                <td><a asp-controller="Principal" asp-action="PrincipalLearnerProfile" class="learner-link">Puleng Senyatso</a></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon absent">&#10007;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+                <td><span class="icon present">&#10003;</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 

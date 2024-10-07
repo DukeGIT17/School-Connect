@@ -8561,10 +8561,6 @@
       "PackagePath": "staticwebassets\\FontAwesome\\webfonts\\fa-v4compatibility.woff2"
     },
     {
-      "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\ChatCSS\\Chat.css",
-      "PackagePath": "staticwebassets\\css\\ChatCSS\\Chat.css"
-    },
-    {
       "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\LoginCSS\\Login.css",
       "PackagePath": "staticwebassets\\css\\LoginCSS\\Login.css"
     },
@@ -8621,6 +8617,10 @@
       "PackagePath": "staticwebassets\\css\\PrincipalCSS\\PrincipalLandingPage.css"
     },
     {
+      "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\PrincipalCSS\\PrincipalLearnerProfile.css",
+      "PackagePath": "staticwebassets\\css\\PrincipalCSS\\PrincipalLearnerProfile.css"
+    },
+    {
       "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\PrincipalCSS\\PrincipalMakeAnnouncements.css",
       "PackagePath": "staticwebassets\\css\\PrincipalCSS\\PrincipalMakeAnnouncements.css"
     },
@@ -8637,6 +8637,10 @@
       "PackagePath": "staticwebassets\\css\\PrincipalCSS\\PrincipalViewGrades.css"
     },
     {
+      "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\PrincipalCSS\\PrincipalViewProfile.css",
+      "PackagePath": "staticwebassets\\css\\PrincipalCSS\\PrincipalViewProfile.css"
+    },
+    {
       "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\PrincipalCSS\\PrincipalViewReports.css",
       "PackagePath": "staticwebassets\\css\\PrincipalCSS\\PrincipalViewReports.css"
     },
@@ -8651,6 +8655,10 @@
     {
       "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\SysAdminLandingPage.css",
       "PackagePath": "staticwebassets\\css\\SysAdminCSS\\SysAdminLandingPage.css"
+    },
+    {
+      "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\SysAdminViewProfile.css",
+      "PackagePath": "staticwebassets\\css\\SysAdminCSS\\SysAdminViewProfile.css"
     },
     {
       "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherChatList.css",
@@ -8709,8 +8717,40 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\images\\finalLogo.png",
+      "PackagePath": "staticwebassets\\images\\finalLogo.png"
+    },
+    {
+      "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\images\\final_logo.jpeg",
+      "PackagePath": "staticwebassets\\images\\final_logo.jpeg"
+    },
+    {
       "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\images\\logo.png",
       "PackagePath": "staticwebassets\\images\\logo.png"
+    },
+    {
+      "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\images\\logo2.jpeg",
+      "PackagePath": "staticwebassets\\images\\logo2.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\images\\logo3.jpeg",
+      "PackagePath": "staticwebassets\\images\\logo3.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\images\\logo4.jpeg",
+      "PackagePath": "staticwebassets\\images\\logo4.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\images\\logo5.jpeg",
+      "PackagePath": "staticwebassets\\images\\logo5.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\images\\logoo.jpeg",
+      "PackagePath": "staticwebassets\\images\\logoo.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\images\\newlogo.jpeg",
+      "PackagePath": "staticwebassets\\images\\newlogo.jpeg"
     },
     {
       "Id": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\site.js",

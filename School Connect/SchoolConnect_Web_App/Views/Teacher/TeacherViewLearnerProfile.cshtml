@@ -1,34 +1,60 @@
 ﻿@{
-    ViewData["Title"] = "Child Profile";
+    Layout = null;
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"]</title>
-    <link rel="stylesheet" href="~/css/TeacherCSS/TeacherViewLearnerProfile.css" />
-</head>
-<body>
+<link rel="stylesheet" href="~/css/Teacher/TeacherViewLearnerProfile.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <div class="container">
-        <div class="icon">👤</div>
-        <div class="header">Thembile Poti</div>
-        <div class="subtext">GRADE 10B</div>
-        <div class="subtext">CLASS TEACHER: Kgopolo Mooi</div>
-        <div class="subtext">Identity Number: 04060879589</div>
-        <div class="subtext">PARENT: APRIL POTI</div>
-        <div class="subtext">PHONE: +27 63 444 5555</div>
-        <div class="subtext">EMAIL: apple12@gmail.com</div>
-        <div class="address">
-            ADDRESS: 02 Potilolo str
-            Rusty
-            2424
-            North West
+<div class="container">
+    <div class="profile-section">
+        <div class="profile-image">
+            <div class="icon"><i class="fas fa-user"></i></div>
         </div>
-        <button class="button" onclick="window.history.back()">BACK</button>
     </div>
 
-</body>
-</html>
+    <div class="table-section">
+        <table>
+            <tr>
+                <td>Name(s):</td>
+                <td>Thembile</td>
+            </tr>
+            <tr>
+                <td>Surname:</td>
+                <td>Poti</td>
+            </tr>
+            <tr>
+                <td>Identity Number:</td>
+                <td>0309168965794</td>
+            </tr>
+            <tr>
+                <td>Grade:</td>
+                <td>10B</td>
+            </tr>
+            <tr>
+                <td>Class Teacher:</td>
+                <td>Kgopolo Mooi</td>
+            </tr>
+            <tr>
+                <td>Parent Name(s):</td>
+                <td>April Poti</td>
+            </tr>
+            <tr>
+                <td>Parent Contact:</td>
+                <td>+27 77 374 3384</td>
+            </tr>
+            <tr>
+                <td>Parent Email:</td>
+                <td>aprilpoti@gmail.com</td>
+            </tr>
+            <tr>
+                <td>Address:</td>
+                <td class="address">
+                    02 Potilolo str <br />
+                    Rusty <br />
+                    2424 <br />
+                    North West
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

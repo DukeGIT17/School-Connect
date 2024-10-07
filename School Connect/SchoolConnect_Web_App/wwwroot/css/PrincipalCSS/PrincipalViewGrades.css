@@ -1,67 +1,83 @@
-﻿body {
-    font-family: Arial, sans-serif;
-    padding: 0;
+﻿/* General body styling */
+body {
     margin: 0;
-    background-color: #f5f5f5;
+    padding: 0;
+    background-color: ghostwhite;
 }
 
-.container {
-    padding: 20px;
-    max-width: 800px;
-    margin: auto;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.header {
+/* Hero section at the top */
+.header-section {
+    background-color: #0F2E34;
+    color: white;
+    padding: 40px 20px;
     text-align: center;
-    margin-bottom: 20px;
 }
 
-    .header h1 {
-        font-size: 20px;
-        font-weight: bold;
+    .header-section h1 {
+        font-size: 32px;
+        margin: 0;
     }
 
+
+/* Container for the content */
+.container {
+    padding: 20px;
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Grade section styling */
 .grade-section {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
     .grade-section h2 {
-        font-size: 15px;
-        font-weight: 700;
+        font-size: 20px;
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-align: left;
     }
 
+.grade-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Button styling */
 .button {
-    display: block;
-    width: 100%;
+    flex: 1;
     padding: 15px;
-    margin: 10px auto;
-    background-color: black;
+    margin: 5px 0;
+    background-color: #0F2E34;
     color: white;
     text-align: center;
     text-decoration: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
 }
 
     .button:hover {
-        background-color: #333;
+        background-color: #0F2E34;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
-.back-button {
-    display: inline-block;
-    padding: 10px;
-    margin: 10px;
-    color: white;
-    background-color: black;
-    text-decoration: none;
-    border-radius: 4px;
+/* Responsive design */
+@media (max-width: 600px) {
+    .button {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .header-section h1 {
+        font-size: 28px;
+    }
+
+    .header-section p {
+        font-size: 16px;
+    }
 }
-
-    .back-button:hover {
-        background-color: #333;
-    }

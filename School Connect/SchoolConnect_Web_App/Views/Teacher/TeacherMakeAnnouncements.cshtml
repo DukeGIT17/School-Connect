@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Teacher Announcement Form";
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -7,14 +7,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
+    <title>School Announcement</title>
     <link rel="stylesheet" href="~/css/TeacherCSS/TeacherMakeAnnouncements.css" />
 </head>
+
+
 <body>
+    <!--Currently not sure 1 Added the body tag and moved the header to the header section-->
+    <header class="header">
+        <h1> Make Announcements</h1>
+    </header>
+
     <div class="container">
-        <div class="header">
-            <h1>Announcement</h1>
-        </div>
+        <br />
+        <br />
         <form>
             <div class="form-group">
                 <label for="title">Title:</label>
@@ -49,4 +55,3 @@
     </div>
 </body>
 </html>
-

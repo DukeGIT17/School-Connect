@@ -1,12 +1,13 @@
-﻿body {
-    font-family: Arial, sans-serif;
+﻿/* General styling */
+body {
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: ghostwhite;
+    position:sticky;
 }
 
 header {
-    background-color: black;
+    background-color: #0F2E34;
     color: white;
     padding: 16px;
     display: flex;
@@ -15,14 +16,6 @@ header {
     top: 0;
     z-index: 1000;
 }
-
-    header button {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-    }
 
     header h1 {
         margin: 0;
@@ -33,66 +26,95 @@ header {
 .container {
     padding: 16px;
     text-align: center;
+    position:sticky;
 }
 
+/* Profile Info Section */
 .profile-info {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    position: sticky;
 }
 
     .profile-info .icon {
-        font-size: 75px;
-        color: black;
+        font-size: 120px; /* Increased font size */
+        color: #0F2E34;
+        margin-bottom: 10px;
     }
 
     .profile-info .name {
-        font-size: 20px;
+        font-size: 24px; /* Increased font size */
         font-weight: bold;
+        margin-bottom: 5px;
     }
 
     .profile-info .grade {
-        font-size: 15px;
+        font-size: 18px; /* Increased font size */
         font-weight: bold;
+        color: #555; /* Slightly lighter color */
     }
 
+/* Details Box */
 .details-box {
-    width: 350px;
+    font-size: larger; /* Increased font size */
+    width: 80%; /* Make the card wider */
+    max-width: 600px; /* Set a maximum width */
     margin: 10px auto;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    padding: 20px; /* Added more padding */
+    border: 1px solid black;
+    border-radius: 12px; /* Smoother corners */
     text-align: left;
+    background-color: white; /* Standout background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for better visibility */
+    position: sticky;
 }
 
+.subject {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.teacher {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Buttons */
 .button {
     display: block;
-    background-color: black;
+    background-color: #0F2E34;
     color: white;
-    padding: 10px;
-    margin: 10px auto;
-    width: 200px;
-    border-radius: 5px;
+    padding: 12px; /* Slightly increased padding */
+    margin: 15px auto; /* Increased margin */
+    width: 250px; /* Increased button width */
+    border-radius: 30px;
     text-decoration: none;
     text-align: center;
     font-weight: bold;
+    font-size: 16px; /* Increased font size */
 }
 
     .button:hover {
-        background-color: #333;
+        background-color: #174849; /* Button hover effect */
     }
 
-.fab {
+/* Chat Button */
+.chat-button {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    background-color: grey;
-    color: black;
+    background-color: lightgrey;
+    border: none;
     border-radius: 50%;
-    width: 56px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    font-size: 24px;
+    padding: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+}
+
+    .chat-button:hover {
+        background-color: #757575;
+    }
+
+.chat-icon {
+    color: #0F2E34;
+    font-size: 30px;
 }

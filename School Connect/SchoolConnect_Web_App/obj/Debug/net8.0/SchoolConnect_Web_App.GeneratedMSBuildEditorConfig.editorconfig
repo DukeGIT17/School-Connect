@@ -26,10 +26,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\KHAYE\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_Web_App
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/KHAYE/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Chat/Chat.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhdFxDaGF0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/KHAYE/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -82,12 +78,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFyZW50XFBhcmVudFZpZXdSZXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/KHAYE/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Principal/PrincipalDetailedAnnouncements.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpbmNpcGFsXFByaW5jaXBhbERldGFpbGVkQW5ub3VuY2VtZW50cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/KHAYE/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Principal/PrincipalGradeLandingPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpbmNpcGFsXFByaW5jaXBhbEdyYWRlTGFuZGluZ1BhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/KHAYE/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Principal/PrincipalLandingPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpbmNpcGFsXFByaW5jaXBhbExhbmRpbmdQYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/KHAYE/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Principal/PrincipalLearnerProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpbmNpcGFsXFByaW5jaXBhbExlYXJuZXJQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/KHAYE/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Principal/PrincipalMakeAnnouncements.cshtml]
@@ -104,6 +108,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/KHAYE/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Principal/PrincipalViewGrades.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpbmNpcGFsXFByaW5jaXBhbFZpZXdHcmFkZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/KHAYE/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Principal/PrincipalViewProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpbmNpcGFsXFByaW5jaXBhbFZpZXdQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/KHAYE/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Principal/PrincipalViewReports.cshtml]
@@ -138,12 +146,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3lzQWRtaW5cU3lzQWRtaW5MYW5kaW5nUGFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/KHAYE/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/SysAdmin/SysAdminViewProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3lzQWRtaW5cU3lzQWRtaW5WaWV3UHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/KHAYE/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Teacher/TeacherChatList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxUZWFjaGVyQ2hhdExpc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/KHAYE/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Teacher/TeacherClassRoaster.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxUZWFjaGVyQ2xhc3NSb2FzdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/KHAYE/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Teacher/TeacherDetailedAnnouncement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxUZWFjaGVyRGV0YWlsZWRBbm5vdW5jZW1lbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/KHAYE/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Teacher/TeacherLandingPage.cshtml]

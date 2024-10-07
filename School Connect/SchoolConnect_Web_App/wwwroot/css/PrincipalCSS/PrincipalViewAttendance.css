@@ -1,2 +1,89 @@
-﻿body {
+﻿/* Style for the entire body */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevent horizontal overflow */
+}
+
+.table-container {
+    width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    overflow: auto; /* Allow both horizontal and vertical scrolling */
+    padding: 20px;
+    background-color: ghostwhite;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Table styles */
+table {
+    border: 6px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+    table th, table td {
+        padding: 10px;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+
+th {
+    background-color: #0F2E34;
+    color: white;
+    text-transform: uppercase;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover effect on rows */
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+/* Icon styles for attendance */
+.icon {
+    font-size: 18px;
+}
+
+.present {
+    color: green;
+}
+
+.absent {
+    color: red;
+}
+
+/* Hover effect on rows */
+tbody tr:hover {
+    background-color: white;
+}
+
+.learner-link {
+    text-decoration: none;
+    color: #0F2E34;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.h2 {
+    color: #0F2E34;
+    font-weight: bold;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    table th, table td {
+        font-size: 14px;
+        padding: 8px;
+    }
 }
