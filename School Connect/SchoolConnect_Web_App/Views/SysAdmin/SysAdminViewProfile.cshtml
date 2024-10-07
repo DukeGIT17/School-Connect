@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SystemAdminProfileModel
+@{
     Layout = null;
 }
 <link rel="stylesheet" href="~/css/SysAdminCSS/SysAdminViewProfile.css" />
@@ -9,56 +10,37 @@
         <div class="profile-image">
             <div class="icon"><i class="fas fa-user"></i></div>
         </div>
-        <h2 class="gradienttext">Khaya Mathe</h2>
-        <h2>System Administrator</h2>
+        <h2 class="gradienttext">@Model.Admin.Name @Model.Admin.Surname</h2>
+        <h2>@Model.Admin.Role</h2>
     </div>
     <div class="right-container">
         <h3>Profile Details</h3>
         <table>
             <tr>
-                <td>Name</td>
-                <td>Khaya</td>
+                <td>@Html.DisplayNameFor(s => s.Admin.Name)</td>
+                <td>@Model.Admin.Name</td>
             </tr>
             <tr>
-                <td>Surname</td>
-                <td>Mathe</td>
+                <td>@Html.DisplayNameFor(s => s.Admin.Surname)</td>
+                <td>@Model.Admin.Surname</td>
             </tr>
             <tr>
-                <td>Identity Number</td>
-                <td>8809168965794</td>
+                <td>@Html.DisplayNameFor(s => s.Admin.StaffNr)</td>
+                <td>@Model.Admin.StaffNr</td>
             </tr>
             <tr>
-                <td>Staff No</td>
-                <td>68965794</td>
+                <td>@Html.DisplayNameFor(s => s.EmisNumber)</td>
+				<td>@Model.EmisNumber</td>
             </tr>
             <tr>
-                <td>Emis No</td>
-                <td>546789</td>
+                <td>@Html.DisplayNameFor(s => s.Admin.PhoneNumber)</td>
+                <td>@Model.Admin.PhoneNumber</td>
             </tr>
             <tr>
-                <td>Cell</td>
-                <td>
-                    <input type="text" id="cell" value="+27 89 678 4567" readonly>
-                    <button id="editCell" class="edit-btn">Edit</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td>
-                    <input type="email" id="email" value="khayamath@gmail.com" readonly>
-                    <button id="editEmail" class="edit-btn">Edit</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td>
-                    <input type="password" id="password" value="12345password" readonly>
-                    <i class="fas fa-eye" id="togglePassword"></i>
-                    <button id="editPassword" class="edit-btn">Edit</button>
-                </td>
+                <td>@Html.DisplayNameFor(s => s.Admin.EmailAddress)</td>
+                <td>@Model.Admin.EmailAddress</td>
             </tr>
         </table>
-        <button id="saveChanges" class="save-btn">Save Changes</button>
     </div>
 </div>
 

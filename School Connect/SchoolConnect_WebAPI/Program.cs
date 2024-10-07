@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_RepositoryLayer.CommonAction;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_RepositoryLayer.Repositories;
 using SchoolConnect_ServiceLayer.IServerSideServices;
@@ -46,6 +45,11 @@ builder.Services.AddScoped<IParentService, ParentService>();
 builder.Services.AddScoped<PasswordValidator<CustomIdentityUser>>();
 builder.Services.AddScoped<ISignInRepo, SignInRepository>();
 builder.Services.AddScoped<ISignInService, SignInService>();
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+});
 
 builder.Services.AddCors(options =>
 {

@@ -3,16 +3,55 @@
   "WorkspaceRootPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\views\\principal\\principaldetailedannouncements.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{8960FA26-AFA1-4BDE-9701-70BA1EE08720}|..\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_repositorylayer\\commonaction\\commonactions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\wwwroot\\css\\teachercss\\teacherviewlearnerprofile.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{6C87F068-702B-4D3B-A5DD-EAC1D923E13F}|SchoolConnect_WebAPI.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_webapi\\controllers\\systemadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C87F068-702B-4D3B-A5DD-EAC1D923E13F}|SchoolConnect_WebAPI.csproj|solutionrelative:controllers\\systemadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\wwwroot\\css\\teachercss\\teacherclassroaster.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{8960FA26-AFA1-4BDE-9701-70BA1EE08720}|..\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_repositorylayer\\repositories\\signinrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\views\\teacher\\teacherclassroaster.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{6C87F068-702B-4D3B-A5DD-EAC1D923E13F}|SchoolConnect_WebAPI.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_webapi\\controllers\\signincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C87F068-702B-4D3B-A5DD-EAC1D923E13F}|SchoolConnect_WebAPI.csproj|solutionrelative:controllers\\signincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\services\\sharedclientsideservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\services\\systemadminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\controllers\\sysadmincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6C87F068-702B-4D3B-A5DD-EAC1D923E13F}|SchoolConnect_WebAPI.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_webapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6C87F068-702B-4D3B-A5DD-EAC1D923E13F}|SchoolConnect_WebAPI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\services\\signinservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8960FA26-AFA1-4BDE-9701-70BA1EE08720}|..\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_repositorylayer\\repositories\\systemadminrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FFBFC0B0-C521-4A57-8D4B-DAF40AC5A600}|..\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_servicelayer\\serversideservices\\adminservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\models\\systemadminprofilemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C79390AB-C36C-400E-8F6A-0E05D065A72B}|..\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_domainlayer\\models\\school.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\views\\sysadmin\\sysadminviewprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\khaye\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,58 +61,214 @@
       "DocumentGroups": [
         {
           "DockedWidth": 206,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 12,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PrincipalDetailedAnnouncements.cshtml",
-              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalDetailedAnnouncements.cshtml",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalDetailedAnnouncements.cshtml",
-              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalDetailedAnnouncements.cshtml",
-              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalDetailedAnnouncements.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAAAAAA",
+              "DocumentIndex": 2,
+              "Title": "SignInRepository.cs",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\Repositories\\SignInRepository.cs",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_RepositoryLayer\\Repositories\\SignInRepository.cs",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\Repositories\\SignInRepository.cs",
+              "RelativeToolTip": "..\\SchoolConnect_RepositoryLayer\\Repositories\\SignInRepository.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAArwBUAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T19:47:02.289Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SharedClientSideServices.cs",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Services\\SharedClientSideServices.cs",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Services\\SharedClientSideServices.cs",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Services\\SharedClientSideServices.cs",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Services\\SharedClientSideServices.cs",
+              "ViewState": "AQIAAB8AAAAAAAAAAAAAACoAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T18:23:22.46Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "SystemAdminProfileModel.cs",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Models\\SystemAdminProfileModel.cs",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Models\\SystemAdminProfileModel.cs",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Models\\SystemAdminProfileModel.cs",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Models\\SystemAdminProfileModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T17:18:09.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "SysAdminViewProfile.cshtml",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\SysAdmin\\SysAdminViewProfile.cshtml",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Views\\SysAdmin\\SysAdminViewProfile.cshtml",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\SysAdmin\\SysAdminViewProfile.cshtml",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Views\\SysAdmin\\SysAdminViewProfile.cshtml",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAAB8AAABAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-07T10:24:32.035Z",
+              "WhenOpened": "2024-10-07T17:06:13.471Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SignInService.cs",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Services\\SignInService.cs",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Services\\SignInService.cs",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Services\\SignInService.cs",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Services\\SignInService.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAawC0AAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T16:39:41.9Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SysAdminController.cs",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\SysAdminController.cs",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Controllers\\SysAdminController.cs",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\SysAdminController.cs",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Controllers\\SysAdminController.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAswBQAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T16:13:57.65Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SystemAdminService.cs",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Services\\SystemAdminService.cs",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Services\\SystemAdminService.cs",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Services\\SystemAdminService.cs",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Services\\SystemAdminService.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAASwB8AAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T16:23:18.323Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "TeacherViewLearnerProfile.css",
-              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherViewLearnerProfile.css",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherViewLearnerProfile.css",
-              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherViewLearnerProfile.css",
-              "RelativeToolTip": "..\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherViewLearnerProfile.css",
-              "ViewState": "AQIAADIAAAAAAAAAAAAswE4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-10-07T10:20:58.92Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TeacherClassRoaster.css",
-              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherClassRoaster.css",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherClassRoaster.css",
-              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherClassRoaster.css",
-              "RelativeToolTip": "..\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherClassRoaster.css",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2024-10-07T10:17:36.641Z",
+              "Title": "SystemAdminController.cs",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\Controllers\\SystemAdminController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SystemAdminController.cs",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\Controllers\\SystemAdminController.cs",
+              "RelativeToolTip": "Controllers\\SystemAdminController.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAzwBkAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T16:32:19.252Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "TeacherClassRoaster.cshtml",
-              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Teacher\\TeacherClassRoaster.cshtml",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Views\\Teacher\\TeacherClassRoaster.cshtml",
-              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Teacher\\TeacherClassRoaster.cshtml",
-              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Views\\Teacher\\TeacherClassRoaster.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-07T10:17:27.41Z",
+              "Title": "SignInController.cs",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\Controllers\\SignInController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SignInController.cs",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\Controllers\\SignInController.cs",
+              "RelativeToolTip": "Controllers\\SignInController.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAYwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T19:47:48.603Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "SystemAdminRepository.cs",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\Repositories\\SystemAdminRepository.cs",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_RepositoryLayer\\Repositories\\SystemAdminRepository.cs",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\Repositories\\SystemAdminRepository.cs",
+              "RelativeToolTip": "..\\SchoolConnect_RepositoryLayer\\Repositories\\SystemAdminRepository.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAuwCEAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T17:20:32.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "School.cs",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\Models\\School.cs",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_DomainLayer\\Models\\School.cs",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\Models\\School.cs",
+              "RelativeToolTip": "..\\SchoolConnect_DomainLayer\\Models\\School.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAwBcAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T18:07:53.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "AdminService.cs",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\ServerSideServices\\AdminService.cs",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_ServiceLayer\\ServerSideServices\\AdminService.cs",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\ServerSideServices\\AdminService.cs",
+              "RelativeToolTip": "..\\SchoolConnect_ServiceLayer\\ServerSideServices\\AdminService.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAA1wAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T18:17:22.185Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CommonActions.cs",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\CommonAction\\CommonActions.cs",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_RepositoryLayer\\CommonAction\\CommonActions.cs",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\CommonAction\\CommonActions.cs",
+              "RelativeToolTip": "..\\SchoolConnect_RepositoryLayer\\CommonAction\\CommonActions.cs",
+              "ViewState": "AQIAAEAAAAAAAAAAAAAawEkAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T18:24:44.967Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAADMAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T19:14:16.582Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Program.cs",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Program.cs",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Program.cs",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Program.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAwAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T16:30:57.967Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Controllers\\LoginController.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAADwvyIAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-07T16:13:50.43Z",
               "EditorCaption": ""
             }
           ]

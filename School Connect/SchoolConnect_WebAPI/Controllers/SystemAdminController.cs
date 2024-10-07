@@ -24,7 +24,7 @@ namespace SchoolConnect_WebAPI.Controllers
             {
                 _returnDictionary = await _systemAdminService.GetAdminById(id);
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
-                return Ok(_returnDictionary["Result"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {

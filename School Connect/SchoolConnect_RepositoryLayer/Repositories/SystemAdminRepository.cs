@@ -20,11 +20,18 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             _signInManager = signInManager;
         }
 
-        public async Task<Dictionary<string, object>> GetAdminById(long sysAdminId)
+        public async Task<Dictionary<string, object>> GetAdminByIdAsync(long sysAdminId)
         {
             try
             {
-                return await CommonActions.GetActorById(sysAdminId, new SysAdmin(), _context);
+                _returnDictionary = await CommonActions.GetActorById(sysAdminId, new SysAdmin(), _context);
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                var admin = _returnDictionary["Result"] as SysAdmin;
+                var school = await _context.Schools.FirstOrDefaultAsync(s => s.Id == admin!.SysAdminSchoolNP!.Id);
+
+                _returnDictionary["School"] = school!;
+                return _returnDictionary;
             }
             catch (Exception ex)
             {

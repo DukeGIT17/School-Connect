@@ -53,13 +53,13 @@ namespace SchoolConnect_RepositoryLayer.CommonAction
                 switch (actor!.GetType().Name)
                 {
                     case "SysAdmin":
-                        admin = await context.SystemAdmins.FirstOrDefaultAsync(s => s.Id == actorId);
+                        admin = await context.SystemAdmins.Include(s => s.SysAdminSchoolNP).FirstOrDefaultAsync(s => s.Id == actorId);
                         break;
                     case "Principal":
-                        principal = await context.Principals.FirstOrDefaultAsync(p => p.Id == actorId);
+                        principal = await context.Principals.Include(p => p.PrincipalSchoolNP).FirstOrDefaultAsync(p => p.Id == actorId);
                         break;
                     case "Teacher":
-                        teacher = await context.Teachers.FirstOrDefaultAsync(t => t.Id == actorId);
+                        teacher = await context.Teachers.Include(t => t.TeacherSchoolNP).FirstOrDefaultAsync(t => t.Id == actorId);
                         break;
                     case "Parent":
                         parent = await context.Parents.FirstOrDefaultAsync(p => p.Id == actorId);

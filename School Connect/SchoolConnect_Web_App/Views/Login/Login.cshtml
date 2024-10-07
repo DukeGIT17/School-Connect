@@ -3,24 +3,28 @@
     Layout = null;
 }
 <link rel="stylesheet" href="~/css/LoginCSS/Login.css" />
+<link rel="stylesheet" href="~/css/shared/site.css" />
 <link rel="stylesheet" href="~/FontAwesome/css/all.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <div class="form-container">
     <img src="~/images/finalLogo.png" alt="Local Image Example" class="logo">
     <h1>Welcome to School Connect</h1>
-
+    <div asp-validation-summary="All"></div>
     <!-- Wrap the form elements in a form tag -->
-    <form method="post" autocomplete="off">
+    <form asp-action="Login" method="post" autocomplete="off">
         <div class="input-box">
             <i class="fas fa-envelope"></i> <!-- Icon with 'fas' for solid style -->
-            <input type="email" name="email" autocomplete="off"  placeholder="Email Address" />
+            <input asp-for="EmailAddress" autocomplete="off"  placeholder="Email Address" /> <br />
         </div>
 
         <div class="input-box">
             <i class="fas fa-lock"></i>
-            <input type="password" name="password"  placeholder="Password" autocomplete="new-password" />
+            <input asp-for="Password" placeholder="Password" autocomplete="new-password" /> <br />
         </div>
+
+        <input type="hidden" asp-for="NewPassword" value="kladjfkads" />
+        <input type="hidden" asp-for="ConfirmPassword" value="kladjfkads" />
 
         <div class="remember-me">
             <label>
@@ -31,6 +35,6 @@
         </div>
 
         <!-- Changed from <a> to <button> for form submission -->
-        <a asp-controller="Login" asp-action="SetNewPassword" class="submit-btn" type="submit">LOGIN</a>
+        <button class="submit-btn" type="submit">LOGIN</button>
     </form>
 </div>

@@ -23,20 +23,13 @@ namespace SchoolConnect_Web_App.Services
             try
             {
                 StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
                 buildString.Append(BasePath);
                 buildString.Append("GetSystemAdminById?id=");
-                buildString.Append(systemAdminId + "/");
+                buildString.Append(systemAdminId);
 
                 var response = _client.GetAsync(buildString.ToString()).Result;
-
-                if (!response.IsSuccessStatusCode)
-                    throw new Exception(response.ReasonPhrase ?? "Operation failed; reason not provided.");
-
-                var admin = response.Content.ReadFromJsonAsync<SysAdmin>().Result 
-                    ?? throw new Exception("Failed to acquire Admin from the API using ID.");
-
-                _returnDictionary["Success"] = true;
-                _returnDictionary["Result"] = admin;
+                _returnDictionary = SharedClientSideServices.CheckSuccessStatus(response);
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -58,16 +51,7 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(staffNr + "/");
 
                 var response = _client.GetAsync(buildString.ToString()).Result;
-
-                if (!response.IsSuccessStatusCode)
-                    throw new Exception(response.ReasonPhrase ?? "Operation failed; reason not provided.");
-
-                var admin = response.Content.ReadFromJsonAsync<SysAdmin>().Result 
-                    ?? throw new Exception("Failed to acquire Admin from the API using staff number.");
-
-                _returnDictionary["Success"] = true;
-                _returnDictionary["Result"] = admin;
-                return _returnDictionary;
+                return SharedClientSideServices.CheckSuccessStatus(response);
             }
             catch (Exception ex)
             {

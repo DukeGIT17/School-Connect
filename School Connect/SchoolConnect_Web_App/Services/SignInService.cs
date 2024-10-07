@@ -24,7 +24,7 @@ namespace SchoolConnect_Web_App.Services
                 StringBuilder buildString = new();
                 buildString.Append("http://localhost:5293");
                 buildString.Append(BasePath);
-                buildString.Append("SignIn");
+                buildString.Append("SignIn"); 
 
                 var loginmodelJsonString = JsonSerializer.Serialize(model);
                 var request = new HttpRequestMessage
@@ -36,14 +36,13 @@ namespace SchoolConnect_Web_App.Services
 
                 var response = _client.SendAsync(request).Result;
 
-				if (!response.IsSuccessStatusCode)
+                if (!response.IsSuccessStatusCode)
                 {
                     _ = string.IsNullOrEmpty(response.Content.ReadAsStringAsync().Result) ? throw new Exception("Response from the API was null or empty.") : "";
                     throw new Exception(response.Content.ReadAsStringAsync().Result);
                 }
 
-                _returnDictionary["Success"] = true;
-                _returnDictionary["ResetPassword"] = Convert.ToBoolean(response.Content.ReadAsStringAsync().Result);
+                _returnDictionary = SharedClientSideServices.ConvertJsonElements(response.Content.ReadFromJsonAsync<Dictionary<string, object>>().Result!);
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -57,8 +56,8 @@ namespace SchoolConnect_Web_App.Services
         public Dictionary<string, object> SetNewPassword(LoginModel model)
         {
             _returnDictionary = [];
-            //try
-            //{
+            try
+            {
                 StringBuilder buildString = new();
                 buildString.Append("http://localhost:5293");
                 buildString.Append(BasePath);
@@ -75,18 +74,21 @@ namespace SchoolConnect_Web_App.Services
 
                 var response = _client.SendAsync(request).Result;
 
-                if (!response.IsSuccessStatusCode)
-                    throw new Exception(response.Content.ReadAsStringAsync().Result ?? "Something went wrong, could not acquire error content from API");
+                if (!response.IsSuccessStatusCode) 
+                    throw new Exception(response.Content.ReadAsStringAsync().Result 
+                        ?? "Something went wrong, could not acquire error content from API");
 
-                _returnDictionary["Success"] = true;
+
+                _returnDictionary = response.Content.ReadFromJsonAsync<Dictionary<string, object>>().Result!;
+                _returnDictionary = SharedClientSideServices.ConvertJsonElements(_returnDictionary);
                 return _returnDictionary;
-            //}
-            //catch (Exception ex)
-            //{
-            //    _returnDictionary["Success"] = false;
-            //    _returnDictionary["ErrorMessage"] = ex.Message;
-            //    return _returnDictionary;
-            //}
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
         }
 
         public void SignOut()

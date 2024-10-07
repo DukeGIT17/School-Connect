@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SysAdmin
+@{
     Layout = null;
 }
 <link rel="stylesheet" href="~/css/SysAdminCSS/SysAdminLandingPage.css" />
@@ -7,9 +8,9 @@
 
 <div class="container">
     <div class="icon"><i class="fas fa-user"></i></div>
-    <h2>Khaya Mathe</h2>
+    <h2>@Model.Name</h2>
     <div class="form-group-1">
-        <a asp-controller="SysAdmin" asp-action="SysAdminViewProfile" class="button">View Profile</a>
+        <a asp-action="SysAdminViewProfile" asp-route-id="@Model.Id" class="button">View Profile</a>
     </div>
     <br />
     <br />

@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SchoolConnect_RepositoryLayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+af00ac460424343aed130c4cf69779db6a3ebabb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5ef9f36313ace1c3092ffe6a926d5e45cc04b8ac")]
 [assembly: System.Reflection.AssemblyProductAttribute("SchoolConnect_RepositoryLayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SchoolConnect_RepositoryLayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

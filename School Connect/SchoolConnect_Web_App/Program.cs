@@ -10,7 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<SchoolConnectDbContext>(options
     => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString")));
 builder.Services.AddHttpClient<ISchoolService, SchoolService>(c =>
-c.BaseAddress = new Uri("https://localhost:7091"));
+c.BaseAddress = new Uri("https://localhost:5293"));
 builder.Services.AddScoped<ISystemAdminService, SystemAdminService>();
 builder.Services.AddScoped<ISignInService, SignInService>();
 builder.Services.AddScoped<ISchoolService, SchoolService>();
@@ -34,6 +34,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Login}/{action=Login}/{id?}");
 
 app.Run();

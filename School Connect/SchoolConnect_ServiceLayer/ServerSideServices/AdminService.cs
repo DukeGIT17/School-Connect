@@ -22,7 +22,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             {
                 return _returnDictionary = id < 1 
                     ? throw new Exception($"Invalid ID. Provided ID '{id}' was less than 1 (One).") 
-                    : await _sysAdminRepo.GetAdminById(id);
+                    : await _sysAdminRepo.GetAdminByIdAsync(id);
             }
             catch (Exception ex)
             {

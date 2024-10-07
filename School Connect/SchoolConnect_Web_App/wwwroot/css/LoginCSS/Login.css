@@ -12,15 +12,15 @@ body {
     overflow: hidden; /* Disable scrolling */
 }
 
-    body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-    }
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
 
 /* Form Container */
 .form-container {
@@ -62,30 +62,30 @@ h1 {
     height: 30px; /* Adjust height for better spacing */
 }
 
-    .input-box i {
-        font-size: 16px;
-        color: rgba(255, 255, 255, 0.7);
-        margin-right: 10px;
-    }
+.input-box i {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-right: 10px;
+}
 
-    .input-box input {
-        width: 100%;
-        padding: 12px;
-        border: none;
-        font-size: 16px;
-        background-color: transparent;
-        color: #fff;
-    }
+.input-box input {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    font-size: 16px;
+    background-color: transparent;
+    color: #fff;
+}
 
-        .input-box input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
+.input-box input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
 
-        .input-box input:focus {
-            outline: none;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 1);
-            transition: box-shadow 0.2s;
-        }
+.input-box input:focus {
+    outline: none;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 1);
+    transition: box-shadow 0.2s;
+}
 
 /* Remember Me Section */
 .remember-me {
@@ -99,25 +99,25 @@ h1 {
     gap:220px;
 }
 
-    .remember-me label {
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-    }
+.remember-me label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
 
-    .remember-me input {
-        margin-right: 5px;
-    }
+.remember-me input {
+    margin-right: 5px;
+}
 
-    .remember-me a {
-        color: #fff;
-        text-decoration: underline;
-        font-size: 12px;
-    }
+.remember-me a {
+    color: #fff;
+    text-decoration: underline;
+    font-size: 12px;
+}
 
-        .remember-me a:hover {
-            text-decoration: underline;
-        }
+.remember-me a:hover {
+    text-decoration: underline;
+}
 
 /* Submit Button */
 .submit-btn {
@@ -125,7 +125,6 @@ h1 {
     display: flex; /* Use flexbox for centering */
     justify-content: center; /* Center content horizontally */
     align-items: center; /* Center content vertically */
-    height: 15px; /* Set a proper height for the button */
     width: 60%; /* Adjust width to a more suitable percentage */
     max-width: 400px; /* Add a maximum width for larger screens */
     padding: 12px; /* Maintain padding for spacing */
@@ -141,10 +140,10 @@ h1 {
 }
 
     /* Hover effect for better user experience */
-    .submit-btn:hover {
-        background-color: rgba(255, 255, 255, 0.2); /* Add a slight background color on hover */
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Add shadow on hover */
-    }
+.submit-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Add a slight background color on hover */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Add shadow on hover */
+}
 
 
 /* Logo */

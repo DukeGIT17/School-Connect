@@ -42,3 +42,7 @@ body {
         padding: 25px;
     }
 }
+
+.validation-summary-errors {
+    color: red;
+}

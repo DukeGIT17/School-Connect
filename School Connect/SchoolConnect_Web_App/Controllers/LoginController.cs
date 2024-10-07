@@ -33,12 +33,21 @@ namespace SchoolConnect_Web_App.Controllers
                     _resultDictionary = _signInService.SignInWithEmailAndPassword(model);
 
                     if (!(bool)_resultDictionary["Success"])
-                        throw new Exception($"Invalid Credentials. Issue: {_resultDictionary["ErrorMessage"]}");
+                        throw new Exception($"Error!! {_resultDictionary["ErrorMessage"]}");
 
                     if ((bool)_resultDictionary["ResetPassword"])
                         return RedirectToAction(nameof(SetNewPassword));
 
-                    return RedirectToAction("SysAdminLandingPage", "SysAdmin");
+                    var id = _resultDictionary["ActorID"] as long?;
+
+                    return (_resultDictionary["Role"] as string) switch
+                    {
+                        "System Admin" => RedirectToAction("SysAdminLandingPage", "SysAdmin", new { id }),
+                        "Principal" => RedirectToAction("PrincipalLandingPage", "Principal", new { id }),
+                        "Teacher" => RedirectToAction("TeacherLandingPage", "Teacher", new { id }),
+                        "Parent" => RedirectToAction("ParentLandingPage", "Parent", new { id }),
+                        _ => View(model),
+                    };
                 }                
                 return View(model);
             }
@@ -83,7 +92,16 @@ namespace SchoolConnect_Web_App.Controllers
                         throw new Exception(_resultDictionary["ErrorMessage"] as string 
                             ?? "Something went wrong, reason was not provided. Please contact administrators.");
 
-                    return RedirectToAction("SysAdminLandingPage", nameof(SysAdminController));
+                    var id = _resultDictionary["ActorID"] as long?;
+
+                    return (_resultDictionary["Role"] as string) switch
+                    {
+                        "System Admin" => RedirectToAction("SysAdminLandingPage", "SysAdmin", new { id }),
+                        "Principal" => RedirectToAction("PrincipalLandingPage", "Principal", new { id }),
+                        "Teacher" => RedirectToAction("TeacherLandingPage", "Teacher", new { id }),
+                        "Parent" => RedirectToAction("ParentLandingPage", "Parent", new { id }),
+                        _ => View(model),
+                    };
                 }
                 return View(model);
             }

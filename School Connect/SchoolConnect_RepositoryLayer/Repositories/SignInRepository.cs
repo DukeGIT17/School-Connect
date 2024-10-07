@@ -19,6 +19,51 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             _returnDictionary = [];
         }
 
+        private async Task<Dictionary<string, object>> DetermineActorTypeAsync(CustomIdentityUser user, LoginModel model)
+        {
+            try
+            {
+                string role = _signInManager.UserManager.GetRolesAsync(user).Result.First();
+                switch (role)
+                {
+                    case "System Admin":
+                        SysAdmin? admin = await _context.SystemAdmins.FirstOrDefaultAsync(s => s.EmailAddress == user.Email);
+                        if (admin == null) throw new Exception($"Actor {model.EmailAddress}'s data was not found");
+                        _returnDictionary["ActorID"] = admin.Id;
+                        break;
+                    case "Principal":
+                        Principal? principal = await _context.Principals.FirstOrDefaultAsync(p => p.EmailAddress == user.Email);
+                        if (principal == null) throw new Exception($"Actor {model.EmailAddress}'s data was not found");
+                        _returnDictionary["ActorID"] = principal.Id;
+                        break;
+                    case "Teacher":
+                        Teacher? teacher = await _context.Teachers.FirstOrDefaultAsync(t => t.EmailAddress == user.Email);
+                        if (teacher == null) throw new Exception($"Actor {model.EmailAddress}'s data was not found");
+                        _returnDictionary["ActorID"] = teacher.Id;
+                        break;
+                    case "Parent":
+                        Parent? parent = await _context.Parents.FirstOrDefaultAsync(p => p.EmailAddress == user.Email);
+                        if (parent == null) throw new Exception($"Actor {model.EmailAddress}'s data was not found.");
+                        _returnDictionary["ActorID"] = parent.Id;
+                        break;
+                    default:
+                        throw new Exception($"Error! Something went when determining user's role. Role passed in {role}");
+
+                }
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Role"] = role;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+
         public async Task<Dictionary<string, object>> CreateUserAccountAsync(string email, string role, string? phoneNumber = null)
         {
             try
@@ -73,43 +118,17 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             try
             {
                 var user = await _signInManager.UserManager.FindByEmailAsync(model.EmailAddress);
-                if (user == null)
-                {
-                    user = await _signInManager.UserManager.FindByNameAsync(model.EmailAddress);
+                if (user == null)  throw new($"Could not find user with the email {model.EmailAddress}");
 
-                    _ = user ?? throw new Exception($"Could not find user with the email {model.EmailAddress}");
-                }
-
-                string role = _signInManager.UserManager.GetRolesAsync(user).Result.First();
-                switch (role)
-                {
-                    case "System Admin":
-                        SysAdmin? admin = await _context.SystemAdmins.FirstOrDefaultAsync(s => s.EmailAddress == user.Email);
-                        if (admin == null) throw new Exception($"Actor {model.EmailAddress}'s data was not found");
-                        break;
-                    case "Principal":
-                        Principal? principal = await _context.Principals.FirstOrDefaultAsync(p => p.EmailAddress == user.Email);
-                        if (principal == null) throw new Exception($"Actor {model.EmailAddress}'s data was not found");
-                        break;
-                    case "Teacher":
-                        Teacher? teacher = await _context.Teachers.FirstOrDefaultAsync(t => t.EmailAddress == user.Email);
-                        if (teacher == null) throw new Exception($"Actor {model.EmailAddress}'s data was not found");
-                        break;
-                    case "Parent":
-                        Parent? parent = await _context.Parents.FirstOrDefaultAsync(p => p.EmailAddress == user.Email);
-                        if (parent == null) throw new Exception($"Actor {model.EmailAddress}'s data was not found.");
-                    break;
-                    default:
-                        throw new Exception($"Error! Something went when determining user's role. Role passed in {role}");
-                    
-                }
+                _returnDictionary = await DetermineActorTypeAsync(user, model);
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                var role = _returnDictionary["Role"] as string ?? throw new("Something went wrong. No role returned.");
 
                 var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
                 if (!result.Succeeded) throw new Exception("Incorrect Password.");
 
                 _returnDictionary["Success"] = true;
                 _returnDictionary["ResetPassword"] = user.ResetPassword;
-                _returnDictionary["Role"] = role;
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -125,17 +144,14 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             _returnDictionary = [];
             try
             {
-                var admins = await _context.SystemAdmins.ToListAsync();
-                var admin = admins.FirstOrDefault(x => x.EmailAddress.Equals(model.EmailAddress, StringComparison.OrdinalIgnoreCase));                
-                if (admin == null) throw new Exception($"Actor with the email {model.EmailAddress} was not found.");
-
-
                 var user = await _signInManager.UserManager.FindByEmailAsync(model.EmailAddress);
-                if (user == null) throw new Exception($"User with the email {model.EmailAddress} was not found.");
+                if (user == null) throw new($"User with the email {model.EmailAddress} was not found.");
+
+                _returnDictionary = await DetermineActorTypeAsync(user, model);
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                 bool isCorrect = _signInManager.UserManager.CheckPasswordAsync(user, model.Password).Result;
-                if (!isCorrect)
-                    throw new Exception("The old password you entered is incorrect.");
+                if (!isCorrect) throw new("The old password you entered is incorrect.");
 
                 var result = await _signInManager.UserManager.ChangePasswordAsync(user, model.Password, model.NewPassword!);
                 if (!result.Succeeded) throw new Exception(result.Errors.First().Description);
@@ -145,7 +161,6 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 if (!result.Succeeded) throw new(result.Errors.First().Description);
 
                 _returnDictionary["Success"] = true;
-                _returnDictionary["ErrorMessage"] = _signInManager.UserManager.GetRolesAsync(user).Result.First();
                 return _returnDictionary;
             }
             catch (Exception ex)
