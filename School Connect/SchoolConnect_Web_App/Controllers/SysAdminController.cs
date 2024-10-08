@@ -35,9 +35,29 @@ namespace SchoolConnect_Web_App.Controllers
         }
 
         [HttpGet]
-        public IActionResult SchoolReg()
+        public IActionResult SchoolReg(long id)
         {
-            return View();
+            try
+            {
+                ActorSchoolViewModel<SysAdmin> model = new()
+                {
+                    Actor = new()
+                    {
+                        Id = id
+                    },
+                    School = new()
+                    {
+                        SchoolAddress = new()
+                    }
+                };
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpPost]
@@ -51,7 +71,15 @@ namespace SchoolConnect_Web_App.Controllers
                     if (!(bool)_resultDictionary["Success"]) throw new(_resultDictionary["ErrorMessage"] as string);
                     return RedirectToAction(nameof(SysAdminLandingPage));
                 }
-                return View();
+                ActorSchoolViewModel<SysAdmin> model = new()
+                {
+                    Actor = new()
+                    {
+                        Id = newSchool.Id
+                    },
+                    School = newSchool
+                };
+                return View(newSchool);
             }
             catch (Exception ex)
             {
@@ -75,10 +103,10 @@ namespace SchoolConnect_Web_App.Controllers
 
                 var admin = _resultDictionary["Result"] as SysAdmin;
 
-                BiModelHelper model = new()
+                ActorSchoolViewModel<SysAdmin> model = new()
                 {
-                    Admin = admin!,
-                    EmisNumber = admin!.SysAdminSchoolNP!.EmisNumber
+                    Actor = admin!,
+                    School = admin!.SysAdminSchoolNP
                 };
 
                 return View(model);

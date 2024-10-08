@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SchoolConnect_ServiceLayer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f9853fcae26da8d0ced669ff6f34ae502f0fa209")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a433c7cd013052af2adf88667eb868d026f58222")]
 [assembly: System.Reflection.AssemblyProductAttribute("SchoolConnect_ServiceLayer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SchoolConnect_ServiceLayer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

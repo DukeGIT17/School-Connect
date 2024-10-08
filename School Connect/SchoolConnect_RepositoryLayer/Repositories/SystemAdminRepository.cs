@@ -28,13 +28,17 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                 var admin = _returnDictionary["Result"] as SysAdmin;
-                var school = await _context.Schools.FirstOrDefaultAsync(s => s.Id == admin!.SysAdminSchoolNP!.Id);
+                if (admin!.SysAdminSchoolNP != null)
+                { 
+                    var school = await _context.Schools.FirstOrDefaultAsync(s => s.Id == admin!.SysAdminSchoolNP!.Id);
+                }
+
                 return _returnDictionary;
             }
             catch (Exception ex)
             {
                 _returnDictionary["Success"] = false;
-                _returnDictionary["ErrorMessage"] = ex.Message;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
                 return _returnDictionary;
             }
         }

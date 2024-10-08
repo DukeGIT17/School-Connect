@@ -33,6 +33,7 @@ namespace SchoolConnect_DomainLayer.Models
 
         [Required(ErrorMessage = "Please provide postal code.")]
         [NumberLength(4, ErrorMessage = "Postal code should have exactly 4 digits.")]
+        [Display(Name = "Postal Code")]
         public int PostalCode { get; set; }
 
         [Required(ErrorMessage = "Please provide province of residence.")]

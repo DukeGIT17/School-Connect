@@ -1,4 +1,4 @@
-﻿@model BiModelHelper
+﻿@model ActorSchoolViewModel<SysAdmin>
 @{
     Layout = null;
 }
@@ -10,35 +10,44 @@
         <div class="profile-image">
             <div class="icon"><i class="fas fa-user"></i></div>
         </div>
-        <h2 class="gradienttext">@Model.Admin.Name @Model.Admin.Surname</h2>
-        <h2>@Model.Admin.Role</h2>
+        <h2 class="gradienttext">@Model.Actor.Name @Model.Actor.Surname</h2>
+        <h2>@Model.Actor.Role</h2>
     </div>
     <div class="right-container">
         <h3>Profile Details</h3>
         <table>
             <tr>
-                <td>@Html.DisplayNameFor(s => s.Admin.Name)</td>
-                <td>@Model.Admin.Name</td>
+                <td>@Html.DisplayNameFor(s => s.Actor.Name)</td>
+                <td>@Model.Actor.Name</td>
             </tr>
             <tr>
-                <td>@Html.DisplayNameFor(s => s.Admin.Surname)</td>
-                <td>@Model.Admin.Surname</td>
+                <td>@Html.DisplayNameFor(s => s.Actor.Surname)</td>
+                <td>@Model.Actor.Surname</td>
             </tr>
             <tr>
-                <td>@Html.DisplayNameFor(s => s.Admin.StaffNr)</td>
-                <td>@Model.Admin.StaffNr</td>
+                <td>@Html.DisplayNameFor(s => s.Actor.StaffNr)</td>
+                <td>@Model.Actor.StaffNr</td>
             </tr>
             <tr>
-                <td>@Html.DisplayNameFor(s => s.EmisNumber)</td>
-				<td>@Model.EmisNumber</td>
+                <td>Emis Number</td>
+                @{
+                    if (Model.School is null)
+                    {
+                        <td>Haven't registered a school</td>
+                    }
+                    else
+                    {
+                        <td>@Model.School.EmisNumber</td>
+                    }
+                }
             </tr>
             <tr>
-                <td>@Html.DisplayNameFor(s => s.Admin.PhoneNumber)</td>
-                <td>@Model.Admin.PhoneNumber</td>
+                <td>@Html.DisplayNameFor(s => s.Actor.PhoneNumber)</td>
+                <td>@Model.Actor.PhoneNumber</td>
             </tr>
             <tr>
-                <td>@Html.DisplayNameFor(s => s.Admin.EmailAddress)</td>
-                <td>@Model.Admin.EmailAddress</td>
+                <td>@Html.DisplayNameFor(s => s.Actor.EmailAddress)</td>
+                <td>@Model.Actor.EmailAddress</td>
             </tr>
         </table>
     </div>

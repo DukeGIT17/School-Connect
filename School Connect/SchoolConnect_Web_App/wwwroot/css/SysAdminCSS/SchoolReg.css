@@ -52,21 +52,21 @@ body {
     text-align: left;
 }
 
-    .form-group label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-        font-size: 17px;
-    }
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 17px;
+}
 
-    .form-group input, .form-group select {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 14px;
-        outline: none; /* Remove outline for consistent styling */
-    }
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    outline: none; /* Remove outline for consistent styling */
+}
 
 .row {
     display: flex;
@@ -78,8 +78,8 @@ body {
     display: flex; /* Use flexbox for centering */
     justify-content: center; /* Center content horizontally */
     align-items: center; /* Center content vertically */
-    height: 15px;
-    width: 20%;
+    height: 60px;
+    width: 30%;
     padding: 12px;
     font-size: 16px;
     font-weight: 800;
@@ -92,14 +92,14 @@ body {
     text-decoration: none;
 }
 
-    .button:hover {
-        background-color: #0F2E34; /* Lighter shade on hover */
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
-        transform: translateY(-2px); /* Slight lift effect */
-    }
+.button:hover {
+    background-color: #0F2E34; /* Lighter shade on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 10px; /* Reduce padding on smaller screens */
-            }
-        }
+@media (max-width: 600px) {
+    .container {
+        padding: 10px; /* Reduce padding on smaller screens */
+    }
+}

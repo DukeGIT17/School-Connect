@@ -38,6 +38,10 @@ namespace SchoolConnect_DomainLayer.Data
                 .IsUnique();
 
             modelBuilder.Entity<School>()
+                .HasIndex(school => school.EmailAddress)
+                .IsUnique();
+
+            modelBuilder.Entity<School>()
                 .HasOne(school => school.SchoolAddress)
                 .WithOne(address => address.School)
                 .HasForeignKey<Address>(address => address.SchoolID)

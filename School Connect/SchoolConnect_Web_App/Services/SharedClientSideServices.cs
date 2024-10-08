@@ -34,7 +34,7 @@ namespace SchoolConnect_Web_App.Services
                     StaffNr = (long)dict!["staffNr"],
                     EmailAddress = dict["emailAddress"].ToString()!,
                     PhoneNumber = (long)dict["phoneNumber"],
-                    SysAdminSchoolNP = new()
+                    SysAdminSchoolNP = school is not null ? new()
                     {
                         Id = (long)school!["id"],
                         EmisNumber = (long)school!["emisNumber"],
@@ -44,6 +44,7 @@ namespace SchoolConnect_Web_App.Services
                         Type = school["type"].ToString()!,
                         SystemAdminId = (long)school["systemAdminId"],
                     }
+                    : null,
                 };
 
                 _returnDictionary["Result"] = admin;

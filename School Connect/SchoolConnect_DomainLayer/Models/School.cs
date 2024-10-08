@@ -60,6 +60,11 @@ namespace SchoolConnect_DomainLayer.Models
         [DataType(DataType.PhoneNumber)]
         public long TelePhoneNumber { get; set; }
 
+        [Required(ErrorMessage = "Please provide email address.")]
+        [Display(Name = "Email Address")]
+        [EmailAddress]
+        public string EmailAddress { get; set; }
+
         #region Foreign Key Properties
         /// <summary>
         /// The foreign key referencing the system admin of this school.

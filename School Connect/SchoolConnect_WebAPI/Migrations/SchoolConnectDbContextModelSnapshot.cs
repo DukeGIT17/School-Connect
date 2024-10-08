@@ -393,6 +393,10 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Property<DateTime>("DateRegistered")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("EmailAddress")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<long>("EmisNumber")
                         .HasColumnType("INTEGER");
 
@@ -415,6 +419,9 @@ namespace SchoolConnect_WebAPI.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EmailAddress")
+                        .IsUnique();
 
                     b.HasIndex("EmisNumber")
                         .IsUnique();

@@ -42,6 +42,7 @@ namespace SchoolConnect_RepositoryLayer.CommonAction
 
         public static async Task<Dictionary<string, object>> GetActorById<T>(long actorId, T actor, SchoolConnectDbContext context) where T : BaseActor
         {
+            Dictionary<string, object> _returnDictionary = [];
             try
             {
                 SysAdmin? admin = null;
@@ -53,13 +54,13 @@ namespace SchoolConnect_RepositoryLayer.CommonAction
                 switch (actor!.GetType().Name)
                 {
                     case "SysAdmin":
-                        admin = await context.SystemAdmins.Include(s => s.SysAdminSchoolNP).FirstOrDefaultAsync(s => s.Id == actorId);
+                        admin = await context.SystemAdmins.Include(s => s.SysAdminSchoolNP).ThenInclude(a => a!.SchoolAddress).FirstOrDefaultAsync(s => s.Id == actorId);
                         break;
                     case "Principal":
-                        principal = await context.Principals.Include(p => p.PrincipalSchoolNP).FirstOrDefaultAsync(p => p.Id == actorId);
+                        principal = await context.Principals.Include(p => p.PrincipalSchoolNP).ThenInclude(a => a!.SchoolAddress).FirstOrDefaultAsync(p => p.Id == actorId);
                         break;
                     case "Teacher":
-                        teacher = await context.Teachers.Include(t => t.TeacherSchoolNP).FirstOrDefaultAsync(t => t.Id == actorId);
+                        teacher = await context.Teachers.Include(t => t.TeacherSchoolNP).ThenInclude(a => a!.SchoolAddress).FirstOrDefaultAsync(t => t.Id == actorId);
                         break;
                     case "Parent":
                         parent = await context.Parents.FirstOrDefaultAsync(p => p.Id == actorId);
@@ -71,45 +72,31 @@ namespace SchoolConnect_RepositoryLayer.CommonAction
                         throw new($"The type {actor.GetType().Name} did not match any of the valid actor types.");
                 }
 
+                _returnDictionary["Success"] = true;
                 if (admin != null)
                 {
-                    return new Dictionary<string, object>
-                    {
-                        {"Success", true },
-                        {"Result",  admin }
-                    };
+                    _returnDictionary["Result"] = admin;
+                    return _returnDictionary;
                 }
                 else if (principal != null)
                 {
-                    return new Dictionary<string, object>
-                    {
-                        {"Success", true },
-                        {"Result",  principal }
-                    };
+                    _returnDictionary["Result"] = principal;
+                    return _returnDictionary;
                 }
                 else if (teacher != null)
                 {
-                    return new Dictionary<string, object>
-                    {
-                        {"Success", true },
-                        {"Result",  teacher }
-                    };
+                    _returnDictionary["Result"] = teacher;
+                    return _returnDictionary;
                 }
                 else if (parent != null)
                 {
-                    return new Dictionary<string, object>
-                    {
-                        {"Success", true },
-                        {"Result",  parent }
-                    };
+                    _returnDictionary["Result"] = parent;
+                    return _returnDictionary;
                 }
                 else if (learner != null)
                 {
-                    return new Dictionary<string, object>
-                    {
-                        {"Success", true },
-                        {"Result",  learner }
-                    };
+                    _returnDictionary["Result"] = learner;
+                    return _returnDictionary;
                 }
                 else
                 {
@@ -119,11 +106,9 @@ namespace SchoolConnect_RepositoryLayer.CommonAction
             }
             catch (Exception ex)
             {
-                return new Dictionary<string, object>
-                {
-                    {"Success", false },
-                    {"ErrorMessage", ex.Message },
-                };
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
             }
         }
     }
