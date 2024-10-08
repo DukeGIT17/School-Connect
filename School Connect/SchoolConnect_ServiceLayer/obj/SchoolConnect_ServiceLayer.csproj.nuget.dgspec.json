@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj": {}
+    "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
+    "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj",
         "projectName": "SchoolConnect_DomainLayer",
-        "projectPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj",
-        "packagesPath": "C:\\Users\\KHAYE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\obj\\",
+        "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj",
+        "packagesPath": "C:\\Users\\Lukhanyo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\KHAYE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lukhanyo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -101,20 +101,20 @@
         }
       }
     },
-    "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj": {
+    "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj",
         "projectName": "SchoolConnect_RepositoryLayer",
-        "projectPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj",
-        "packagesPath": "C:\\Users\\KHAYE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\obj\\",
+        "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj",
+        "packagesPath": "C:\\Users\\Lukhanyo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\KHAYE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lukhanyo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -130,8 +130,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
-                "projectPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj"
+              "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
+                "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj"
               }
             }
           }
@@ -188,20 +188,20 @@
         }
       }
     },
-    "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj": {
+    "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj",
+        "projectUniqueName": "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj",
         "projectName": "SchoolConnect_ServiceLayer",
-        "projectPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj",
-        "packagesPath": "C:\\Users\\KHAYE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\obj\\",
+        "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\SchoolConnect_ServiceLayer.csproj",
+        "packagesPath": "C:\\Users\\Lukhanyo\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_ServiceLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\KHAYE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lukhanyo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -217,11 +217,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
-                "projectPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj"
+              "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
+                "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj"
               },
-              "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj": {
-                "projectPath": "C:\\Users\\KHAYE\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj"
+              "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj": {
+                "projectPath": "C:\\Users\\Lukhanyo\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj"
               }
             }
           }

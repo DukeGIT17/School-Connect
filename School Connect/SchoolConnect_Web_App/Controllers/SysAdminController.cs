@@ -8,11 +8,13 @@ namespace SchoolConnect_Web_App.Controllers
     public class SysAdminController : Controller
     {
         private readonly ISystemAdminService _systemAdminService;
+        private readonly ISchoolService _schoolService;
         private Dictionary<string, object> _resultDictionary;
 
-        public SysAdminController(ISystemAdminService systemAdminService)
+        public SysAdminController(ISystemAdminService systemAdminService, ISchoolService schoolService)
         {
             _systemAdminService = systemAdminService;
+            _schoolService = schoolService;
             _resultDictionary = [];
         }
 
@@ -31,10 +33,31 @@ namespace SchoolConnect_Web_App.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
-        
+
+        [HttpGet]
         public IActionResult SchoolReg()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult SchoolReg(School newSchool)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _resultDictionary = _schoolService.RegisterSchoolAsync(newSchool).Result;
+                    if (!(bool)_resultDictionary["Success"]) throw new(_resultDictionary["ErrorMessage"] as string);
+                    return RedirectToAction(nameof(SysAdminLandingPage));
+                }
+                return View();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index, Home");
+            }
         }
 
         public IActionResult RolesReg()
@@ -52,7 +75,7 @@ namespace SchoolConnect_Web_App.Controllers
 
                 var admin = _resultDictionary["Result"] as SysAdmin;
 
-                SystemAdminProfileModel model = new()
+                BiModelHelper model = new()
                 {
                     Admin = admin!,
                     EmisNumber = admin!.SysAdminSchoolNP!.EmisNumber

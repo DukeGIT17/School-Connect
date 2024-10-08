@@ -19,8 +19,8 @@ namespace SchoolConnect_DomainLayer.Models
 
         [Required(ErrorMessage = "Please provide phone number.")]
         [Display(Name = "Phone Number")]
-        [Phone]
-        public long? PhoneNumber { get; set; }
+        [DataType(DataType.PhoneNumber)]
+        public long PhoneNumber { get; set; }
 
         #region Navigation Properties
         public School? SysAdminSchoolNP { get; set; }

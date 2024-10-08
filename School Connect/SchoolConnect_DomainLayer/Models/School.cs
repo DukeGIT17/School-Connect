@@ -52,6 +52,14 @@ namespace SchoolConnect_DomainLayer.Models
         [Required(ErrorMessage = "School level is required.")]
         public string Type { get; set; }
 
+        /// <summary>
+        /// The contact telephone number with which people can reach this school
+        /// </summary>
+        [Required(ErrorMessage = "Please provide a telephone number.")]
+        [Display(Name = "Telephone Number")]
+        [DataType(DataType.PhoneNumber)]
+        public long TelePhoneNumber { get; set; }
+
         #region Foreign Key Properties
         /// <summary>
         /// The foreign key referencing the system admin of this school.

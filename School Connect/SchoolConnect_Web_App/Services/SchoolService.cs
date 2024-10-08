@@ -54,7 +54,7 @@ namespace SchoolConnect_Web_App.Services
             }
         }
 
-        public async Task<Dictionary<string, object>> RegisterSchool(School school)
+        public async Task<Dictionary<string, object>> RegisterSchoolAsync(School school)
         {
             _returnDictionary = [];
             try
