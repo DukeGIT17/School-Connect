@@ -50,13 +50,12 @@ namespace SchoolConnect_Web_App.Controllers
                 _resultDictionary = _systemAdminService.GetAdminById(id);
                 if (!(bool)_resultDictionary["Success"]) throw new(_resultDictionary["ErrorMessage"] as string);
 
-                var admin = _resultDictionary["Admin"] as SysAdmin;
-                var school = _resultDictionary["School"] as School;
+                var admin = _resultDictionary["Result"] as SysAdmin;
 
                 SystemAdminProfileModel model = new()
                 {
                     Admin = admin!,
-                    EmisNumber = school!.EmisNumber
+                    EmisNumber = admin!.SysAdminSchoolNP!.EmisNumber
                 };
 
                 return View(model);

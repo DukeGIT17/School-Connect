@@ -29,8 +29,8 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(systemAdminId);
 
                 var response = _client.GetAsync(buildString.ToString()).Result;
-                _returnDictionary = SharedClientSideServices.CheckSuccessStatus(response);
-                return _returnDictionary;
+				_returnDictionary = SharedClientSideServices.CheckSuccessStatus(response);
+				return _returnDictionary;
             }
             catch (Exception ex)
             {

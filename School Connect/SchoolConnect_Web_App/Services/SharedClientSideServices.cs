@@ -1,7 +1,5 @@
-﻿using Azure;
-using SchoolConnect_DomainLayer.Models;
+﻿using SchoolConnect_DomainLayer.Models;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace SchoolConnect_Web_App.Services
 {
@@ -20,9 +18,35 @@ namespace SchoolConnect_Web_App.Services
 
                 var result = response.Content.ReadFromJsonAsync<Dictionary<string, object>>().Result!;
                 _returnDictionary = ConvertJsonElements(result);
+
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
-                SysAdmin admin = _returnDictionary["Result"] as SysAdmin;
-                string st = "";
+                var dict = _returnDictionary["Result"] as Dictionary<string, object>;
+                var school = dict!["sysAdminSchoolNP"] as Dictionary<string, object>;
+
+                SysAdmin admin = new()
+                {
+                    Id = (long)dict!["id"],
+                    ProfileImage = dict["profileImage"].ToString(),
+                    Name = dict["name"].ToString()!,
+                    Surname = dict["surname"].ToString()!,
+                    Gender = dict["gender"].ToString()!,
+                    Role = dict["role"].ToString()!,
+                    StaffNr = (long)dict!["staffNr"],
+                    EmailAddress = dict["emailAddress"].ToString()!,
+                    PhoneNumber = (long)dict["phoneNumber"],
+                    SysAdminSchoolNP = new()
+                    {
+                        Id = (long)school!["id"],
+                        EmisNumber = (long)school!["emisNumber"],
+                        Logo = school["logo"].ToString(),
+                        Name = school["name"].ToString()!,
+                        DateRegistered = Convert.ToDateTime(school["dateRegistered"]),
+                        Type = school["type"].ToString()!,
+                        SystemAdminId = (long)school["systemAdminId"],
+                    }
+                };
+
+                _returnDictionary["Result"] = admin;
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -34,22 +58,13 @@ namespace SchoolConnect_Web_App.Services
         }
         public static object ConvertJsonElement(JsonElement element)
         {
+            SysAdmin admin = new SysAdmin();
             switch (element.ValueKind)
             {
                 case JsonValueKind.Object:
-					var dict = new Dictionary<string, object>();
-					SysAdmin? admin = element.Deserialize<SysAdmin>();
-                    
-                    if (admin == null)
-                    {
-                        foreach (var property in element.EnumerateObject())
-                            dict[property.Name] = ConvertJsonElement(property.Value);
-                        return dict;
-                    }
-                    else
-                    {
-                        dict["Result"] = admin;
-                    }
+                    var dict = new Dictionary<string, object>();
+                    foreach (var property in element.EnumerateObject())
+                        dict[property.Name] = ConvertJsonElement(property.Value);
                     return dict;
 
                 case JsonValueKind.Array:

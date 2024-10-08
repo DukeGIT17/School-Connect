@@ -29,8 +29,6 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 var admin = _returnDictionary["Result"] as SysAdmin;
                 var school = await _context.Schools.FirstOrDefaultAsync(s => s.Id == admin!.SysAdminSchoolNP!.Id);
-
-                _returnDictionary["School"] = school!;
                 return _returnDictionary;
             }
             catch (Exception ex)
