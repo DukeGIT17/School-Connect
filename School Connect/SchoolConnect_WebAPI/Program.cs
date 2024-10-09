@@ -124,6 +124,28 @@ using (var scope = app.Services.CreateScope())
             StaffNr = 12365,
             EmailAddress = "Takatso@gmail.com",
             PhoneNumber = 789516542
+        },
+        new()
+        {
+            ProfileImage = "Default Pic",
+            Name = "James",
+            Surname = "Edinburgh",
+            Gender = "Male",
+            Role = "System Admin",
+            StaffNr = 15964,
+            EmailAddress = "James@gmail.com",
+            PhoneNumber = 785263659
+        },
+        new()
+        {
+            ProfileImage = "Default Pic",
+            Name = "Connie",
+            Surname = "FellWay",
+            Gender = "Female",
+            Role = "System Admin",
+            StaffNr = 85236,
+            EmailAddress = "Connie@gmail.com",
+            PhoneNumber = 726548965
         }
     };
     var admins = await context.SystemAdmins.ToListAsync();

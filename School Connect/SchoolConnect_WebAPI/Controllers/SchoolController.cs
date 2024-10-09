@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolConnect_DomainLayer.Models;
+using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
 
 namespace SchoolConnect_WebAPI.Controllers
@@ -9,25 +10,37 @@ namespace SchoolConnect_WebAPI.Controllers
     public class SchoolController : ControllerBase
     {
         private readonly ISchoolService _school;
-        private Dictionary<string, object> _resultDictionary;
+        private Dictionary<string, object> _returnDictionary;
 
         public SchoolController(ISchoolService school)
         {
             _school = school;
-            _resultDictionary = [];
+            _returnDictionary = [];
         }
 
-        [HttpGet(nameof(Schools))]
-        public async Task<IActionResult> Schools() 
+        [HttpGet(nameof(GetSchoolById))]
+        public IActionResult GetSchoolById(long schoolId)
         {
             try
             {
-                _resultDictionary = await _school.GetSchoolsAsync();
+                _returnDictionary = _school.GetSchoolByIdAsync(schoolId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
-                if (!(bool)_resultDictionary["Success"])
-                    return BadRequest(_resultDictionary["ErrorMessage"]);
-
-                return Ok(_resultDictionary["Result"]);
+        [HttpGet(nameof(Schools))]
+        public IActionResult Schools() 
+        {
+            try
+            {
+                _returnDictionary = _school.GetSchoolsAsync().Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {
@@ -36,18 +49,31 @@ namespace SchoolConnect_WebAPI.Controllers
         }
 
         [HttpPost(nameof(RegisterSchool))]
-        public async Task<IActionResult> RegisterSchool(School school)
+        public IActionResult RegisterSchool(School school)
         {
             try
             {
                 school.DateRegistered = DateTime.Now;
                 school.SchoolAddress.SchoolID = (long)school.SystemAdminId!;
-                _resultDictionary = await _school.RegisterSchoolAsync(school);
+                _returnDictionary = _school.RegisterSchoolAsync(school).Result;
 
-                if (!(bool)_resultDictionary["Success"])
-                    return BadRequest(_resultDictionary["ErrorMessage"]);
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
-                return Ok(_resultDictionary["Success"]);
+        [HttpGet(nameof(GetSchoolByAdminId))]
+        public IActionResult GetSchoolByAdminId(long adminId)
+        {
+            try
+            {
+                _returnDictionary = _school.GetSchoolByAdminAsync(adminId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {

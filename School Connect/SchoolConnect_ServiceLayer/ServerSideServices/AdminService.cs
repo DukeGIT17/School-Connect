@@ -39,7 +39,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
                 if (staffNr.ToString().Length < 5 || staffNr.ToString().Length >= 8)
                     throw new Exception($"Invalid Staff Number. Staff should be between 5 and 8 digits in length.");
 
-                _returnDictionary = await _sysAdminRepo.GetAdminByStaffNr(staffNr);
+                _returnDictionary = await _sysAdminRepo.GetAdminByStaffNrAsync(staffNr);
                 return _returnDictionary;
             }
             catch (Exception ex)

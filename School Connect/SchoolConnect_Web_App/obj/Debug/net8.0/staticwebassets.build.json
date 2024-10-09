@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZQg55RE+0NutBqCYhHS8M71Ja/wHdcOEx43ppNoQ9+k=",
+  "Hash": "GL/C0ggTjD2/D5eQOsXoWnBkq0oHc3olSd7tSkbv670=",
   "Source": "SchoolConnect_Web_App",
   "BasePath": "_content/SchoolConnect_Web_App",
   "Mode": "Default",
@@ -41637,6 +41637,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\SysAdminJS\\RolesReg.js",
+      "SourceId": "SchoolConnect_Web_App",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\",
+      "BasePath": "_content/SchoolConnect_Web_App",
+      "RelativePath": "js/SysAdminJS/RolesReg.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\SysAdminJS\\RolesReg.js"
     },
     {
       "Identity": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

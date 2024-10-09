@@ -9,11 +9,13 @@ namespace SchoolConnect_RepositoryLayer.Repositories
     public class SchoolRepository : ISchool
     {
         private readonly SchoolConnectDbContext _context;
+        private readonly ISysAdmin _sysAdminRepo;
         private Dictionary<string, object> _returnDictionary;
 
-        public SchoolRepository(SchoolConnectDbContext context)
+        public SchoolRepository(SchoolConnectDbContext context, ISysAdmin sysAdminRepo)
         {
             _context = context;
+            _sysAdminRepo = sysAdminRepo;
             _returnDictionary = [];
         }
 
@@ -21,9 +23,6 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                // TODO: Don't forget to ensure that SchoolID Foreign Key property in the school.Address property is the same as the admin registering
-                // the school.
-
                 var schools = await _context.Schools.ToListAsync();
                 var school = schools.FirstOrDefault(x => x.SystemAdminId == newSchool.SystemAdminId);
                 if (school != null)
@@ -144,9 +143,29 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public Task<Dictionary<string, object>> GetSchoolByAdmin(long staffNr, long Id = -1)
+        public async Task<Dictionary<string, object>> GetSchoolByAdminAsync(long id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _returnDictionary = await _sysAdminRepo.GetAdminByIdAsync(id);
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                var admin = _returnDictionary["Result"] as SysAdmin;
+                var school = await _context.Schools.FirstOrDefaultAsync(s => s.SystemAdminId == id);
+                if (school is null)
+                    throw new("Could not find a school linked to this admin's ID. Has this admin registered a school yet?");
+
+                _returnDictionary.Clear();
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = school;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
         }
 
         public Task<Dictionary<string, object>> GetSchoolByChild(long childId)
@@ -154,9 +173,23 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, object>> GetSchoolById(long schoolId)
+        public async Task<Dictionary<string, object>> GetSchoolByIdAsync(long schoolId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var school = await _context.Schools.Include(s => s.SchoolAddress).FirstOrDefaultAsync(s => s.Id == schoolId);
+                if (school is null) throw new($"Could not find a school with the ID: {schoolId}");
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = school;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
         }
 
         public Task<Dictionary<string, object>> GetSchoolByName(string schoolName)

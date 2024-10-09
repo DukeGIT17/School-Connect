@@ -16,14 +16,32 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, object>> GetSchoolByEmisNumber(long emisNumber)
+        public async Task<Dictionary<string, object>> GetSchoolByAdminAsync(long adminId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _schoolRepo.GetSchoolByAdminAsync(adminId);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
         }
 
-        public Task<Dictionary<string, object>> GetSchoolById(long id)
+        public async Task<Dictionary<string, object>> GetSchoolByIdAsync(long id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _schoolRepo.GetSchoolByIdAsync(id);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
         }
 
         public async Task<Dictionary<string, object>> GetSchoolsAsync()

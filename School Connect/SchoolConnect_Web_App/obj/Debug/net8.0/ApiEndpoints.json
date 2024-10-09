@@ -129,6 +129,38 @@
   },
   {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.SchoolController",
+    "Method": "GetSchoolByAdminId",
+    "RelativePath": "api/School/GetSchoolByAdminId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "adminId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.SchoolController",
+    "Method": "GetSchoolById",
+    "RelativePath": "api/School/GetSchoolById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "schoolId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.SchoolController",
     "Method": "RegisterSchool",
     "RelativePath": "api/School/RegisterSchool",
     "HttpMethod": "POST",

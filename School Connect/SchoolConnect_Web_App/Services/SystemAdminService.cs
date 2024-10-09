@@ -29,7 +29,7 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(systemAdminId);
 
                 var response = _client.GetAsync(buildString.ToString()).Result;
-				_returnDictionary = SharedClientSideServices.CheckSuccessStatus(response);
+				_returnDictionary = SharedClientSideServices.CheckSuccessStatus(response, nameof(GetAdminById));
 				return _returnDictionary;
             }
             catch (Exception ex)
@@ -51,7 +51,7 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(staffNr + "/");
 
                 var response = _client.GetAsync(buildString.ToString()).Result;
-                return SharedClientSideServices.CheckSuccessStatus(response);
+                return SharedClientSideServices.CheckSuccessStatus(response, nameof(GetAdminByStaffNr));
             }
             catch (Exception ex)
             {

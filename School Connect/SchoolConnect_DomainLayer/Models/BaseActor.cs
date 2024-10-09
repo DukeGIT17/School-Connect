@@ -22,6 +22,10 @@ namespace SchoolConnect_DomainLayer.Models
         [DataType(DataType.Upload)]
         public string? ProfileImage { get; set; }
 
+        [Required(ErrorMessage = "Please specify the title.")]
+        [AllowedValues("Miss", "Ms", "Mrs", "Mr")]
+        public string Title { get; set; }
+
         /// <summary>
         /// The name of this actor.
         /// </summary>

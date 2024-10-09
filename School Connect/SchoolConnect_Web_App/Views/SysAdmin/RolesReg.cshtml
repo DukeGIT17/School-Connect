@@ -1,4 +1,4 @@
-﻿
+﻿@model ActorRegistrationViewModel
 @{
     Layout = null;
 }
@@ -6,119 +6,299 @@
 <link rel="stylesheet" href="~/css/SysAdminCSS/RolesReg.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-
-
+@{
+    Principal? principal = null;
+    Teacher? teacher = null;
+    Parent? parent = null;
+    Learner? learner = null;
+}
 
 <div class="container">
+    <div id="role_identifier">
+        <button id="principal">
+            <p>Principal</p>
+        </button>
+        <button id="teacher">
+            <p>Teacher</p>
+        </button>
+        <button id="parent">
+            <p>Parent</p>
+        </button>
+        <button id="learner">
+            <p>Learner</p>
+        </button>
+    </div>
+
     <div class="icon"><i class="fas fa-user"></i></div>
     <br />
-    <br />  
+    <br />
+    
+    <div id="principal-div">
+        <form asp-action="RolesReg" method="post">
+            <div class="input-group">
+                <label asp-for="Principal.Title"></label>
+                <select asp-for="Principal.Title" id="title">
+                    <option value="Mr" selected>Mr</option>
+                    <option value="Mrs">Mrs</option>
+                    <option value="Ms">Ms</option>
+                    <option value="Miss">Miss</option>
+                </select>
+            </div>
 
-    <div class="input-group">
-        <label for="title">Title:</label>
-        <select id="title">
-            <option value="Mr">Mr</option>
-            <option value="Mrs">Mrs</option>
-            <option value="Ms">Ms</option>
-            <option value="Miss">Miss</option>
-        </select>
+            <div class="input-group">
+                <label asp-for="Principal.Name"></label>
+                <input asp-for="Principal.Name" id="firstName" placeholder="Enter First Name">
+                <span asp-validation-for="Principal.Name"></span>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Principal.Surname"></label>
+                <input asp-for="Principal.Surname" id="lastName" placeholder="Enter Last Name">
+                <span asp-validation-for="Principal.Surname"></span>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Principal.StaffNr"></label>
+                <input asp-for="Principal.StaffNr" id="idNum" placeholder="Identity Number">
+                <span asp-validation-for="Principal.StaffNr"></span>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Principal.Gender"></label>
+                <select asp-for="Principal.Gender" id="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Principal.EmailAddress"></label>
+                <input asp-for="Principal.EmailAddress" id="email" placeholder="Email Address">
+                <span asp-validation-for="Principal.EmailAddress"></span>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Principal.PhoneNumber"></label>
+                <input asp-for="Principal.PhoneNumber" id="cellNumber" placeholder="Phone Number">
+                <span asp-validation-for="Principal.PhoneNumber"></span>
+            </div>
+
+            <input asp-for="Principal.SchoolID" type="hidden" value="@Model.SchoolID" />
+            <input asp-for="Principal.Role" type="hidden" value="Principal" />
+
+            <a asp-controller="SysAdmin" asp-action="SysAdminLandingPage" class="button">REGISTER</a>
+        </form>
+    </div>
+    
+    <div id="teacher-div" style="display:none">
+        <form asp-action="RolesReg" method="post">
+            <div class="input-group">
+                <label asp-for="Teacher.Title"></label>
+                <select asp-for="Teacher.Title" id="title">
+                    <option value="Mr" selected>Mr</option>
+                    <option value="Mrs">Mrs</option>
+                    <option value="Ms">Ms</option>
+                    <option value="Miss">Miss</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Teacher.Name"></label>
+                <input asp-for="Teacher.Name" id="firstName" placeholder="Enter First Name">
+                <span asp-validation-for="Teacher.Name"></span>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Teacher.Surname"></label>
+                <input asp-for="Teacher.Surname" id="lastName" placeholder="Enter Last Name">
+                <span asp-validation-for="Teacher.Surname"></span>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Teacher.StaffNr"></label>
+                <input asp-for="Teacher.StaffNr" id="idNum" placeholder="Identity Number">
+                <span asp-validation-for="Teacher.StaffNr"></span>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Teacher.Gender"></label>
+                <select asp-for="Teacher.Gender" id="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Teacher.EmailAddress"></label>
+                <input asp-for="Teacher.EmailAddress" id="email" placeholder="Email Address">
+                <span asp-validation-for="Teacher.EmailAddress"></span>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Teacher.PhoneNumber"></label>
+                <input asp-for="Teacher.PhoneNumber" id="cellNumber" placeholder="Phone Number">
+                <span asp-validation-for="Teacher.PhoneNumber"></span>
+            </div>
+
+            <div id="subjectSelect" class="subject-select input-group">
+                <label asp-for="Teacher.Subjects">Select Subjects</label>
+                <input id="subjects-field" asp-for="Teacher.Subjects" readonly />
+                <select asp-for="Teacher.Subjects" id="subjects" multiple>
+                    <option class="subject-option" value="English">English</option>
+                    <option class="subject-option" value="Mathematics">Mathematics</option>
+                    <option class="subject-option" value="Social Sciences">Social Sciences</option>
+                    <option class="subject-option" value="Economics">Economics</option>
+                    <option class="subject-option" value="Afrikaans">Afrikaans</option>
+                    <option class="subject-option" value="Life Orientation">Life Orientation</option>
+                    <option class="subject-option" value="Life Skills">Life Skills</option>
+                </select>
+            </div>
+
+            <input asp-for="Teacher.SchoolID" type="hidden" value="@Model.SchoolID" />
+            <input asp-for="Teacher.Role" type="hidden" value="Teacher" />
+
+            <input asp-for="Principal" type="hidden" value="@principal" />
+            <input asp-for="Parent" type="hidden" value="@parent" />
+            <input asp-for="Learner" type="hidden" value="@learner" />
+
+            <button type="submit" class="button">REGISTER</button>
+        </form>
     </div>
 
-    <div class="input-group">
-        <label for="firstName">First Name:</label>
-        <input type="text" id="firstName" placeholder="Enter First Name" >
+    <div id="parent-div" style="display:none">
+        <form asp-action="RolesReg" method="post">
+            <div class="input-group">
+                <label asp-for="Parent.Title"></label>
+                <select asp-for="Parent.Title" id="title">
+                    <option value="Mr" selected>Mr</option>
+                    <option value="Mrs">Mrs</option>
+                    <option value="Ms">Ms</option>
+                    <option value="Miss">Miss</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Parent.Name"></label>
+                <input asp-for="Parent.Name" id="firstName" placeholder="Enter First Name">
+                <span asp-validation-for="Parent.Name"></span>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Parent.Surname"></label>
+                <input asp-for="Parent.Surname" id="lastName" placeholder="Enter Last Name">
+                <span asp-validation-for="Parent.Surname"></span>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Parent.IdNo"></label>
+                <input asp-for="Parent.IdNo" id="idNum" placeholder="Identity Number">
+                <span asp-validation-for="Parent.IdNo"></span>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Parent.Gender"></label>
+                <select asp-for="Parent.Gender" id="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Parent.ParentType"></label>
+                <select asp-for="Parent.ParentType" >
+                    <option value="Mother">Mother</option>
+                    <option value="Father">Father</option>
+                    <option value="Guardian">Guardian</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Parent.EmailAddress"></label>
+                <input asp-for="Parent.EmailAddress" id="email" placeholder="Email Address">
+                <span asp-validation-for="Parent.EmailAddress"></span>
+            </div>
+
+            <div class="input-group">
+                <label asp-for="Parent.PhoneNumber"></label>
+                <input asp-for="Parent.PhoneNumber" id="cellNumber" placeholder="Phone Number">
+                <span asp-validation-for="Parent.PhoneNumber"></span>
+            </div>
+
+            @foreach (var child in Model.Parent.Children)
+            {
+                <div class="input-group">
+                    <label asp-for="@child.LearnerIdNo"></label>
+                    <input asp-for="@child.LearnerIdNo" placeholder="Learner Identity Number" />
+                    <span asp-validation-for="@child.LearnerIdNo"></span>
+                </div>
+            }
+
+            <a asp-controller="SysAdmin" asp-action="SysAdminLandingPage" class="button">REGISTER</a>
+        </form>
     </div>
 
-    <div class="input-group">
-        <label for="lastName">Last Name:</label>
-        <input type="text" id="lastName" placeholder="Enter Last Name">
-    </div>
+    <div id="learner-div" style="display:none">
+        <form asp-action="RolesReg" method="post">
+            <div class="input-group">
+                <label asp-for="Learner.Title"></label>
+                <select asp-for="Learner.Title" id="title">
+                    <option value="Mr" selected>Mr</option>
+                    <option value="Mrs">Mrs</option>
+                    <option value="Ms">Ms</option>
+                    <option value="Miss">Miss</option>
+                </select>
+            </div>
 
-    <div class="input-group">
-        <label for="idNum">Identity Number:</label>
-        <input type="text" id="idNum" placeholder="Identity Number">
-    </div>
+            <div class="input-group">
+                <label asp-for="Learner.Name"></label>
+                <input asp-for="Learner.Name" id="firstName" placeholder="Enter First Name">
+                <span asp-validation-for="Learner.Name"></span>
+            </div>
 
-    <div class="input-group">
-        <label for="dob">Date of Birth:</label>
-        <input type="date" id="dob" placeholder="Date of Birth" required>
-    </div>
+            <div class="input-group">
+                <label asp-for="Learner.Surname"></label>
+                <input asp-for="Learner.Surname" id="lastName" placeholder="Enter Last Name">
+                <span asp-validation-for="Learner.Surname"></span>
+            </div>
 
-    <div class="input-group">
-        <label for="gender">Gender:</label>
-        <select id="gender">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-        </select>
-    </div>
+            <div class="input-group">
+                <label asp-for="Learner.IdNo"></label>
+                <input asp-for="Learner.IdNo" id="idNum" placeholder="Identity Number">
+                <span asp-validation-for="Learner.IdNo"></span>
+            </div>
 
-    <div class="input-group">
-        <label for="cellNumber">Cell Number:</label>
-        <input type="text" id="cellNumber" name="cellNumber" placeholder="Cell Number" required>
-    </div>
+            <div class="input-group">
+                <label asp-for="Learner.Gender"></label>
+                <select asp-for="Learner.Gender" id="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
 
-    <div class="input-group">
-        <label for="telephoneNumber">Telephone Number:</label>
-        <input type="text" id="telephoneNumber" name="telephoneNumber" placeholder="Telephone Number" required>
-    </div>
+            <div class="input-group">
+                <label asp-for="Learner.ClassCode"></label>
+                <input asp-for="Learner.ClassCode" placeholder="Class Code (e.g., 8A)" />
+                <span asp-validation-for="Learner.ClassCode"></span>
+            </div>
 
-    <div class="input-group">
-        <label for="emailAddress">Email Address:</label>
-        <input type="email" id="email" placeholder="Email Address">
-    </div>
+            <div id="subjectSelect" class="subject-select input-group">
+                <label asp-for="Learner.Subjects">Select Subjects</label><br />
+                <select asp-for="Learner.Subjects" id="subjects" multiple>
+                    <option value="English">English</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Social Sciences">Social Sciences</option>
+                    <option value="Economics">Economics</option>
+                    <option value="Afrikaans">Afrikaans</option>
+                    <option value="Life Orientation">Life Orientation</option>
+                    <option value="Life Skills">Life Skills</option>
+                </select>
+            </div>
 
-    <div class="input-group">
-        <label for="password">Default Password:</label>
-        <input type="password" id="password" placeholder="Default Password">
-    </div>
+            <input asp-for="Learner.SchoolID" type="hidden" value="@Model.SchoolID" />
 
-    <div class="input-group">
-        <label for="emisNumber">School EMIS Number:</label>
-        <input type="text" id="emisNumber" placeholder="School EMIS Number">
+            <a asp-controller="SysAdmin" asp-action="SysAdminLandingPage" class="button">REGISTER</a>
+        </form>
     </div>
-
-    <div class="input-group">
-        <label for="role">Role</label>
-        <select id="role" onchange="toggleSubjects(this.value)">
-            <option value="Teacher">Teacher</option>
-            <option value="Parent">Parent</option>
-            <option value="Principal">Principal</option>
-            <option value="Guardian">Guardian</option>
-        </select>
-    </div>
-
-    <div id="subjectSelect" class="subject-select" style="display: none;">
-        <label for="subjects">Select Subjects</label>
-        <select id="subjects" multiple>
-            <option value="English">English</option>
-            <option value="Mathematics">Mathematics</option>
-            <option value="Social Sciences">Social Sciences</option>
-            <option value="Economics">Economics</option>
-            <option value="Afrikaans">Afrikaans</option>
-            <option value="Life Orientation">Life Orientation</option>
-            <option value="Life Skills">Life Skills</option>
-        </select>
-    </div>
-
-    <a asp-controller="SysAdmin" asp-action="SysAdminLandingPage" class="button">REGISTER</a>
 </div>
 
-    @section Scripts {
-        <script>
-            function toggleSubjects(role) {
-                const subjectSelect = document.getElementById('subjectSelect');
-
-                subjectSelect.style.display = role === 'Teacher' ? 'block' : 'none';
-                if (role === 'Teacher') {
-                    subjectSelect.style.display = 'block';
-                } else {
-                    subjectSelect.style.display = 'none';
-                }
-            }
-            function submitForm() {
-                alert('Form submitted!');
-            }
-    
-        </script>
-    }
-
+<script src="~/js/SysAdminJS/RolesReg.js"></script>

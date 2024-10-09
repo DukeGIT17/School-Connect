@@ -8753,6 +8753,10 @@
       "PackagePath": "staticwebassets\\images\\newlogo.jpeg"
     },
     {
+      "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\SysAdminJS\\RolesReg.js",
+      "PackagePath": "staticwebassets\\js\\SysAdminJS\\RolesReg.js"
+    },
+    {
       "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

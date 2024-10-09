@@ -12,8 +12,9 @@
         <i class="fa-solid fa-school"></i>
     </div>
     <br />
-
+    
     <form asp-action="SchoolReg" method="post">
+        <input asp-for="School.Logo" type="hidden" value="Default Pic" />
         <div class="form-group">
             <label asp-for="School.Name"></label>
             <input asp-for="School.Name" id="schoolName" placeholder="@Html.DisplayNameFor(s => s.School.Name)">
@@ -47,7 +48,25 @@
             <span asp-validation-for="School.EmailAddress"></span>
         </div>
 
-        <input asp-for="School.SystemAdminId" type="hidden" value="@Model.School.SystemAdminId" />
+        @{
+            if (Model.Actor is not null)
+            {
+                <input asp-for="School.SystemAdminId" type="hidden" value="@Model.Actor.Id" />
+            }
+            else if (Model.School.SystemAdminId is not null)
+            {
+                <input asp-for="School.SystemAdminId" type="hidden" value="@Model.School.SystemAdminId" />
+            }
+            else
+            {
+                <p>We've failed to acquire your admin id. Please fill it in below or restart the registration process</p>
+                <div class="form-group">
+                    <label asp-for="School.SystemAdminId"></label>
+                    <input asp-for="School.SystemAdminId" />
+                    <span asp-validation-for="School.SystemAdminId"></span>
+                </div>
+            }
+        }
 
         <!--Physical Address-->
         <div class="form-group">
@@ -77,7 +96,7 @@
             <br>
             <div>
                 <input asp-for="School.SchoolAddress.PostalCode" id="postal-code" placeholder="@Html.DisplayNameFor(s => s.School.SchoolAddress.PostalCode)">
-                <span asp-validation-for="School.SchoolAddress.Street"></span>
+                <span asp-validation-for="School.SchoolAddress.PostalCode"></span>
             </div>
         </div>
 

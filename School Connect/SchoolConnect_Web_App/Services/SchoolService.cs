@@ -9,41 +9,26 @@ namespace SchoolConnect_Web_App.Services
     {
         private readonly HttpClient _httpClient;
         private const string SchoolBasePath = "/api/School/";
-        private Dictionary<string, object>? _returnDictionary;
+        private Dictionary<string, object> _returnDictionary;
 
         public SchoolService(HttpClient httpClient)
         {
             _httpClient = httpClient;
+            _returnDictionary = [];
         }
 
         public async Task<Dictionary<string, object>> GetSchools()
         {
-            _returnDictionary = [];
             try
             {
                 StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
                 buildString.Append(SchoolBasePath);
                 buildString.Append("Schools/");
 
                 var response = await _httpClient.GetAsync(buildString.ToString());
 
-                if (!response.IsSuccessStatusCode)
-                {
-                    _returnDictionary.Add("Success", false);
-                    _returnDictionary.Add("ErrorMessage", response.ReasonPhrase ?? "Operation failed; reason not provided.");
-                    return _returnDictionary;
-                }
-
-                var schools = await response.Content.ReadFromJsonAsync<IEnumerable<School>>();
-                if (schools == null)
-                {
-                    _returnDictionary.Add("Success", false);
-                    _returnDictionary.Add("ErrorMessage", "Failed to acquire Schools from API.");
-                    return _returnDictionary;
-                }
-
-                _returnDictionary.Add("Success", true);
-                _returnDictionary.Add("Result", schools);
+                _returnDictionary = SharedClientSideServices.CheckSuccessStatus(response, nameof(GetSchools));
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -56,7 +41,6 @@ namespace SchoolConnect_Web_App.Services
 
         public async Task<Dictionary<string, object>> RegisterSchoolAsync(School school)
         {
-            _returnDictionary = [];
             try
             {
                 StringBuilder buildString = new();
@@ -73,22 +57,57 @@ namespace SchoolConnect_Web_App.Services
                 };
 
                 var response = await _httpClient.SendAsync(request);
+                
 
-                if (!response.IsSuccessStatusCode)
-                {
-                    _returnDictionary.Add("Success", false);
-                    _returnDictionary.Add("ErrorMessage", response.ReasonPhrase ?? "Operation failed; reason not provided.");
-                    return _returnDictionary;
-                }
-
-                _returnDictionary.Add("Success", true);
-                _returnDictionary.Add("Result", response);
+                _returnDictionary = SharedClientSideServices.CheckSuccessStatus(response, "NoNeed");
                 return _returnDictionary;
             }
             catch (Exception ex)
             {
-                _returnDictionary.Add("Success", false);
-                _returnDictionary.Add("ErrorMessage", ex.Message);
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetSchoolByAdminAsync(long adminId)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(SchoolBasePath);
+                buildString.Append("GetSchoolByAdminId?adminId=");
+                buildString.Append(adminId);
+
+                var response = await _httpClient.GetAsync(buildString.ToString());
+                return SharedClientSideServices.CheckSuccessStatus(response, nameof(GetSchoolByAdminAsync));
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetSchoolByIdAsync(long schoolId)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(SchoolBasePath);
+                buildString.Append("GetSchoolById?schoolId=");
+                buildString.Append(schoolId);
+
+                var response = await _httpClient.GetAsync(buildString.ToString());
+                return SharedClientSideServices.CheckSuccessStatus(response, nameof(GetSchoolByIdAsync));
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
                 return _returnDictionary;
             }
         }

@@ -6,5 +6,7 @@ namespace SchoolConnect_Web_App.IServices
     {
         Task<Dictionary<string, object>> RegisterSchoolAsync(School school);
         Task<Dictionary<string, object>> GetSchools();
+        Task<Dictionary<string, object>> GetSchoolByAdminAsync(long adminId);
+        Task<Dictionary<string, object>> GetSchoolByIdAsync(long schoolId);
     }
 }

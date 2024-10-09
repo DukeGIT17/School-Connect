@@ -39,7 +39,7 @@ namespace SchoolConnect_WebAPI.Controllers
             {
                 _returnDictionary = await _systemAdminService.GetAdminByStaffNr(staffNr);
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
-                return Ok(_returnDictionary["Result"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace SchoolConnect_WebAPI.Controllers
                         ?? "Something could went wrong, could not acquire error messages.");
                     return BadRequest(error);
                 }
-                return Ok();
+                return Ok(_returnDictionary["Success"]);
             }
             catch (Exception ex)
             {

@@ -5,7 +5,7 @@ namespace SchoolConnect_Web_App.Services
 {
     public static class SharedClientSideServices
     {
-        public static Dictionary<string, object> CheckSuccessStatus(HttpResponseMessage response)
+        public static Dictionary<string, object> CheckSuccessStatus(HttpResponseMessage response, string sourceMethod)
         {
             Dictionary<string, object> _returnDictionary = [];
             try
@@ -20,34 +20,77 @@ namespace SchoolConnect_Web_App.Services
                 _returnDictionary = ConvertJsonElements(result);
 
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
-                var dict = _returnDictionary["Result"] as Dictionary<string, object>;
-                var school = dict!["sysAdminSchoolNP"] as Dictionary<string, object>;
 
-                SysAdmin admin = new()
+                if (sourceMethod != "NoNeed")
                 {
-                    Id = (long)dict!["id"],
-                    ProfileImage = dict["profileImage"].ToString(),
-                    Name = dict["name"].ToString()!,
-                    Surname = dict["surname"].ToString()!,
-                    Gender = dict["gender"].ToString()!,
-                    Role = dict["role"].ToString()!,
-                    StaffNr = (long)dict!["staffNr"],
-                    EmailAddress = dict["emailAddress"].ToString()!,
-                    PhoneNumber = (long)dict["phoneNumber"],
-                    SysAdminSchoolNP = school is not null ? new()
-                    {
-                        Id = (long)school!["id"],
-                        EmisNumber = (long)school!["emisNumber"],
-                        Logo = school["logo"].ToString(),
-                        Name = school["name"].ToString()!,
-                        DateRegistered = Convert.ToDateTime(school["dateRegistered"]),
-                        Type = school["type"].ToString()!,
-                        SystemAdminId = (long)school["systemAdminId"],
-                    }
-                    : null,
-                };
+                    var dict = _returnDictionary["Result"] as Dictionary<string, object>;
 
-                _returnDictionary["Result"] = admin;
+                    switch (sourceMethod)
+                    {
+                        case nameof(SystemAdminService.GetAdminById):
+                        case nameof(SystemAdminService.GetAdminByStaffNr):
+                        
+                            var schoolDict = dict!["sysAdminSchoolNP"] as Dictionary<string, object>;
+
+                            SysAdmin admin = new()
+                            {
+                                Id = (long)dict!["id"],
+                                ProfileImage = dict["profileImage"].ToString(),
+                                Name = dict["name"].ToString()!,
+                                Surname = dict["surname"].ToString()!,
+                                Gender = dict["gender"].ToString()!,
+                                Role = dict["role"].ToString()!,
+                                StaffNr = (long)dict!["staffNr"],
+                                EmailAddress = dict["emailAddress"].ToString()!,
+                                PhoneNumber = (long)dict["phoneNumber"],
+                                SysAdminSchoolNP = schoolDict is not null ? new()
+                                {
+                                    Id = (long)schoolDict!["id"],
+                                    EmisNumber = (long)schoolDict!["emisNumber"],
+                                    Logo = schoolDict["logo"].ToString(),
+                                    Name = schoolDict["name"].ToString()!,
+                                    DateRegistered = Convert.ToDateTime(schoolDict["dateRegistered"]),
+                                    Type = schoolDict["type"].ToString()!,
+                                    SystemAdminId = (long)schoolDict["systemAdminId"],
+                                }
+                                : null,
+                            };
+
+                            _returnDictionary["Result"] = admin;
+                            break;
+
+                        case nameof(SchoolService.GetSchoolByAdminAsync):
+                        case nameof(SchoolService.GetSchoolByIdAsync):
+                             var address = dict!["schoolAddress"] as Dictionary<string, object>;
+                            School school = new()
+                            {
+                                Id = (long)dict!["id"],
+                                EmisNumber = (long)dict["emisNumber"],
+                                Logo = dict["logo"].ToString(),
+                                Name = dict["name"].ToString()!,
+                                DateRegistered = Convert.ToDateTime(dict["dateRegistered"]),
+                                Type = dict["type"].ToString()!,
+                                TelePhoneNumber = (long)dict["telePhoneNumber"],
+                                EmailAddress = dict["emailAddress"].ToString()!,
+                                SchoolAddress = new()
+                                {
+                                    AddressID = Convert.ToInt32(address!["addressID"]),
+                                    Street = address["street"].ToString()!,
+                                    Suburb = address["suburb"].ToString()!,
+                                    City = address["city"].ToString()!,
+                                    PostalCode = Convert.ToInt32(address["postalCode"]),
+                                    Province = address["province"].ToString()!,
+                                    SchoolID = (long)address["schoolID"]
+                                }
+                            };
+
+                            _returnDictionary["Result"] = school;
+                            break;
+
+                        default: throw new ArgumentException("Something went wrong");
+                    }
+                }
+
                 return _returnDictionary;
             }
             catch (Exception ex)
