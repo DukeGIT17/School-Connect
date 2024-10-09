@@ -10,5 +10,6 @@ namespace SchoolConnect_Web_App.Models
         public Learner? Learner { get; set; }
 
         public long SchoolID { get; set; }
+        public long AdminID { get; set; }
     }
 }

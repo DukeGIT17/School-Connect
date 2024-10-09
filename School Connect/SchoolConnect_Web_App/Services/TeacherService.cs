@@ -42,7 +42,7 @@ namespace SchoolConnect_Web_App.Services
             }
             catch (Exception ex)
             {
-                _returnDictionary["Success"] = true;
+                _returnDictionary["Success"] = false;
                 _returnDictionary["ErrorMEssage"] = ex.Message;
                 return _returnDictionary;
             }

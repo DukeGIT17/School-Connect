@@ -11,25 +11,27 @@ namespace SchoolConnect_Web_App.Controllers
         private readonly ISystemAdminService _systemAdminService;
         private readonly ISchoolService _schoolService;
         private readonly ITeacherService _teacherService;
-        private Dictionary<string, object> _resultDictionary;
+        private readonly IPrincipalService _principalService;
+        private Dictionary<string, object> _returnDictionary;
 
-        public SysAdminController(ISystemAdminService systemAdminService, ISchoolService schoolService, ITeacherService teacherService)
+        public SysAdminController(ISystemAdminService systemAdminService, ISchoolService schoolService, ITeacherService teacherService, IPrincipalService principalService)
         {
             _systemAdminService = systemAdminService;
             _schoolService = schoolService;
             _teacherService = teacherService;
-            _resultDictionary = [];
+            _principalService = principalService;
+            _returnDictionary = [];
         }
 
         [HttpGet]
         public IActionResult SysAdminLandingPage(long id)
         {
-            _resultDictionary.Clear();
+            _returnDictionary.Clear();
             try
             {
-                _resultDictionary = _systemAdminService.GetAdminById(id);
-                if (!(bool)_resultDictionary["Success"]) throw new(_resultDictionary["ErrorMessage"] as string);
-                return View(_resultDictionary["Result"] as SysAdmin);
+                _returnDictionary = _systemAdminService.GetAdminById(id);
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                return View(_returnDictionary["Result"] as SysAdmin);
             }
             catch (Exception ex)
             {
@@ -41,7 +43,7 @@ namespace SchoolConnect_Web_App.Controllers
         [HttpGet]
         public IActionResult SchoolReg(long id)
         {
-            _resultDictionary.Clear();
+            _returnDictionary.Clear();
             try
             {
                 
@@ -70,13 +72,13 @@ namespace SchoolConnect_Web_App.Controllers
         [HttpPost]
         public IActionResult SchoolReg(ActorSchoolViewModel<SysAdmin> model)
         {
-            _resultDictionary.Clear();
+            _returnDictionary.Clear();
             try
             {
                 if (ModelState.IsValid)
                 {
-                    _resultDictionary = _schoolService.RegisterSchoolAsync(model.School!).Result;
-                    if (!(bool)_resultDictionary["Success"]) throw new(_resultDictionary["ErrorMessage"] as string);
+                    _returnDictionary = _schoolService.RegisterSchoolAsync(model.School!).Result;
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                     return RedirectToAction(nameof(SysAdminLandingPage), new { id = model.School!.SystemAdminId });
                 }
                 return View(model);
@@ -94,22 +96,23 @@ namespace SchoolConnect_Web_App.Controllers
         {
             try
             {
-                _resultDictionary = _schoolService.GetSchoolByAdminAsync(id).Result;
-                if (!(bool)_resultDictionary["Success"]) throw new(_resultDictionary["ErrorMessage"] as string);
-                var school = _resultDictionary["Result"] as School;
+                _returnDictionary = _schoolService.GetSchoolByAdminAsync(id).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                var school = _returnDictionary["Result"] as School;
                 ActorRegistrationViewModel model = new()
                 {
                     Principal = new(),
                     Teacher = new(),
                     Parent = new()
                     {
-                        Children = 
+                        Children =
                         [
                             new()
                         ]
                     },
                     Learner = new(),
                     SchoolID = school!.Id,
+                    AdminID = id
                 };
 
                 return View(model);
@@ -133,12 +136,12 @@ namespace SchoolConnect_Web_App.Controllers
                     if (model.Principal is not null)
                     {
                         actor = "Principal";
-                        _resultDictionary = _schoolService.GetSchoolByIdAsync(model.Principal.SchoolID).Result;
+                        _returnDictionary = _schoolService.GetSchoolByIdAsync(model.Principal.SchoolID).Result;
                     }
                     else if (model.Teacher is not null)
                     {
                         actor = "Teacher";
-                        _resultDictionary = _schoolService.GetSchoolByIdAsync(model.Teacher.SchoolID).Result;
+                        _returnDictionary = _schoolService.GetSchoolByIdAsync(model.Teacher.SchoolID).Result;
                     }
                     else if (model.Parent is not null)
                     {
@@ -147,54 +150,85 @@ namespace SchoolConnect_Web_App.Controllers
                         if (schoolId is null)
                             throw new("Something went wrong, some values may have been null.");
 
-                        _resultDictionary = _schoolService.GetSchoolByIdAsync((long)schoolId).Result;
+                        _returnDictionary = _schoolService.GetSchoolByIdAsync((long)schoolId).Result;
                     }
                     else if (model.Learner is not null)
                     {
                         actor = "Learner";
-                        _resultDictionary = _schoolService.GetSchoolByIdAsync(model.Learner.SchoolID).Result;
+                        _returnDictionary = _schoolService.GetSchoolByIdAsync(model.Learner.SchoolID).Result;
                     }
                     else
                         throw new("Something went wrong. Please review your information");
 
-                    if (!(bool)_resultDictionary["Success"]) throw new(_resultDictionary["ErrorMessage"] as string);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                    _returnDictionary.Clear();
+                    if (actor == "Principal")
+                    {
+                        _returnDictionary = _principalService.RegisterPrincipalAsync(model.Principal!).Result;
+                        if (!(bool)_returnDictionary["Success"])
+                            throw new(_returnDictionary["ErrorMessage"] as string);
+
+                    }
                     if (actor == "Teacher")
                     {
-                        _resultDictionary.Clear();
-
                         List<string> subjectList = [];
+                        List<string> tempList = [];
+
                         foreach (var item in model.Teacher!.Subjects)
                             subjectList.AddRange(item.Split(", "));
+
+                        foreach (var item in subjectList)
+                            if (item.Contains(','))
+                                tempList.AddRange(item.Split(","));
+
                         subjectList = subjectList.Distinct().ToList();
                         subjectList.Remove("");
                         model.Teacher.Subjects = subjectList;
-                        _resultDictionary = _teacherService.RegisterTeacherAsync(model.Teacher!).Result;
 
-                        if (!(bool)_resultDictionary["Success"]) 
-                            throw new(_resultDictionary["ErrorMessage"] as string);
+                        _returnDictionary = _teacherService.RegisterTeacherAsync(model.Teacher!).Result;
+
+                        if (!(bool)_returnDictionary["Success"])
+                            throw new(_returnDictionary["ErrorMessage"] as string);
                     }
 
-                    return RedirectToAction(nameof(SysAdminLandingPage));
+                    return RedirectToAction(nameof(SysAdminLandingPage), new { id = model.AdminID });
                 }
+                
+                model.Parent = new()
+                {
+                    Children =
+                    [
+                        new()
+                    ]
+                };
                 return View(model);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                ModelState.AddModelError("", ex.Message);
+                model.Parent = new()
+                {
+                    Children =
+                    [
+                        new()
+                    ]
+                };
+                return View(model); 
             }
         }
 
         [HttpGet]
         public IActionResult SysAdminViewProfile(long id)
         {
-            _resultDictionary.Clear();
+            _returnDictionary.Clear();
             try
             {
-                _resultDictionary = _systemAdminService.GetAdminById(id);
-                if (!(bool)_resultDictionary["Success"]) throw new(_resultDictionary["ErrorMessage"] as string);
+                _returnDictionary = _systemAdminService.GetAdminById(id);
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
-                var admin = _resultDictionary["Result"] as SysAdmin;
+                var admin = _returnDictionary["Result"] as SysAdmin;
 
                 ActorSchoolViewModel<SysAdmin> model = new()
                 {

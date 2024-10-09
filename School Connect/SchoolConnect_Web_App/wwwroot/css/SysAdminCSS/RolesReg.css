@@ -73,7 +73,6 @@
     display: flex; /* Use flexbox for centering */
     justify-content: center; /* Center content horizontally */
     align-items: center; /* Center content vertically */
-    height: 15px;
     width: 20%;
     padding: 12px;
     font-size: 16px;

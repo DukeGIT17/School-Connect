@@ -38,16 +38,16 @@ namespace SchoolConnect_WebAPI.Controllers
                 _returnDictionary = _teacherService.CreateTeacherAsync(teacher).Result;
                 if (!(bool)_returnDictionary["Success"])
                 {
-                    if (_returnDictionary.ContainsKey("Errors"))
+                    if (_returnDictionary.TryGetValue("Errors", out object? value))
                     {
-                        var errorList = _returnDictionary["Errors"] as List<string>;
-                        throw new Exception(errorList!.First());
+                        var errorList = value as List<string>;
+                        throw new(errorList!.First());
                     }
 
-                    throw new Exception(_returnDictionary["ErrorMessage"] as string);
+                    throw new(_returnDictionary["ErrorMessage"] as string);
                 }
 
-                return Ok(_returnDictionary["Success"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {

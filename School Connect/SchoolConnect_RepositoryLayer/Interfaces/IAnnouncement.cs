@@ -5,7 +5,7 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
     public interface IAnnouncement
     {
 
-        Task<Dictionary<string, object>> GetAnnById(int announcementId);
+        Task<Dictionary<string, object>> GetAnnByIdAsync(int announcementId);
         Task<Dictionary<string, object>> GetAllRelevantAnnouncements();
         Task<Dictionary<string, object>> GetAnnouncementsByTeacher(long teacherId);
         Task<Dictionary<string, object>> GetAnnouncementsById(int announcementId);

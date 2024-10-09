@@ -85,8 +85,14 @@
 
             <input asp-for="Principal.SchoolID" type="hidden" value="@Model.SchoolID" />
             <input asp-for="Principal.Role" type="hidden" value="Principal" />
+            <input asp-for="AdminID" type="hidden" value="@Model.AdminID" />
+            <input asp-for="SchoolID" type="hidden" value="@Model.SchoolID" />
 
-            <a asp-controller="SysAdmin" asp-action="SysAdminLandingPage" class="button">REGISTER</a>
+            <input asp-for="Teacher" type="hidden" value="@teacher" />
+            <input asp-for="Parent" type="hidden" value="@parent" />
+            <input asp-for="Learner" type="hidden" value="@learner" />
+
+            <button type="submit" class="button">REGISTER</button>
         </form>
     </div>
     
@@ -155,7 +161,9 @@
             </div>
 
             <input asp-for="Teacher.SchoolID" type="hidden" value="@Model.SchoolID" />
+            <input asp-for="AdminID" type="hidden" value="@Model.AdminID" />
             <input asp-for="Teacher.Role" type="hidden" value="Teacher" />
+            <input asp-for="SchoolID" type="hidden" value="@Model.SchoolID" />
 
             <input asp-for="Principal" type="hidden" value="@principal" />
             <input asp-for="Parent" type="hidden" value="@parent" />
@@ -226,14 +234,25 @@
 
             @foreach (var child in Model.Parent.Children)
             {
-                <div class="input-group">
-                    <label asp-for="@child.LearnerIdNo"></label>
-                    <input asp-for="@child.LearnerIdNo" placeholder="Learner Identity Number" />
-                    <span asp-validation-for="@child.LearnerIdNo"></span>
+                <div id="children">
+                    <div class="input-group">
+                        <label asp-for="@child.LearnerIdNo"></label>
+                        <input asp-for="@child.LearnerIdNo" />
+                        <span asp-validation-for="@child.LearnerIdNo"></span>
+                    </div>
                 </div>
             }
 
-            <a asp-controller="SysAdmin" asp-action="SysAdminLandingPage" class="button">REGISTER</a>
+            <input asp-for="Teacher.SchoolID" type="hidden" value="@Model.SchoolID" />
+            <input asp-for="AdminID" type="hidden" value="@Model.AdminID" />
+            <input asp-for="Parent.Role" type="hidden" value="Parent" />
+            <input asp-for="SchoolID" type="hidden" value="@Model.SchoolID" />
+
+            <input asp-for="Principal" type="hidden" value="@principal" />
+            <input asp-for="Teacher" type="hidden" value="@teacher" />
+            <input asp-for="Learner" type="hidden" value="@learner" />
+
+            <button type="submit" class="button">REGISTER</button>
         </form>
     </div>
 
@@ -294,9 +313,16 @@
                 </select>
             </div>
 
-            <input asp-for="Learner.SchoolID" type="hidden" value="@Model.SchoolID" />
+            <input asp-for="Teacher.SchoolID" type="hidden" value="@Model.SchoolID" />
+            <input asp-for="AdminID" type="hidden" value="@Model.AdminID" />
+            <input asp-for="Learner.Role" type="hidden" value="Learner" />
+            <input asp-for="SchoolID" type="hidden" value="@Model.SchoolID" />
 
-            <a asp-controller="SysAdmin" asp-action="SysAdminLandingPage" class="button">REGISTER</a>
+            <input asp-for="Principal" type="hidden" value="@principal" />
+            <input asp-for="Teacher" type="hidden" value="@teacher" />
+            <input asp-for="Parent" type="hidden" value="@parent" />
+
+            <button class="button">REGISTER</button>
         </form>
     </div>
 </div>

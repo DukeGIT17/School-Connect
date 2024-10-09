@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SchoolConnect_DomainLayer.Models;
+using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
 
 namespace SchoolConnect_WebAPI.Controllers
@@ -19,7 +20,22 @@ namespace SchoolConnect_WebAPI.Controllers
             {
                 _returnDictionary = _announcementService.CreateAnnouncementAsync(announcement).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
-                return Ok(_returnDictionary["Success"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet(nameof(GetAnnouncementById))]
+        public IActionResult GetAnnouncementById(int annId)
+        {
+            try
+            {
+                _returnDictionary = _announcementService.GetAnnouncementByIdAsync(annId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {

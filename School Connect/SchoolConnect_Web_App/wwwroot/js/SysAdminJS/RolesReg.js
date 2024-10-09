@@ -41,3 +41,4 @@ function updateSubjectsField() {
 }
 
 subjectSelect.addEventListener('change', updateSubjectsField);
+

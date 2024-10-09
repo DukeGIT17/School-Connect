@@ -43,7 +43,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public async Task<Dictionary<string, object>> GetAnnById(int announcementId)
+        public async Task<Dictionary<string, object>> GetAnnByIdAsync(int announcementId)
         {
             try
             {
