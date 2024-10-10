@@ -24,7 +24,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                var admin = await _context.SystemAdmins.Include(s => s.SysAdminSchoolNP).FirstOrDefaultAsync(s => s.Id == sysAdminId);
+                var admin = await _context.SystemAdmins.Include(s => s.SysAdminSchoolNP).ThenInclude(s => s.SchoolAddress).FirstOrDefaultAsync(s => s.Id == sysAdminId);
                 if (admin is null) throw new($"Could not find an actor with the ID {sysAdminId}.");
 
                 _returnDictionary["Success"] = true;
