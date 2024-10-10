@@ -24,15 +24,11 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                _returnDictionary = await CommonActions.GetActorById(sysAdminId, new SysAdmin(), _context);
-                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                var admin = await _context.SystemAdmins.Include(s => s.SysAdminSchoolNP).FirstOrDefaultAsync(s => s.Id == sysAdminId);
+                if (admin is null) throw new($"Could not find an actor with the ID {sysAdminId}.");
 
-                var admin = _returnDictionary["Result"] as SysAdmin;
-                if (admin!.SysAdminSchoolNP != null)
-                { 
-                    var school = await _context.Schools.FirstOrDefaultAsync(s => s.Id == admin!.SysAdminSchoolNP!.Id);
-                }
-
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = admin;
                 return _returnDictionary;
             }
             catch (Exception ex)

@@ -94,13 +94,15 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                var principal = await _context.Principals.Include(s => s.AnnouncementsNP).FirstOrDefaultAsync(p => p.Id == principalId);
+
+                var principal = await _context.Principals.FirstOrDefaultAsync(p => p.Id == principalId);
                 if (principal is null) throw new("Could not find a principal with the specified ID.");
 
-                if (principal.AnnouncementsNP.IsNullOrEmpty()) throw new("This principal does not have any announecements associated with them.");
+                var announcements = _context.Announcements.Where(a => a.SchoolID == principal.SchoolID);
+                if (announcements.IsNullOrEmpty()) throw new("This principal does not have any announecements associated with them.");
 
                 _returnDictionary["Success"] = true;
-                _returnDictionary["Result"] = principal.AnnouncementsNP!;
+                _returnDictionary["Result"] = announcements;
                 return _returnDictionary;
             }
             catch (Exception ex)

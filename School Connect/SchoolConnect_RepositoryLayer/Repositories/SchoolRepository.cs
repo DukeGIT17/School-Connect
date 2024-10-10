@@ -151,13 +151,12 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                 var admin = _returnDictionary["Result"] as SysAdmin;
-                var school = await _context.Schools.FirstOrDefaultAsync(s => s.SystemAdminId == id);
-                if (school is null)
+                if (admin!.SysAdminSchoolNP is null)
                     throw new("Could not find a school linked to this admin's ID. Has this admin registered a school yet?");
 
                 _returnDictionary.Clear();
                 _returnDictionary["Success"] = true;
-                _returnDictionary["Result"] = school;
+                _returnDictionary["Result"] = admin.SysAdminSchoolNP;
                 return _returnDictionary;
             }
             catch (Exception ex)

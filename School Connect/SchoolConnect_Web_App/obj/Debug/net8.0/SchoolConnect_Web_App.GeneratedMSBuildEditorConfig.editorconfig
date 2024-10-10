@@ -26,6 +26,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\innoc\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_Web_App
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/wwwroot/css/PrincipalCSS/PrincipalUpdateDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = d3d3cm9vdFxjc3NcUHJpbmNpcGFsQ1NTXFByaW5jaXBhbFVwZGF0ZURldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -96,6 +100,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Principal/PrincipalMakeAnnouncements.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpbmNpcGFsXFByaW5jaXBhbE1ha2VBbm5vdW5jZW1lbnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Principal/PrincipalUpdateDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpbmNpcGFsXFByaW5jaXBhbFVwZGF0ZURldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Principal/PrincipalViewAnnouncements.cshtml]
