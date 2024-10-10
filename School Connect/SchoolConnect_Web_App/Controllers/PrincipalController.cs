@@ -1,28 +1,123 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
+using SchoolConnect_DomainLayer.Models;
+using SchoolConnect_Web_App.IServices;
+using SchoolConnect_Web_App.Models;
 
 namespace SchoolConnect_Web_App.Controllers
 {
     public class PrincipalController : Controller
     {
-        public IActionResult PrincipalLandingPage()
+        private readonly IPrincipalService _principalService;
+        private readonly IAnnouncementService _announcementService;
+        private Dictionary<string, object> _returnDictionary;
+
+        public PrincipalController(IPrincipalService principalService, IAnnouncementService announcementService)
         {
-            return View();
+            _principalService = principalService;
+            _announcementService = announcementService;
+            _returnDictionary = [];
         }
-        public IActionResult PrincipalViewProfile()
+
+        public IActionResult PrincipalLandingPage(long id)
         {
-            return View();
+            _returnDictionary.Clear();
+            try
+            {
+                _returnDictionary = _principalService.GetPrincipalByIdAsync(id).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                return View(_returnDictionary["Result"] as Principal);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
         }
 
-		public IActionResult PrincipalMakeAnnouncements()
-		{
-			return View();
+        [HttpGet]
+        public IActionResult PrincipalViewProfile(long id)
+        {
+            _returnDictionary.Clear();
+            try
+            {
+                _returnDictionary = _principalService.GetPrincipalByIdAsync(id).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
-		}
+                return View(_returnDictionary["Result"] as Principal);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Home", "Index");
+            }
+        }
 
-		public IActionResult PrincipalViewAnnouncements()
+        [HttpGet]
+        public IActionResult PrincipalMakeAnnouncements(long id)
+        {
+            try
+            {
+                _returnDictionary = _principalService.GetPrincipalByIdAsync(id).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                var principal = _returnDictionary["Result"] as Principal;
+                ActorAnnouncementViewModel<Principal> model = new()
+                {
+                    Actor = principal!,
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult PrincipalMakeAnnouncements(ActorAnnouncementViewModel<Principal> model)
+        {
+            _returnDictionary.Clear();
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _returnDictionary = _announcementService.CreateAnnouncementAsync(model.Announcement).Result;
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                    return RedirectToAction(nameof(PrincipalLandingPage), new { id = model.Announcement.PrincipalID });
+                }
+
+                model.Actor.Id = (long)model.Announcement.PrincipalID!;
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpGet]
+		public IActionResult PrincipalViewAnnouncements(long id)
 		{
-			return View();
-		}
+            return View();
+			//try
+   //         {
+   //             _returnDictionary = _announcementService.GetAnnouncementByPrincipalIdAsync(id).Result;
+   //             if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+   //             return View();
+   //         }
+   //         catch (Exception ex)
+   //         {
+   //             Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+   //             return RedirectToAction("Index", "Home");
+   //         }
+        }
 
 
 		public IActionResult PrincipalViewGrades()

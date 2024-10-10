@@ -16,6 +16,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.AnnouncementController",
+    "Method": "GetAnnouncementById",
+    "RelativePath": "api/Announcement/GetAnnouncementById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "annId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.AnnouncementController",
+    "Method": "GetAnnouncementByPrincipalId",
+    "RelativePath": "api/Announcement/GetAnnouncementByPrincipalId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "principalId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.LearnerController",
     "Method": "Create",
     "RelativePath": "api/Learner/Create",

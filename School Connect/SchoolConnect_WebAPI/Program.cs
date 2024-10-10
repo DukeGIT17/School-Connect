@@ -12,10 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<SchoolConnectDbContext>(options
-    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString"),
+    => options.UseSqlServer(builder.Configuration.GetConnectionString("AzureSQLServerConnectionString"),
     b => b.MigrationsAssembly(nameof(SchoolConnect_WebAPI))));
 builder.Services.AddDbContext<SignInDbContext>(options
-    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString"),
+    => options.UseSqlServer(builder.Configuration.GetConnectionString("AzureSQLServerConnectionString"),
     b => b.MigrationsAssembly(nameof(SchoolConnect_WebAPI))));
 builder.Services.AddDefaultIdentity<CustomIdentityUser>(options
     => options.SignIn.RequireConfirmedAccount = false)
@@ -32,7 +32,7 @@ builder.Services.AddScoped<IGroupRepo, GroupRepository>();
 // Actors Services
 builder.Services.AddScoped<ISysAdmin, SystemAdminRepository>();
 builder.Services.AddScoped<ISystemAdminService, AdminService>();
-builder.Services.AddScoped<IPrincipal, PrincipalRepository>();
+builder.Services.AddScoped<IPrincipalRepo, PrincipalRepository>();
 builder.Services.AddScoped<IPrincipalService, PrincipalService>();
 builder.Services.AddScoped<ILearner, LearnerRepository>();
 builder.Services.AddScoped<ILearnerService, LearnerService>();
@@ -106,6 +106,7 @@ using (var scope = app.Services.CreateScope())
         new()
         {
             ProfileImage = "Default Pic",
+            Title = "Mr",
             Name = "Lukhanyo",
             Surname = "Mayekiso",
             Gender = "Male",
@@ -117,6 +118,7 @@ using (var scope = app.Services.CreateScope())
         new()
         {
             ProfileImage = "Default Pic",
+            Title = "Ms",
             Name = "Takatso",
             Surname = "Senyatso",
             Gender = "Female",
@@ -128,6 +130,7 @@ using (var scope = app.Services.CreateScope())
         new()
         {
             ProfileImage = "Default Pic",
+            Title = "Mr",
             Name = "James",
             Surname = "Edinburgh",
             Gender = "Male",
@@ -139,6 +142,7 @@ using (var scope = app.Services.CreateScope())
         new()
         {
             ProfileImage = "Default Pic",
+            Title = "Mrs",
             Name = "Connie",
             Surname = "FellWay",
             Gender = "Female",

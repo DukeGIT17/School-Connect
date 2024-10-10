@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.Differencing;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_Web_App.IServices;
@@ -12,14 +13,16 @@ namespace SchoolConnect_Web_App.Controllers
         private readonly ISchoolService _schoolService;
         private readonly ITeacherService _teacherService;
         private readonly IPrincipalService _principalService;
+        private readonly ILearnerService _learnerService;
         private Dictionary<string, object> _returnDictionary;
 
-        public SysAdminController(ISystemAdminService systemAdminService, ISchoolService schoolService, ITeacherService teacherService, IPrincipalService principalService)
+        public SysAdminController(ISystemAdminService systemAdminService, ISchoolService schoolService, ITeacherService teacherService, IPrincipalService principalService, ILearnerService learnerService)
         {
             _systemAdminService = systemAdminService;
             _schoolService = schoolService;
             _teacherService = teacherService;
             _principalService = principalService;
+            _learnerService = learnerService;
             _returnDictionary = [];
         }
 
@@ -110,7 +113,13 @@ namespace SchoolConnect_Web_App.Controllers
                             new()
                         ]
                     },
-                    Learner = new(),
+                    Learner = new()
+                    {
+                        Parents =
+                        [
+                            new()
+                        ]
+                    },
                     SchoolID = school!.Id,
                     AdminID = id
                 };
@@ -191,13 +200,55 @@ namespace SchoolConnect_Web_App.Controllers
                         if (!(bool)_returnDictionary["Success"])
                             throw new(_returnDictionary["ErrorMessage"] as string);
                     }
+                    else if (actor == "Learner")
+                    {
+                        List<string> subjectList = [];
+                        List<string> tempList = [];
+                        List<string> itemsToRemove = [];
 
+                        foreach (var item in model.Learner!.Subjects)
+                            subjectList.AddRange(item.Split(", "));
+
+                        foreach (var item in subjectList)
+                        {
+                            if (item.Contains(','))
+                            {
+                                itemsToRemove.Add(item);
+                                tempList.AddRange(item.Split(","));
+                            }
+                        }
+
+                        foreach (var item in itemsToRemove)
+                            subjectList.Remove(item);
+
+                        subjectList.AddRange(tempList);
+                        subjectList = subjectList.Distinct().ToList();
+                        subjectList.Remove("");
+                        model.Learner.Subjects = subjectList;
+
+                        foreach (var item in model.Learner.Parents)
+                        {
+                            item.LearnerIdNo = model.Learner.IdNo;
+                            item.Parent.IdNo = item.ParentIdNo;
+                        }
+
+                        _returnDictionary = _learnerService.RegisterLearnerAsync(model.Learner!).Result;
+                        if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    }
                     return RedirectToAction(nameof(SysAdminLandingPage), new { id = model.AdminID });
                 }
                 
                 model.Parent = new()
                 {
                     Children =
+                    [
+                        new()
+                    ]
+                };
+
+                model.Learner = new()
+                {
+                    Parents =
                     [
                         new()
                     ]
@@ -211,6 +262,14 @@ namespace SchoolConnect_Web_App.Controllers
                 model.Parent = new()
                 {
                     Children =
+                    [
+                        new()
+                    ]
+                };
+
+                model.Learner = new()
+                {
+                    Parents =
                     [
                         new()
                     ]

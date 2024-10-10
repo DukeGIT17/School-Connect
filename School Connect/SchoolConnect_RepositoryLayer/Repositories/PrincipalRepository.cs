@@ -1,11 +1,11 @@
-﻿using SchoolConnect_DomainLayer.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_RepositoryLayer.CommonAction;
 using SchoolConnect_RepositoryLayer.Interfaces;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
-    public class PrincipalRepository : IPrincipal
+    public class PrincipalRepository : IPrincipalRepo
     {
         private readonly SchoolConnectDbContext _context;
         private readonly ISignInRepo _signInRepo;
@@ -58,11 +58,17 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                return await CommonActions.GetActorById(principalId, new Principal(), _context);
+                var principal = await _context.Principals.Include(s => s.PrincipalSchoolNP).ThenInclude(a => a.SchoolAddress).FirstOrDefaultAsync(p => p.Id == principalId);
+                if (principal == null)
+                    throw new("Could not find a principal with the provided ID");
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = principal;
+                return _returnDictionary;
             }
             catch (Exception ex)
             {
-                _returnDictionary["Success"] = true;
+                _returnDictionary["Success"] = false;
                 _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
             }

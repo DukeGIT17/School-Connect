@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<SchoolConnectDbContext>(options
-    => options.UseSqlite(builder.Configuration.GetConnectionString("SQLiteConnectionString")));
+    => options.UseSqlServer(builder.Configuration.GetConnectionString("AzureSQLServerConnectionString")));
 builder.Services.AddHttpClient<ISchoolService, SchoolService>(c =>
 c.BaseAddress = new Uri("https://localhost:5293"));
 builder.Services.AddScoped<ISystemAdminService, SystemAdminService>();
@@ -16,6 +16,8 @@ builder.Services.AddScoped<ISignInService, SignInService>();
 builder.Services.AddScoped<ISchoolService, SchoolService>();
 builder.Services.AddScoped<ITeacherService, TeacherService>();
 builder.Services.AddScoped<IPrincipalService, PrincipalService>();
+builder.Services.AddScoped<ILearnerService, LearnerService>();
+builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
 
 var app = builder.Build();
 

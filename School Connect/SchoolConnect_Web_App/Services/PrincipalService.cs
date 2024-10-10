@@ -43,5 +43,26 @@ namespace SchoolConnect_Web_App.Services
                 return _returnDictionary;
             }
         }
+
+        public async Task<Dictionary<string, object>> GetPrincipalByIdAsync(long principalId)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(principalBasePath);
+                buildString.Append("/GetPrincipalById?id=");
+                buildString.Append(principalId);
+
+                var response = await _httpClient.GetAsync(buildString.ToString());
+                return SharedClientSideServices.CheckSuccessStatus(response, nameof(GetPrincipalByIdAsync));
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace SchoolConnect_WebAPI.Controllers
             {
                 _returnDictionary = _learnerService.LoadLearners(fileName).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
-                return Ok(_returnDictionary["Success"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {
@@ -34,9 +34,8 @@ namespace SchoolConnect_WebAPI.Controllers
                 _returnDictionary = _learnerService.CreateAsync(learner).Result;
                 if (!(bool)_returnDictionary["Success"])
                 {
-                    var itIsAnErrorMessage = _returnDictionary.GetValueOrDefault("ErrorMessage") != null;
-                    if (itIsAnErrorMessage)
-                        throw new(_returnDictionary["ErrorMessage"] as string);
+                    if (_returnDictionary.TryGetValue("ErrorMessage", out object? value))
+                        throw new(value as string);
                     else
                     {
                         string errorStrings = "";
@@ -47,7 +46,7 @@ namespace SchoolConnect_WebAPI.Controllers
                         throw new(errorStrings);
                     }
                 }
-                return Ok(_returnDictionary["Success"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {

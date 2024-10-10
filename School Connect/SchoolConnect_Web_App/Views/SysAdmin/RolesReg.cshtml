@@ -282,7 +282,7 @@
 
             <div class="input-group">
                 <label asp-for="Learner.IdNo"></label>
-                <input asp-for="Learner.IdNo" id="idNum" placeholder="Identity Number">
+                <input asp-for="Learner.IdNo" id="idNum-learner" placeholder="Identity Number">
                 <span asp-validation-for="Learner.IdNo"></span>
             </div>
 
@@ -301,19 +301,87 @@
             </div>
 
             <div id="subjectSelect" class="subject-select input-group">
-                <label asp-for="Learner.Subjects">Select Subjects</label><br />
-                <select asp-for="Learner.Subjects" id="subjects" multiple>
-                    <option value="English">English</option>
-                    <option value="Mathematics">Mathematics</option>
-                    <option value="Social Sciences">Social Sciences</option>
-                    <option value="Economics">Economics</option>
-                    <option value="Afrikaans">Afrikaans</option>
-                    <option value="Life Orientation">Life Orientation</option>
-                    <option value="Life Skills">Life Skills</option>
+                <label asp-for="Learner.Subjects">Select Subjects</label>
+                <input id="subjects-field-learner" asp-for="Learner.Subjects" readonly />
+                <select asp-for="Learner.Subjects" id="subjects-learner" multiple>
+                    <option class="subject-option" value="English">English</option>
+                    <option class="subject-option" value="Mathematics">Mathematics</option>
+                    <option class="subject-option" value="Social Sciences">Social Sciences</option>
+                    <option class="subject-option" value="Economics">Economics</option>
+                    <option class="subject-option" value="Afrikaans">Afrikaans</option>
+                    <option class="subject-option" value="Life Orientation">Life Orientation</option>
+                    <option class="subject-option" value="Life Skills">Life Skills</option>
                 </select>
             </div>
 
-            <input asp-for="Teacher.SchoolID" type="hidden" value="@Model.SchoolID" />
+            <h3>Parents</h3>
+            @for (int i = 0; i < Model.Learner.Parents.Count; i++)
+            {
+                <input asp-for="@Model.Learner.Parents[i].LearnerIdNo" type="hidden" value="7485963214578" class="learner-idno"/>
+
+                <div class="input-group">
+                    <label asp-for="@Model.Learner.Parents[i].Parent.Title"></label>
+                    <select asp-for="@Model.Learner.Parents[i].Parent.Title" placeholder="Parent Title" >
+                        <option value="Mr" selected>Mr</option>
+                        <option value="Mr" selected>Mrs</option>
+                        <option value="Mr" selected>Ms</option>
+                        <option value="Mr" selected>Miss</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label asp-for="@Model.Learner.Parents[i].ParentIdNo"></label>
+                    <input asp-for="@Model.Learner.Parents[i].ParentIdNo" placeholder="Parent ID Number" />
+                    <span asp-validation-for="@Model.Learner.Parents[i].ParentIdNo"></span>
+                </div>
+
+                    <input asp-for="@Model.Learner.Parents[i].Parent.IdNo" type="hidden" value="8526547896523"/>
+
+                <div class="input-group">
+                    <label asp-for="@Model.Learner.Parents[i].Parent.Name"></label>
+                    <input asp-for="@Model.Learner.Parents[i].Parent.Name" placeholder="Parent Name" />
+                    <span asp-validation-for="@Model.Learner.Parents[i].Parent.Name"></span>
+                </div>
+
+                <div class="input-group">
+                    <label asp-for="@Model.Learner.Parents[i].Parent.Surname"></label>
+                    <input asp-for="@Model.Learner.Parents[i].Parent.Surname" placeholder="Parent Surname" />
+                    <span asp-validation-for="@Model.Learner.Parents[i].Parent.Surname"></span>
+                </div>
+
+                <div class="input-group">
+                    <label asp-for="@Model.Learner.Parents[i].Parent.Gender"></label>
+                    <select asp-for="@Model.Learner.Parents[i].Parent.Gender">
+                        <option value="Male" selected>Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label asp-for="@Model.Learner.Parents[i].Parent.ParentType"></label>
+                    <select asp-for="@Model.Learner.Parents[i].Parent.ParentType">
+                        <option value="Mother">Mother</option>
+                        <option value="Father">Father</option>
+                        <option value="Guardian">Guardian</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label asp-for="@Model.Learner.Parents[i].Parent.EmailAddress"></label>
+                    <input asp-for="@Model.Learner.Parents[i].Parent.EmailAddress" placeholder="Parent Email Address" />
+                    <span asp-validation-for="@Model.Learner.Parents[i].Parent.EmailAddress"></span>
+                </div>
+
+                <div class="input-group">
+                    <label asp-for="@Model.Learner.Parents[i].Parent.PhoneNumber"></label>
+                    <input asp-for="@Model.Learner.Parents[i].Parent.PhoneNumber" placeholder="Parent Phone Number" />
+                    <span asp-validation-for="@Model.Learner.Parents[i].Parent.PhoneNumber"></span>
+                </div>
+
+                <input asp-for="@Model.Learner.Parents[i].Parent.Role" value="Parent" type="hidden" />
+            }
+
+            <input asp-for="Learner.SchoolID" type="hidden" value="@Model.SchoolID" />
             <input asp-for="AdminID" type="hidden" value="@Model.AdminID" />
             <input asp-for="Learner.Role" type="hidden" value="Learner" />
             <input asp-for="SchoolID" type="hidden" value="@Model.SchoolID" />

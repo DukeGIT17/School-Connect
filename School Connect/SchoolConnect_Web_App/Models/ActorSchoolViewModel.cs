@@ -1,6 +1,4 @@
-﻿using SchoolConnect_DomainLayer.CustomAttributes;
-using SchoolConnect_DomainLayer.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using SchoolConnect_DomainLayer.Models;
 
 namespace SchoolConnect_Web_App.Models
 {

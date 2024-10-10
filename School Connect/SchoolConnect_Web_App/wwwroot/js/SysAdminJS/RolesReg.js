@@ -42,3 +42,26 @@ function updateSubjectsField() {
 
 subjectSelect.addEventListener('change', updateSubjectsField);
 
+
+let subjectSelectLearner = document.getElementById("subjects-learner");
+let subjectFieldLearner = document.getElementById("subjects-field-learner");
+
+function updateSubjectsFieldLearner() {
+    const selectedOptions = Array.from(subjectSelectLearner.selectedOptions).map(option => option.value);
+    subjectFieldLearner.value += selectedOptions;
+    subjectFieldLearner.value += ", ";
+}
+
+subjectSelectLearner.addEventListener('change', updateSubjectsFieldLearner);
+
+
+function populateLearnerIdNo() {
+    let idnoField = document.getElementById("idNum-learner");
+    let learnerIdNoInputField = document.getElementsByClassName("learner-idno");
+
+    learnerIdNoInputField.forEach(function (field) {
+        field.value = idnoField.value;
+    })
+}
+
+document.getElementById("idNum-learner").addEventListener('focusout', populateLearnerIdNo);

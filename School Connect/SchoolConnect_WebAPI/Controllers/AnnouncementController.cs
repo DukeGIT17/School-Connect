@@ -42,5 +42,20 @@ namespace SchoolConnect_WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet(nameof(GetAnnouncementByPrincipalId))]
+        public IActionResult GetAnnouncementByPrincipalId(long principalId)
+        {
+            try
+            {
+                _returnDictionary = _announcementService.GetAnnouncementByPrincipalIdAsync(principalId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -9,10 +9,10 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
 {
     public class PrincipalService : IPrincipalService
     {
-        private readonly IPrincipal _principalRepo;
+        private readonly IPrincipalRepo _principalRepo;
         private Dictionary<string, object> _returnDictionary;
 
-        public PrincipalService(IPrincipal principalService)
+        public PrincipalService(IPrincipalRepo principalService)
         {
             _principalRepo = principalService;
             _returnDictionary = [];

@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -23,7 +25,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 }
                 else if (announcement.PrincipalID != null)
                 {
-                    var principal = _context.Principals.FirstOrDefaultAsync(p => p.Id == announcement.PrincipalID).Result
+                    var principal = _context.Principals.Include(s => s.PrincipalSchoolNP).FirstOrDefaultAsync(p => p.Id == announcement.PrincipalID).Result
                         ?? throw new($"Something went wrong, could not find a principal with the specified ID. Please contact the administrator for assistance.");
                 }
                 else
@@ -38,7 +40,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             catch (Exception ex)
             {
                 _returnDictionary["Success"] = false;
-                _returnDictionary["ErrorMessage"] = ex.Message;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
                 return _returnDictionary;
             }
         }
@@ -87,5 +89,26 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Dictionary<string, object>> GetAnnouncementsByPrincipalIdAsync(long principalId)
+        {
+            try
+            {
+                var principal = await _context.Principals.Include(s => s.AnnouncementsNP).FirstOrDefaultAsync(p => p.Id == principalId);
+                if (principal is null) throw new("Could not find a principal with the specified ID.");
+
+                if (principal.AnnouncementsNP.IsNullOrEmpty()) throw new("This principal does not have any announecements associated with them.");
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = principal.AnnouncementsNP!;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+}
     }
 }

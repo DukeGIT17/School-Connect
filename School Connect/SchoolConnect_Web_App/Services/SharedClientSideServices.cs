@@ -1,4 +1,5 @@
-﻿using SchoolConnect_DomainLayer.Models;
+﻿using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
+using SchoolConnect_DomainLayer.Models;
 using System.Text.Json;
 
 namespace SchoolConnect_Web_App.Services
@@ -36,6 +37,7 @@ namespace SchoolConnect_Web_App.Services
                             {
                                 Id = (long)dict!["id"],
                                 ProfileImage = dict["profileImage"].ToString(),
+                                Title = dict["title"].ToString()!,
                                 Name = dict["name"].ToString()!,
                                 Surname = dict["surname"].ToString()!,
                                 Gender = dict["gender"].ToString()!,
@@ -87,7 +89,70 @@ namespace SchoolConnect_Web_App.Services
                             _returnDictionary["Result"] = school;
                             break;
 
-                        default: throw new ArgumentException("Something went wrong");
+
+                        case nameof(PrincipalService.GetPrincipalByIdAsync):
+                            var princSchool = dict["principalSchoolNP"] as Dictionary<string, object>;
+                            var princSchoolAddress = princSchool["schoolAddress"] as Dictionary<string, object>;
+                            Principal principal = new()
+                            {
+                                Id = (long)dict!["id"],
+                                Title = dict["title"].ToString()!,
+                                Name = dict["name"].ToString()!,
+                                Surname = dict["surname"].ToString()!,
+                                Gender = dict["gender"].ToString()!,
+                                Role = dict["role"].ToString()!,
+                                StaffNr = (long)dict["staffNr"],
+                                EmailAddress = dict["emailAddress"].ToString()!,
+                                PhoneNumber = (long)dict["phoneNumber"],
+                                SchoolID = (long)dict["schoolID"],
+                                PrincipalSchoolNP = new()
+                                {
+                                    Id = (long)princSchool!["id"],
+                                    EmisNumber = (long)princSchool["emisNumber"],
+                                    Logo = princSchool["logo"].ToString(),
+                                    Name = princSchool["name"].ToString()!,
+                                    DateRegistered = Convert.ToDateTime(princSchool["dateRegistered"]),
+                                    Type = princSchool["type"].ToString()!,
+                                    TelePhoneNumber = (long)princSchool["telePhoneNumber"],
+                                    EmailAddress = princSchool["emailAddress"].ToString()!,
+                                    SystemAdminId = (long)princSchool["systemAdminId"],
+                                    SchoolAddress = new()
+                                    {
+                                        AddressID = Convert.ToInt32(princSchoolAddress!["addressID"]),
+                                        Street = princSchoolAddress["street"].ToString()!,
+                                        Suburb = princSchoolAddress["suburb"].ToString()!,
+                                        City = princSchoolAddress["city"].ToString()!,
+                                        PostalCode = Convert.ToInt32(princSchoolAddress["postalCode"]),
+                                        Province = princSchoolAddress["province"].ToString()!,
+                                    }
+                                }
+                            };
+
+                            _returnDictionary["Result"] = principal;
+                            break;
+
+
+                        case nameof(AnnouncementService.GetAnnouncementByPrincipalIdAsync):
+                            string st = "";
+                            Announcement announcement = new()
+                            {
+                                AnnouncementId = Convert.ToInt32(dict!["announcementId"]),
+                                Title = dict!["title"].ToString()!,
+                                Recipients = dict["recipients"] as List<string>,
+                                Content = dict["content"].ToString()!,
+                                SendEmail = (bool)dict["sendEmail"],
+                                SendSMS = (bool)dict["sendSMS"],
+                                ScheduleForLater = (bool)dict["scheduleForLater"],
+                                DateCreated = Convert.ToDateTime(dict["dateCreated"]),
+                                TimeToPost = Convert.ToDateTime(dict["timeToPost"]),
+                                TeacherID = dict["teacherID"] is not null ? (long)dict["teacherID"] : null,
+                                PrincipalID = dict["principalID"] is not null ? (long)dict["principalID"] : null,
+                                SchoolID = (long)dict["schoolID"]
+                            };
+
+                            _returnDictionary["Result"] = announcement;
+                            break;
+                        default: throw new("Something went wrong");
                     }
                 }
 
