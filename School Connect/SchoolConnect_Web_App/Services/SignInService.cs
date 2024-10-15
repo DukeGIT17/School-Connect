@@ -1,4 +1,5 @@
-﻿using SchoolConnect_DomainLayer.Models;
+﻿using Microsoft.AspNetCore.Identity;
+using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 using System.Text;
 using System.Text.Json;
@@ -8,12 +9,14 @@ namespace SchoolConnect_Web_App.Services
     public class SignInService : ISignInService
     {
         private readonly HttpClient _client;
+        private readonly SignInManager<CustomIdentityUser> _signInManager;
         private const string BasePath = "/api/SignIn/";
         private Dictionary<string, object> _returnDictionary;
 
-        public SignInService(HttpClient client)
+        public SignInService(HttpClient client, SignInManager<CustomIdentityUser> signInManager)
         {
             _client = client;
+            _signInManager = signInManager;
             _returnDictionary = [];
         }
 
@@ -43,6 +46,8 @@ namespace SchoolConnect_Web_App.Services
                 }
 
                 _returnDictionary = SharedClientSideServices.ConvertJsonElements(response.Content.ReadFromJsonAsync<Dictionary<string, object>>().Result!);
+                if ((bool)_returnDictionary["Success"])
+                    _signInManager.SignInAsync(_signInManager.UserManager.FindByEmailAsync(model.EmailAddress).Result, false);
                 return _returnDictionary;
             }
             catch (Exception ex)

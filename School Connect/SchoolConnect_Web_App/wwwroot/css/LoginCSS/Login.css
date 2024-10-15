@@ -46,6 +46,7 @@ h1 {
     margin-bottom: 20px;
 }
 
+
 /* Input Box */
 .input-box {
     position: relative;
@@ -62,12 +63,15 @@ h1 {
     height: 30px; /* Adjust height for better spacing */
 }
 
+/* Icon inside the input field */
 .input-box i {
+    background-color: transparent;
     font-size: 16px;
-    color: rgba(255, 255, 255, 0.7);
+    color: #0F2E34;
     margin-right: 10px;
 }
 
+/* Input field */
 .input-box input {
     width: 100%;
     padding: 12px;
@@ -83,8 +87,24 @@ h1 {
 
 .input-box input:focus {
     outline: none;
-    box-shadow: 0 0 8px rgba(255, 255, 255, 1);
     transition: box-shadow 0.2s;
+}
+
+/* Toggle Password Button */
+.toggle-password-btn {
+    background: transparent; /* Make button background transparent */
+    border: none;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+.toggle-password-btn i {
+    font-size: 18px;
+    color: #0F2E34; /* Icon color */
+    background-color: transparent; /* Ensure the icon has no background */
+    padding: 0;
+    margin: 0;
 }
 
 /* Remember Me Section */
@@ -139,7 +159,7 @@ h1 {
     text-decoration: none; /* Remove underline from link */
 }
 
-    /* Hover effect for better user experience */
+/* Hover effect for better user experience */
 .submit-btn:hover {
     background-color: rgba(255, 255, 255, 0.2); /* Add a slight background color on hover */
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Add shadow on hover */

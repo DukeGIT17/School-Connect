@@ -1,4 +1,5 @@
-﻿using SchoolConnect_DomainLayer.CustomAttributes;
+﻿using Microsoft.AspNetCore.Http;
+using SchoolConnect_DomainLayer.CustomAttributes;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -20,15 +21,20 @@ namespace SchoolConnect_DomainLayer.Models
         /// </summary>
         [Required(ErrorMessage = "School Emis Number is required.")]
         [Display(Name = "EMIS Number")]
-        [NumberLength(8, ErrorMessage = "School Emis Number should have exactly 8 digits.")]
-        public long EmisNumber { get; set; }
+        [StringLength(8, MinimumLength = 8, ErrorMessage = "School Emis Number should have exactly 8 digits.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Please specify a proper Emis Number. Only numerical values allowed.")]
+        public string EmisNumber { get; set; }
 
         /// <summary>
         /// The unique identifier of the school's logo within the database.
         /// </summary>
         [Display(Name = "School Logo")]
-        [DataType(DataType.Upload)]
         public string? Logo { get; set; }
+
+        [NotMapped]
+        [AllowedExtensions(".jpg", ".jpeg", ".png", ".webp", ".jfif")]
+        [DataType(DataType.Upload)]
+        public IFormFile? SchoolLogoFile { get; set; }
 
         /// <summary>
         /// The name of this particular school.
@@ -81,7 +87,7 @@ namespace SchoolConnect_DomainLayer.Models
         public SysAdmin? SchoolSysAdminNP { get; set; }
         public Principal? SchoolPrincipalNP { get; set; }
         public IList<Learner>? SchoolLearnersNP { get; set; }
-        public IList<Teacher>? SchoolTeachersNP { get; set; }
+        public IList<Teacher?>? SchoolTeachersNP { get; set; }
         public IList<Announcement>? SchoolAnnouncementNP { get; set; }
         public IList<Group>? SchoolGroupsNP { get; set; }
         public IList<Grade>? SchoolGradeNP { get; set; }

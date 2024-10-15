@@ -43,7 +43,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
-        public Task<Dictionary<string, object>> GetByStaffNr(long staffNr)
+        public Task<Dictionary<string, object>> GetByStaffNr(string staffNr)
         {
             throw new NotImplementedException();
         }

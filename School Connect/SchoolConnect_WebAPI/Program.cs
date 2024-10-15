@@ -45,6 +45,7 @@ builder.Services.AddScoped<IParentService, ParentService>();
 builder.Services.AddScoped<PasswordValidator<CustomIdentityUser>>();
 builder.Services.AddScoped<ISignInRepo, SignInRepository>();
 builder.Services.AddScoped<ISignInService, SignInService>();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
@@ -111,7 +112,7 @@ using (var scope = app.Services.CreateScope())
             Surname = "Mayekiso",
             Gender = "Male",
             Role = "System Admin",
-            StaffNr = 14785,
+            StaffNr = "14785",
             EmailAddress = "Lukhanyo@gmail.com",
             PhoneNumber = 739002497
         },
@@ -123,7 +124,7 @@ using (var scope = app.Services.CreateScope())
             Surname = "Senyatso",
             Gender = "Female",
             Role = "System Admin",
-            StaffNr = 12365,
+            StaffNr = "12365",
             EmailAddress = "Takatso@gmail.com",
             PhoneNumber = 789516542
         },
@@ -135,7 +136,7 @@ using (var scope = app.Services.CreateScope())
             Surname = "Edinburgh",
             Gender = "Male",
             Role = "System Admin",
-            StaffNr = 15964,
+            StaffNr = "15964",
             EmailAddress = "James@gmail.com",
             PhoneNumber = 785263659
         },
@@ -147,7 +148,7 @@ using (var scope = app.Services.CreateScope())
             Surname = "FellWay",
             Gender = "Female",
             Role = "System Admin",
-            StaffNr = 85236,
+            StaffNr = "85236",
             EmailAddress = "Connie@gmail.com",
             PhoneNumber = 726548965
         }

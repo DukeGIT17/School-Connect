@@ -145,6 +145,16 @@ namespace SchoolConnect_Web_App.Controllers
             return View();
         }
 
+        public IActionResult PrincipalDetailedAnnouncements()
+        {
+            return View();
+        }
+
+        public IActionResult PrincipalUpdateDetails()
+        {
+            return View();
+        }
+
 
     }
 }

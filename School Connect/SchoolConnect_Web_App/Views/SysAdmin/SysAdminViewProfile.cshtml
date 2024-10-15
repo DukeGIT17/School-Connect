@@ -10,8 +10,8 @@
         <div class="profile-image">
             <div class="icon"><i class="fas fa-user"></i></div>
         </div>
-        <h2 class="gradienttext">@Model.Actor.Name @Model.Actor.Surname</h2>
-        <h2>@Model.Actor.Role</h2>
+        <h2 class="gradienttext">@Model.Actor.Name @Model.Actor.Surname <br /> @Model.Actor.Role </h2>
+        <a asp-controller="SysAdmin" asp-action="SysAdminUpdateDetails" class="UpdateButton">Update</a>
     </div>
     <div class="right-container">
         <h3>Profile Details</h3>
@@ -53,7 +53,7 @@
     </div>
 </div>
 
-<script>
+@* <script>
     const togglePassword = document.getElementById('togglePassword');
     const passwordInput = document.getElementById('password');
     const editCellBtn = document.getElementById('editCell');
@@ -108,3 +108,4 @@
         alert('Changes saved successfully!');
     });
 </script>
+ *@

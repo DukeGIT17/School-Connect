@@ -33,7 +33,7 @@ namespace SchoolConnect_WebAPI.Controllers
         }
 
         [HttpGet(nameof(GetSystemAdminByStaffNr))]
-        public async Task<IActionResult> GetSystemAdminByStaffNr(long staffNr)
+        public async Task<IActionResult> GetSystemAdminByStaffNr(string staffNr)
         {
             try
             {

@@ -7,5 +7,6 @@ namespace SchoolConnect_ServiceLayer.IServerSideServices
         Task<Dictionary<string, object>> SignInAsync(LoginModel model);
         Task<Dictionary<string, object>> SetNewPasswordAsync(LoginModel model);
         void SignOutAsync();
+        void IsSignedIn();
     }
 }

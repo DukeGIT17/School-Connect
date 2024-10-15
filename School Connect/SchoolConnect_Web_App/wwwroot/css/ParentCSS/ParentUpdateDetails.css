@@ -1,0 +1,125 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 20px;
+    background: ghostwhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+html, body {
+    height: 100%;
+}
+
+.card {
+    display: flex; /* Make the container a flexbox */
+    flex-direction: column; /* Align items vertically */
+    justify-content: center; /* Center contents vertically */
+    align-items: center; /* Center contents horizontally */
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    height: auto;
+    background: #0F2E34;
+    color: white;
+    transition: box-shadow 0.3s ease;
+    margin: 0 auto; /* Center the card horizontally in its parent container */
+}
+
+
+    .card:hover {
+        box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.4);
+    }
+
+.container {
+    background-color: ghostwhite;
+    flex: 1;
+    width: 95%;
+    height: auto;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+label {
+    border-bottom: 1px solid #ddd;
+    font-weight: bold;
+    color: #0F2E34;
+    font-size: 18px;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: ghostwhite;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+    input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+        border-color: #007bff;
+        outline: none;
+        background-color: white;
+    }
+
+
+
+.btn {
+    background-color: #0F2E34;
+    color: ghostwhite;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 15%;
+}
+
+    .btn:hover {
+        background-color: #5a6268;
+    }
+
+.btn-reset {
+    background-color: #6c757d;
+    color: white;
+}
+
+    .btn-reset:hover {
+        background-color: #5a6268;
+    }
+
+
+
+h3 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #0F2E34;
+    margin-bottom: 20px;
+    text-align: center;
+}

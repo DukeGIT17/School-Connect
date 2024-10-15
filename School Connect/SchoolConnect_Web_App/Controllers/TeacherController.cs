@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
+
 namespace schoolconnect.Controllers
 {
     public class TeacherController : Controller
@@ -20,6 +21,11 @@ namespace schoolconnect.Controllers
         }
 
         public IActionResult TeacherViewAnnouncements()
+        {
+            return View();
+        }
+
+        public IActionResult TeacherDetailedAnnouncement()
         {
             return View();
         }
@@ -55,6 +61,11 @@ namespace schoolconnect.Controllers
         }
 
         public IActionResult TeacherChatList()
+        {
+            return View();
+        }
+
+        public IActionResult TeacherUpdateDetails()
         {
             return View();
         }

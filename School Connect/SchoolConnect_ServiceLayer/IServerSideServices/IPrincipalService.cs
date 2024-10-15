@@ -7,7 +7,7 @@ namespace SchoolConnect_ServiceLayer.IServerSideServices
         Task<Dictionary<string, object>> Create(Principal principal);
         Task<Dictionary<string, object>> Update(Principal principal);
         Task<Dictionary<string, object>> GetById(long id);
-        Task<Dictionary<string, object>> GetByStaffNr(long staffNr);
-        Task<Dictionary<string, object>> Remote(long id, long? staffNr = -1);
+        Task<Dictionary<string, object>> GetByStaffNr(string staffNr);
+        Task<Dictionary<string, object>> Remove(long id);
     }
 }

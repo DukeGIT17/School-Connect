@@ -6,6 +6,6 @@ namespace SchoolConnect_ServiceLayer.IServerSideServices
     {
         Task<Dictionary<string, object>> CreateTeacherAsync(Teacher teacher);
         Task<Dictionary<string, object>> GetById(long id);
-        Task<Dictionary<string, object>> GetByStaffNr(long staffNr);
+        Task<Dictionary<string, object>> GetByStaffNr(string staffNr);
     }
 }

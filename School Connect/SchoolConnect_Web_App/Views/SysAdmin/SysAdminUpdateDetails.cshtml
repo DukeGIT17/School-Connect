@@ -1,0 +1,30 @@
+﻿@{
+    Layout = null;
+}
+<link rel="stylesheet" href="~/css/SysAdminCSS/SysAdminUpdateDetails.css" />
+
+
+<div class="card">
+    <div class="container">
+        <h3> Update Profile Details</h3>
+        <table>
+            <form method="post" action="/UserProfile/Update">
+                <!-- Contact Number -->
+                <div class="form-group">
+                    <label for="contactNumber">Contact Number:</label>
+                    <input type="text" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" required>
+                </div>
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                </div>
+                <!-- Buttons -->
+
+                <button type="submit" class="btn">Update Profile</button>
+
+            </form>
+        </table>
+    </div>
+</div>

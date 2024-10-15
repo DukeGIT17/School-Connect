@@ -29,6 +29,11 @@ namespace SchoolConnect_Web_App.Controllers
             return View();
         }
 
+        public IActionResult ParentDetailedAnnouncement()
+        {
+            return View();
+        }
+
         public IActionResult ParentViewAttendance()
         {
             return View();
@@ -44,5 +49,12 @@ namespace SchoolConnect_Web_App.Controllers
         {
             return View();
         }
+
+        public IActionResult ParentUpdateDetails()
+        {
+            return View();
+        }
+
+
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IGroupRepo
     {
-        Task<Dictionary<string, object>> AddActorToGroup(long actorId, long schoolId, string groupName);
+        Task<Dictionary<string, object>> AddActorToGroup(string actorId, long schoolId, string groupName);
     }
 }

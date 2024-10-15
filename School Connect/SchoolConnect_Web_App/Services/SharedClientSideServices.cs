@@ -13,7 +13,7 @@ namespace SchoolConnect_Web_App.Services
             {
                 if (!response.IsSuccessStatusCode)
                 {
-                    _ = string.IsNullOrEmpty(response.Content.ReadAsStringAsync().Result) ? throw new("Response from the API was null or empty.") : "";
+                    _ = string.IsNullOrEmpty(response.Content.ReadAsStringAsync().Result) ? throw new(response.ReasonPhrase) : "";
                     throw new(response.Content.ReadAsStringAsync().Result ?? "Operation failed; reason not provided.");
                 }
 
@@ -42,13 +42,13 @@ namespace SchoolConnect_Web_App.Services
                                 Surname = dict["surname"].ToString()!,
                                 Gender = dict["gender"].ToString()!,
                                 Role = dict["role"].ToString()!,
-                                StaffNr = (long)dict!["staffNr"],
+                                StaffNr = dict!["staffNr"].ToString(),
                                 EmailAddress = dict["emailAddress"].ToString()!,
                                 PhoneNumber = (long)dict["phoneNumber"],
                                 SysAdminSchoolNP = schoolDict is not null ? new()
                                 {
                                     Id = (long)schoolDict!["id"],
-                                    EmisNumber = (long)schoolDict!["emisNumber"],
+                                    EmisNumber = schoolDict!["emisNumber"].ToString(),
                                     Logo = schoolDict["logo"].ToString(),
                                     Name = schoolDict["name"].ToString()!,
                                     DateRegistered = Convert.ToDateTime(schoolDict["dateRegistered"]),
@@ -67,7 +67,7 @@ namespace SchoolConnect_Web_App.Services
                             School school = new()
                             {
                                 Id = (long)dict!["id"],
-                                EmisNumber = (long)dict["emisNumber"],
+                                EmisNumber = dict["emisNumber"].ToString(),
                                 Logo = dict["logo"].ToString(),
                                 Name = dict["name"].ToString()!,
                                 DateRegistered = Convert.ToDateTime(dict["dateRegistered"]),
@@ -80,7 +80,7 @@ namespace SchoolConnect_Web_App.Services
                                     Street = address["street"].ToString()!,
                                     Suburb = address["suburb"].ToString()!,
                                     City = address["city"].ToString()!,
-                                    PostalCode = Convert.ToInt32(address["postalCode"]),
+                                    PostalCode = address["postalCode"].ToString(),
                                     Province = address["province"].ToString()!,
                                     SchoolID = (long)address["schoolID"]
                                 }
@@ -101,14 +101,14 @@ namespace SchoolConnect_Web_App.Services
                                 Surname = dict["surname"].ToString()!,
                                 Gender = dict["gender"].ToString()!,
                                 Role = dict["role"].ToString()!,
-                                StaffNr = (long)dict["staffNr"],
+                                StaffNr = dict["staffNr"].ToString(),
                                 EmailAddress = dict["emailAddress"].ToString()!,
                                 PhoneNumber = (long)dict["phoneNumber"],
                                 SchoolID = (long)dict["schoolID"],
                                 PrincipalSchoolNP = new()
                                 {
                                     Id = (long)princSchool!["id"],
-                                    EmisNumber = (long)princSchool["emisNumber"],
+                                    EmisNumber = princSchool["emisNumber"].ToString(),
                                     Logo = princSchool["logo"].ToString(),
                                     Name = princSchool["name"].ToString()!,
                                     DateRegistered = Convert.ToDateTime(princSchool["dateRegistered"]),
@@ -122,7 +122,7 @@ namespace SchoolConnect_Web_App.Services
                                         Street = princSchoolAddress["street"].ToString()!,
                                         Suburb = princSchoolAddress["suburb"].ToString()!,
                                         City = princSchoolAddress["city"].ToString()!,
-                                        PostalCode = Convert.ToInt32(princSchoolAddress["postalCode"]),
+                                        PostalCode = princSchoolAddress["postalCode"].ToString()!,
                                         Province = princSchoolAddress["province"].ToString()!,
                                     }
                                 }
@@ -133,7 +133,6 @@ namespace SchoolConnect_Web_App.Services
 
 
                         case nameof(AnnouncementService.GetAnnouncementByPrincipalIdAsync):
-                            string st = "";
                             Announcement announcement = new()
                             {
                                 AnnouncementId = Convert.ToInt32(dict!["announcementId"]),

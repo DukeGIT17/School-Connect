@@ -31,6 +31,7 @@ namespace SchoolConnect_WebAPI.Controllers
         }
 
         [HttpPost(nameof(Create))]
+        [Consumes("multipart/form-data")]
         public IActionResult Create(Teacher teacher)
         {
             try

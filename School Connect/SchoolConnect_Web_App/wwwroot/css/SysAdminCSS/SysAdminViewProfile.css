@@ -56,7 +56,24 @@ html, body {
     }
 
 
+.icon {
+    font-size: 80px;
+    color: #0F2E34;
+    margin-bottom: 20px;
+}
 
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
 
 @media only screen and (max-width: 860px) {
     .left-container {
@@ -80,7 +97,6 @@ html, body {
     margin: 20px;
     border-radius: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-   
 }
 
 h3 {
@@ -125,7 +141,7 @@ td {
     color: white;
     border: none;
     padding: 5px;
-    width:15%;
+    width: 15%;
     border-radius: 16px;
 }
 
@@ -150,6 +166,18 @@ input:focus {
     outline: none;
     border-bottom: 1px solid #0F2E34;
 }
+
+.updateButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #0F2E34;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 @media only screen and (max-width: 860px) {
     .card {
         flex-direction: column;

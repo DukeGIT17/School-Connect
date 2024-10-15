@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis.Differencing;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
@@ -15,6 +16,7 @@ namespace SchoolConnect_Web_App.Controllers
         private readonly IPrincipalService _principalService;
         private readonly ILearnerService _learnerService;
         private Dictionary<string, object> _returnDictionary;
+        private static readonly string[] separator = new[] { ",", ", " };
 
         public SysAdminController(ISystemAdminService systemAdminService, ISchoolService schoolService, ITeacherService teacherService, IPrincipalService principalService, ILearnerService learnerService)
         {
@@ -26,6 +28,7 @@ namespace SchoolConnect_Web_App.Controllers
             _returnDictionary = [];
         }
 
+        [Authorize(Roles = "System Admin")]
         [HttpGet]
         public IActionResult SysAdminLandingPage(long id)
         {
@@ -138,6 +141,8 @@ namespace SchoolConnect_Web_App.Controllers
         {
             try
             {
+
+                IFormFile? file = Request.Form.Files.FirstOrDefault();
                 if (ModelState.IsValid)
                 {
                     string actor = "";
@@ -145,16 +150,19 @@ namespace SchoolConnect_Web_App.Controllers
                     if (model.Principal is not null)
                     {
                         actor = "Principal";
+                        model.Principal.ProfileImage = file?.FileName;
                         _returnDictionary = _schoolService.GetSchoolByIdAsync(model.Principal.SchoolID).Result;
                     }
                     else if (model.Teacher is not null)
                     {
                         actor = "Teacher";
+                        model.Teacher.ProfileImage = file?.FileName;
                         _returnDictionary = _schoolService.GetSchoolByIdAsync(model.Teacher.SchoolID).Result;
                     }
                     else if (model.Parent is not null)
                     {
                         actor = "Parent";
+                        model.Parent.ProfileImage = file?.FileName;
                         long? schoolId = model.Parent.Children.FirstOrDefault().Learner.SchoolID;
                         if (schoolId is null)
                             throw new("Something went wrong, some values may have been null.");
@@ -163,6 +171,7 @@ namespace SchoolConnect_Web_App.Controllers
                     }
                     else if (model.Learner is not null)
                     {
+                        model.Learner.ProfileImage = file?.FileName;
                         actor = "Learner";
                         _returnDictionary = _schoolService.GetSchoolByIdAsync(model.Learner.SchoolID).Result;
                     }
@@ -179,21 +188,12 @@ namespace SchoolConnect_Web_App.Controllers
                             throw new(_returnDictionary["ErrorMessage"] as string);
 
                     }
-                    if (actor == "Teacher")
+                    else if (actor == "Teacher")
                     {
-                        List<string> subjectList = [];
-                        List<string> tempList = [];
+                        if (model.Teacher.Subjects.First().Contains(','))
+                            model.Teacher.Subjects.RemoveAt(0);
+                        model.Teacher.Subjects = model.Teacher.Subjects.Distinct() as List<string>;
 
-                        foreach (var item in model.Teacher!.Subjects)
-                            subjectList.AddRange(item.Split(", "));
-
-                        foreach (var item in subjectList)
-                            if (item.Contains(','))
-                                tempList.AddRange(item.Split(","));
-
-                        subjectList = subjectList.Distinct().ToList();
-                        subjectList.Remove("");
-                        model.Teacher.Subjects = subjectList;
 
                         _returnDictionary = _teacherService.RegisterTeacherAsync(model.Teacher!).Result;
 
@@ -202,30 +202,7 @@ namespace SchoolConnect_Web_App.Controllers
                     }
                     else if (actor == "Learner")
                     {
-                        List<string> subjectList = [];
-                        List<string> tempList = [];
-                        List<string> itemsToRemove = [];
-
-                        foreach (var item in model.Learner!.Subjects)
-                            subjectList.AddRange(item.Split(", "));
-
-                        foreach (var item in subjectList)
-                        {
-                            if (item.Contains(','))
-                            {
-                                itemsToRemove.Add(item);
-                                tempList.AddRange(item.Split(","));
-                            }
-                        }
-
-                        foreach (var item in itemsToRemove)
-                            subjectList.Remove(item);
-
-                        subjectList.AddRange(tempList);
-                        subjectList = subjectList.Distinct().ToList();
-                        subjectList.Remove("");
-                        model.Learner.Subjects = subjectList;
-
+                        model.Learner!.Subjects!.RemoveAt(0);
                         foreach (var item in model.Learner.Parents)
                         {
                             item.LearnerIdNo = model.Learner.IdNo;
@@ -302,6 +279,11 @@ namespace SchoolConnect_Web_App.Controllers
                 Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
                 return RedirectToAction("Index", "Home");
             }
+        }
+
+        public IActionResult SysAdminUpdateDetails()
+        {
+            return View();
         }
     }
 }

@@ -12,9 +12,19 @@
         <i class="fa-solid fa-school"></i>
     </div>
     <br />
-    
-    <form asp-action="SchoolReg" method="post">
-        <input asp-for="School.Logo" type="hidden" value="Default Pic" />
+
+    <form asp-action="SchoolReg" method="post" enctype="multipart/form-data">
+        <div id="upload-image">
+            <h3>Upload School Logo</h3>
+            <div class="upload-container">
+                <button type="button" id="remove-file" onclick="removeSelectedFile('uploadBox', 'fileNameDisplay', 'remove-file')"><i class="fa-regular fa-circle-xmark"></i></button>
+                <button type="button" id="uploadImageBtn"><i class="fa-solid fa-upload"></i></button>
+                <input asp-for="School.SchoolLogoFile" type="file" id="uploadBox" accept="image/*" style="display:none" />
+                <p id="fileNameDisplay">No file selected</p>
+            </div>
+            <span asp-validation-for="School.SchoolLogoFile"></span>
+        </div>
+
         <div class="form-group">
             <label asp-for="School.Name"></label>
             <input asp-for="School.Name" id="schoolName" placeholder="@Html.DisplayNameFor(s => s.School.Name)">
@@ -104,3 +114,6 @@
     </form>
 
 </div>
+
+<script src="~/js/site.js"></script>
+<script src="~/js/SysAdminJS/SchoolReg.js"></script>

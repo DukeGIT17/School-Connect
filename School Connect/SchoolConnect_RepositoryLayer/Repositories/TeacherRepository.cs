@@ -1,7 +1,7 @@
 ﻿using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_RepositoryLayer.CommonAction;
+using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -38,6 +38,15 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 _returnDictionary = await _signInRepo.CreateUserAccountAsync(teacher.EmailAddress, teacher.Role, teacher.PhoneNumber.ToString());
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
+                if (teacher.ProfileImageFile is not null)
+                {
+                    _returnDictionary = SaveImage($"{teacher.Name} {teacher.Surname} - {teacher.TeacherSchoolNP!.Name}", "Profile Images Folder/Teachers", teacher.ProfileImageFile);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    teacher.ProfileImage = _returnDictionary["FileName"] as string;
+                }
+                else
+                    teacher.ProfileImage = "Default Pic.jpeg";
+
                 await _context.AddAsync(teacher);
                 await _context.SaveChangesAsync();
 
@@ -56,7 +65,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                return await CommonActions.GetActorById(teacherId, new Teacher(), _context);
+                return await GetActorById(teacherId, new Teacher(), _context);
             }
             catch (Exception ex)
             {

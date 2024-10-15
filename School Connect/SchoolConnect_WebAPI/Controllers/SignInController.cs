@@ -17,6 +17,13 @@ namespace SchoolConnect_WebAPI.Controllers
             _returnDictionary = [];
         }
 
+        [HttpGet(nameof(IsSignedIn))]
+        public IActionResult IsSignedIn()
+        {
+            _signInService.IsSignedIn();
+            return Ok(true);
+        }
+
         [HttpPost("SignIn")]
         public IActionResult SignInWithEmailAndPassword(LoginModel model)
         {

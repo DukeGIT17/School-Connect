@@ -28,8 +28,10 @@ namespace SchoolConnect_WebAPI.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("PostalCode")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasMaxLength(4)
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Province")
                         .IsRequired()
@@ -207,8 +209,10 @@ namespace SchoolConnect_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("IdNo")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("IdNo")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -259,11 +263,15 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Property<long>("ParentID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("LearnerIdNo")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("LearnerIdNo")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("TEXT");
 
-                    b.Property<long>("ParentIdNo")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ParentIdNo")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("TEXT");
 
                     b.HasKey("LearnerID", "ParentID");
 
@@ -290,8 +298,10 @@ namespace SchoolConnect_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("IdNo")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("IdNo")
+                        .IsRequired()
+                        .HasMaxLength(13)
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -367,8 +377,10 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Property<long>("SchoolID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("StaffNr")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("StaffNr")
+                        .IsRequired()
+                        .HasMaxLength(7)
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Surname")
                         .IsRequired()
@@ -409,8 +421,10 @@ namespace SchoolConnect_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("EmisNumber")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("EmisNumber")
+                        .IsRequired()
+                        .HasMaxLength(8)
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Logo")
                         .HasColumnType("TEXT");
@@ -505,8 +519,10 @@ namespace SchoolConnect_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("StaffNr")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("StaffNr")
+                        .IsRequired()
+                        .HasMaxLength(7)
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Surname")
                         .IsRequired()
@@ -563,8 +579,10 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Property<long>("SchoolID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("StaffNr")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("StaffNr")
+                        .IsRequired()
+                        .HasMaxLength(7)
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Subjects")
                         .IsRequired()

@@ -32,9 +32,10 @@ namespace SchoolConnect_DomainLayer.Models
         public string City { get; set; }
 
         [Required(ErrorMessage = "Please provide postal code.")]
-        [NumberLength(4, ErrorMessage = "Postal code should have exactly 4 digits.")]
+        [StringLength(4, MinimumLength = 4, ErrorMessage = "Postal code should have exactly 4 digits.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Please specify a proper Emis Number. Only numerical values allowed.")]
         [Display(Name = "Postal Code")]
-        public int PostalCode { get; set; }
+        public string PostalCode { get; set; }
 
         [Required(ErrorMessage = "Please provide province of residence.")]
         [StringLength(15, MinimumLength = 3, ErrorMessage = "Province name should be between 30 and 3 characters long.")]

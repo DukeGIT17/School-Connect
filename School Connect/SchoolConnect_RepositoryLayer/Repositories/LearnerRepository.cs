@@ -125,7 +125,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                             Name = parentWorksheet.Cells[row, 2].Value?.ToString(),
                             Surname = parentWorksheet.Cells[row, 3].Value?.ToString(),
                             Gender = parentWorksheet.Cells[row, 4].Value?.ToString(),
-                            IdNo = Convert.ToInt64(parentWorksheet.Cells[row, 5].Value),
+                            IdNo = parentWorksheet.Cells[row, 5].Value?.ToString(),
                             ParentType = parentWorksheet.Cells[row, 6].Value?.ToString(),
                             EmailAddress = parentWorksheet.Cells[row, 7].Value?.ToString(),
                             PhoneNumber = Convert.ToInt64(parentWorksheet.Cells[row, 8].Value),
@@ -155,7 +155,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                             Name = learnerWorksheet.Cells[row, 2].Value?.ToString(),
                             Surname = learnerWorksheet.Cells[row, 3].Value?.ToString(),
                             Gender = learnerWorksheet.Cells[row, 4].Value?.ToString(),
-                            IdNo = Convert.ToInt64(learnerWorksheet.Cells[row, 5].Value),
+                            IdNo = learnerWorksheet.Cells[row, 5].Value?.ToString(),
                             ClassCode = learnerWorksheet.Cells[row, 6].Value?.ToString(),
                             Subjects = learnerWorksheet.Cells[row, 7].Value?.ToString()
                         .Trim('[', ']')
@@ -168,7 +168,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                             [
                                 new()
                                 {
-                                    LearnerIdNo = Convert.ToInt64(learnerWorksheet.Cells[row, 5].Value),
+                                    LearnerIdNo = learnerWorksheet.Cells[row, 5].Value?.ToString(),
                                     ParentIdNo = parents[learnerIdNos.IndexOf(Convert.ToInt64(learnerWorksheet.Cells[row, 5].Value))].IdNo,
                                     Parent = parents[learnerIdNos.IndexOf(Convert.ToInt64(learnerWorksheet.Cells[row, 5].Value))]
                                 }
@@ -277,7 +277,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public Task<Dictionary<string, object>> GetByIdNo(long learnerIdNo)
+        public Task<Dictionary<string, object>> GetByIdNo(string learnerIdNo)
         {
             throw new NotImplementedException();
         }

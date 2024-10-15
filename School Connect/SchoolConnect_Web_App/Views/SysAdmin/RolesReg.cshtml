@@ -15,51 +15,64 @@
 
 <div class="container">
     <div id="role_identifier">
-        <button id="principal">
+        <button type="button" id="principal">
             <p>Principal</p>
         </button>
-        <button id="teacher">
+        <button type="button" id="teacher">
             <p>Teacher</p>
         </button>
-        <button id="parent">
+        <button type="button" id="parent">
             <p>Parent</p>
         </button>
-        <button id="learner">
+        <button type="button" id="learner">
             <p>Learner</p>
         </button>
     </div>
 
     <div class="icon"><i class="fas fa-user"></i></div>
-    <br />
-    <br />
-    
+
     <div id="principal-div">
-        <form asp-action="RolesReg" method="post">
-            <div class="input-group">
-                <label asp-for="Principal.Title"></label>
-                <select asp-for="Principal.Title" id="title">
-                    <option value="Mr" selected>Mr</option>
-                    <option value="Mrs">Mrs</option>
-                    <option value="Ms">Ms</option>
-                    <option value="Miss">Miss</option>
-                </select>
-            </div>
 
-            <div class="input-group">
-                <label asp-for="Principal.Name"></label>
-                <input asp-for="Principal.Name" id="firstName" placeholder="Enter First Name">
-                <span asp-validation-for="Principal.Name"></span>
-            </div>
+        <form asp-action="RolesReg" method="post" enctype="multipart/form-data">
+            <div id="upload-title-name-surname">
+                <div id="input-fields">
+                    <div class="input-group">
+                        <label asp-for="Principal.Title"></label>
+                        <select asp-for="Principal.Title" id="title">
+                            <option value="Mr" selected>Mr</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Ms">Ms</option>
+                            <option value="Miss">Miss</option>
+                        </select>
+                    </div>
 
-            <div class="input-group">
-                <label asp-for="Principal.Surname"></label>
-                <input asp-for="Principal.Surname" id="lastName" placeholder="Enter Last Name">
-                <span asp-validation-for="Principal.Surname"></span>
+                    <div class="input-group">
+                        <label asp-for="Principal.Name"></label>
+                        <input asp-for="Principal.Name" id="firstName" placeholder="Enter Name">
+                        <span asp-validation-for="Principal.Name"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <label asp-for="Principal.Surname"></label>
+                        <input asp-for="Principal.Surname" id="lastName" placeholder="Enter Surname">
+                        <span asp-validation-for="Principal.Surname"></span>
+                    </div>
+                </div>
+                <div id="upload-image">
+                    <h3>Upload File</h3>
+                    <div class="upload-container">
+                        <button type="button" id="remove-file-Principal" class="remove-file" onclick="removeSelectedFile('uploadBox-Principal', 'fileNameDisplay-Principal', 'remove-file-Principal')"><i class="fa-regular fa-circle-xmark"></i></button>
+                        <button type="button" id="uploadImageBtn-Principal"><i class="fa-solid fa-upload"></i></button>
+                        <input asp-for="Principal.ProfileImageFile" type="file" id="uploadBox-Principal" accept="image/*" style="display:none" />
+                        <p id="fileNameDisplay-Principal">No file selected</p>
+                    </div>
+                    <span asp-validation-for="Principal.ProfileImageFile"></span>
+                </div>
             </div>
 
             <div class="input-group">
                 <label asp-for="Principal.StaffNr"></label>
-                <input asp-for="Principal.StaffNr" id="idNum" placeholder="Identity Number">
+                <input asp-for="Principal.StaffNr" id="idNum" placeholder="Enter Staff Number">
                 <span asp-validation-for="Principal.StaffNr"></span>
             </div>
 
@@ -73,15 +86,17 @@
 
             <div class="input-group">
                 <label asp-for="Principal.EmailAddress"></label>
-                <input asp-for="Principal.EmailAddress" id="email" placeholder="Email Address">
+                <input asp-for="Principal.EmailAddress" id="email" placeholder="Enter Email Address">
                 <span asp-validation-for="Principal.EmailAddress"></span>
             </div>
 
             <div class="input-group">
                 <label asp-for="Principal.PhoneNumber"></label>
-                <input asp-for="Principal.PhoneNumber" id="cellNumber" placeholder="Phone Number">
+                <input asp-for="Principal.PhoneNumber" id="cellNumber" placeholder="Enter Phone Number">
                 <span asp-validation-for="Principal.PhoneNumber"></span>
             </div>
+
+
 
             <input asp-for="Principal.SchoolID" type="hidden" value="@Model.SchoolID" />
             <input asp-for="Principal.Role" type="hidden" value="Principal" />
@@ -95,34 +110,49 @@
             <button type="submit" class="button">REGISTER</button>
         </form>
     </div>
-    
+
     <div id="teacher-div" style="display:none">
-        <form asp-action="RolesReg" method="post">
-            <div class="input-group">
-                <label asp-for="Teacher.Title"></label>
-                <select asp-for="Teacher.Title" id="title">
-                    <option value="Mr" selected>Mr</option>
-                    <option value="Mrs">Mrs</option>
-                    <option value="Ms">Ms</option>
-                    <option value="Miss">Miss</option>
-                </select>
-            </div>
 
-            <div class="input-group">
-                <label asp-for="Teacher.Name"></label>
-                <input asp-for="Teacher.Name" id="firstName" placeholder="Enter First Name">
-                <span asp-validation-for="Teacher.Name"></span>
-            </div>
+        <form asp-action="RolesReg" method="post" enctype="multipart/form-data">
+            <div id="upload-title-name-surname">
+                <div id="input-fields">
+                    <div class="input-group">
+                        <label asp-for="Teacher.Title"></label>
+                        <select asp-for="Teacher.Title" id="title">
+                            <option value="Mr" selected>Mr</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Ms">Ms</option>
+                            <option value="Miss">Miss</option>
+                        </select>
+                    </div>
 
-            <div class="input-group">
-                <label asp-for="Teacher.Surname"></label>
-                <input asp-for="Teacher.Surname" id="lastName" placeholder="Enter Last Name">
-                <span asp-validation-for="Teacher.Surname"></span>
+                    <div class="input-group">
+                        <label asp-for="Teacher.Name"></label>
+                        <input asp-for="Teacher.Name" id="firstName" placeholder="Enter Name">
+                        <span asp-validation-for="Teacher.Name"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <label asp-for="Teacher.Surname"></label>
+                        <input asp-for="Teacher.Surname" id="lastName" placeholder="Enter Surname">
+                        <span asp-validation-for="Teacher.Surname"></span>
+                    </div>
+                </div>
+                <div id="upload-image">
+                    <h3>Upload File</h3>
+                    <div class="upload-container">
+                        <button type="button" id="remove-file-Teacher" onclick="removeSelectedFile('uploadBox-Teacher', 'fileNameDisplay-Teacher', 'remove-file-Teacher')" class="remove-file" ><i class="fa-regular fa-circle-xmark"></i></button>
+                        <button type="button" id="uploadImageBtn-Teacher"><i class="fa-solid fa-upload"></i></button>
+                        <input asp-for="Teacher.ProfileImageFile" type="file" id="uploadBox-Teacher" accept="image/*" style="display:none" />
+                        <p id="fileNameDisplay-Teacher">No file selected</p>
+                    </div>
+                    <span asp-validation-for="Teacher.ProfileImageFile"></span>
+                </div>
             </div>
 
             <div class="input-group">
                 <label asp-for="Teacher.StaffNr"></label>
-                <input asp-for="Teacher.StaffNr" id="idNum" placeholder="Identity Number">
+                <input asp-for="Teacher.StaffNr" id="idNum" placeholder="Enter Staff Number">
                 <span asp-validation-for="Teacher.StaffNr"></span>
             </div>
 
@@ -136,13 +166,13 @@
 
             <div class="input-group">
                 <label asp-for="Teacher.EmailAddress"></label>
-                <input asp-for="Teacher.EmailAddress" id="email" placeholder="Email Address">
+                <input asp-for="Teacher.EmailAddress" id="email" placeholder="Enter Email Address">
                 <span asp-validation-for="Teacher.EmailAddress"></span>
             </div>
 
             <div class="input-group">
                 <label asp-for="Teacher.PhoneNumber"></label>
-                <input asp-for="Teacher.PhoneNumber" id="cellNumber" placeholder="Phone Number">
+                <input asp-for="Teacher.PhoneNumber" id="cellNumber" placeholder="Enter Phone Number">
                 <span asp-validation-for="Teacher.PhoneNumber"></span>
             </div>
 
@@ -174,32 +204,46 @@
     </div>
 
     <div id="parent-div" style="display:none">
-        <form asp-action="RolesReg" method="post">
-            <div class="input-group">
-                <label asp-for="Parent.Title"></label>
-                <select asp-for="Parent.Title" id="title">
-                    <option value="Mr" selected>Mr</option>
-                    <option value="Mrs">Mrs</option>
-                    <option value="Ms">Ms</option>
-                    <option value="Miss">Miss</option>
-                </select>
-            </div>
 
-            <div class="input-group">
-                <label asp-for="Parent.Name"></label>
-                <input asp-for="Parent.Name" id="firstName" placeholder="Enter First Name">
-                <span asp-validation-for="Parent.Name"></span>
-            </div>
+        <form asp-action="RolesReg" method="post" enctype="multipart/form-data">
+            <div id="upload-title-name-surname">
+                <div id="input-fields">
+                    <div class="input-group">
+                        <label asp-for="Parent.Title"></label>
+                        <select asp-for="Parent.Title" id="title">
+                            <option value="Mr" selected>Mr</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Ms">Ms</option>
+                            <option value="Miss">Miss</option>
+                        </select>
+                    </div>
 
-            <div class="input-group">
-                <label asp-for="Parent.Surname"></label>
-                <input asp-for="Parent.Surname" id="lastName" placeholder="Enter Last Name">
-                <span asp-validation-for="Parent.Surname"></span>
+                    <div class="input-group">
+                        <label asp-for="Parent.Name"></label>
+                        <input asp-for="Parent.Name" id="firstName" placeholder="Enter Name">
+                        <span asp-validation-for="Parent.Name"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <label asp-for="Parent.Surname"></label>
+                        <input asp-for="Parent.Surname" id="lastName" placeholder="Enter Surname">
+                        <span asp-validation-for="Parent.Surname"></span>
+                    </div>
+                </div>
+                <div id="upload-image">
+                    <h3>Upload File</h3>
+                    <div class="upload-container">
+                        <button type="button" id="remove-file-Parent" class="remove-file" onclick="removeSelectedFile('uploadBox-Parent', 'fileNameDisplay-Parent', 'remove-file-Parent')"><i class="fa-regular fa-circle-xmark"></i></button>
+                        <button type="button" id="uploadImageBtn-Parent"><i class="fa-solid fa-upload"></i></button>
+                        <input asp-for="Parent.ProfileImageFile" type="file" name="files" id="uploadBox-Parent" accept="image/*" style="display:none" />
+                        <p id="fileNameDisplay-Parent">No file selected</p>
+                    </div>
+                </div>
             </div>
 
             <div class="input-group">
                 <label asp-for="Parent.IdNo"></label>
-                <input asp-for="Parent.IdNo" id="idNum" placeholder="Identity Number">
+                <input asp-for="Parent.IdNo" id="idNum" placeholder="Enter Identity Number">
                 <span asp-validation-for="Parent.IdNo"></span>
             </div>
 
@@ -213,7 +257,7 @@
 
             <div class="input-group">
                 <label asp-for="Parent.ParentType"></label>
-                <select asp-for="Parent.ParentType" >
+                <select asp-for="Parent.ParentType">
                     <option value="Mother">Mother</option>
                     <option value="Father">Father</option>
                     <option value="Guardian">Guardian</option>
@@ -257,27 +301,41 @@
     </div>
 
     <div id="learner-div" style="display:none">
-        <form asp-action="RolesReg" method="post">
-            <div class="input-group">
-                <label asp-for="Learner.Title"></label>
-                <select asp-for="Learner.Title" id="title">
-                    <option value="Mr" selected>Mr</option>
-                    <option value="Mrs">Mrs</option>
-                    <option value="Ms">Ms</option>
-                    <option value="Miss">Miss</option>
-                </select>
-            </div>
 
-            <div class="input-group">
-                <label asp-for="Learner.Name"></label>
-                <input asp-for="Learner.Name" id="firstName" placeholder="Enter First Name">
-                <span asp-validation-for="Learner.Name"></span>
-            </div>
+        <form asp-action="RolesReg" method="post" enctype="multipart/form-data">
+            <div id="upload-title-name-surname">
+                <div id="input-fields">
+                    <div class="input-group">
+                        <label asp-for="Learner.Title"></label>
+                        <select asp-for="Learner.Title" id="title">
+                            <option value="Mr" selected>Mr</option>
+                            <option value="Mrs">Mrs</option>
+                            <option value="Ms">Ms</option>
+                            <option value="Miss">Miss</option>
+                        </select>
+                    </div>
 
-            <div class="input-group">
-                <label asp-for="Learner.Surname"></label>
-                <input asp-for="Learner.Surname" id="lastName" placeholder="Enter Last Name">
-                <span asp-validation-for="Learner.Surname"></span>
+                    <div class="input-group">
+                        <label asp-for="Learner.Name"></label>
+                        <input asp-for="Learner.Name" id="firstName" placeholder="Enter Name">
+                        <span asp-validation-for="Learner.Name"></span>
+                    </div>
+
+                    <div class="input-group">
+                        <label asp-for="Learner.Surname"></label>
+                        <input asp-for="Learner.Surname" id="lastName" placeholder="Enter Surname">
+                        <span asp-validation-for="Learner.Surname"></span>
+                    </div>
+                </div>
+                <div id="upload-image">
+                    <h3>Upload File</h3>
+                    <div class="upload-container">
+                        <button type="button" id="remove-file-Learner" class="remove-file" onclick="removeSelectedFile('uploadBox-Learner', 'fileNameDisplay-Learner', 'remove-file-Learner')"><i class="fa-regular fa-circle-xmark"></i></button>
+                        <button type="button" id="uploadImageBtn-Learner"><i class="fa-solid fa-upload"></i></button>
+                        <input asp-for="Learner.ProfileImageFile" type="file" name="files" id="uploadBox-Learner" accept="image/*" style="display:none" />
+                        <p id="fileNameDisplay-Learner">No file selected</p>
+                    </div>
+                </div>
             </div>
 
             <div class="input-group">
@@ -317,16 +375,41 @@
             <h3>Parents</h3>
             @for (int i = 0; i < Model.Learner.Parents.Count; i++)
             {
-                <input asp-for="@Model.Learner.Parents[i].LearnerIdNo" type="hidden" value="7485963214578" class="learner-idno"/>
+                <input asp-for="@Model.Learner.Parents[i].LearnerIdNo" type="hidden" value="7485963214578" class="learner-idno" />
 
-                <div class="input-group">
-                    <label asp-for="@Model.Learner.Parents[i].Parent.Title"></label>
-                    <select asp-for="@Model.Learner.Parents[i].Parent.Title" placeholder="Parent Title" >
-                        <option value="Mr" selected>Mr</option>
-                        <option value="Mr" selected>Mrs</option>
-                        <option value="Mr" selected>Ms</option>
-                        <option value="Mr" selected>Miss</option>
-                    </select>
+                <div id="upload-title-name-surname">
+                    <div id="input-fields">
+                        <div class="input-group">
+                            <label asp-for="@Model.Learner.Parents[i].Parent.Title"></label>
+                            <select asp-for="Parent.Title" id="title">
+                                <option value="Mr" selected>Mr</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Ms">Ms</option>
+                                <option value="Miss">Miss</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label asp-for="@Model.Learner.Parents[i].Parent.Name"></label>
+                            <input asp-for="@Model.Learner.Parents[i].Parent.Name" id="firstName" placeholder="Enter Name">
+                            <span asp-validation-for="@Model.Learner.Parents[i].Parent.Name"></span>
+                        </div>
+
+                        <div class="input-group">
+                            <label asp-for="@Model.Learner.Parents[i].Parent.Surname"></label>
+                            <input asp-for="@Model.Learner.Parents[i].Parent.Surname" id="lastName" placeholder="Enter Surname">
+                            <span asp-validation-for="@Model.Learner.Parents[i].Parent.Surname"></span>
+                        </div>
+                    </div>
+                    <div id="upload-image">
+                        <h3>Upload File</h3>
+                        <div class="upload-container">
+                            <button type="button" class="remove-file" id="remove-file-LearnerParent" onclick="removeSelectedFile('uploadBox-LearnerParent', 'fileNameDisplay-LearnerParent', 'remove-file-LearnerParent')"><i class="fa-regular fa-circle-xmark"></i></button>
+                            <button type="button" id="uploadImageBtn-LearnerParent"><i class="fa-solid fa-upload"></i></button>
+                            <input asp-for="@Model.Learner.Parents[i].Parent.ProfileImageFile" type="file" name="files" id="uploadBox-LearnerParent" accept="image/*" style="display:none" />
+                            <p id="fileNameDisplay-LearnerParent">No file selected</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="input-group">
@@ -335,19 +418,7 @@
                     <span asp-validation-for="@Model.Learner.Parents[i].ParentIdNo"></span>
                 </div>
 
-                    <input asp-for="@Model.Learner.Parents[i].Parent.IdNo" type="hidden" value="8526547896523"/>
-
-                <div class="input-group">
-                    <label asp-for="@Model.Learner.Parents[i].Parent.Name"></label>
-                    <input asp-for="@Model.Learner.Parents[i].Parent.Name" placeholder="Parent Name" />
-                    <span asp-validation-for="@Model.Learner.Parents[i].Parent.Name"></span>
-                </div>
-
-                <div class="input-group">
-                    <label asp-for="@Model.Learner.Parents[i].Parent.Surname"></label>
-                    <input asp-for="@Model.Learner.Parents[i].Parent.Surname" placeholder="Parent Surname" />
-                    <span asp-validation-for="@Model.Learner.Parents[i].Parent.Surname"></span>
-                </div>
+                <input asp-for="@Model.Learner.Parents[i].Parent.IdNo" type="hidden" value="8526547896523" />
 
                 <div class="input-group">
                     <label asp-for="@Model.Learner.Parents[i].Parent.Gender"></label>
@@ -395,4 +466,6 @@
     </div>
 </div>
 
+<script src="~/js/site.js"></script>
 <script src="~/js/SysAdminJS/RolesReg.js"></script>
+

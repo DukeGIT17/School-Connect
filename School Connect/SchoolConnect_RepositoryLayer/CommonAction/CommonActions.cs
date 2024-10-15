@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing.Constraints;
 
 namespace SchoolConnect_RepositoryLayer.CommonAction
 {
@@ -103,6 +105,27 @@ namespace SchoolConnect_RepositoryLayer.CommonAction
                     throw new($"Something went wrong, no actor with ID {actorId}.");
                 }
                 
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public static Dictionary<string, object> SaveImage(string name, string destinationFolder, IFormFile imageFile)
+        {
+            Dictionary<string, object> _returnDictionary = [];
+            try
+            {
+                string fileName = name + $" - {Guid.NewGuid()}" + Path.GetExtension(imageFile.FileName);
+                using var fileStream = new FileStream($@"C:\Users\innoc\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\{destinationFolder}\{fileName}", FileMode.Create);
+                imageFile.CopyTo(fileStream);
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["FileName"] = fileName;
+                return _returnDictionary;
             }
             catch (Exception ex)
             {

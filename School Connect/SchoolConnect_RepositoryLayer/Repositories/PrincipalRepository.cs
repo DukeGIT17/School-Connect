@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
+using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -40,6 +42,15 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 _returnDictionary = await _signInRepo.CreateUserAccountAsync(principal.EmailAddress, principal.Role, principal.PhoneNumber.ToString());
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
+                if (principal.ProfileImageFile is not null)
+                {
+                    _returnDictionary = SaveImage($"{principal.Name} {principal.Surname} - {principal.PrincipalSchoolNP.Name}", "Profile Images Folder", principal.ProfileImageFile);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    principal.ProfileImage = _returnDictionary["FileName"] as string;
+                }
+                else
+                    principal.ProfileImage = "Default Pic.jpeg";
+
                 await _context.AddAsync(principal);
                 await _context.SaveChangesAsync();
 
@@ -74,12 +85,12 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public Task<Dictionary<string, object>> GetByStaffNr(long principalStaffNr)
+        public Task<Dictionary<string, object>> GetByStaffNr(string principalStaffNr)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, object>> Remove(long principalId, long? staffNr = -1)
+        public Task<Dictionary<string, object>> Remove(long principalId)
         {
             throw new NotImplementedException();
         }

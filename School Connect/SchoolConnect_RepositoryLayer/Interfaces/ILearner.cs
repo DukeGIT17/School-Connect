@@ -7,7 +7,7 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
         Task<Dictionary<string, object>> BatchLoadLearnersFromExcel(string fileName);
         Task<Dictionary<string, object>> CreateAsync(Learner learner);
         Task<Dictionary<string, object>> GetById(long learnerId);
-        Task<Dictionary<string, object>> GetByIdNo(long learnerIdNo);
+        Task<Dictionary<string, object>> GetByIdNo(string learnerIdNo);
         Task<Dictionary<string, object>> GetAll();
         Task<Dictionary<string, object>> GetClass(string classId);
         Task<Dictionary<string, object>> UpdateLearner(Learner learner);

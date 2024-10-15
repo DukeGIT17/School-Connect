@@ -9,7 +9,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         private readonly SchoolConnectDbContext _context = context;
         private Dictionary<string, object> _returnDictionary = [];
 
-        public async Task<Dictionary<string, object>> AddActorToGroup(long actorId, long schoolId, string groupName)
+        public async Task<Dictionary<string, object>> AddActorToGroup(string actorId, long schoolId, string groupName)
         {
             try
             {

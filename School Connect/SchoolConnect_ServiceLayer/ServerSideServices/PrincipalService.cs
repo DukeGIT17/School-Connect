@@ -52,12 +52,12 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
-        public Task<Dictionary<string, object>> GetByStaffNr(long staffNr)
+        public Task<Dictionary<string, object>> GetByStaffNr(string staffNr)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, object>> Remote(long id, long? staffNr = -1)
+        public Task<Dictionary<string, object>> Remove(long id)
         {
             throw new NotImplementedException();
         }

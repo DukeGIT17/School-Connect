@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
@@ -8,14 +9,16 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 {
     public class SignInRepository : ISignInRepo
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly SignInManager<CustomIdentityUser> _signInManager;
         private readonly SchoolConnectDbContext _context;
         private Dictionary<string, object> _returnDictionary;
 
-        public SignInRepository(SignInManager<CustomIdentityUser> signInManager, SchoolConnectDbContext context)
+        public SignInRepository(SignInManager<CustomIdentityUser> signInManager, SchoolConnectDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _signInManager = signInManager;
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
             _returnDictionary = [];
         }
 
@@ -171,6 +174,14 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
 
         }
+
+        public void IsSignedIn()
+        {
+            var val = _httpContextAccessor.HttpContext.User;
+            var value = _signInManager.IsSignedIn(val);
+            Console.WriteLine(value);
+        }
+
         public void SignOutAsync()
         {
             _signInManager.SignOutAsync().Wait();

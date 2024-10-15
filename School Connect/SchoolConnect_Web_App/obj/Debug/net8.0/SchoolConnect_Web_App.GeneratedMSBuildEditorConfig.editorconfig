@@ -26,10 +26,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\innoc\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_Web_App
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/wwwroot/css/PrincipalCSS/PrincipalUpdateDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = d3d3cm9vdFxjc3NcUHJpbmNpcGFsQ1NTXFByaW5jaXBhbFVwZGF0ZURldGFpbHMuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -142,10 +138,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/SysAdmin/PrincipalRegistration.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3lzQWRtaW5cUHJpbmNpcGFsUmVnaXN0cmF0aW9uLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/SysAdmin/RolesReg.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3lzQWRtaW5cUm9sZXNSZWcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -156,6 +148,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/SysAdmin/SysAdminLandingPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3lzQWRtaW5cU3lzQWRtaW5MYW5kaW5nUGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/SysAdmin/SysAdminUpdateDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3lzQWRtaW5cU3lzQWRtaW5VcGRhdGVEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/SysAdmin/SysAdminViewProfile.cshtml]

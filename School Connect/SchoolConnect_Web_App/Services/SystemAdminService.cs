@@ -40,7 +40,7 @@ namespace SchoolConnect_Web_App.Services
             }
         }
         
-        public Dictionary<string, object> GetAdminByStaffNr(long staffNr)
+        public Dictionary<string, object> GetAdminByStaffNr(string staffNr)
         {
             _returnDictionary = [];
             try

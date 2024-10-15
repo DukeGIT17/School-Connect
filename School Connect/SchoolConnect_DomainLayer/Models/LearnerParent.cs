@@ -9,8 +9,9 @@ namespace SchoolConnect_DomainLayer.Models
 
         [Required(ErrorMessage = "Please provide identity number.")]
         [Display(Name = "Learner ID Number")]
-        [NumberLength(13, ErrorMessage = "ID Number should contain 13 digits.")]
-        public long LearnerIdNo { get; set; }
+        [StringLength(13, MinimumLength = 13, ErrorMessage = "ID Number should contain 13 digits.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Please specify a proper Emis Number. Only numerical values allowed.")]
+        public string LearnerIdNo { get; set; }
 
         public Learner? Learner { get; set; }
 
@@ -21,8 +22,9 @@ namespace SchoolConnect_DomainLayer.Models
 
         [Required(ErrorMessage = "Please provide identity number.")]
         [Display(Name = "Parent ID Number")]
-        [NumberLength(13, ErrorMessage = "ID Number should contain 13 digits.")]
-        public long ParentIdNo { get; set; }
+        [StringLength(13, MinimumLength = 13, ErrorMessage = "ID Number should contain 13 digits.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Please specify a proper Emis Number. Only numerical values allowed.")]
+        public string ParentIdNo { get; set; }
 
         public Parent? Parent { get; set; }
     }

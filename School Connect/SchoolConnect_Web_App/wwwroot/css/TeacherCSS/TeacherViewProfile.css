@@ -167,6 +167,17 @@ input:focus {
     border-bottom: 1px solid #0F2E34;
 }
 
+.updateButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #0F2E34;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
 @media only screen and (max-width: 860px) {
     .card {
         flex-direction: column;

@@ -6,6 +6,6 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
     {
         Task<Dictionary<string, object>> CreateAsync(Parent parent);
         Task<Dictionary<string, object>> GetById(long parentId);
-        Task<Dictionary<string, object>> GetByIdNo(long parentIdNo);
+        Task<Dictionary<string, object>> GetByIdNo(string parentIdNo);
     }
 }

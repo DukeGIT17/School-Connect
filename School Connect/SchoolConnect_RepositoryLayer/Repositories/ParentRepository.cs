@@ -100,7 +100,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public Task<Dictionary<string, object>> GetByIdNo(long parentIdNo)
+        public Task<Dictionary<string, object>> GetByIdNo(string parentIdNo)
         {
             throw new NotImplementedException();
         }

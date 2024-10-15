@@ -55,7 +55,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
-        public Task<Dictionary<string, object>> GetByIdNo(long idNo)
+        public Task<Dictionary<string, object>> GetByIdNo(string idNo)
         {
             throw new NotImplementedException();
         }

@@ -8,7 +8,7 @@ namespace SchoolConnect_DomainLayer.Models
         [Key]
         public int GroupId { get; set; }
         
-        public IList<long> GroupMemberIDs { get; set; }
+        public IList<string> GroupMemberIDs { get; set; }
 
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Group names should contain between 50 and 3 characters.")]
         public string GroupName { get; set; }

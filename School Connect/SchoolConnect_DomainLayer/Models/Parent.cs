@@ -1,5 +1,4 @@
-﻿using SchoolConnect_DomainLayer.CustomAttributes;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SchoolConnect_DomainLayer.Models
 {
@@ -13,8 +12,9 @@ namespace SchoolConnect_DomainLayer.Models
         /// </summary>
         [Required(ErrorMessage = "Please provide identity number.")]
         [Display(Name = "ID Number")]
-        [NumberLength(13, ErrorMessage = "ID Number should contain 13 digits.")]
-        public long IdNo { get; set; }
+        [StringLength(13, MinimumLength = 13, ErrorMessage = "ID Number should contain 13 digits.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Please specify a proper Emis Number. Only numerical values allowed.")]
+        public string IdNo { get; set; }
 
 
         /// <summary>

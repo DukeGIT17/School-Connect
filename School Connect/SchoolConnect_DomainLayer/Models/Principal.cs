@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using SchoolConnect_DomainLayer.CustomAttributes;
+#nullable disable
 
 namespace SchoolConnect_DomainLayer.Models
 {
@@ -11,10 +11,12 @@ namespace SchoolConnect_DomainLayer.Models
     {
         [Required(ErrorMessage = "Please provide staff number.")]
         [Display(Name = "Staff Number")]
-        [Range(10000, 9999999, ErrorMessage = "Staff Number should contain between 5 and 7 digits.")]
-        public long StaffNr { get; set; }
+        [StringLength(7, MinimumLength = 5, ErrorMessage = "Staff Number should contain between 5 and 7 digits.")]
+        [RegularExpression("^[0-9]+$", ErrorMessage = "Please specify a proper Emis Number. Only numerical values allowed.")]
+        public string StaffNr { get; set; }
 
         [Required(ErrorMessage = "Please provide email address.")]
+        [Display(Name = "Email Address")]
         [EmailAddress]
         public string EmailAddress { get; set; }
 
@@ -28,6 +30,7 @@ namespace SchoolConnect_DomainLayer.Models
         public long SchoolID { get; set; }
         #endregion
 
+#nullable enable
         #region Navigation Properties
         public School? PrincipalSchoolNP { get; set; }
         public IList<Announcement>? AnnouncementsNP { get; set; }

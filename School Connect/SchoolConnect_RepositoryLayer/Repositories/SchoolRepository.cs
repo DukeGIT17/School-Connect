@@ -196,7 +196,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, object>> RemoveSchool(long emisNumber, long schoolId = -1)
+        public Task<Dictionary<string, object>> RemoveSchool(string emisNumber, long schoolId = -1)
         {
             throw new NotImplementedException();
         }

@@ -43,7 +43,7 @@ namespace SchoolConnect_Web_App.Controllers
             {
                 school.DateRegistered = DateTime.Now;
                 var result = await _schoolService.RegisterSchoolAsync(school);
-                var success = result.GetValueOrDefault("Success") ?? throw new Exception("Could not find the Success key.");
+                var success = result.GetValueOrDefault("Success") ?? throw new("Could not find the Success key.");
 
                 if ((bool)success)
                     return RedirectToAction(nameof(ListOfSchools));

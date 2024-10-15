@@ -8,7 +8,7 @@
 header h1 i {
     font-size: 1.8rem;
     color: white;
-    gap: 50px; /* You can adjust the color to your liking */
+    gap: 50px;
 }
 
 header {
@@ -22,19 +22,10 @@ header {
     z-index: 1000;
 }
 
-    header button {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-    }
-
     header h1 {
         margin: 0;
         flex-grow: 1;
         text-align: center;
-        background-color: #0F2E34;
     }
 
 .container {
@@ -49,7 +40,13 @@ header {
     box-shadow: 0 0 5px rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
+    .announcement:hover {
+        background-color: #f0f0f0;
+    }
 
     .announcement .icon {
         font-size: 24px;
@@ -81,10 +78,6 @@ header {
         font-size: 20px;
         color: #0F2E34;
     }
-
-.announcement:hover {
-    background-color: ghostwhite;
-}
 
 .total {
     font-size: 18px;

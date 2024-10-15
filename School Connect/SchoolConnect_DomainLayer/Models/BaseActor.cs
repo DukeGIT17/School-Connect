@@ -1,5 +1,8 @@
-﻿using SchoolConnect_DomainLayer.CustomAttributes;
+﻿using Microsoft.AspNetCore.Http;
+using SchoolConnect_DomainLayer.CustomAttributes;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+#nullable disable
 
 namespace SchoolConnect_DomainLayer.Models
 {
@@ -15,12 +18,19 @@ namespace SchoolConnect_DomainLayer.Models
         [Display(Name = "ID")]
         public long Id { get; set; }
 
+#nullable enable
         /// <summary>
         /// The name of the profile picture stored in the School Connect system.
         /// </summary>
         [Display(Name = "Profile Picture")]
-        [DataType(DataType.Upload)]
         public string? ProfileImage { get; set; }
+        /// <summary>
+        /// The file containing the image the user selected for their profile image.
+        /// </summary>
+        [NotMapped]
+        [AllowedExtensions(".jpg", ".jpeg", ".png", ".webp", ".jfif")]
+        public IFormFile? ProfileImageFile { get; set; }
+#nullable disable
 
         [Required(ErrorMessage = "Please specify the title.")]
         [AllowedValues("Miss", "Ms", "Mrs", "Mr")]

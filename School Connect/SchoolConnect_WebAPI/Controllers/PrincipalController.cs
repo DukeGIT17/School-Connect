@@ -19,7 +19,8 @@ namespace SchoolConnect_WebAPI.Controllers
         }
 
         [HttpPost(nameof(Create))]
-        public IActionResult Create(Principal principal)
+        [Consumes("multipart/form-data")]
+        public IActionResult Create([FromForm] Principal principal)
         {
             try
             {

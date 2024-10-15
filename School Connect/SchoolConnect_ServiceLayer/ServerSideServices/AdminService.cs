@@ -32,7 +32,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
         
-        public async Task<Dictionary<string, object>> GetAdminByStaffNr(long staffNr)
+        public async Task<Dictionary<string, object>> GetAdminByStaffNr(string staffNr)
         {
             try
             {

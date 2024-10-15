@@ -20,7 +20,11 @@
 
         <div class="input-box">
             <i class="fas fa-lock"></i>
-            <input asp-for="Password" placeholder="Password" autocomplete="new-password" /> <br />
+            <input asp-for="Password" id="passwordField" type="password" placeholder="Password" autocomplete="new-password" />
+            <button type="button" id="togglePassword" class="toggle-password-btn">
+            <i class="fa fa-eye-slash" id="eyeIcon"></i>
+            </button>
+            <br />
         </div>
 
         <input type="hidden" asp-for="NewPassword" value="kladjfkads" />
@@ -38,3 +42,5 @@
         <button class="submit-btn" type="submit">LOGIN</button>
     </form>
 </div>
+
+<script src="~/js/NewFolder/Login.js"></script>

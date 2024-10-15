@@ -9,5 +9,6 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
         Task<Dictionary<string, object>> RemoveUserAccountAsync(string email, string role);
         Task<Dictionary<string, object>> SetNewPasswordAsync(LoginModel loginModel);
         void SignOutAsync();
+        void IsSignedIn();
     }
 }

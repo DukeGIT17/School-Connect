@@ -39,7 +39,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public async Task<Dictionary<string, object>> GetAdminByStaffNrAsync(long staffNr)
+        public async Task<Dictionary<string, object>> GetAdminByStaffNrAsync(string staffNr)
         {
             _returnDictionary = [];
             SysAdmin? admin;

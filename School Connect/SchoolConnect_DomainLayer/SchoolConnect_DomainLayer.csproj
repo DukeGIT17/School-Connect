@@ -13,6 +13,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="School Logos Folder\finalLogo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="School Logos Folder\finalLogo.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
@@ -23,6 +34,12 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Profile Images Folder\Learners\" />
+    <Folder Include="Profile Images Folder\Parents\" />
+    <Folder Include="Profile Images Folder\Teachers\" />
   </ItemGroup>
 
 </Project>

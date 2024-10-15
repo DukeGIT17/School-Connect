@@ -1,5 +1,6 @@
 ﻿using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 
@@ -26,9 +27,41 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(teacherBasePath);
                 buildString.Append("/Create");
 
+                var formData = new MultipartFormDataContent();
+                foreach (var property in typeof(Teacher).GetProperties())
+                {
+                    var value = property.GetValue(teacher);
+                    if (value is IFormFile)
+                        continue;
+
+                    if (value is IEnumerable<string> enumerableValue && value is not string)
+                    {
+                        int index = 0;
+                        foreach (var item in enumerableValue)
+                        {
+                            if (item is not null)
+                            {
+                                formData.Add(new StringContent(item.ToString()), $"{property.Name}[{index}]");
+                                index++;
+                            }
+                        }
+                        continue;
+                    }
+
+                    if (value is not null)
+                        formData.Add(new StringContent(value.ToString()), property.Name);
+                }
+
+                if (teacher.ProfileImageFile is not null)
+                {
+                    var fileStreamContent = new StreamContent(teacher.ProfileImageFile.OpenReadStream());
+                    fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue(teacher.ProfileImageFile.ContentType);
+                    formData.Add(fileStreamContent, "ProfileImageFile", teacher.ProfileImageFile.FileName);
+                }
+
                 var request = new HttpRequestMessage()
                 {
-                    Content = new StringContent(JsonSerializer.Serialize(teacher), Encoding.UTF8, "application/json"),
+                    Content = formData,
                     Method = HttpMethod.Post,
                     RequestUri = new Uri(buildString.ToString())
                 };

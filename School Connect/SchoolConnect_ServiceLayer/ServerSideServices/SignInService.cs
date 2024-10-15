@@ -35,6 +35,11 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             return identityResult.Succeeded;
         }
 
+        public void IsSignedIn()
+        {
+            _signInRepository.IsSignedIn();
+        }
+
         public async Task<Dictionary<string, object>> SignInAsync(LoginModel model)
         {
             _returnDictionary = [];
