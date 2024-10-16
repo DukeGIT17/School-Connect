@@ -2,7 +2,7 @@
 using OfficeOpenXml;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_RepositoryLayer.CommonAction;
+using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 using SchoolConnect_RepositoryLayer.Interfaces;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
@@ -132,7 +132,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                             Role = "Parent"
                         };
 
-                        _returnDictionary = CommonActions.AttemptObjectValidation(parent);
+                        _returnDictionary = AttemptObjectValidation(parent);
                         if (!(bool)_returnDictionary["Success"])
                         {
                             var errors = _returnDictionary["Errors"] as List<string>;
@@ -179,7 +179,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                         _returnDictionary = await LearnerExistsAsync(learner);
                         if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
-                        _returnDictionary = CommonActions.AttemptObjectValidation(learner);
+                        _returnDictionary = AttemptObjectValidation(learner);
                         if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                         var school = await _context.Schools.Include(s => s.SchoolGradeNP).FirstOrDefaultAsync(s => s.Id == learner.SchoolID);
@@ -249,6 +249,25 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 }
 
+                if (learner.ProfileImageFile is not null)
+                {
+                    _returnDictionary = SaveImage($"{learner.Name} {learner.Surname} - {learner.LearnerSchoolNP!.Name}", "Profile Images Folder/Learners", learner.ProfileImageFile);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    learner.ProfileImage = _returnDictionary["FileName"] as string;
+                }
+                else
+                    learner.ProfileImage = "Default Pic.png";
+
+                var lparent = learner.Parents.FirstOrDefault()?.Parent ?? throw new("Something went wrong, failed to acquire parent data along with the learner's data!!");
+                if (lparent.ProfileImageFile is not null)
+                {
+                    _returnDictionary = SaveImage($"{lparent.Name} {lparent.Surname} - {learner.Name} {learner.LearnerSchoolNP!.Name}", "Profile Images Folder/Parents", lparent.ProfileImageFile);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    lparent.ProfileImage = _returnDictionary["FileName"] as string;
+                }
+                else
+                    lparent.ProfileImage = "Default Pic.png";
+
                 await _context.AddAsync(learner);
                 await _context.SaveChangesAsync();
 
@@ -267,7 +286,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                return await CommonActions.GetActorById(learnerId, new Learner(), _context);
+                return await GetActorById(learnerId, new Learner(), _context);
             }
             catch (Exception ex)
             {
@@ -277,9 +296,24 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public Task<Dictionary<string, object>> GetByIdNo(string learnerIdNo)
+        public async Task<Dictionary<string, object>> GetByIdNo(string learnerIdNo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var learner = await _context.Learners.Include(s => s.LearnerSchoolNP).FirstOrDefaultAsync(l => l.IdNo == learnerIdNo);
+                if (learner is null)
+                    throw new("Could not find a learner with the specified ID number. Has the learner been registered yet?");
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = learner;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = true;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
         }
 
         public Task<Dictionary<string, object>> GetAll()

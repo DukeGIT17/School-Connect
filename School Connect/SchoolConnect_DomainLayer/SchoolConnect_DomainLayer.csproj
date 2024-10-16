@@ -13,11 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="School Logos Folder\finalLogo.png" />
+    <None Remove="School Logos Folder\Default Pic.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="School Logos Folder\finalLogo.png">
+    <Content Include="School Logos Folder\Default Pic.png">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

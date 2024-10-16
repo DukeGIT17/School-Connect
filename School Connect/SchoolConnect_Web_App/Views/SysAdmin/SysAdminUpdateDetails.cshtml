@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SysAdmin
+@{
     Layout = null;
 }
 <link rel="stylesheet" href="~/css/SysAdminCSS/SysAdminUpdateDetails.css" />
@@ -8,22 +9,32 @@
     <div class="container">
         <h3> Update Profile Details</h3>
         <table>
-            <form method="post" action="/UserProfile/Update">
-                <!-- Contact Number -->
+            <form asp-action="SysAdminUpdateDetails" method="post">
+                <input asp-for="Id" type="hidden" />
+                <input asp-for="ProfileImage" type="hidden" />
+                <input asp-for="ProfileImageFile" type="hidden" />
+                <input asp-for="Title" type="hidden" />
+                <input asp-for="Name" type="hidden" />
+                <input asp-for="Surname" type="hidden" />
+                <input asp-for="Gender" type="hidden" />
+                <input asp-for="Role" type="hidden" />
+                <input asp-for="StaffNr" type="hidden" />
+                <input asp-for="EmailAddress" type="hidden" />
+                <input asp-for="PhoneNumber" type="hidden" />
+
                 <div class="form-group">
-                    <label for="contactNumber">Contact Number:</label>
-                    <input type="text" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" required>
+                    <label asp-for="PhoneNumber"></label>
+                    <input asp-for="PhoneNumber" id="contactNumber" placeholder="Enter your contact number" />
+                    <span asp-validation-for="PhoneNumber"></span>
                 </div>
 
-                <!-- Email -->
                 <div class="form-group">
-                    <label for="email">Email Address:</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    <label asp-for="EmailAddress"></label>
+                    <input asp-for="EmailAddress" id="email" placeholder="Enter your email address" >
+                    <span asp-validation-for="EmailAddress"></span>
                 </div>
-                <!-- Buttons -->
 
                 <button type="submit" class="btn">Update Profile</button>
-
             </form>
         </table>
     </div>

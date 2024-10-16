@@ -28,6 +28,7 @@ builder.Services.AddScoped<ISchoolService, SchoolService>();
 builder.Services.AddScoped<ITeacherService, TeacherService>();
 builder.Services.AddScoped<IPrincipalService, PrincipalService>();
 builder.Services.AddScoped<ILearnerService, LearnerService>();
+builder.Services.AddScoped<IParentService, ParentService>();
 builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
 
 var app = builder.Build();

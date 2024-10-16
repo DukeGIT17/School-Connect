@@ -2,7 +2,7 @@
 using SchoolConnect_RepositoryLayer.CommonAction;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
-using System.ComponentModel.DataAnnotations;
+using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 
 namespace SchoolConnect_ServiceLayer.ServerSideServices
 {
@@ -44,6 +44,20 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
+        public async Task<Dictionary<string, object>> GetSchoolByLearnerIdNoAsync(string learnerIdNo)
+        {
+            try
+            {
+                return await _schoolRepo.GetSchoolByLearnerIdNoAsync(learnerIdNo);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
+
         public async Task<Dictionary<string, object>> GetSchoolsAsync()
         {
             try 
@@ -63,7 +77,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         {
             try
             {
-                _returnDictionary = CommonActions.AttemptObjectValidation(school);
+                _returnDictionary = AttemptObjectValidation(school);
                 if (!(bool)_returnDictionary["Success"]) return _returnDictionary;
 
                 _returnDictionary = await _schoolRepo.RegisterSchoolAsync(school);

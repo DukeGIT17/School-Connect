@@ -1,7 +1,9 @@
-﻿using SchoolConnect_DomainLayer.Models;
+﻿using Microsoft.IdentityModel.Tokens;
+using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 using System.Text;
-using System.Text.Json;
+using System.Net.Http.Headers;
+using static SchoolConnect_Web_App.Services.SharedClientSideServices;
 
 namespace SchoolConnect_Web_App.Services
 {
@@ -17,7 +19,7 @@ namespace SchoolConnect_Web_App.Services
             _returnDictionary = [];
         }
 
-        public Dictionary<string, object> GetAdminById(long systemAdminId)
+        public async Task<Dictionary<string, object>> GetAdminByIdAsync(long systemAdminId)
         {
             _returnDictionary = [];
             try
@@ -28,8 +30,8 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append("GetSystemAdminById?id=");
                 buildString.Append(systemAdminId);
 
-                var response = _client.GetAsync(buildString.ToString()).Result;
-				_returnDictionary = SharedClientSideServices.CheckSuccessStatus(response, nameof(GetAdminById));
+                var response = await _client.GetAsync(buildString.ToString());
+				_returnDictionary = CheckSuccessStatus(response, nameof(GetAdminByIdAsync));
 				return _returnDictionary;
             }
             catch (Exception ex)
@@ -40,7 +42,7 @@ namespace SchoolConnect_Web_App.Services
             }
         }
         
-        public Dictionary<string, object> GetAdminByStaffNr(string staffNr)
+        public async Task<Dictionary<string, object>> GetAdminByStaffNr(string staffNr)
         {
             _returnDictionary = [];
             try
@@ -48,10 +50,10 @@ namespace SchoolConnect_Web_App.Services
                 StringBuilder buildString = new();
                 buildString.Append(BasePath);
                 buildString.Append("GetSystemAdminByStaffNr?staffNr=");
-                buildString.Append(staffNr + "/");
+                buildString.Append(staffNr);
 
-                var response = _client.GetAsync(buildString.ToString()).Result;
-                return SharedClientSideServices.CheckSuccessStatus(response, nameof(GetAdminByStaffNr));
+                var response = await _client.GetAsync(buildString.ToString());
+                return CheckSuccessStatus(response, nameof(GetAdminByStaffNr));
             }
             catch (Exception ex)
             {
@@ -61,7 +63,7 @@ namespace SchoolConnect_Web_App.Services
             }
         }
 
-        public Dictionary<string, object> Update(SysAdmin systemAdmin)
+        public async Task<Dictionary<string, object>> UpdateAsync(SysAdmin systemAdmin)
         {
             _returnDictionary = [];
             try
@@ -71,22 +73,34 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(BasePath);
                 buildString.Append("UpdateSystemAdmin/");
 
-                var schoolJsonString = JsonSerializer.Serialize(systemAdmin);
+                var formData = new MultipartFormDataContent();
+
+                foreach (var property in typeof(SysAdmin).GetProperties())
+                {
+                    var value = property.GetValue(systemAdmin);
+                    if (value is IFormFile)
+                        continue;
+
+                    if (value is not null)
+                        formData.Add(new StringContent(value.ToString()), property.Name);
+                }
+
+                if (systemAdmin.ProfileImageFile is not null)
+                {
+                    var fileStreamContent = new StreamContent(systemAdmin.ProfileImageFile.OpenReadStream());
+                    fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue(systemAdmin.ProfileImageFile.ContentType);
+                    formData.Add(fileStreamContent, "ProfileImageFile", systemAdmin.ProfileImageFile.FileName);
+                }
 
                 HttpRequestMessage request = new()
                 {
-                    Content = new StringContent(schoolJsonString, Encoding.UTF8, "application/json"),
+                    Content = formData,
                     Method = HttpMethod.Post,
                     RequestUri = new Uri(buildString.ToString())
                 };
 
-                var response = _client.SendAsync(request).Result;
-
-                if (!response.IsSuccessStatusCode)
-                    throw new Exception(response.ReasonPhrase ?? "Operation failed; reason not provided.");
-
-                _returnDictionary["Success"] = true;
-                return _returnDictionary;
+                var response = await _client.SendAsync(request);
+                return CheckSuccessStatus(response, "NoNeed");
             }
             catch (Exception ex)
             {

@@ -2,7 +2,7 @@
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using SchoolConnect_RepositoryLayer.CommonAction;
+using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -72,6 +72,15 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 _returnDictionary["AdditionalInformation"] = errors;
 
+                if (parent.ProfileImageFile is not null)
+                {
+                    _returnDictionary = SaveImage($"{parent.Name} {parent.Surname}", "Profile Images Folder/Parents", parent.ProfileImageFile);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    parent.ProfileImage = _returnDictionary["FileName"] as string;
+                }
+                else
+                    parent.ProfileImage = "Default Pic.png";
+
                 await _context.AddAsync(parent);
                 await _context.SaveChangesAsync();
 
@@ -90,7 +99,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                return await CommonActions.GetActorById(parentId, new Parent(), _context);
+                return await GetActorById(parentId, new Parent(), _context);
             }
             catch (Exception ex)
             {

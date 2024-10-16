@@ -49,7 +49,8 @@ namespace SchoolConnect_WebAPI.Controllers
         }
 
         [HttpPost(nameof(RegisterSchool))]
-        public IActionResult RegisterSchool(School school)
+        [Consumes("multipart/form-data")]
+        public IActionResult RegisterSchool([FromForm] School school)
         {
             try
             {
@@ -72,6 +73,21 @@ namespace SchoolConnect_WebAPI.Controllers
             try
             {
                 _returnDictionary = _school.GetSchoolByAdminAsync(adminId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpGet(nameof(GetSchoolByLearnerIdNo))]
+        public IActionResult GetSchoolByLearnerIdNo(string learnerIdNo)
+        {
+            try
+            {
+                _returnDictionary = _school.GetSchoolByLearnerIdNoAsync(learnerIdNo).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
                 return Ok(_returnDictionary);
             }

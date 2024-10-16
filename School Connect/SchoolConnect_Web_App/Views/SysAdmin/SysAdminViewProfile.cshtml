@@ -11,7 +11,7 @@
             <div class="icon"><i class="fas fa-user"></i></div>
         </div>
         <h2 class="gradienttext">@Model.Actor.Name @Model.Actor.Surname <br /> @Model.Actor.Role </h2>
-        <a asp-controller="SysAdmin" asp-action="SysAdminUpdateDetails" class="UpdateButton">Update</a>
+        <a asp-action="SysAdminUpdateDetails" asp-route-id="@Model.Actor.Id" class="UpdateButton">Update</a>
     </div>
     <div class="right-container">
         <h3>Profile Details</h3>
@@ -33,7 +33,7 @@
                 @{
                     if (Model.School is null)
                     {
-                        <td>Haven't registered a school</td>
+                        <td>This admin hasn't registered a school yet</td>
                     }
                     else
                     {
@@ -52,60 +52,3 @@
         </table>
     </div>
 </div>
-
-@* <script>
-    const togglePassword = document.getElementById('togglePassword');
-    const passwordInput = document.getElementById('password');
-    const editCellBtn = document.getElementById('editCell');
-    const editEmailBtn = document.getElementById('editEmail');
-    const editPasswordBtn = document.getElementById('editPassword');
-    const cellInput = document.getElementById('cell');
-    const emailInput = document.getElementById('email');
-    const saveChangesBtn = document.getElementById('saveChanges');
-
-    // Toggle password visibility
-    togglePassword.addEventListener('click', function () {
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';
-            togglePassword.classList.remove('fa-eye');
-            togglePassword.classList.add('fa-eye-slash');
-        } else {
-            passwordInput.type = 'password';
-            togglePassword.classList.remove('fa-eye-slash');
-            togglePassword.classList.add('fa-eye');
-        }
-    });
-
-    // Enable editing for cell number
-    editCellBtn.addEventListener('click', function () {
-        cellInput.readOnly = false;
-        cellInput.focus();
-        saveChangesBtn.style.display = 'inline-block';
-    });
-
-    // Enable editing for email
-    editEmailBtn.addEventListener('click', function () {
-        emailInput.readOnly = false;
-        emailInput.focus();
-        saveChangesBtn.style.display = 'inline-block';
-    });
-
-    // Enable editing for password
-    editPasswordBtn.addEventListener('click', function () {
-        passwordInput.readOnly = false;
-        passwordInput.focus();
-        saveChangesBtn.style.display = 'inline-block';
-    });
-
-    // Simulate saving changes
-    saveChangesBtn.addEventListener('click', function () {
-        cellInput.readOnly = true;
-        emailInput.readOnly = true;
-        passwordInput.readOnly = true;
-        saveChangesBtn.style.display = 'none';
-
-        // Here you would typically make an API call to save the updated data
-        alert('Changes saved successfully!');
-    });
-</script>
- *@

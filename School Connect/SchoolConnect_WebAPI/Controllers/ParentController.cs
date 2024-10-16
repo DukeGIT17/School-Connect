@@ -13,7 +13,8 @@ namespace SchoolConnect_WebAPI.Controllers
         private Dictionary<string, object> _returnDictionary = [];
 
         [HttpPost(nameof(Create))]
-        public IActionResult Create(Parent parent)
+        [Consumes("multipart/form-data")]
+        public IActionResult Create([FromForm] Parent parent)
         {
             try
             {

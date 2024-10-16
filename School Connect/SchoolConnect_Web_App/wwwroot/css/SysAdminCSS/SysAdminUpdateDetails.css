@@ -33,10 +33,9 @@ html, body {
     margin: 0 auto; /* Center the card horizontally in its parent container */
 }
 
-
-    .card:hover {
-        box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.4);
-    }
+.card:hover {
+    box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.4);
+}
 
 .container {
     background-color: ghostwhite;
@@ -48,7 +47,6 @@ html, body {
     border-radius: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-
 
 table {
     width: 100%;
@@ -70,7 +68,7 @@ label {
     font-size: 18px;
 }
 
-input[type="text"], input[type="email"], input[type="password"] {
+input[type="tel"], input[type="email"] {
     width: 100%;
     padding: 14px;
     border: 1px solid #ccc;
@@ -81,13 +79,11 @@ input[type="text"], input[type="email"], input[type="password"] {
     margin-bottom: 15px;
 }
 
-    input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
-        border-color: #007bff;
-        outline: none;
-        background-color: white;
-    }
-
-
+input[type="tel"]:focus, input[type="email"]:focus {
+    border-color: #007bff;
+    outline: none;
+    background-color: white;
+}
 
 .btn {
     background-color: #0F2E34;
@@ -101,18 +97,18 @@ input[type="text"], input[type="email"], input[type="password"] {
     width: 15%;
 }
 
-    .btn:hover {
-        background-color: #5a6268;
-    }
+.btn:hover {
+    background-color: #5a6268;
+}
 
 .btn-reset {
     background-color: #6c757d;
     color: white;
 }
 
-    .btn-reset:hover {
-        background-color: #5a6268;
-    }
+.btn-reset:hover {
+    background-color: #5a6268;
+}
 
 
 

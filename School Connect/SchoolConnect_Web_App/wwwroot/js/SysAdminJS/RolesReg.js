@@ -54,17 +54,21 @@ function updateSubjectsFieldLearner() {
 
 subjectSelectLearner.addEventListener('change', updateSubjectsFieldLearner);
 
+let visibleLearnerIdNoField = document.getElementById("idNum-learner");
+let visibleParentIdNoField = document.getElementById("visible-parent-idno");
+//let visiblePIdNoField = document.getElementById("idNum");
 
-function populateLearnerIdNo() {
-    let idnoField = document.getElementById("idNum-learner");
-    let learnerIdNoInputField = document.getElementsByClassName("learner-idno");
+visibleLearnerIdNoField.addEventListener("change", () => {
+    document.getElementById("learner-idno").value = visibleLearnerIdNoField.value;
+});
 
-    learnerIdNoInputField.forEach(function (field) {
-        field.value = idnoField.value;
-    })
-}
+visibleParentIdNoField.addEventListener("change", () => {
+    document.getElementById("parent-idno").value = visibleParentIdNoField.value;
+});
 
-document.getElementById("idNum-learner").addEventListener('focusout', populateLearnerIdNo);
+//visiblePIdNoField.addEventListener("focusout", () => {
+//    document.getElementById("p-IdNo").value = visiblePIdNoField.value;
+//});
 
 
 let principalFileInputField = document.getElementById("uploadBox-Principal");
@@ -105,7 +109,7 @@ parentUploadButton.addEventListener("click", function () {
 });
 
 parentFileInputField.addEventListener("change", function () {
-    parentFileNameDisplayField.innerHtml = parentFileInputField.files[0] ? parentFileInputField.files[0].name : "No file selected";
+    parentFileNameDisplayField.innerHTML = parentFileInputField.files[0] ? parentFileInputField.files[0].name : "No file selected";
     removeFileBtnParent.style.display = "block";
 });
 
@@ -116,11 +120,11 @@ let removeFileBtnLearner = document.getElementById("remove-file-Learner");
 
 learnerUploadButton.addEventListener("click", function () {
     learnerFileInputField.click();
-    removeFileBtnLearner.style.display = "block";
 });
 
 learnerFileInputField.addEventListener("change", function () {
-    learnerFileNameDisplayField.innerHtml = learnerFileInputField.files[0] ? learnerFileInputField.files[0].name : "No file selected";
+    learnerFileNameDisplayField.innerHTML = learnerFileInputField.files[0] ? learnerFileInputField.files[0].name : "No file selected";
+    removeFileBtnLearner.style.display = "block";
 });
 
 let learnerParentFileInputField = document.getElementById("uploadBox-LearnerParent");
@@ -133,6 +137,6 @@ learnerParentUploadButton.addEventListener("click", function () {
 });
 
 learnerParentFileInputField.addEventListener("change", function () {
-    learnerParentFileNameDisplayField.innerHtml = learnerParentFileInputField.files[0] ? learnerParentFileInputField.files[0].name : "No file selected";
+    learnerParentFileNameDisplayField.innerHTML = learnerParentFileInputField.files[0] ? learnerParentFileInputField.files[0].name : "No file selected";
     removeFileBtnLearnerParent.style.display = "block";
 });

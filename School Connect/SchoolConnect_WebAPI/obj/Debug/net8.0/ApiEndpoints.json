@@ -8891,6 +8891,22 @@
   },
   {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.LearnerController",
+    "Method": "GetLearnerByIdNo",
+    "RelativePath": "api/Learner/GetLearnerByIdNo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idNo",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.LearnerController",
     "Method": "LoadLearnersFromExcel",
     "RelativePath": "api/Learner/LoadLearnersFromExcel",
     "HttpMethod": "POST",
@@ -11268,6 +11284,22 @@
   },
   {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.SchoolController",
+    "Method": "GetSchoolByLearnerIdNo",
+    "RelativePath": "api/School/GetSchoolByLearnerIdNo",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "learnerIdNo",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.SchoolController",
     "Method": "RegisterSchool",
     "RelativePath": "api/School/RegisterSchool",
     "HttpMethod": "POST",
@@ -11410,8 +11442,43 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolAddress.School.SchoolAddress",
-        "Type": "SchoolConnect_DomainLayer.Models.Address",
+        "Name": "SchoolAddress.School.SchoolAddress.AddressID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolAddress.Street",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolAddress.Suburb",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolAddress.City",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolAddress.PostalCode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolAddress.Province",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolAddress.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolAddress.School",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
         "IsRequired": false
       },
       {
@@ -11480,8 +11547,43 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress",
-        "Type": "SchoolConnect_DomainLayer.Models.Address",
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.AddressID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.Street",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.Suburb",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.City",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.PostalCode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.Province",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
         "IsRequired": false
       },
       {
@@ -11560,8 +11662,43 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress",
-        "Type": "SchoolConnect_DomainLayer.Models.Address",
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.AddressID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.Street",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.Suburb",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.City",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.PostalCode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.Province",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
         "IsRequired": false
       },
       {
@@ -11780,8 +11917,43 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress",
-        "Type": "SchoolConnect_DomainLayer.Models.Address",
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.AddressID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.Street",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.Suburb",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.City",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.PostalCode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.Province",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
         "IsRequired": false
       },
       {
@@ -11850,8 +12022,43 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress",
-        "Type": "SchoolConnect_DomainLayer.Models.Address",
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.AddressID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.Street",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.Suburb",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.City",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.PostalCode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.Province",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
         "IsRequired": false
       },
       {
@@ -12185,8 +12392,63 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolSysAdminNP",
-        "Type": "SchoolConnect_DomainLayer.Models.SysAdmin",
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolSysAdminNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolSysAdminNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolSysAdminNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolSysAdminNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolSysAdminNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Role",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -12265,8 +12527,63 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP",
-        "Type": "SchoolConnect_DomainLayer.Models.SysAdmin",
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.Role",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -12370,8 +12687,63 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolSysAdminNP",
-        "Type": "SchoolConnect_DomainLayer.Models.SysAdmin",
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolSysAdminNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolSysAdminNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolSysAdminNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolSysAdminNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolSysAdminNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolSysAdminNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolSysAdminNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolSysAdminNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolSysAdminNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolSysAdminNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolSysAdminNP.Role",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -12535,8 +12907,63 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP",
-        "Type": "SchoolConnect_DomainLayer.Models.SysAdmin",
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Role",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -12570,8 +12997,63 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP",
-        "Type": "SchoolConnect_DomainLayer.Models.SysAdmin",
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.Role",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -12950,8 +13432,73 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP",
-        "Type": "SchoolConnect_DomainLayer.Models.Principal",
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.AnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Role",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -13020,8 +13567,73 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP",
-        "Type": "SchoolConnect_DomainLayer.Models.Principal",
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.AnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Role",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -13210,8 +13822,73 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP",
-        "Type": "SchoolConnect_DomainLayer.Models.Principal",
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.AnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Role",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -13245,8 +13922,73 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP",
-        "Type": "SchoolConnect_DomainLayer.Models.Principal",
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.AnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Role",
+        "Type": "System.String",
         "IsRequired": false
       },
       {
@@ -13315,8 +14057,73 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolPrincipalNP",
-        "Type": "SchoolConnect_DomainLayer.Models.Principal",
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolPrincipalNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolPrincipalNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolPrincipalNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolPrincipalNP.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolPrincipalNP.AnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolPrincipalNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolPrincipalNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolPrincipalNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolPrincipalNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolPrincipalNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolPrincipalNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolPrincipalNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolPrincipalNP.Role",
+        "Type": "System.String",
         "IsRequired": false
       },
       {

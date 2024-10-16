@@ -75,9 +75,18 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
-        public Task<Dictionary<string, object>> GetByIdNo(string idNo)
+        public async Task<Dictionary<string, object>> GetByIdNo(string idNo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return await _learnerRepo.GetByIdNo(idNo);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = true;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
         }
     }
 }

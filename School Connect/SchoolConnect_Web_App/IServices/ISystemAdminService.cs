@@ -4,9 +4,9 @@ namespace SchoolConnect_Web_App.IServices
 {
     public interface ISystemAdminService
     {
-        Dictionary<string, object> GetAdminById(long systemAdminId);
-        Dictionary<string, object> GetAdminByStaffNr(string staffNr);
-        Dictionary<string, object> Update(SysAdmin systemAdmin);
+        Task<Dictionary<string, object>> GetAdminByIdAsync(long systemAdminId);
+        Task<Dictionary<string, object>> GetAdminByStaffNr(string staffNr);
+        Task<Dictionary<string, object>> UpdateAsync(SysAdmin systemAdmin);
 
     }
 }

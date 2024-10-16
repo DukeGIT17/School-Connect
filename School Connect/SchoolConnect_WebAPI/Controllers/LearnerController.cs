@@ -27,7 +27,8 @@ namespace SchoolConnect_WebAPI.Controllers
         }
 
         [HttpPost(nameof(Create))]
-        public IActionResult Create(Learner learner)
+        [Consumes("multipart/form-data")]
+        public IActionResult Create([FromForm] Learner learner)
         {
             try
             {
@@ -60,6 +61,21 @@ namespace SchoolConnect_WebAPI.Controllers
             try
             {
                 _returnDictionary = _learnerService.GetById(id).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary["Result"]);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpGet(nameof(GetLearnerByIdNo))]
+        public IActionResult GetLearnerByIdNo(string idNo)
+        {
+            try
+            {
+                _returnDictionary = _learnerService.GetByIdNo(idNo).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
                 return Ok(_returnDictionary["Result"]);
             }

@@ -235,7 +235,7 @@
                     <div class="upload-container">
                         <button type="button" id="remove-file-Parent" class="remove-file" onclick="removeSelectedFile('uploadBox-Parent', 'fileNameDisplay-Parent', 'remove-file-Parent')"><i class="fa-regular fa-circle-xmark"></i></button>
                         <button type="button" id="uploadImageBtn-Parent"><i class="fa-solid fa-upload"></i></button>
-                        <input asp-for="Parent.ProfileImageFile" type="file" name="files" id="uploadBox-Parent" accept="image/*" style="display:none" />
+                        <input asp-for="Parent.ProfileImageFile" type="file" id="uploadBox-Parent" accept="image/*" style="display:none" />
                         <p id="fileNameDisplay-Parent">No file selected</p>
                     </div>
                 </div>
@@ -276,18 +276,19 @@
                 <span asp-validation-for="Parent.PhoneNumber"></span>
             </div>
 
-            @foreach (var child in Model.Parent.Children)
+            @for (int i = 0; i < Model.Parent.Children.Count; i++)
             {
                 <div id="children">
                     <div class="input-group">
-                        <label asp-for="@child.LearnerIdNo"></label>
-                        <input asp-for="@child.LearnerIdNo" />
-                        <span asp-validation-for="@child.LearnerIdNo"></span>
+                        <label asp-for="Parent.Children[i].LearnerIdNo"></label>
+                        <input asp-for="Parent.Children[i].LearnerIdNo" />
+                        <span asp-validation-for="Parent.Children[i].LearnerIdNo"></span>
                     </div>
                 </div>
+
+                <input asp-for="Parent.Children[i].ParentIdNo" type="hidden" id="p-IdNo" value="0496857496523" />
             }
 
-            <input asp-for="Teacher.SchoolID" type="hidden" value="@Model.SchoolID" />
             <input asp-for="AdminID" type="hidden" value="@Model.AdminID" />
             <input asp-for="Parent.Role" type="hidden" value="Parent" />
             <input asp-for="SchoolID" type="hidden" value="@Model.SchoolID" />
@@ -332,9 +333,10 @@
                     <div class="upload-container">
                         <button type="button" id="remove-file-Learner" class="remove-file" onclick="removeSelectedFile('uploadBox-Learner', 'fileNameDisplay-Learner', 'remove-file-Learner')"><i class="fa-regular fa-circle-xmark"></i></button>
                         <button type="button" id="uploadImageBtn-Learner"><i class="fa-solid fa-upload"></i></button>
-                        <input asp-for="Learner.ProfileImageFile" type="file" name="files" id="uploadBox-Learner" accept="image/*" style="display:none" />
+                        <input asp-for="Learner.ProfileImageFile" type="file" id="uploadBox-Learner" accept="image/*" style="display:none" />
                         <p id="fileNameDisplay-Learner">No file selected</p>
                     </div>
+                    <span asp-validation-for="Learner.ProfileImageFile"></span>
                 </div>
             </div>
 
@@ -375,13 +377,13 @@
             <h3>Parents</h3>
             @for (int i = 0; i < Model.Learner.Parents.Count; i++)
             {
-                <input asp-for="@Model.Learner.Parents[i].LearnerIdNo" type="hidden" value="7485963214578" class="learner-idno" />
+                <input asp-for="Learner.Parents[i].LearnerIdNo" type="hidden" id="learner-idno" />
 
                 <div id="upload-title-name-surname">
                     <div id="input-fields">
                         <div class="input-group">
-                            <label asp-for="@Model.Learner.Parents[i].Parent.Title"></label>
-                            <select asp-for="Parent.Title" id="title">
+                            <label asp-for="Learner.Parents[i].Parent.Title"></label>
+                            <select asp-for="Learner.Parents[i].Parent.Title" id="title">
                                 <option value="Mr" selected>Mr</option>
                                 <option value="Mrs">Mrs</option>
                                 <option value="Ms">Ms</option>
@@ -390,15 +392,15 @@
                         </div>
 
                         <div class="input-group">
-                            <label asp-for="@Model.Learner.Parents[i].Parent.Name"></label>
-                            <input asp-for="@Model.Learner.Parents[i].Parent.Name" id="firstName" placeholder="Enter Name">
-                            <span asp-validation-for="@Model.Learner.Parents[i].Parent.Name"></span>
+                            <label asp-for="Learner.Parents[i].Parent.Name"></label>
+                            <input asp-for="Learner.Parents[i].Parent.Name" id="firstName" placeholder="Enter Name">
+                            <span asp-validation-for="Learner.Parents[i].Parent.Name"></span>
                         </div>
 
                         <div class="input-group">
-                            <label asp-for="@Model.Learner.Parents[i].Parent.Surname"></label>
-                            <input asp-for="@Model.Learner.Parents[i].Parent.Surname" id="lastName" placeholder="Enter Surname">
-                            <span asp-validation-for="@Model.Learner.Parents[i].Parent.Surname"></span>
+                            <label asp-for="Learner.Parents[i].Parent.Surname"></label>
+                            <input asp-for="Learner.Parents[i].Parent.Surname" id="lastName" placeholder="Enter Surname">
+                            <span asp-validation-for="Learner.Parents[i].Parent.Surname"></span>
                         </div>
                     </div>
                     <div id="upload-image">
@@ -406,31 +408,32 @@
                         <div class="upload-container">
                             <button type="button" class="remove-file" id="remove-file-LearnerParent" onclick="removeSelectedFile('uploadBox-LearnerParent', 'fileNameDisplay-LearnerParent', 'remove-file-LearnerParent')"><i class="fa-regular fa-circle-xmark"></i></button>
                             <button type="button" id="uploadImageBtn-LearnerParent"><i class="fa-solid fa-upload"></i></button>
-                            <input asp-for="@Model.Learner.Parents[i].Parent.ProfileImageFile" type="file" name="files" id="uploadBox-LearnerParent" accept="image/*" style="display:none" />
+                            <input asp-for="Learner.Parents[i].Parent.ProfileImageFile" type="file" id="uploadBox-LearnerParent" accept="image/*" style="display:none" />
                             <p id="fileNameDisplay-LearnerParent">No file selected</p>
                         </div>
+                        <span asp-validation-for="Learner.Parents[i].Parent.ProfileImageFile"></span>
                     </div>
                 </div>
 
                 <div class="input-group">
-                    <label asp-for="@Model.Learner.Parents[i].ParentIdNo"></label>
-                    <input asp-for="@Model.Learner.Parents[i].ParentIdNo" placeholder="Parent ID Number" />
-                    <span asp-validation-for="@Model.Learner.Parents[i].ParentIdNo"></span>
+                    <label asp-for="Learner.Parents[i].ParentIdNo"></label>
+                    <input asp-for="Learner.Parents[i].ParentIdNo" id="visible-parent-idno" placeholder="Parent ID Number" />
+                    <span asp-validation-for="Learner.Parents[i].ParentIdNo"></span>
                 </div>
 
-                <input asp-for="@Model.Learner.Parents[i].Parent.IdNo" type="hidden" value="8526547896523" />
+                <input asp-for="Learner.Parents[i].Parent.IdNo" type="hidden" id="parent-idno" />
 
                 <div class="input-group">
-                    <label asp-for="@Model.Learner.Parents[i].Parent.Gender"></label>
-                    <select asp-for="@Model.Learner.Parents[i].Parent.Gender">
+                    <label asp-for="Learner.Parents[i].Parent.Gender"></label>
+                    <select asp-for="Learner.Parents[i].Parent.Gender">
                         <option value="Male" selected>Male</option>
                         <option value="Female">Female</option>
                     </select>
                 </div>
 
                 <div class="input-group">
-                    <label asp-for="@Model.Learner.Parents[i].Parent.ParentType"></label>
-                    <select asp-for="@Model.Learner.Parents[i].Parent.ParentType">
+                    <label asp-for="Learner.Parents[i].Parent.ParentType"></label>
+                    <select asp-for="Learner.Parents[i].Parent.ParentType">
                         <option value="Mother">Mother</option>
                         <option value="Father">Father</option>
                         <option value="Guardian">Guardian</option>
@@ -438,18 +441,18 @@
                 </div>
 
                 <div class="input-group">
-                    <label asp-for="@Model.Learner.Parents[i].Parent.EmailAddress"></label>
-                    <input asp-for="@Model.Learner.Parents[i].Parent.EmailAddress" placeholder="Parent Email Address" />
-                    <span asp-validation-for="@Model.Learner.Parents[i].Parent.EmailAddress"></span>
+                    <label asp-for="Learner.Parents[i].Parent.EmailAddress"></label>
+                    <input asp-for="Learner.Parents[i].Parent.EmailAddress" placeholder="Parent Email Address" />
+                    <span asp-validation-for="Learner.Parents[i].Parent.EmailAddress"></span>
                 </div>
 
                 <div class="input-group">
-                    <label asp-for="@Model.Learner.Parents[i].Parent.PhoneNumber"></label>
-                    <input asp-for="@Model.Learner.Parents[i].Parent.PhoneNumber" placeholder="Parent Phone Number" />
-                    <span asp-validation-for="@Model.Learner.Parents[i].Parent.PhoneNumber"></span>
+                    <label asp-for="Learner.Parents[i].Parent.PhoneNumber"></label>
+                    <input asp-for="Learner.Parents[i].Parent.PhoneNumber" placeholder="Parent Phone Number" />
+                    <span asp-validation-for="Learner.Parents[i].Parent.PhoneNumber"></span>
                 </div>
 
-                <input asp-for="@Model.Learner.Parents[i].Parent.Role" value="Parent" type="hidden" />
+                <input asp-for="Learner.Parents[i].Parent.Role" value="Parent" type="hidden" />
             }
 
             <input asp-for="Learner.SchoolID" type="hidden" value="@Model.SchoolID" />
@@ -461,7 +464,7 @@
             <input asp-for="Teacher" type="hidden" value="@teacher" />
             <input asp-for="Parent" type="hidden" value="@parent" />
 
-            <button class="button">REGISTER</button>
+            <button type="submit" class="button">REGISTER</button>
         </form>
     </div>
 </div>

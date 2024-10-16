@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.IdentityModel.Tokens;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
+using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -111,6 +113,15 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                         throw new($"Something went wrong. The value {newSchool.Type} does not match any of the valid school type options.");
                 }
 
+                if (newSchool.SchoolLogoFile is not null)
+                {
+                    _returnDictionary = SaveImage($"{newSchool.Name}", "School Logos Folder", newSchool.SchoolLogoFile);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    newSchool.Logo = _returnDictionary["FileName"] as string;
+                }
+                else
+                    newSchool.Logo = "Default Pic.png";
+
                 await _context.AddAsync(newSchool);
                 await _context.SaveChangesAsync();
 
@@ -167,9 +178,24 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public Task<Dictionary<string, object>> GetSchoolByChild(long childId)
+        public async Task<Dictionary<string, object>> GetSchoolByLearnerIdNoAsync(string learnerIdNo)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var learner = await _context.Learners.Include(s => s.LearnerSchoolNP).FirstOrDefaultAsync(l => l.IdNo == learnerIdNo);
+                if (learner is null)
+                    throw new("Could not a learner with the specified Identity number, has the learner been registered yet?");
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = learner.LearnerSchoolNP!;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
         }
 
         public async Task<Dictionary<string, object>> GetSchoolByIdAsync(long schoolId)

@@ -1,7 +1,8 @@
 ﻿using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 using System.Text;
-using System.Text.Json;
+using static SchoolConnect_Web_App.Services.SharedClientSideServices;
+using System.Net.Http.Headers;
 
 namespace SchoolConnect_Web_App.Services
 {
@@ -28,7 +29,7 @@ namespace SchoolConnect_Web_App.Services
 
                 var response = await _httpClient.GetAsync(buildString.ToString());
 
-                _returnDictionary = SharedClientSideServices.CheckSuccessStatus(response, nameof(GetSchools));
+                _returnDictionary = CheckSuccessStatus(response, nameof(GetSchools));
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -47,11 +48,39 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append("http://localhost:5293");
                 buildString.Append(SchoolBasePath);
                 buildString.Append("RegisterSchool/");
-                var schoolJsonString = JsonSerializer.Serialize(school);
+
+                var formData = new MultipartFormDataContent();
+
+                foreach (var property in typeof(School).GetProperties())
+                {
+                    var value = property.GetValue(school);
+                    if (value is IFormFile)
+                        continue;
+
+                    if (value is Address)
+                    {
+                        foreach (var addressProperty in typeof(Address).GetProperties())
+                        {
+                            var address = addressProperty.GetValue(school.SchoolAddress);
+                            formData.Add(new StringContent(address is not null ? address.ToString()! : string.Empty), $"SchoolAddress.{addressProperty.Name}");
+                        }
+                        continue;
+                    }
+
+                    if (value is not null)
+                        formData.Add(new StringContent(value.ToString()), property.Name);
+                }
+
+                if (school.SchoolLogoFile is not null)
+                {
+                    var fileStreamContent = new StreamContent(school.SchoolLogoFile.OpenReadStream());
+                    fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue(school.SchoolLogoFile.ContentType);
+                    formData.Add(fileStreamContent, "SchoolLogoFile", school.SchoolLogoFile.FileName);
+                }
 
                 HttpRequestMessage request = new()
                 {
-                    Content = new StringContent(schoolJsonString, Encoding.UTF8, "application/json"),
+                    Content = formData,
                     Method = HttpMethod.Post,
                     RequestUri = new Uri(buildString.ToString())
                 };
@@ -59,7 +88,7 @@ namespace SchoolConnect_Web_App.Services
                 var response = await _httpClient.SendAsync(request);
                 
 
-                _returnDictionary = SharedClientSideServices.CheckSuccessStatus(response, "NoNeed");
+                _returnDictionary = CheckSuccessStatus(response, "NoNeed");
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -81,7 +110,7 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(adminId);
 
                 var response = await _httpClient.GetAsync(buildString.ToString());
-                return SharedClientSideServices.CheckSuccessStatus(response, nameof(GetSchoolByAdminAsync));
+                return CheckSuccessStatus(response, nameof(GetSchoolByAdminAsync));
             }
             catch (Exception ex)
             {
@@ -102,7 +131,28 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(schoolId);
 
                 var response = await _httpClient.GetAsync(buildString.ToString());
-                return SharedClientSideServices.CheckSuccessStatus(response, nameof(GetSchoolByIdAsync));
+                return CheckSuccessStatus(response, nameof(GetSchoolByIdAsync));
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetSchoolByLearnerIdNoAsync(string learnerIdNo)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(SchoolBasePath);
+                buildString.Append("/GetSchoolByLearnerIdNo?=");
+                buildString.Append(learnerIdNo);
+
+                var response = await _httpClient.GetAsync(buildString.ToString());
+                return CheckSuccessStatus(response, nameof(GetSchoolByLearnerIdNoAsync));
             }
             catch (Exception ex)
             {

@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
-using SchoolConnect_DomainLayer.Models;
+﻿using SchoolConnect_DomainLayer.Models;
 using System.Text.Json;
 
 namespace SchoolConnect_Web_App.Services
@@ -28,7 +27,7 @@ namespace SchoolConnect_Web_App.Services
 
                     switch (sourceMethod)
                     {
-                        case nameof(SystemAdminService.GetAdminById):
+                        case nameof(SystemAdminService.GetAdminByIdAsync):
                         case nameof(SystemAdminService.GetAdminByStaffNr):
                         
                             var schoolDict = dict!["sysAdminSchoolNP"] as Dictionary<string, object>;
@@ -42,13 +41,13 @@ namespace SchoolConnect_Web_App.Services
                                 Surname = dict["surname"].ToString()!,
                                 Gender = dict["gender"].ToString()!,
                                 Role = dict["role"].ToString()!,
-                                StaffNr = dict!["staffNr"].ToString(),
+                                StaffNr = dict!["staffNr"].ToString()!,
                                 EmailAddress = dict["emailAddress"].ToString()!,
                                 PhoneNumber = (long)dict["phoneNumber"],
                                 SysAdminSchoolNP = schoolDict is not null ? new()
                                 {
                                     Id = (long)schoolDict!["id"],
-                                    EmisNumber = schoolDict!["emisNumber"].ToString(),
+                                    EmisNumber = schoolDict!["emisNumber"].ToString()!,
                                     Logo = schoolDict["logo"].ToString(),
                                     Name = schoolDict["name"].ToString()!,
                                     DateRegistered = Convert.ToDateTime(schoolDict["dateRegistered"]),
@@ -63,11 +62,12 @@ namespace SchoolConnect_Web_App.Services
 
                         case nameof(SchoolService.GetSchoolByAdminAsync):
                         case nameof(SchoolService.GetSchoolByIdAsync):
+                        case nameof(SchoolService.GetSchoolByLearnerIdNoAsync):
                              var address = dict!["schoolAddress"] as Dictionary<string, object>;
                             School school = new()
                             {
                                 Id = (long)dict!["id"],
-                                EmisNumber = dict["emisNumber"].ToString(),
+                                EmisNumber = dict["emisNumber"].ToString()!,
                                 Logo = dict["logo"].ToString(),
                                 Name = dict["name"].ToString()!,
                                 DateRegistered = Convert.ToDateTime(dict["dateRegistered"]),
@@ -80,7 +80,7 @@ namespace SchoolConnect_Web_App.Services
                                     Street = address["street"].ToString()!,
                                     Suburb = address["suburb"].ToString()!,
                                     City = address["city"].ToString()!,
-                                    PostalCode = address["postalCode"].ToString(),
+                                    PostalCode = address["postalCode"].ToString()!,
                                     Province = address["province"].ToString()!,
                                     SchoolID = (long)address["schoolID"]
                                 }
@@ -89,10 +89,9 @@ namespace SchoolConnect_Web_App.Services
                             _returnDictionary["Result"] = school;
                             break;
 
-
                         case nameof(PrincipalService.GetPrincipalByIdAsync):
-                            var princSchool = dict["principalSchoolNP"] as Dictionary<string, object>;
-                            var princSchoolAddress = princSchool["schoolAddress"] as Dictionary<string, object>;
+                            var princSchool = dict!["principalSchoolNP"] as Dictionary<string, object>;
+                            var princSchoolAddress = princSchool!["schoolAddress"] as Dictionary<string, object>;
                             Principal principal = new()
                             {
                                 Id = (long)dict!["id"],
@@ -108,7 +107,7 @@ namespace SchoolConnect_Web_App.Services
                                 PrincipalSchoolNP = new()
                                 {
                                     Id = (long)princSchool!["id"],
-                                    EmisNumber = princSchool["emisNumber"].ToString(),
+                                    EmisNumber = princSchool["emisNumber"].ToString()!,
                                     Logo = princSchool["logo"].ToString(),
                                     Name = princSchool["name"].ToString()!,
                                     DateRegistered = Convert.ToDateTime(princSchool["dateRegistered"]),
@@ -131,7 +130,6 @@ namespace SchoolConnect_Web_App.Services
                             _returnDictionary["Result"] = principal;
                             break;
 
-
                         case nameof(AnnouncementService.GetAnnouncementByPrincipalIdAsync):
                             Announcement announcement = new()
                             {
@@ -151,6 +149,53 @@ namespace SchoolConnect_Web_App.Services
 
                             _returnDictionary["Result"] = announcement;
                             break;
+
+                        case nameof(LearnerService.GetLearnerByIdNo):
+                            var sDict = dict!["schoolLearnerNP"] as Dictionary<string, object>;
+                            var aDict = dict["schoolAddress"] as Dictionary<string, object>;
+                            Learner learner = new()
+                            {
+                                Id = Convert.ToInt64(dict!["id"]),
+                                ProfileImage = dict["profileImage"].ToString(),
+                                ProfileImageFile = dict["profileImageFile"] as IFormFile,
+                                Title = dict["title"].ToString(),
+                                Name = dict["name"].ToString(),
+                                Surname = dict["surname"].ToString(),
+                                Gender = dict["gender"].ToString(),
+                                Role = dict["role"].ToString(),
+                                IdNo = dict["idNo"].ToString()!,
+                                ClassCode = dict["classCode"].ToString()!,
+                                Subjects = dict["subjects"] as List<string>,
+                                SchoolID = Convert.ToInt64(dict["schoolID"]),
+                                ClassID = Convert.ToInt32(dict["classID"]),
+                                LearnerSchoolNP = new()
+                                {
+                                    Id = Convert.ToInt64(sDict!["id"]),
+                                    EmisNumber = sDict["emisNumber"].ToString()!,
+                                    Logo = sDict["logo"].ToString(),
+                                    SchoolLogoFile = sDict["schoolLogoFile"] as IFormFile,
+                                    Name = sDict["name"].ToString()!,
+                                    DateRegistered = Convert.ToDateTime(sDict["dateRegistered"]),
+                                    Type = sDict["type"].ToString()!,
+                                    TelePhoneNumber = Convert.ToInt64(sDict["telePhoneNumber"]),
+                                    EmailAddress = sDict["emailAddress"].ToString()!,
+                                    SystemAdminId = Convert.ToInt64(sDict["systemAdminId"]),
+                                    SchoolAddress = new()
+                                    {
+                                        AddressID = Convert.ToInt32(aDict!["addressID"]),
+                                        Street = aDict["street"].ToString()!,
+                                        Suburb = aDict["suburb"].ToString()!,
+                                        City = aDict["city"].ToString()!,
+                                        PostalCode = aDict["postalCode"].ToString()!,
+                                        Province = aDict["province"].ToString()!,
+                                        SchoolID = Convert.ToInt64(aDict["schoolID"])
+                                    }
+                                }
+                            };
+
+                            _returnDictionary["Result"] = learner;
+                            break;
+
                         default: throw new("Something went wrong");
                     }
                 }
@@ -164,6 +209,7 @@ namespace SchoolConnect_Web_App.Services
                 return _returnDictionary;
             }
         }
+
         public static object ConvertJsonElement(JsonElement element)
         {
             SysAdmin admin = new SysAdmin();
