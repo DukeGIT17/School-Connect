@@ -6,6 +6,6 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
     {
         Task<Dictionary<string, object>> GetAdminByIdAsync(long sysAdminId);
         Task<Dictionary<string, object>> GetAdminByStaffNrAsync(string staffNr);
-        Task<Dictionary<string, object>> Update(SysAdmin sysAdmin);
+        Task<Dictionary<string, object>> UpdateAsync(SysAdmin sysAdmin);
     }
 }

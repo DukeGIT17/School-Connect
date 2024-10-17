@@ -75,7 +75,7 @@ namespace SchoolConnect_DomainLayer.Data
                 .IsRequired();
 
             modelBuilder.Entity<School>()
-                .HasMany(grades => grades.SchoolGradeNP)
+                .HasMany(grades => grades.SchoolGradesNP)
                 .WithOne(school => school.GradeSchoolNP)
                 .HasForeignKey(grade => grade.SchoolID)
                 .OnDelete(DeleteBehavior.Cascade)

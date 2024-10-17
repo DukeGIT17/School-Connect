@@ -1,4 +1,5 @@
-﻿using SchoolConnect_DomainLayer.Models;
+﻿using SchoolConnect_DomainLayer.CustomAttributes;
+using SchoolConnect_DomainLayer.Models;
 
 namespace SchoolConnect_Web_App.Models
 {
@@ -11,5 +12,8 @@ namespace SchoolConnect_Web_App.Models
 
         public long SchoolID { get; set; }
         public long AdminID { get; set; }
+
+        [AllowedExtensions(".xlsx")]
+        public IFormFile? BulkLoadFile { get; set; }
     }
 }

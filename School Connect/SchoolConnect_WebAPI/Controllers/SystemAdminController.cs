@@ -48,6 +48,7 @@ namespace SchoolConnect_WebAPI.Controllers
         }
         
         [HttpPut(nameof(UpdateSystemAdmin))]
+        [Consumes("multipart/form-data")]
         public async Task<IActionResult> UpdateSystemAdmin(SysAdmin systemAdmin)
         {
             try
@@ -60,7 +61,7 @@ namespace SchoolConnect_WebAPI.Controllers
                         ?? "Something could went wrong, could not acquire error messages.");
                     return BadRequest(error);
                 }
-                return Ok(_returnDictionary["Success"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {

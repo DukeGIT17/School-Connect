@@ -10,14 +10,14 @@ namespace SchoolConnect_RepositoryLayer.Repositories
     public class SystemAdminRepository : ISysAdmin
     {
         private readonly SchoolConnectDbContext _context;
-        private readonly SignInManager<CustomIdentityUser> _signInManager;
+        private readonly ISignInRepo _signInRepo;
         private Dictionary<string, object> _returnDictionary;
 
-        public SystemAdminRepository(SchoolConnectDbContext context, SignInManager<CustomIdentityUser> signInManager)
+        public SystemAdminRepository(SchoolConnectDbContext context, ISignInRepo signInRepo)
         {
             _context = context;
             _returnDictionary = [];
-            _signInManager = signInManager;
+            _signInRepo = signInRepo;
         }
 
         public async Task<Dictionary<string, object>> GetAdminByIdAsync(long sysAdminId)
@@ -63,16 +63,24 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public async Task<Dictionary<string, object>> Update(SysAdmin sysAdmin)
+        public async Task<Dictionary<string, object>> UpdateAsync(SysAdmin sysAdmin)
         {
-            _returnDictionary = [];
-            SysAdmin? admin;
             try
             {
-                admin = await _context.SystemAdmins.AsNoTracking().FirstOrDefaultAsync(a => a.StaffNr == sysAdmin.StaffNr || a.Id == sysAdmin.Id) ;
+                var admin = await _context.SystemAdmins.AsNoTracking().FirstOrDefaultAsync(a => a.Id == sysAdmin.Id);
+                if (admin == null) throw new("No admin with the specified Id and staff numbers was found.");
 
-                if (admin == null)
-                    throw new Exception("No admin with the specified Id and staff numbers was found.");
+                if (sysAdmin.EmailAddress != admin.EmailAddress)
+                {
+                    _returnDictionary = await _signInRepo.ChangeEmailAsync(admin.EmailAddress, sysAdmin.EmailAddress);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                }
+                
+                if (sysAdmin.PhoneNumber != admin.PhoneNumber)
+                {
+                    _returnDictionary = await _signInRepo.ChangePhoneNumberAsync(admin.PhoneNumber.ToString(), sysAdmin.PhoneNumber.ToString(), sysAdmin.EmailAddress);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                }
 
                 _context.Update(sysAdmin);
                 _context.SaveChanges();
@@ -82,7 +90,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
             catch (Exception ex)
             {
-                _returnDictionary["Success"] = true;
+                _returnDictionary["Success"] = false;
                 _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
             }

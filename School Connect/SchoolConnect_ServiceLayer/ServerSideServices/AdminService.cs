@@ -57,7 +57,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
                 _returnDictionary = CommonActions.AttemptObjectValidation(admin);
                 if (!(bool)_returnDictionary["Success"]) return _returnDictionary;
 
-                _returnDictionary = await _sysAdminRepo.Update(admin);
+                _returnDictionary = await _sysAdminRepo.UpdateAsync(admin);
                 return _returnDictionary;
             }
             catch (Exception ex)

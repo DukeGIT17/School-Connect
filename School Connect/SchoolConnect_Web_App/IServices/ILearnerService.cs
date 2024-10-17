@@ -6,5 +6,6 @@ namespace SchoolConnect_Web_App.IServices
     {
         Task<Dictionary<string, object>> RegisterLearnerAsync(Learner learner);
         Task<Dictionary<string, object>> GetLearnerByIdNo(string idNo);
+        Task<Dictionary<string, object>> BulkLoadLearners(IFormFile file, long schoolId);
     }
 }

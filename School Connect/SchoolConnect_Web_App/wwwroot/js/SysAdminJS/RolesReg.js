@@ -140,3 +140,18 @@ learnerParentFileInputField.addEventListener("change", function () {
     learnerParentFileNameDisplayField.innerHTML = learnerParentFileInputField.files[0] ? learnerParentFileInputField.files[0].name : "No file selected";
     removeFileBtnLearnerParent.style.display = "block";
 });
+
+
+let bulkLearnerFileInputField = document.getElementById("uploadBox-bulk-learner");
+let bulkLearnerUploadButton = document.getElementById("uploadImageBtn-bulk-learner");
+let bulkLearnerFileNameDisplayField = document.getElementById("fileNameDisplay-bulk-learner");
+let removeFileBtnBulkLearner = document.getElementById("remove-file-bulk-learner");
+
+bulkLearnerUploadButton.addEventListener("click", function () {
+    bulkLearnerFileInputField.click();
+});
+
+bulkLearnerFileInputField.addEventListener("change", function () {
+    bulkLearnerFileNameDisplayField.innerHTML = bulkLearnerFileInputField.files[0] ? bulkLearnerFileInputField.files[0].name : "No file selected";
+    removeFileBtnBulkLearner.style.display = "block";
+});

@@ -53,7 +53,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 string[] highGrades = ["8", "9", "10", "11", "12"],
                     combinedGrades = ["R", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
 
-                newSchool.SchoolGradeNP = [];
+                newSchool.SchoolGradesNP = [];
 
                 switch (newSchool.Type)
                 {
@@ -71,7 +71,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                                     }
                                 ]
                             };
-                            newSchool.SchoolGradeNP.Add(gr);
+                            newSchool.SchoolGradesNP.Add(gr);
                         }
                         break;
 
@@ -89,7 +89,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                                     }
                                 ]
                             };
-                            newSchool.SchoolGradeNP.Add(gr);
+                            newSchool.SchoolGradesNP.Add(gr);
                         }
                         break;
                     case "Combined":
@@ -106,7 +106,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                                     }
                                 ]
                             };
-                            newSchool.SchoolGradeNP.Add(gr);
+                            newSchool.SchoolGradesNP.Add(gr);
                         }
                         break;
                     default:
@@ -115,7 +115,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 if (newSchool.SchoolLogoFile is not null)
                 {
-                    _returnDictionary = SaveImage($"{newSchool.Name}", "School Logos Folder", newSchool.SchoolLogoFile);
+                    _returnDictionary = SaveFile($"{newSchool.Name}", "School Logos Folder", newSchool.SchoolLogoFile);
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                     newSchool.Logo = _returnDictionary["FileName"] as string;
                 }

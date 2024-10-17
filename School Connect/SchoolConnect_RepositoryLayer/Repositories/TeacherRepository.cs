@@ -40,7 +40,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 if (teacher.ProfileImageFile is not null)
                 {
-                    _returnDictionary = SaveImage($"{teacher.Name} {teacher.Surname} - {teacher.TeacherSchoolNP!.Name}", "Profile Images Folder/Teachers", teacher.ProfileImageFile);
+                    _returnDictionary = SaveFile($"{teacher.Name} {teacher.Surname} - {teacher.TeacherSchoolNP!.Name}", "Profile Images Folder/Teachers", teacher.ProfileImageFile);
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                     teacher.ProfileImage = _returnDictionary["FileName"] as string;
                 }

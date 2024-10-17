@@ -1,4 +1,5 @@
-﻿using SchoolConnect_DomainLayer.Models;
+﻿using Microsoft.AspNetCore.Http;
+using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.CommonAction;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
@@ -16,11 +17,11 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             _returnDictionary = [];
         }
 
-        public async Task<Dictionary<string, object>> LoadLearners(string fileName)
+        public async Task<Dictionary<string, object>> LoadLearners(IFormFile file, long schoolId)
         {
             try
             {
-                return await _learnerRepo.BatchLoadLearnersFromExcel(fileName);
+                return await _learnerRepo.BatchLoadLearnersFromExcel(file, schoolId);
             }
             catch (Exception ex)
             {

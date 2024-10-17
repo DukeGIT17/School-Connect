@@ -12,11 +12,12 @@ namespace SchoolConnect_WebAPI.Controllers
         private Dictionary<string, object> _returnDictionary = [];
 
         [HttpPost(nameof(LoadLearnersFromExcel))]
-        public IActionResult LoadLearnersFromExcel(string fileName)
+        [Consumes("multipart/form-data")]
+        public IActionResult LoadLearnersFromExcel([FromForm] IFormFile file, long schoolId)
         {
             try
             {
-                _returnDictionary = _learnerService.LoadLearners(fileName).Result;
+                _returnDictionary = _learnerService.LoadLearners(file, schoolId).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
                 return Ok(_returnDictionary);
             }
@@ -62,7 +63,7 @@ namespace SchoolConnect_WebAPI.Controllers
             {
                 _returnDictionary = _learnerService.GetById(id).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
-                return Ok(_returnDictionary["Result"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {
@@ -77,7 +78,7 @@ namespace SchoolConnect_WebAPI.Controllers
             {
                 _returnDictionary = _learnerService.GetByIdNo(idNo).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
-                return Ok(_returnDictionary["Result"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {

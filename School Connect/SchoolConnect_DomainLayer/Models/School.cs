@@ -90,7 +90,7 @@ namespace SchoolConnect_DomainLayer.Models
         public IList<Teacher?>? SchoolTeachersNP { get; set; }
         public IList<Announcement>? SchoolAnnouncementNP { get; set; }
         public IList<Group>? SchoolGroupsNP { get; set; }
-        public IList<Grade>? SchoolGradeNP { get; set; }
+        public IList<Grade>? SchoolGradesNP { get; set; }
         #endregion
     }
 }

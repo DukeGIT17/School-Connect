@@ -131,5 +131,39 @@ namespace SchoolConnect_Web_App.Services
                 return _returnDictionary;
             }
         }
+
+        public async Task<Dictionary<string, object>> BulkLoadLearners(IFormFile file, long schoolId)
+        {
+            try
+            {
+                StringBuilder builString = new();
+                builString.Append("http://localhost:5293");
+                builString.Append(learnerBasePath);
+                builString.Append("/LoadLearnersFromExcel?schoolId=");
+                builString.Append(schoolId);
+
+                var formData = new MultipartFormDataContent();
+
+                var fileStreamContent = new StreamContent(file.OpenReadStream());
+                fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
+                formData.Add(fileStreamContent, "file", file.FileName);
+
+                var request = new HttpRequestMessage
+                {
+                    Content = formData,
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(builString.ToString())
+                };
+
+                var response = await _httpClient.SendAsync(request);
+                return CheckSuccessStatus(response, "NoNeed");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
     }
 }

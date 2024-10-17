@@ -141,7 +141,7 @@
                 <div id="upload-image">
                     <h3>Upload File</h3>
                     <div class="upload-container">
-                        <button type="button" id="remove-file-Teacher" onclick="removeSelectedFile('uploadBox-Teacher', 'fileNameDisplay-Teacher', 'remove-file-Teacher')" class="remove-file" ><i class="fa-regular fa-circle-xmark"></i></button>
+                        <button type="button" id="remove-file-Teacher" onclick="removeSelectedFile('uploadBox-Teacher', 'fileNameDisplay-Teacher', 'remove-file-Teacher')" class="remove-file"><i class="fa-regular fa-circle-xmark"></i></button>
                         <button type="button" id="uploadImageBtn-Teacher"><i class="fa-solid fa-upload"></i></button>
                         <input asp-for="Teacher.ProfileImageFile" type="file" id="uploadBox-Teacher" accept="image/*" style="display:none" />
                         <p id="fileNameDisplay-Teacher">No file selected</p>
@@ -465,6 +465,34 @@
             <input asp-for="Parent" type="hidden" value="@parent" />
 
             <button type="submit" class="button">REGISTER</button>
+        </form>
+
+        <hr />
+        <h1>OR</h1>
+        <hr />
+
+        <form asp-action="RolesReg" method="post" enctype="multipart/form-data">
+
+            <div id="bulk-upload">
+                <h3>Upload File</h3>
+                <div class="upload-container">
+                    <button type="button" class="remove-file" id="remove-file-bulk-learner" onclick="removeSelectedFile('uploadBox-bulk-learner', 'fileNameDisplay-bulk-learner', 'remove-file-bulk-learner')"><i class="fa-regular fa-circle-xmark"></i></button>
+                    <button type="button" id="uploadImageBtn-bulk-learner"><i class="fa-solid fa-upload"></i></button>
+                    <input asp-for="BulkLoadFile" type="file" id="uploadBox-bulk-learner" accept="xlsx" style="display:none" />
+                    <p id="fileNameDisplay-bulk-learner">No file selected</p>
+                </div>
+                <span asp-validation-for="BulkLoadFile"></span>
+            </div>
+
+            <input asp-for="AdminID" type="hidden" value="@Model.AdminID" />
+            <input asp-for="SchoolID" type="hidden" value="@Model.SchoolID" />
+
+            <input asp-for="Principal" type="hidden" value="@principal" />
+            <input asp-for="Teacher" type="hidden" value="@teacher" />
+            <input asp-for="Parent" type="hidden" value="@parent" />
+            <input asp-for="Learner" type="hidden" value="@learner" />
+
+            <button type="submit" class="button">Upload</button>
         </form>
     </div>
 </div>

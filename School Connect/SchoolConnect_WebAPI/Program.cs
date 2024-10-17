@@ -106,7 +106,7 @@ using (var scope = app.Services.CreateScope())
     var systemAdmins = new SysAdmin[] {
         new()
         {
-            ProfileImage = "Default Pic",
+            ProfileImage = "Default Pic.png",
             Title = "Mr",
             Name = "Lukhanyo",
             Surname = "Mayekiso",
@@ -118,7 +118,7 @@ using (var scope = app.Services.CreateScope())
         },
         new()
         {
-            ProfileImage = "Default Pic",
+            ProfileImage = "Default Pic.png",
             Title = "Ms",
             Name = "Takatso",
             Surname = "Senyatso",
@@ -130,7 +130,7 @@ using (var scope = app.Services.CreateScope())
         },
         new()
         {
-            ProfileImage = "Default Pic",
+            ProfileImage = "Default Pic.png",
             Title = "Mr",
             Name = "James",
             Surname = "Edinburgh",
@@ -142,7 +142,7 @@ using (var scope = app.Services.CreateScope())
         },
         new()
         {
-            ProfileImage = "Default Pic",
+            ProfileImage = "Default Pic.png",
             Title = "Mrs",
             Name = "Connie",
             Surname = "FellWay",
@@ -154,12 +154,12 @@ using (var scope = app.Services.CreateScope())
         }
     };
     var admins = await context.SystemAdmins.ToListAsync();
-    foreach (var systemAdmin in systemAdmins)
-    {
-        if (admins.FirstOrDefault(a => a.EmailAddress == systemAdmin.EmailAddress) == null)
-            await context.AddAsync(systemAdmin);
-    }
-    await context.SaveChangesAsync();
+    //foreach (var systemAdmin in systemAdmins)
+    //{
+    //    if (admins.FirstOrDefault(a => a.EmailAddress == systemAdmin.EmailAddress) == null)
+    //        await context.AddAsync(systemAdmin);
+    //}
+    //await context.SaveChangesAsync();
 
     admins = await context.SystemAdmins.ToListAsync();
     if (!admins.IsNullOrEmpty())

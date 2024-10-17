@@ -114,14 +114,15 @@ namespace SchoolConnect_RepositoryLayer.CommonAction
             }
         }
 
-        public static Dictionary<string, object> SaveImage(string name, string destinationFolder, IFormFile imageFile)
+        public static Dictionary<string, object> SaveFile(string name, string destinationFolder, IFormFile file)
         {
             Dictionary<string, object> _returnDictionary = [];
             try
             {
-                string fileName = name + $" - {Guid.NewGuid()}" + Path.GetExtension(imageFile.FileName);
-                using var fileStream = new FileStream($@"C:\Users\innoc\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\{destinationFolder}\{fileName}", FileMode.Create);
-                imageFile.CopyTo(fileStream);
+
+                string fileName = Path.GetExtension(file.FileName) == ".xlsx" ? name : name + $" - {Guid.NewGuid()}" + Path.GetExtension(file.FileName);
+                using var fileStream = new FileStream($@"C:\Users\innoc\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\Application Files\{destinationFolder}\{fileName}", FileMode.Create);
+                file.CopyTo(fileStream);
 
                 _returnDictionary["Success"] = true;
                 _returnDictionary["FileName"] = fileName;

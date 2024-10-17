@@ -1,8 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.Differencing;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_Web_App.IServices;
 using SchoolConnect_Web_App.Models;
 
@@ -112,17 +111,11 @@ namespace SchoolConnect_Web_App.Controllers
                     Teacher = new(),
                     Parent = new()
                     {
-                        Children =
-                        [
-                            new()
-                        ]
+                        Children = [new()]
                     },
                     Learner = new()
                     {
-                        Parents =
-                        [
-                            new()
-                        ]
+                        Parents = [new()]
                     },
                     SchoolID = school!.Id,
                     AdminID = id
@@ -144,7 +137,11 @@ namespace SchoolConnect_Web_App.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (model.Principal is not null)
+                    if (model.BulkLoadFile is not null)
+                    {
+                        _returnDictionary = _learnerService.BulkLoadLearners(model.BulkLoadFile, model.SchoolID).Result;
+                    }
+                    else if (model.Principal is not null)
                     {
                         _returnDictionary = _principalService.RegisterPrincipalAsync(model.Principal!).Result;
                         if (!(bool)_returnDictionary["Success"])
@@ -260,7 +257,7 @@ namespace SchoolConnect_Web_App.Controllers
                     _returnDictionary = _systemAdminService.UpdateAsync(admin).Result;
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
-                    RedirectToAction("SysAdminViewProfile", new { id = admin.Id });
+                    return RedirectToAction("SysAdminViewProfile", new { id = admin.Id });
                 }
                 return View(admin);
             }

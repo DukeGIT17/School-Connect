@@ -4,6 +4,7 @@ using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
 using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 using SchoolConnect_RepositoryLayer.Interfaces;
+using Microsoft.AspNetCore.Http;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -73,7 +74,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             try
             {
                 bool found = false;
-                foreach (var grade in learner.LearnerSchoolNP!.SchoolGradeNP!)
+                foreach (var grade in learner.LearnerSchoolNP!.SchoolGradesNP!)
                 {
                     var classCode = learner.ClassCode;
                     var cls = grade.Classes.FirstOrDefault(c => c.ClassDesignate == classCode);
@@ -97,18 +98,21 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 return _returnDictionary;
             }
         }
-        public async Task<Dictionary<string, object>> BatchLoadLearnersFromExcel(string fileName)
+        public async Task<Dictionary<string, object>> BatchLoadLearnersFromExcel(IFormFile learnerSpreadSheet, long schoolId)
         {
             try
             {
+                _returnDictionary = SaveFile(learnerSpreadSheet.FileName, "Misc", learnerSpreadSheet);
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
                 var learners = new List<Learner>();
                 var parents = new List<Parent>();
                 var learnerIdNos = new List<long>();
 
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-                string folderPath = @"C:\Users\KHAYE\OneDrive\Documents\WIL\";
-                using (var stream = new FileStream(folderPath + fileName, FileMode.Open, FileAccess.Read))
+                string folderPath = @"C:\Users\innoc\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\Application Files\Misc\";
+                using (var stream = new FileStream(folderPath + learnerSpreadSheet.FileName, FileMode.Open, FileAccess.Read))
                 using (var package = new ExcelPackage(stream))
                 {
                     var learnerWorksheet = package.Workbook.Worksheets[0];
@@ -129,7 +133,8 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                             ParentType = parentWorksheet.Cells[row, 6].Value?.ToString(),
                             EmailAddress = parentWorksheet.Cells[row, 7].Value?.ToString(),
                             PhoneNumber = Convert.ToInt64(parentWorksheet.Cells[row, 8].Value),
-                            Role = "Parent"
+                            Role = "Parent",
+                            Title = parentWorksheet.Cells[row, 9].Value?.ToString()
                         };
 
                         _returnDictionary = AttemptObjectValidation(parent);
@@ -137,16 +142,15 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                         {
                             var errors = _returnDictionary["Errors"] as List<string>;
                             string longErrorString = "";
-                            foreach (var error in errors!)
-                                longErrorString += error.ToString() + "\n";
-
+                            errors!.ForEach(x => longErrorString += $"{x}\n");
                             throw new(longErrorString);
                         }
 
                         parents.Add(parent);
-                        learnerIdNos.Add(Convert.ToInt64(parentWorksheet.Cells[row, 9].Value));
+                        learnerIdNos.Add(Convert.ToInt64(parentWorksheet.Cells[row, 10].Value));
                     }
 
+                    var schools = await _context.Schools.Include(g => g.SchoolGradesNP).ThenInclude(g => g.Classes).ToListAsync();
                     for (int row = 2; row <= rowCount; row++)
                     {
                         var learner = new Learner
@@ -158,12 +162,10 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                             IdNo = learnerWorksheet.Cells[row, 5].Value?.ToString(),
                             ClassCode = learnerWorksheet.Cells[row, 6].Value?.ToString(),
                             Subjects = learnerWorksheet.Cells[row, 7].Value?.ToString()
-                        .Trim('[', ']')
-                        .Split(',', StringSplitOptions.RemoveEmptyEntries)
-                        .Select(item => item.Trim(' ', '"', '\''))
-                        .ToList(),
-                            SchoolID = Convert.ToInt64(learnerWorksheet.Cells[row, 8].Value),
-                            ClassID = Convert.ToInt32(learnerWorksheet.Cells[row, 9].Value),
+                            .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                            .Select(item => item.Trim())
+                            .ToList(),
+                            SchoolID = schoolId,
                             Parents =
                             [
                                 new()
@@ -173,8 +175,14 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                                     Parent = parents[learnerIdNos.IndexOf(Convert.ToInt64(learnerWorksheet.Cells[row, 5].Value))]
                                 }
                             ],
-                            Role = "Learner"
+                            Role = "Learner",
+                            Title = learnerWorksheet.Cells[row, 8].Value?.ToString(),
                         };
+
+                        //var skolo = schools.FirstOrDefault(s => s.Id == learner.SchoolID);
+                        //var grade = skolo!.SchoolGradesNP!.FirstOrDefault(g => g.GradeDesignate == learner.ClassCode!.Remove(learner.ClassCode.Length - 2));
+                        //var klass = grade!.Classes.FirstOrDefault(c => c.ClassDesignate == learner.ClassCode!.Last().ToString());
+                        //learner.ClassID = schools.FirstOrDefault(s => s.Id == learner.SchoolID)!.SchoolGradesNP!.FirstOrDefault(g => g.GradeDesignate.StartsWith(learner.ClassCode!.Remove(0, learner.ClassCode.Length - 2)))!.Id;
 
                         _returnDictionary = await LearnerExistsAsync(learner);
                         if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
@@ -182,8 +190,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                         _returnDictionary = AttemptObjectValidation(learner);
                         if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
-                        var school = await _context.Schools.Include(s => s.SchoolGradeNP).FirstOrDefaultAsync(s => s.Id == learner.SchoolID);
-                        var classes = await _context.SubGrade.ToListAsync();
+                        var school = await _context.Schools.Include(s => s.SchoolGradesNP)!.ThenInclude(c => c.Classes).FirstOrDefaultAsync(s => s.Id == learner.SchoolID);
                         if (school == null) throw new($"Learner {learner.Name} registration failed. Could not find a school with the ID {learner.SchoolID}.");
 
                         learner.LearnerSchoolNP = school;
@@ -210,7 +217,6 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 await _context.SaveChangesAsync();
 
                 _returnDictionary["Success"] = true;
-                _returnDictionary["Result"] = learners;
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -225,7 +231,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                var schools = await _context.Schools.Include(s => s.SchoolGradeNP)!.ThenInclude(g => g.Classes).ToListAsync();
+                var schools = await _context.Schools.Include(s => s.SchoolGradesNP)!.ThenInclude(g => g.Classes).ToListAsync();
                 learner.LearnerSchoolNP = schools!.FirstOrDefault(s => s.Id == learner.SchoolID) 
                     ?? throw new($"Learner registration failed. Could not find a school with the ID {learner.SchoolID}.");
 
@@ -251,7 +257,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 if (learner.ProfileImageFile is not null)
                 {
-                    _returnDictionary = SaveImage($"{learner.Name} {learner.Surname} - {learner.LearnerSchoolNP!.Name}", "Profile Images Folder/Learners", learner.ProfileImageFile);
+                    _returnDictionary = SaveFile($"{learner.Name} {learner.Surname} - {learner.LearnerSchoolNP!.Name}", "Profile Images Folder/Learners", learner.ProfileImageFile);
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                     learner.ProfileImage = _returnDictionary["FileName"] as string;
                 }
@@ -261,7 +267,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 var lparent = learner.Parents.FirstOrDefault()?.Parent ?? throw new("Something went wrong, failed to acquire parent data along with the learner's data!!");
                 if (lparent.ProfileImageFile is not null)
                 {
-                    _returnDictionary = SaveImage($"{lparent.Name} {lparent.Surname} - {learner.Name} {learner.LearnerSchoolNP!.Name}", "Profile Images Folder/Parents", lparent.ProfileImageFile);
+                    _returnDictionary = SaveFile($"{lparent.Name} {lparent.Surname} - {learner.Name} {learner.LearnerSchoolNP!.Name}", "Profile Images Folder/Parents", lparent.ProfileImageFile);
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                     lparent.ProfileImage = _returnDictionary["FileName"] as string;
                 }

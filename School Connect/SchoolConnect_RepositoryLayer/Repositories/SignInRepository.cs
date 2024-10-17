@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
+using System.Collections.Frozen;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -66,7 +67,6 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-
         public async Task<Dictionary<string, object>> CreateUserAccountAsync(string email, string role, string? phoneNumber = null)
         {
             try
@@ -105,19 +105,8 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        /// <summary>
-        /// Attempts to sign in an existing user asynchronously using the provided email address and password provided in the login model parameter.
-        /// </summary>
-        /// <param name="model">
-        /// A login model containing essential login details, e.g., email address, and password.
-        /// </param>
-        /// <returns>
-        /// On success, returns a dictionary containing a field indicating success, and a field indicating whether the user has to reset their log in
-        /// details. On failure, returns a dictionary containing a field indicating success, and a field containing the error messsage.
-        /// </returns>
         public async Task<Dictionary<string, object>> SignInAsync(LoginModel model)
         {
-            _returnDictionary = [];
             try
             {
                 var user = await _signInManager.UserManager.FindByEmailAsync(model.EmailAddress);
@@ -203,6 +192,69 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 }
 
                 throw new("Something went wrong while deleting user {email}.");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> ChangeEmailAsync(string oldEmail, string newEmail)
+        {
+            try
+            {
+                var user = await _signInManager.UserManager.FindByEmailAsync(oldEmail);
+                if (user is null) throw new($"Could not find a user with the email address {oldEmail}.");
+                var token = await _signInManager.UserManager.GenerateChangeEmailTokenAsync(user, newEmail);
+
+                var result = await _signInManager.UserManager.ChangeEmailAsync(user, newEmail, token);
+                if (!result.Succeeded)
+                {
+                    string errors = "";
+                    result.Errors.ToList().ForEach(x => errors += $"{x}\n");
+                    throw new(errors);
+                }
+
+                user.UserName = newEmail;
+                result = await _signInManager.UserManager.UpdateAsync(user);
+                if (!result.Succeeded)
+                {
+                    string errors = "";
+                    result.Errors.ToList().ForEach(x => errors += $"{x}\n");
+                    throw new(errors);
+                }
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+        
+        public async Task<Dictionary<string, object>> ChangePhoneNumberAsync(string oldPhoneNumber, string newPhoneNumber, string email)
+        {
+            try
+            {
+                var user = await _signInManager.UserManager.FindByEmailAsync(email);
+                if (user is null) throw new($"Could not find a user with the email address {email}.");
+                var token = await _signInManager.UserManager.GenerateChangePhoneNumberTokenAsync(user, newPhoneNumber);
+
+                var result = await _signInManager.UserManager.ChangePhoneNumberAsync(user, newPhoneNumber, token);
+                if (!result.Succeeded)
+                {
+                    string errors = "";
+                    result.Errors.ToList().ForEach(x => errors += $"{x}\n");
+                    throw new(errors);
+                }
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
             }
             catch (Exception ex)
             {

@@ -95,7 +95,7 @@ namespace SchoolConnect_Web_App.Services
                 HttpRequestMessage request = new()
                 {
                     Content = formData,
-                    Method = HttpMethod.Post,
+                    Method = HttpMethod.Put,
                     RequestUri = new Uri(buildString.ToString())
                 };
 
