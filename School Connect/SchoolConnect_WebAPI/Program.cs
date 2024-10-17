@@ -154,12 +154,12 @@ using (var scope = app.Services.CreateScope())
         }
     };
     var admins = await context.SystemAdmins.ToListAsync();
-    //foreach (var systemAdmin in systemAdmins)
-    //{
-    //    if (admins.FirstOrDefault(a => a.EmailAddress == systemAdmin.EmailAddress) == null)
-    //        await context.AddAsync(systemAdmin);
-    //}
-    //await context.SaveChangesAsync();
+    foreach (var systemAdmin in systemAdmins)
+    {
+        if (admins.FirstOrDefault(a => a.EmailAddress == systemAdmin.EmailAddress) == null)
+            await context.AddAsync(systemAdmin);
+    }
+    await context.SaveChangesAsync();
 
     admins = await context.SystemAdmins.ToListAsync();
     if (!admins.IsNullOrEmpty())
