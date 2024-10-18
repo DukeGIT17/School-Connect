@@ -1,8 +1,9 @@
-﻿using SchoolConnect_DomainLayer.Models;
+﻿using Microsoft.AspNetCore.Http;
+using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.CommonAction;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
-using System.ComponentModel.DataAnnotations;
+using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 
 namespace SchoolConnect_ServiceLayer.ServerSideServices
 {
@@ -11,11 +12,25 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         private readonly ITeacher _teacherRepository = teacherRepository;
         private Dictionary<string, object> _returnDictionary = [];
 
+        public async Task<Dictionary<string, object>> BulkLoadTeacherAsync(IFormFile teacherFile, long schoolId)
+        {
+            try
+            {
+                return await _teacherRepository.BulkLoadTeacherFromExcel(teacherFile, schoolId);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
         public async Task<Dictionary<string, object>> CreateTeacherAsync(Teacher teacher)
         {
             try
             {
-                _returnDictionary = CommonActions.AttemptObjectValidation(teacher);
+                _returnDictionary = AttemptObjectValidation(teacher);
                 if (!(bool)_returnDictionary["Success"]) return _returnDictionary;
                 return await _teacherRepository.CreateAsync(teacher);
             }

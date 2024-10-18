@@ -3,6 +3,8 @@ using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
+using Microsoft.AspNetCore.Http;
+using OfficeOpenXml;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -19,6 +21,91 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             _signInRepo = signInRepo;
             _groupRepo = groupRepo;
             _returnDictionary = [];
+        }
+
+        public async Task<Dictionary<string, object>> BatchLoadParentsFromExcel(IFormFile parentSpreadsheet)
+        {
+            try
+            {
+                var learners = await _context.Learners.ToListAsync();
+                if (learners is null)
+                    throw new("Cannot register a parent while there are no learners in the database. Please register learners first.");
+
+                _returnDictionary = SaveFile(parentSpreadsheet.FileName, "Misc", parentSpreadsheet);
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                List<Parent> parents = [];
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+                string folderPath = @"C:\Users\innoc\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\Application Files\Misc\";
+                using (var stream = new FileStream(folderPath + parentSpreadsheet.FileName, FileMode.Open, FileAccess.Read))
+                using (var package = new ExcelPackage(stream))
+                {
+                    var worksheet = package.Workbook.Worksheets[0];
+                    var rowCount = worksheet.Dimension.Rows;
+
+                    for (int row = 2; row <= rowCount; row++)
+                    {
+                        var parent = new Parent
+                        {
+                            ProfileImage = worksheet.Cells[row, 1].Value.ToString()!,
+                            Name = worksheet.Cells[row, 2].Value.ToString()!,
+                            Surname = worksheet.Cells[row, 3].Value.ToString()!,
+                            Gender = worksheet.Cells[row, 4].Value.ToString()!,
+                            IdNo = worksheet.Cells[row, 5].Value.ToString()!,
+                            ParentType = worksheet.Cells[row, 6].Value.ToString()!,
+                            EmailAddress = worksheet.Cells[row, 7].Value.ToString()!,
+                            PhoneNumber = Convert.ToInt64(worksheet.Cells[row, 8].Value),
+                            Role = "Parent",
+                            Title = worksheet.Cells[row, 9].Value.ToString()!,
+                            Children =
+                            [
+                                new()
+                                {
+                                    LearnerID = learners.FirstOrDefault(l => l.IdNo == worksheet.Cells[row, 10].Value.ToString())!.Id,
+                                    LearnerIdNo = worksheet.Cells[row, 10].Value.ToString()!,
+                                    ParentIdNo = worksheet.Cells[row, 5].Value.ToString()!
+                                }
+                            ]
+                        };
+
+                        _returnDictionary = AttemptObjectValidation(parent);
+                        if (!(bool)_returnDictionary["Success"])
+                        {
+                            var errors = _returnDictionary["Errors"] as List<string>;
+                            string longErrorString = "";
+                            errors!.ForEach(x => longErrorString += $"{x}\n");
+                            throw new(longErrorString);
+                        }
+
+                        _returnDictionary = await _groupRepo.AddActorToGroup(parent.IdNo, parent.Children.First().Learner!.SchoolID, "All");
+                        if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                        parents.Add(parent);
+                    }
+
+                    foreach (var parent in parents)
+                    {
+                        _returnDictionary = await _signInRepo.CreateUserAccountAsync(parent.EmailAddress, parent.Role, parent.PhoneNumber.ToString());
+                        if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    }
+                }
+
+                _returnDictionary = DeleteFile(@"C:\Users\innoc\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\Application Files\Misc\" + parentSpreadsheet.FileName);
+                if (!(bool)_returnDictionary["Success"]) _returnDictionary["AdditionalInformation"] = _returnDictionary["ErrorMessage"];
+
+                await _context.AddRangeAsync(parents);
+                await _context.SaveChangesAsync();
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
         }
 
         public async Task<Dictionary<string, object>> CreateAsync(Parent parent)

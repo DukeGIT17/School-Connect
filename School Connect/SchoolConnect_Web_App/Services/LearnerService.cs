@@ -132,7 +132,7 @@ namespace SchoolConnect_Web_App.Services
             }
         }
 
-        public async Task<Dictionary<string, object>> BulkLoadLearners(IFormFile file, long schoolId)
+        public async Task<Dictionary<string, object>> BulkLoadLearnersAsync(IFormFile file, long schoolId)
         {
             try
             {

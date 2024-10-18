@@ -1,9 +1,11 @@
-﻿using SchoolConnect_DomainLayer.Models;
+﻿using Microsoft.AspNetCore.Http;
+using SchoolConnect_DomainLayer.Models;
 
 namespace SchoolConnect_RepositoryLayer.Interfaces
 {
     public interface ITeacher
     {
+        Task<Dictionary<string, object>> BulkLoadTeacherFromExcel(IFormFile file, long schoolId);
         Task<Dictionary<string, object>> CreateAsync(Teacher teacher);
         Task<Dictionary<string, object>> Update(Teacher teacher);
         Task<Dictionary<string, object>> GetById(long teacherId);

@@ -179,16 +179,17 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                             Title = learnerWorksheet.Cells[row, 8].Value?.ToString(),
                         };
 
-                        //var skolo = schools.FirstOrDefault(s => s.Id == learner.SchoolID);
-                        //var grade = skolo!.SchoolGradesNP!.FirstOrDefault(g => g.GradeDesignate == learner.ClassCode!.Remove(learner.ClassCode.Length - 2));
-                        //var klass = grade!.Classes.FirstOrDefault(c => c.ClassDesignate == learner.ClassCode!.Last().ToString());
-                        //learner.ClassID = schools.FirstOrDefault(s => s.Id == learner.SchoolID)!.SchoolGradesNP!.FirstOrDefault(g => g.GradeDesignate.StartsWith(learner.ClassCode!.Remove(0, learner.ClassCode.Length - 2)))!.Id;
-
                         _returnDictionary = await LearnerExistsAsync(learner);
                         if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                         _returnDictionary = AttemptObjectValidation(learner);
-                        if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                        if (!(bool)_returnDictionary["Success"])
+                        {
+                            var errors = _returnDictionary["Errors"] as List<string>;
+                            string longErrorString = "";
+                            errors!.ForEach(x => longErrorString += $"{x}\n");
+                            throw new(longErrorString);
+                        }
 
                         var school = await _context.Schools.Include(s => s.SchoolGradesNP)!.ThenInclude(c => c.Classes).FirstOrDefaultAsync(s => s.Id == learner.SchoolID);
                         if (school == null) throw new($"Learner {learner.Name} registration failed. Could not find a school with the ID {learner.SchoolID}.");
@@ -215,6 +216,9 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 await _context.AddRangeAsync(learners);
                 await _context.SaveChangesAsync();
+
+                _returnDictionary = DeleteFile(@"C:\Users\innoc\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\Application Files\Misc\" + learnerSpreadSheet.FileName);
+                if (!(bool)_returnDictionary["Success"]) _returnDictionary["AdditionalInformation"] = _returnDictionary["ErrorMessage"];
 
                 _returnDictionary["Success"] = true;
                 return _returnDictionary;

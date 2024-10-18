@@ -678,7 +678,7 @@ namespace SchoolConnect_WebAPI.Migrations
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Grade", b =>
                 {
                     b.HasOne("SchoolConnect_DomainLayer.Models.School", "GradeSchoolNP")
-                        .WithMany("SchoolGradeNP")
+                        .WithMany("SchoolGradesNP")
                         .HasForeignKey("SchoolID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -865,7 +865,7 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.Navigation("SchoolAnnouncementNP");
 
-                    b.Navigation("SchoolGradeNP");
+                    b.Navigation("SchoolGradesNP");
 
                     b.Navigation("SchoolGroupsNP");
 

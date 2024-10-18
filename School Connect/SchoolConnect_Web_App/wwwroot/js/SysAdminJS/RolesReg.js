@@ -155,3 +155,31 @@ bulkLearnerFileInputField.addEventListener("change", function () {
     bulkLearnerFileNameDisplayField.innerHTML = bulkLearnerFileInputField.files[0] ? bulkLearnerFileInputField.files[0].name : "No file selected";
     removeFileBtnBulkLearner.style.display = "block";
 });
+
+let bulkTeacherFileInputField = document.getElementById("uploadBox-bulk-teacher");
+let bulkTeacherUploadButton = document.getElementById("uploadImageBtn-bulk-teacher");
+let bulkTeacherFileNameDisplayField = document.getElementById("fileNameDisplay-bulk-teacher");
+let removeFileBtnBulkTeacher = document.getElementById("remove-file-bulk-teacher");
+
+bulkTeacherUploadButton.addEventListener("click", function () {
+    bulkTeacherFileInputField.click();
+});
+
+bulkTeacherFileInputField.addEventListener("change", function () {
+    bulkTeacherFileNameDisplayField.innerHTML = bulkTeacherFileInputField.files[0] ? bulkTeacherFileInputField.files[0].name : "No file selected";
+    removeFileBtnBulkTeacher.style.display = "block";
+});
+
+let bulkParentFileInputField = document.getElementById("uploadBox-bulk-parent");
+let bulkParentUploadButton = document.getElementById("uploadImageBtn-bulk-parent");
+let bulkParentFileNameDisplayField = document.getElementById("fileNameDisplay-bulk-parent");
+let removeFileBtnBulkParent = document.getElementById("remove-file-bulk-parent");
+
+bulkParentUploadButton.addEventListener("click", function () {
+    bulkParentFileInputField.click();
+});
+
+bulkParentFileInputField.addEventListener("change", function () {
+    bulkParentFileNameDisplayField.innerHTML = bulkParentFileInputField.files[0] ? bulkParentFileInputField.files[0].name : "No file selected";
+    removeFileBtnBulkParent.style.display = "block";
+});

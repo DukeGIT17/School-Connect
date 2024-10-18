@@ -12,6 +12,7 @@ namespace SchoolConnect_Web_App.Models
 
         public long SchoolID { get; set; }
         public long AdminID { get; set; }
+        public string? Actor { get; set; }
 
         [AllowedExtensions(".xlsx")]
         public IFormFile? BulkLoadFile { get; set; }

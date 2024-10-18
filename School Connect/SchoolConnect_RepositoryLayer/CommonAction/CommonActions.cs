@@ -135,5 +135,25 @@ namespace SchoolConnect_RepositoryLayer.CommonAction
                 return _returnDictionary;
             }
         }
+        
+        public static Dictionary<string, object> DeleteFile(string filePath)
+        {
+            Dictionary<string, object> _returnDictionary = [];
+            try
+            {
+                if (!File.Exists(filePath))
+                    throw new($"The file in the path '{filePath}' could not be found.");
+
+                File.Delete(filePath);
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
     }
 }

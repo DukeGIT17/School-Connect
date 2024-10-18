@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 using SchoolConnect_Web_App.Models;
@@ -139,7 +138,13 @@ namespace SchoolConnect_Web_App.Controllers
                 {
                     if (model.BulkLoadFile is not null)
                     {
-                        _returnDictionary = _learnerService.BulkLoadLearners(model.BulkLoadFile, model.SchoolID).Result;
+                        _returnDictionary = model.Actor switch
+                        {
+                            "Learner" => _learnerService.BulkLoadLearnersAsync(model.BulkLoadFile, model.SchoolID).Result,
+                            "Parent" => _parentService.BulkLoadParentsAsync(model.BulkLoadFile).Result,
+                            "Teacher" => _teacherService.BulkLoadTeachersAsync(model.BulkLoadFile, model.SchoolID).Result,
+                            _ => throw new("Something went wrong. Which actor are you bulk loading?! >:("),
+                        };
                     }
                     else if (model.Principal is not null)
                     {
@@ -152,7 +157,7 @@ namespace SchoolConnect_Web_App.Controllers
                         int index = model.Teacher!.Subjects.IndexOf(model.Teacher.Subjects.FirstOrDefault(s => s.Contains(',')) ?? "");
                         if (index > -1)
                             model.Teacher.Subjects.RemoveAt(index);
-                        model.Teacher.Subjects = model.Teacher.Subjects.Distinct() as List<string>;
+                        model.Teacher.Subjects = model.Teacher.Subjects.Distinct().ToList();
 
                         _returnDictionary = _teacherService.RegisterTeacherAsync(model.Teacher!).Result;
                     }

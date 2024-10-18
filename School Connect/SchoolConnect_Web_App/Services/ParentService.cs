@@ -69,5 +69,38 @@ namespace SchoolConnect_Web_App.Services
                 return _returnDictionary;
             }
         }
+
+        public async Task<Dictionary<string, object>> BulkLoadParentsAsync(IFormFile file)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(ParentBasePath);
+                buildString.Append("/BatchLoadParentsFromExcel");
+
+                var formData = new MultipartFormDataContent();
+
+                var fileStreamContent = new StreamContent(file.OpenReadStream());
+                fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
+                formData.Add(fileStreamContent, "file", file.FileName);
+
+                var request = new HttpRequestMessage
+                {
+                    Content = formData,
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(buildString.ToString())
+                };
+
+                var response = await httpClient.SendAsync(request);
+                return CheckSuccessStatus(response, "NoNeed");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
     }
 }

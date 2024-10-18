@@ -1,4 +1,5 @@
-﻿using SchoolConnect_DomainLayer.Models;
+﻿using Microsoft.AspNetCore.Http;
+using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.CommonAction;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
@@ -9,7 +10,21 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
     {
         private readonly IParent _parentRepo = parentRepo;
         private Dictionary<string, object> _returnDictionary = [];
-        
+
+        public async Task<Dictionary<string, object>> BatchLoadParentsAsync(IFormFile parentFile)
+        {
+            try
+            {
+                return await _parentRepo.BatchLoadParentsFromExcel(parentFile);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
         public async Task<Dictionary<string, object>> CreateAsync(Parent parent)
         {
             try

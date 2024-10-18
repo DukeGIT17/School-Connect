@@ -12,6 +12,21 @@ namespace SchoolConnect_WebAPI.Controllers
         private readonly IParentService _parentService = parentService;
         private Dictionary<string, object> _returnDictionary = [];
 
+        [HttpPost(nameof(BatchLoadParentsFromExcel))]
+        public IActionResult BatchLoadParentsFromExcel(IFormFile file)
+        {
+            try
+            {
+                _returnDictionary = _parentService.BatchLoadParentsAsync(file).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost(nameof(Create))]
         [Consumes("multipart/form-data")]
         public IActionResult Create([FromForm] Parent parent)

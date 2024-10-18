@@ -8953,6 +8953,22 @@
   },
   {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.ParentController",
+    "Method": "BatchLoadParentsFromExcel",
+    "RelativePath": "api/Parent/BatchLoadParentsFromExcel",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.ParentController",
     "Method": "Create",
     "RelativePath": "api/Parent/Create",
     "HttpMethod": "POST",
@@ -15314,6 +15330,27 @@
       {
         "Name": "Role",
         "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.TeacherController",
+    "Method": "BulkLoadTeachersFromExcel",
+    "RelativePath": "api/Teacher/BulkLoadTeachersFromExcel",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "schoolId",
+        "Type": "System.Int64",
         "IsRequired": false
       }
     ],

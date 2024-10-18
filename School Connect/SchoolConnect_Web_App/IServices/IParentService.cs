@@ -5,5 +5,6 @@ namespace SchoolConnect_Web_App.IServices
     public interface IParentService
     {
         Task<Dictionary<string, object>> RegisterParentAsync(Parent parent);
+        Task<Dictionary<string, object>> BulkLoadParentsAsync(IFormFile file);
     }
 }

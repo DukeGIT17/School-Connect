@@ -16,6 +16,21 @@ namespace SchoolConnect_WebAPI.Controllers
         private readonly SchoolConnectDbContext _context = context;
         private Dictionary<string, object> _returnDictionary = [];
 
+        [HttpPost(nameof(BulkLoadTeachersFromExcel))]
+        public IActionResult BulkLoadTeachersFromExcel(IFormFile file, long schoolId)
+        {
+            try
+            {
+                _returnDictionary = _teacherService.BulkLoadTeacherAsync(file, schoolId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpDelete(nameof(DeleteTeacherById))]
         public IActionResult DeleteTeacherById(long id)
         {

@@ -11,10 +11,9 @@
     <img src="~/images/finalLogo.png" alt="Local Image Example" class="logo">
     <h1>Welcome to School Connect</h1>
     <div asp-validation-summary="All"></div>
-    <!-- Wrap the form elements in a form tag -->
     <form asp-action="Login" method="post" autocomplete="off">
         <div class="input-box">
-            <i class="fas fa-envelope"></i> <!-- Icon with 'fas' for solid style -->
+            <i class="fas fa-envelope"></i>
             <input asp-for="EmailAddress" autocomplete="off"  placeholder="Email Address" /> <br />
         </div>
 
@@ -38,7 +37,6 @@
             <a href="#">Forgot Password?</a>
         </div>
 
-        <!-- Changed from <a> to <button> for form submission -->
         <button class="submit-btn" type="submit">LOGIN</button>
     </form>
 </div>
