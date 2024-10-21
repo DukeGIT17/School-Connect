@@ -64,6 +64,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                                 {
                                     LearnerID = learners.FirstOrDefault(l => l.IdNo == worksheet.Cells[row, 10].Value.ToString())!.Id,
                                     LearnerIdNo = worksheet.Cells[row, 10].Value.ToString()!,
+                                    Learner = learners.FirstOrDefault(l => l.IdNo == worksheet.Cells[row, 10].Value.ToString()),
                                     ParentIdNo = worksheet.Cells[row, 5].Value.ToString()!
                                 }
                             ]
@@ -77,6 +78,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                             errors!.ForEach(x => longErrorString += $"{x}\n");
                             throw new(longErrorString);
                         }
+
 
                         _returnDictionary = await _groupRepo.AddActorToGroup(parent.IdNo, parent.Children.First().Learner!.SchoolID, "All");
                         if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);

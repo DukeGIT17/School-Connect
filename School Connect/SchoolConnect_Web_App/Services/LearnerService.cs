@@ -122,7 +122,7 @@ namespace SchoolConnect_Web_App.Services
                 builString.Append(idNo);
 
                 var response = await _httpClient.GetAsync(builString.ToString());
-                return CheckSuccessStatus(response, nameof(GetLearnerByIdNo));
+                return CheckSuccessStatus(response, "Learner");
             }
             catch (Exception ex)
             {

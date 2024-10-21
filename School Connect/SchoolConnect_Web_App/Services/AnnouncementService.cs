@@ -1,5 +1,5 @@
 ﻿using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_RepositoryLayer.Interfaces;
+using static SchoolConnect_Web_App.Services.SharedClientSideServices;
 using SchoolConnect_Web_App.IServices;
 using System.Text;
 using System.Text.Json;
@@ -35,7 +35,7 @@ namespace SchoolConnect_Web_App.Services
                 };
 
                 var response = await _httpClient.SendAsync(request);
-                return SharedClientSideServices.CheckSuccessStatus(response, "NoNeed");
+                return CheckSuccessStatus(response, "NoNeed");
             }
             catch (Exception ex)
             {
@@ -56,7 +56,28 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(principalId);
 
                 var response = await _httpClient.GetAsync(buildString.ToString());
-                return SharedClientSideServices.CheckSuccessStatus(response, nameof(GetAnnouncementByPrincipalIdAsync));
+                return CheckSuccessStatus(response, "Announcement");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetAllAnnBySchoolAsync(long schoolId)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(announcementBasePath);
+                buildString.Append("/GetAllAnnBySchool?schoolId=");
+                buildString.Append(schoolId);
+
+                var response = await _httpClient.GetAsync(buildString.ToString());
+                return CheckSuccessStatus(response, "Announcement");
             }
             catch (Exception ex)
             {

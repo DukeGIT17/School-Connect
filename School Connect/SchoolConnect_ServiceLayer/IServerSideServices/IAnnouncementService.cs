@@ -7,5 +7,6 @@ namespace SchoolConnect_ServiceLayer.IServerSideServices
         Task<Dictionary<string, object>> CreateAnnouncementAsync(Announcement announcement);
         Task<Dictionary<string, object>> GetAnnouncementByIdAsync(int announcement);
         Task<Dictionary<string, object>> GetAnnouncementByPrincipalIdAsync(long principalId);
+        Task<Dictionary<string, object>> GetAllAnnBySchool(long schoolId);
     }
 }

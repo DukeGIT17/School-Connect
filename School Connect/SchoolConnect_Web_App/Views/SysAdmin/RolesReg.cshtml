@@ -61,10 +61,11 @@
                 <div id="upload-image">
                     <h3>Upload File</h3>
                     <div class="upload-container">
-                        <button type="button" id="remove-file-Principal" class="remove-file" onclick="removeSelectedFile('uploadBox-Principal', 'fileNameDisplay-Principal', 'remove-file-Principal')"><i class="fa-regular fa-circle-xmark"></i></button>
+                        <button type="button" id="remove-file-Principal" class="remove-file" onclick="removeSelectedFile('uploadBox-Principal', 'fileNameDisplay-Principal', 'remove-file-Principal', 'uploadImageBtn-Principal', 'PrincipalPreviewImage')"><i class="fa-regular fa-circle-xmark"></i></button>
                         <button type="button" id="uploadImageBtn-Principal"><i class="fa-solid fa-upload"></i></button>
                         <input asp-for="Principal.ProfileImageFile" type="file" id="uploadBox-Principal" accept="image/*" style="display:none" />
                         <p id="fileNameDisplay-Principal">No file selected</p>
+                        <img class="previewImage" id="PrincipalPreviewImage" alt="Could not display Image" title="Profile Image" />
                     </div>
                     <span asp-validation-for="Principal.ProfileImageFile"></span>
                 </div>

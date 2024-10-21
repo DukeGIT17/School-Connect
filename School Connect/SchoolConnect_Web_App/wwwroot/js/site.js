@@ -1,5 +1,12 @@
-﻿function removeSelectedFile(inputFieldId, pElementId, thisBtnId) {
+﻿function removeSelectedFile(inputFieldId, pElementId, thisBtnId, uploadBtnId, imageId) {
+    const pElement = document.getElementById(pElementId);
+    const uploadBtn = document.getElementById(uploadBtnId);
+    const image = document.getElementById(imageId);
+
+    image.style.display = 'none';
     document.getElementById(inputFieldId).value = "";
-    document.getElementById(pElementId).innerHTML = "No file selected";
+    uploadBtn.style.display = "block";
+    pElement.style.display = "block";
+    pElement.innerHTML = "No file selected";
     document.getElementById(thisBtnId).style.display = "none";
 }

@@ -11,7 +11,7 @@
             <div class="icon"><i class="fas fa-user"></i></div>
         </div>
         <h2 class="gradienttext">@Model.Name @Model.Surname <br /> @Model.Role</h2>
-        <a asp-action="PrincipalUpdateDetails" class="UpdateButton">Update</a>
+        <a asp-action="PrincipalUpdateDetails" asp-route-id="@Model.Id" class="UpdateButton">Update</a>
     </div>
     <div class="right-container">
         <h3>Profile Details</h3>

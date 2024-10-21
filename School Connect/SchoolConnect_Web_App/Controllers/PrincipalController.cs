@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.AspNetCore.Mvc;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 using SchoolConnect_Web_App.Models;
@@ -20,6 +18,7 @@ namespace SchoolConnect_Web_App.Controllers
             _returnDictionary = [];
         }
 
+        [HttpGet]
         public IActionResult PrincipalLandingPage(long id)
         {
             _returnDictionary.Clear();
@@ -51,7 +50,7 @@ namespace SchoolConnect_Web_App.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Home", "Index");
+                return RedirectToAction("Index", "Home");
             }
         }
 
@@ -91,7 +90,9 @@ namespace SchoolConnect_Web_App.Controllers
                     return RedirectToAction(nameof(PrincipalLandingPage), new { id = model.Announcement.PrincipalID });
                 }
 
-                model.Actor.Id = (long)model.Announcement.PrincipalID!;
+                Principal principal = new();
+                principal.Id = (long)model.Announcement.PrincipalID!;
+                model.Actor = principal;
                 return View(model);
             }
             catch (Exception ex)
@@ -102,25 +103,28 @@ namespace SchoolConnect_Web_App.Controllers
         }
 
         [HttpGet]
-		public IActionResult PrincipalViewAnnouncements(long id)
-		{
-            return View();
-			//try
-   //         {
-   //             _returnDictionary = _announcementService.GetAnnouncementByPrincipalIdAsync(id).Result;
-   //             if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+        public IActionResult PrincipalViewAnnouncements(long id)
+        {
+            try
+            {
+                _returnDictionary = _principalService.GetPrincipalByIdAsync(id).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
-   //             return View();
-   //         }
-   //         catch (Exception ex)
-   //         {
-   //             Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-   //             return RedirectToAction("Index", "Home");
-   //         }
+                if (_returnDictionary["Result"] is not Principal principal) throw new("Something went wrong, could not acquire principal data from the provided dictionary.");
+
+                _returnDictionary = _announcementService.GetAllAnnBySchoolAsync(principal.SchoolID).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                return View(_returnDictionary["Result"]);
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
         }
 
-
-		public IActionResult PrincipalViewGrades()
+        public IActionResult PrincipalViewGrades()
 		{
 			return View();
 		}
@@ -147,14 +151,44 @@ namespace SchoolConnect_Web_App.Controllers
 
         public IActionResult PrincipalDetailedAnnouncements()
         {
-            return View();
+            throw new NotImplementedException();
         }
 
-        public IActionResult PrincipalUpdateDetails()
+        [HttpGet]
+        public IActionResult PrincipalUpdateDetails(long id)
         {
-            return View();
+            try
+            {
+                _returnDictionary = _principalService.GetPrincipalByIdAsync(id).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                return View(_returnDictionary["Result"]);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
         }
-
-
+        
+        
+        [HttpPost]
+        public IActionResult PrincipalUpdateDetails(Principal principal)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _returnDictionary = _principalService.UpdatePrincipalAsync(principal).Result;
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    return RedirectToAction("PrincipalViewProfile", new { id = principal.Id });
+                }
+                return View(principal);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
+        }
     }
 }

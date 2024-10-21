@@ -2,16 +2,18 @@
     margin: 0;
     padding: 0;
     background-color: #f5f5f5;
-    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
 }
 
-header h1 i {
+#header h1 i {
     font-size: 1.8rem;
     color: white;
     gap: 50px;
 }
 
-header {
+#header {
     background-color: #0F2E34;
     color: white;
     padding: 16px;
@@ -22,17 +24,22 @@ header {
     z-index: 1000;
 }
 
-    header h1 {
-        margin: 0;
-        flex-grow: 1;
-        text-align: center;
-    }
+#header h1 {
+    margin: 0;
+    flex-grow: 1;
+    text-align: center;
+}
 
 .container {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
     padding: 16px;
 }
 
 .announcement {
+    position: relative;
+    width: 100%;
     background-color: white;
     padding: 10px;
     margin-bottom: 10px;
@@ -42,24 +49,34 @@ header {
     align-items: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
 }
 
-    .announcement:hover {
-        background-color: #f0f0f0;
-    }
+.announcement:hover {
+    background-color: #f0f0f0;
+}
 
-    .announcement .icon {
-        font-size: 24px;
-        margin-right: 10px;
-    }
+.announcement .icon {
+    font-size: 20px;
+    margin-right: 10px;
+}
 
-    .announcement .details {
-        flex: 1;
-    }
+.title {
+    margin: 0px;
+}
 
-        .announcement .details .from {
-            font-weight: bold;
-        }
+.details {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.announcement .details .title {
+    font-weight: bold;
+}
 
 .search {
     display: flex;
@@ -70,16 +87,25 @@ header {
     color: #0F2E34;
 }
 
-    .search .total {
-        font-weight: 800;
-    }
+.search .total {
+    font-weight: 800;
+}
 
-    .search .icon:hover {
-        font-size: 20px;
-        color: #0F2E34;
-    }
+.search .icon:hover {
+    font-size: 20px;
+    color: #0F2E34;
+}
 
 .total {
     font-size: 18px;
     color: #0F2E34;
+}
+
+.content {
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-height: 40px;
 }

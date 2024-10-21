@@ -28,6 +28,20 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
+        public async Task<Dictionary<string, object>> GetAllAnnBySchool(long schoolId)
+        {
+            try
+            {
+                return await _announcementRepo.GetAllAnnBySchoolAsync(schoolId);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
         public async Task<Dictionary<string, object>> GetAnnouncementByIdAsync(int announcementId)
         {
             try

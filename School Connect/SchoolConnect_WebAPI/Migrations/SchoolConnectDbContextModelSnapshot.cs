@@ -136,7 +136,7 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.HasIndex("SchoolID");
 
-                    b.ToTable("Grade");
+                    b.ToTable("Grade", (string)null);
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Group", b =>
@@ -188,7 +188,7 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.HasIndex("TeacherId", "ParentId");
 
-                    b.ToTable("GroupActor");
+                    b.ToTable("GroupActor", (string)null);
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Learner", b =>
@@ -281,7 +281,7 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.HasIndex("ParentIdNo");
 
-                    b.ToTable("LearnerParents");
+                    b.ToTable("LearnerParents", (string)null);
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Parent", b =>
@@ -487,7 +487,7 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.HasIndex("MainTeacherId")
                         .IsUnique();
 
-                    b.ToTable("SubGrade");
+                    b.ToTable("SubGrade", (string)null);
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.SysAdmin", b =>
@@ -636,7 +636,7 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.HasIndex("StaffNr");
 
-                    b.ToTable("TeacherGrade");
+                    b.ToTable("TeacherGrade", (string)null);
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Address", b =>

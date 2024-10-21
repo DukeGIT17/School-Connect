@@ -75,14 +75,31 @@ let principalFileInputField = document.getElementById("uploadBox-Principal");
 let principalUploadButton = document.getElementById("uploadImageBtn-Principal");
 let principalFileNameDisplayField = document.getElementById("fileNameDisplay-Principal");
 let removeFileBtnPrincipal = document.getElementById("remove-file-Principal");
+let previewImage = document.getElementById("PrincipalPreviewImage");
 
 principalUploadButton.addEventListener("click", function () {
     principalFileInputField.click();
 });
 
 principalFileInputField.addEventListener("change", function () {
-    principalFileNameDisplayField.innerHTML = principalFileInputField.files[0] ? principalFileInputField.files[0].name : "No file selected";
+   // principalFileNameDisplayField.innerHTML = principalFileInputField.files[0] ? principalFileInputField.files[0].name : "No file selected";
     removeFileBtnPrincipal.style.display = "block";
+
+    const file = this.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            previewImage.setAttribute('src', e.target.result);
+            previewImage.style.display = 'block';
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    principalUploadButton.style.display = 'none';
+    principalFileNameDisplayField.style.display = 'none';
 })
 
 let teacherFileInputField = document.getElementById("uploadBox-Teacher");

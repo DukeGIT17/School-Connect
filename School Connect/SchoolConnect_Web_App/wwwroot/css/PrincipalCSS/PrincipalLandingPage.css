@@ -34,27 +34,27 @@ html, body {
     border-radius: 30px;
     padding: 12px;
     height: 30px;
-    width: 10%;
+    min-width: 150px;
     position: relative;
 }
 
-    .form-group-1 label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-        text-size-adjust: 10%;
-    }
+.form-group-1 label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-size-adjust: 10%;
+}
 
-    .form-group-1 input {
-        background: transparent;
-        border: none;
-        outline: none;
-        color: white;
-        width: 100%;
-        padding-left: 40px;
-        line-height: 12px;
-        border-radius: 25px;
-    }
+.form-group-1 input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    width: 100%;
+    padding-left: 40px;
+    line-height: 12px;
+    border-radius: 25px;
+}
 
 .form-group {
     background-color: rgba(255, 255, 255, 0.1);

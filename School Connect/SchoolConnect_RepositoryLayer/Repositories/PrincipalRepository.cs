@@ -22,7 +22,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             _returnDictionary = [];
         }
 
-        public async Task<Dictionary<string, object>> Create(Principal principal)
+        public async Task<Dictionary<string, object>> CreateAsync(Principal principal)
         {
             try
             {
@@ -95,9 +95,25 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, object>> Update(Principal principal)
+        public async Task<Dictionary<string, object>> UpdateAsync(Principal principal)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var princ = await _context.Principals.AsNoTracking().FirstOrDefaultAsync(p => p.Id == principal.Id);
+                if (princ == null) throw new("Could not find a principal with the specified ID.");
+
+                _context.Update(principal);
+                await _context.SaveChangesAsync();
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
         }
     }
 }

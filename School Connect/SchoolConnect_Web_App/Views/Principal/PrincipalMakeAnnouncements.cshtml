@@ -4,6 +4,7 @@
 }
 
 <link rel="stylesheet" href="~/css/PrincipalCSS/PrincipalMakeAnnouncements.css" />
+<link rel="stylesheet" href="~/FontAwesome/css/all.css" />
 
 <header class="header">
     <h1>Make Announcements</h1>
@@ -16,11 +17,14 @@
         <div class="form-group">
             <label asp-for="Announcement.Title">Title:</label>
             <input asp-for="Announcement.Title" id="title">
+            <span asp-validation-for="Announcement.Title"></span>
         </div>
         <div class="form-group">
             <label asp-for="Announcement.Recipients">Recipients:</label>
-            <select asp-for="Announcement.Recipients" id="recipients">
-                <option value="All" selected>All</option>
+            <div id="recipientsDisplay"></div>
+            <span asp-validation-for="Announcement.Recipients"></span>
+            <select asp-for="Announcement.Recipients" id="recipients" multiple>
+                <option value="All">All</option>
                 <option value="Parents">All Parents</option>
                 <option value="Teachers">All Teacher</option>
             </select>
@@ -28,6 +32,7 @@
         <div class="form-group">
             <label asp-for="Announcement.Content">Message:</label>
             <textarea id="message" asp-for="Announcement.Content"></textarea>
+            <span asp-validation-for="Announcement.Content"></span>
         </div>
         <div class="checkbox-group">
             <label asp-for="Announcement.SendEmail"><input asp-for="Announcement.SendEmail" type="checkbox"> Send an email</label>
@@ -43,3 +48,5 @@
         <button type="submit" class="button">SEND</button>
     </form>
 </div>
+
+<script src="~/js/Principal/PrincipalMakeAnnouncement.js"></script>

@@ -31,7 +31,7 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(systemAdminId);
 
                 var response = await _client.GetAsync(buildString.ToString());
-				_returnDictionary = CheckSuccessStatus(response, nameof(GetAdminByIdAsync));
+				_returnDictionary = CheckSuccessStatus(response, "Admin");
 				return _returnDictionary;
             }
             catch (Exception ex)
@@ -53,7 +53,7 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(staffNr);
 
                 var response = await _client.GetAsync(buildString.ToString());
-                return CheckSuccessStatus(response, nameof(GetAdminByStaffNr));
+                return CheckSuccessStatus(response, "Admin");
             }
             catch (Exception ex)
             {

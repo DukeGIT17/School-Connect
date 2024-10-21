@@ -3,7 +3,6 @@ using Microsoft.IdentityModel.Tokens;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -65,9 +64,27 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public Task<Dictionary<string, object>> GetAllRelevantAnnouncements()
+        public async Task<Dictionary<string, object>> GetAllAnnBySchoolAsync(long schoolId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var school = await _context.Schools.Include(a => a.SchoolAnnouncementsNP).FirstOrDefaultAsync(s => s.Id == schoolId);
+                if (school is null)
+                    throw new("Could not find a school with the specified ID.");
+
+                if (school.SchoolAnnouncementsNP is null)
+                    throw new($"Could not find any announcements associated with {school.Name} {school.Type} School");
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = school.SchoolAnnouncementsNP;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
         }
 
         public Task<Dictionary<string, object>> GetAnnouncementsById(int announcementId)

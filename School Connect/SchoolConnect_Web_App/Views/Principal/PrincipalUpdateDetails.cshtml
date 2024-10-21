@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Principal
+@{
     Layout = null;
 }
 <link rel="stylesheet" href="~/css/PrincipalCSS/PrincipalUpdateDetails.css" />
@@ -9,36 +10,33 @@
         <h3> Update Profile Details</h3>
         <br />
         <table>
-            <form method="post" action="/UserProfile/Update">
-                <!-- Contact Number -->
-                <div class="form-group">
-                    <label for="contactNumber">Contact Number:</label>
-                    <input type="text" id="contactNumber" name="contactNumber" placeholder="Enter your contact number" required>
-                </div>
+            <form method="post" asp-action="PrincipalUpdateDetails">
+                <div asp-validation-summary="All"></div>
 
-                <!-- Email -->
-                <div class="form-group">
-                    <label for="email">Email Address:</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-                </div>
-
-                <!-- Password Section -->
-                <div class="form-group">
-                    <label for="oldPassword">Old Password:</label>
-                    <input type="password" id="oldPassword" name="oldPassword" placeholder="Enter old password" required>
-                </div>
+                <input asp-for="Id" type="hidden" />
+                <input asp-for="ProfileImage" type="hidden" />
+                <input asp-for="Title" type="hidden" />
+                <input asp-for="Name" type="hidden" />
+                <input asp-for="Surname" type="hidden" />
+                <input asp-for="Gender" type="hidden" />
+                <input asp-for="Role" type="hidden" />
+                <input asp-for="StaffNr" type="hidden" />
+                <input asp-for="SchoolID" type="hidden" />
 
                 <div class="form-group">
-                    <label for="newPassword">New Password:</label>
-                    <input type="password" id="newPassword" name="newPassword" placeholder="Enter new password" required>
+                    <label asp-for="PhoneNumber"></label>
+                    <input asp-for="PhoneNumber" id="contactNumber" placeholder="Enter your contact number" />
                 </div>
 
                 <div class="form-group">
-                    <label for="confirmPassword">Confirm Password:</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm new password" required>
+                    <label asp-for="EmailAddress"></label>
+                    <input asp-for="EmailAddress" id="email" placeholder="Enter your email address" />
                 </div>
 
-                <!-- Buttons -->
+                <div id="reset-password">
+                    <a asp-action="SetNewPassword" asp-controller="Login">Reset Password</a>
+                </div>
+
                 <div class="button">
                     <button type="submit" class="btn">Update Profile</button>
                 </div>

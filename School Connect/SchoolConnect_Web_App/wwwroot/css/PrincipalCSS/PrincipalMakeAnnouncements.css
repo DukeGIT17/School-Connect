@@ -27,7 +27,6 @@
     background-color: #0F2E34;
     color: #fff;
     padding: 20px;
-   /*Removed by Khaya, the border radius and filled 100% width*/
     text-align: center;
     width: 100%;
 }
@@ -51,6 +50,34 @@ form{
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
+}
+
+#recipientsDisplay {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    min-height: 35px;
+    height: fit-content;
+    align-items: center;
+}
+
+.selected-groups {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    width: fit-content;
+    padding: 3px 5px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    background-color: #ddd;
+    margin: 0px 5px;
+    height: 20px;
+}
+
+.removeGroupBtn {
+    margin-left: 5px;
+    font-size: 13px;
 }
 
 .form-group input[type="text"],

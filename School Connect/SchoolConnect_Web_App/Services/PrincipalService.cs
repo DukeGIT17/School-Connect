@@ -1,9 +1,10 @@
-﻿using SchoolConnect_DomainLayer.Models;
+﻿using NuGet.Versioning;
+using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json;
+using static SchoolConnect_Web_App.Services.SharedClientSideServices;
 
 namespace SchoolConnect_Web_App.Services
 {
@@ -54,7 +55,7 @@ namespace SchoolConnect_Web_App.Services
                 };
 
                 var response = await _httpClient.SendAsync(request);
-                return SharedClientSideServices.CheckSuccessStatus(response, "NoNeed");
+                return CheckSuccessStatus(response, "NoNeed");
             }
             catch (Exception ex)
             {
@@ -75,7 +76,43 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(principalId);
 
                 var response = await _httpClient.GetAsync(buildString.ToString());
-                return SharedClientSideServices.CheckSuccessStatus(response, nameof(GetPrincipalByIdAsync));
+                return CheckSuccessStatus(response, "Principal");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> UpdatePrincipalAsync(Principal principal)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(principalBasePath);
+                buildString.Append("/UpdatePrincipal");
+
+                var formData = new MultipartFormDataContent();
+
+                foreach (var property in typeof(Principal).GetProperties())
+                {
+                    var value = property.GetValue(principal);
+                    if (value is IFormFile) continue;
+                    if (value is not null) formData.Add(new StringContent(value.ToString()), property.Name);
+                }
+
+                var request = new HttpRequestMessage
+                {
+                    Content = formData,
+                    Method = HttpMethod.Put,
+                    RequestUri = new Uri(buildString.ToString())
+                };
+
+                var response = await _httpClient.SendAsync(request);
+                return CheckSuccessStatus(response, "NoNeed");
             }
             catch (Exception ex)
             {

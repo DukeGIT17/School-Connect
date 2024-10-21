@@ -6,5 +6,6 @@ namespace SchoolConnect_Web_App.IServices
     {
         Task<Dictionary<string, object>> CreateAnnouncementAsync(Announcement announcement);
         Task<Dictionary<string, object>> GetAnnouncementByPrincipalIdAsync(long principalId);
+        Task<Dictionary<string, object>> GetAllAnnBySchoolAsync(long schoolId);
     }
 }

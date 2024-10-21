@@ -17,6 +17,22 @@
   },
   {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.AnnouncementController",
+    "Method": "GetAllAnnBySchool",
+    "RelativePath": "api/Announcement/GetAllAnnBySchool",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "schoolId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.AnnouncementController",
     "Method": "GetAnnouncementById",
     "RelativePath": "api/Announcement/GetAnnouncementById",
     "HttpMethod": "GET",
@@ -391,7 +407,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -461,7 +477,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -681,7 +697,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -751,7 +767,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -821,7 +837,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -1091,7 +1107,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -1161,7 +1177,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -1361,7 +1377,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -1396,7 +1412,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -1466,7 +1482,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -1771,7 +1787,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -1841,7 +1857,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -2031,7 +2047,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -2066,7 +2082,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -2136,7 +2152,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -2206,7 +2222,7 @@
         "IsRequired": false
       },
       {
-        "Name": "LearnerSchoolNP.SchoolAnnouncementNP",
+        "Name": "LearnerSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -2636,7 +2652,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -2706,7 +2722,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -2926,7 +2942,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -2996,7 +3012,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -3066,7 +3082,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -3336,7 +3352,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -3406,7 +3422,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -3606,7 +3622,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -3641,7 +3657,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -3711,7 +3727,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -4016,7 +4032,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -4086,7 +4102,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -4276,7 +4292,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -4311,7 +4327,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -4381,7 +4397,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -4451,7 +4467,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.MainClass.Grade.GradeSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -4786,7 +4802,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -4856,7 +4872,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -5076,7 +5092,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -5146,7 +5162,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -5216,7 +5232,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -5486,7 +5502,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -5556,7 +5572,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -5756,7 +5772,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -5791,7 +5807,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -5861,7 +5877,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -6166,7 +6182,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -6236,7 +6252,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -6426,7 +6442,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -6461,7 +6477,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -6531,7 +6547,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -6601,7 +6617,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.MainTeacher.TeacherSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -6996,7 +7012,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -7066,7 +7082,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -7286,7 +7302,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -7356,7 +7372,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -7426,7 +7442,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -7696,7 +7712,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -7766,7 +7782,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -7966,7 +7982,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -8001,7 +8017,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -8071,7 +8087,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -8376,7 +8392,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -8446,7 +8462,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -8636,7 +8652,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -8671,7 +8687,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -8741,7 +8757,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -8811,7 +8827,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Class.Grade.GradeSchoolNP.SchoolAnnouncementNP",
+        "Name": "Class.Grade.GradeSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -9403,7 +9419,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -9473,7 +9489,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -9693,7 +9709,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -9763,7 +9779,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -9833,7 +9849,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -10103,7 +10119,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -10173,7 +10189,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -10373,7 +10389,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -10408,7 +10424,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -10478,7 +10494,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -10783,7 +10799,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -10853,7 +10869,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -11043,7 +11059,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -11078,7 +11094,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -11148,7 +11164,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -11218,7 +11234,7 @@
         "IsRequired": false
       },
       {
-        "Name": "PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -11291,6 +11307,1017 @@
       {
         "Name": "id",
         "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.PrincipalController",
+    "Method": "UpdatePrincipal",
+    "RelativePath": "api/Principal/UpdatePrincipal",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.EmisNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.Logo",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolLogoFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.DateRegistered",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.Type",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.TelePhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SystemAdminId",
+        "Type": "System.Nullable\u00601[[System.Int64, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.AddressID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.Street",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.Suburb",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.City",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.PostalCode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.Province",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.EmisNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.Logo",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolLogoFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.DateRegistered",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.Type",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.TelePhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SystemAdminId",
+        "Type": "System.Nullable\u00601[[System.Int64, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolAddress",
+        "Type": "SchoolConnect_DomainLayer.Models.Address",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.EmisNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.Logo",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolLogoFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.DateRegistered",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.Type",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.TelePhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SystemAdminId",
+        "Type": "System.Nullable\u00601[[System.Int64, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress",
+        "Type": "SchoolConnect_DomainLayer.Models.Address",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolSysAdminNP",
+        "Type": "SchoolConnect_DomainLayer.Models.SysAdmin",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.AnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Role",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolLearnersNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Learner, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolTeachersNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Teacher, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolGroupsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Group, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolGradesNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Grade, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.Role",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.AnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Role",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolLearnersNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Learner, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolTeachersNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Teacher, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolGroupsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Group, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAddress.School.SchoolGradesNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Grade, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.EmisNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.Logo",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolLogoFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.DateRegistered",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.Type",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.TelePhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SystemAdminId",
+        "Type": "System.Nullable\u00601[[System.Int64, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.AddressID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.Street",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.Suburb",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.City",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.PostalCode",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.Province",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.EmisNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.Logo",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolLogoFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.DateRegistered",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.Type",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.TelePhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SystemAdminId",
+        "Type": "System.Nullable\u00601[[System.Int64, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAddress",
+        "Type": "SchoolConnect_DomainLayer.Models.Address",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolSysAdminNP",
+        "Type": "SchoolConnect_DomainLayer.Models.SysAdmin",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.AnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.Role",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolLearnersNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Learner, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolTeachersNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Teacher, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolGroupsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Group, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolGradesNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Grade, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolSysAdminNP",
+        "Type": "SchoolConnect_DomainLayer.Models.SysAdmin",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.AnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.Role",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolLearnersNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Learner, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolTeachersNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Teacher, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolGroupsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Group, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolGradesNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Grade, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolSysAdminNP.Role",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.StaffNr",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.EmailAddress",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.PhoneNumber",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.SchoolID",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP",
+        "Type": "SchoolConnect_DomainLayer.Models.School",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.AnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolPrincipalNP.Role",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolLearnersNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Learner, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolTeachersNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Teacher, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolAnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolGroupsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Group, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "PrincipalSchoolNP.SchoolGradesNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Grade, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "AnnouncementsNP",
+        "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Id",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProfileImage",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProfileImageFile",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "Title",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Surname",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Role",
+        "Type": "System.String",
         "IsRequired": false
       }
     ],
@@ -11768,7 +12795,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -11838,7 +12865,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -12128,7 +13155,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -12198,7 +13225,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -12268,7 +13295,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -12648,7 +13675,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -12718,7 +13745,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -13028,7 +14055,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -13118,7 +14145,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -13188,7 +14215,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -13558,7 +14585,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -13693,7 +14720,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -13948,7 +14975,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -14048,7 +15075,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -14183,7 +15210,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -14253,7 +15280,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SchoolAnnouncementNP",
+        "Name": "SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -14738,7 +15765,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -14808,7 +15835,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -15118,7 +16145,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -15208,7 +16235,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -15278,7 +16305,7 @@
         "IsRequired": false
       },
       {
-        "Name": "SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -15760,7 +16787,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -15830,7 +16857,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -16050,7 +17077,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -16120,7 +17147,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -16190,7 +17217,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -16460,7 +17487,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -16530,7 +17557,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -16730,7 +17757,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -16765,7 +17792,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -16835,7 +17862,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -17140,7 +18167,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -17210,7 +18237,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -17400,7 +18427,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -17435,7 +18462,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -17505,7 +18532,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -17575,7 +18602,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.MainTeacher.TeacherSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -17970,7 +18997,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -18040,7 +19067,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -18260,7 +19287,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -18330,7 +19357,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -18400,7 +19427,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -18670,7 +19697,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -18740,7 +19767,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -18940,7 +19967,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -18975,7 +20002,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -19045,7 +20072,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -19350,7 +20377,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -19420,7 +20447,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -19610,7 +20637,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -19645,7 +20672,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -19715,7 +20742,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -19785,7 +20812,7 @@
         "IsRequired": false
       },
       {
-        "Name": "MainClass.Grade.GradeSchoolNP.SchoolAnnouncementNP",
+        "Name": "MainClass.Grade.GradeSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -20120,7 +21147,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -20190,7 +21217,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -20410,7 +21437,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -20480,7 +21507,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -20550,7 +21577,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -20820,7 +21847,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -20890,7 +21917,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -21090,7 +22117,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -21125,7 +22152,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -21195,7 +22222,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -21500,7 +22527,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -21570,7 +22597,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -21760,7 +22787,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAddress.School.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -21795,7 +22822,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolSysAdminNP.SysAdminSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -21865,7 +22892,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolPrincipalNP.PrincipalSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },
@@ -21935,7 +22962,7 @@
         "IsRequired": false
       },
       {
-        "Name": "TeacherSchoolNP.SchoolAnnouncementNP",
+        "Name": "TeacherSchoolNP.SchoolAnnouncementsNP",
         "Type": "System.Collections.Generic.IList\u00601[[SchoolConnect_DomainLayer.Models.Announcement, SchoolConnect_DomainLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "IsRequired": false
       },

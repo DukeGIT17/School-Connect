@@ -1,11 +1,13 @@
 ﻿using SchoolConnect_DomainLayer.Models;
+using System.Collections;
+using System.Reflection;
 using System.Text.Json;
 
 namespace SchoolConnect_Web_App.Services
 {
     public static class SharedClientSideServices
     {
-        public static Dictionary<string, object> CheckSuccessStatus(HttpResponseMessage response, string sourceMethod)
+        public static Dictionary<string, object> CheckSuccessStatus(HttpResponseMessage response, string convertTo)
         {
             Dictionary<string, object> _returnDictionary = [];
             try
@@ -21,178 +23,56 @@ namespace SchoolConnect_Web_App.Services
 
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
-                if (sourceMethod != "NoNeed")
+                if (convertTo != "NoNeed")
                 {
                     var dict = _returnDictionary["Result"] as Dictionary<string, object>;
+                    var list = _returnDictionary["Result"] as List<object>;
 
-                    switch (sourceMethod)
+                    SysAdmin admin = new();
+                    Principal principal = new();
+                    School school = new();
+                    Announcement ann = new();
+                    Learner learner = new();
+
+                    switch (convertTo)
                     {
-                        case nameof(SystemAdminService.GetAdminByIdAsync):
-                        case nameof(SystemAdminService.GetAdminByStaffNr):
-                        
-                            var schoolDict = dict!["sysAdminSchoolNP"] as Dictionary<string, object>;
-
-                            SysAdmin admin = new()
-                            {
-                                Id = (long)dict!["id"],
-                                ProfileImage = dict["profileImage"].ToString(),
-                                Title = dict["title"].ToString()!,
-                                Name = dict["name"].ToString()!,
-                                Surname = dict["surname"].ToString()!,
-                                Gender = dict["gender"].ToString()!,
-                                Role = dict["role"].ToString()!,
-                                StaffNr = dict!["staffNr"].ToString()!,
-                                EmailAddress = dict["emailAddress"].ToString()!,
-                                PhoneNumber = (long)dict["phoneNumber"],
-                                SysAdminSchoolNP = schoolDict is not null ? new()
-                                {
-                                    Id = (long)schoolDict!["id"],
-                                    EmisNumber = schoolDict!["emisNumber"].ToString()!,
-                                    Logo = schoolDict["logo"].ToString(),
-                                    Name = schoolDict["name"].ToString()!,
-                                    DateRegistered = Convert.ToDateTime(schoolDict["dateRegistered"]),
-                                    Type = schoolDict["type"].ToString()!,
-                                    SystemAdminId = (long)schoolDict["systemAdminId"],
-                                }
-                                : null,
-                            };
-
+                        case "Admin":
+                            AssignValuesFromDictionary(admin, dict!);
                             _returnDictionary["Result"] = admin;
                             break;
 
-                        case nameof(SchoolService.GetSchoolByAdminAsync):
-                        case nameof(SchoolService.GetSchoolByIdAsync):
-                        case nameof(SchoolService.GetSchoolByLearnerIdNoAsync):
-                             var address = dict!["schoolAddress"] as Dictionary<string, object>;
-                            School school = new()
-                            {
-                                Id = (long)dict!["id"],
-                                EmisNumber = dict["emisNumber"].ToString()!,
-                                Logo = dict["logo"].ToString(),
-                                Name = dict["name"].ToString()!,
-                                DateRegistered = Convert.ToDateTime(dict["dateRegistered"]),
-                                Type = dict["type"].ToString()!,
-                                TelePhoneNumber = (long)dict["telePhoneNumber"],
-                                EmailAddress = dict["emailAddress"].ToString()!,
-                                SchoolAddress = new()
-                                {
-                                    AddressID = Convert.ToInt32(address!["addressID"]),
-                                    Street = address["street"].ToString()!,
-                                    Suburb = address["suburb"].ToString()!,
-                                    City = address["city"].ToString()!,
-                                    PostalCode = address["postalCode"].ToString()!,
-                                    Province = address["province"].ToString()!,
-                                    SchoolID = (long)address["schoolID"]
-                                }
-                            };
-
+                        case "School":
+                            AssignValuesFromDictionary(school, dict!);
                             _returnDictionary["Result"] = school;
                             break;
 
-                        case nameof(PrincipalService.GetPrincipalByIdAsync):
-                            var princSchool = dict!["principalSchoolNP"] as Dictionary<string, object>;
-                            var princSchoolAddress = princSchool!["schoolAddress"] as Dictionary<string, object>;
-                            Principal principal = new()
-                            {
-                                Id = (long)dict!["id"],
-                                Title = dict["title"].ToString()!,
-                                Name = dict["name"].ToString()!,
-                                Surname = dict["surname"].ToString()!,
-                                Gender = dict["gender"].ToString()!,
-                                Role = dict["role"].ToString()!,
-                                StaffNr = dict["staffNr"].ToString(),
-                                EmailAddress = dict["emailAddress"].ToString()!,
-                                PhoneNumber = (long)dict["phoneNumber"],
-                                SchoolID = (long)dict["schoolID"],
-                                PrincipalSchoolNP = new()
-                                {
-                                    Id = (long)princSchool!["id"],
-                                    EmisNumber = princSchool["emisNumber"].ToString()!,
-                                    Logo = princSchool["logo"].ToString(),
-                                    Name = princSchool["name"].ToString()!,
-                                    DateRegistered = Convert.ToDateTime(princSchool["dateRegistered"]),
-                                    Type = princSchool["type"].ToString()!,
-                                    TelePhoneNumber = (long)princSchool["telePhoneNumber"],
-                                    EmailAddress = princSchool["emailAddress"].ToString()!,
-                                    SystemAdminId = (long)princSchool["systemAdminId"],
-                                    SchoolAddress = new()
-                                    {
-                                        AddressID = Convert.ToInt32(princSchoolAddress!["addressID"]),
-                                        Street = princSchoolAddress["street"].ToString()!,
-                                        Suburb = princSchoolAddress["suburb"].ToString()!,
-                                        City = princSchoolAddress["city"].ToString()!,
-                                        PostalCode = princSchoolAddress["postalCode"].ToString()!,
-                                        Province = princSchoolAddress["province"].ToString()!,
-                                    }
-                                }
-                            };
-
+                        case "Principal":
+                            AssignValuesFromDictionary(principal, dict!);
                             _returnDictionary["Result"] = principal;
                             break;
 
-                        case nameof(AnnouncementService.GetAnnouncementByPrincipalIdAsync):
-                            Announcement announcement = new()
+                        case "Announcement":
+                            if (dict is null)
                             {
-                                AnnouncementId = Convert.ToInt32(dict!["announcementId"]),
-                                Title = dict!["title"].ToString()!,
-                                Recipients = dict["recipients"] as List<string>,
-                                Content = dict["content"].ToString()!,
-                                SendEmail = (bool)dict["sendEmail"],
-                                SendSMS = (bool)dict["sendSMS"],
-                                ScheduleForLater = (bool)dict["scheduleForLater"],
-                                DateCreated = Convert.ToDateTime(dict["dateCreated"]),
-                                TimeToPost = Convert.ToDateTime(dict["timeToPost"]),
-                                TeacherID = dict["teacherID"] is not null ? (long)dict["teacherID"] : null,
-                                PrincipalID = dict["principalID"] is not null ? (long)dict["principalID"] : null,
-                                SchoolID = (long)dict["schoolID"]
-                            };
+                                List<Announcement> anns = [];
 
-                            _returnDictionary["Result"] = announcement;
+                                foreach (var val in list)
+                                {
+                                    AssignValuesFromDictionary(ann, val as Dictionary<string, object>);
+                                    var annString = JsonSerializer.Serialize(ann);
+                                    anns.Add(JsonSerializer.Deserialize<Announcement>(annString)!);
+                                }
+                                _returnDictionary["Result"] = anns;
+                            }
+                            else
+                            {
+                                AssignValuesFromDictionary(ann, dict!);
+                                _returnDictionary["Result"] = ann;
+                            }
                             break;
 
-                        case nameof(LearnerService.GetLearnerByIdNo):
-                            var sDict = dict!["schoolLearnerNP"] as Dictionary<string, object>;
-                            var aDict = dict["schoolAddress"] as Dictionary<string, object>;
-                            Learner learner = new()
-                            {
-                                Id = Convert.ToInt64(dict!["id"]),
-                                ProfileImage = dict["profileImage"].ToString(),
-                                ProfileImageFile = dict["profileImageFile"] as IFormFile,
-                                Title = dict["title"].ToString(),
-                                Name = dict["name"].ToString(),
-                                Surname = dict["surname"].ToString(),
-                                Gender = dict["gender"].ToString(),
-                                Role = dict["role"].ToString(),
-                                IdNo = dict["idNo"].ToString()!,
-                                ClassCode = dict["classCode"].ToString()!,
-                                Subjects = dict["subjects"] as List<string>,
-                                SchoolID = Convert.ToInt64(dict["schoolID"]),
-                                ClassID = Convert.ToInt32(dict["classID"]),
-                                LearnerSchoolNP = new()
-                                {
-                                    Id = Convert.ToInt64(sDict!["id"]),
-                                    EmisNumber = sDict["emisNumber"].ToString()!,
-                                    Logo = sDict["logo"].ToString(),
-                                    SchoolLogoFile = sDict["schoolLogoFile"] as IFormFile,
-                                    Name = sDict["name"].ToString()!,
-                                    DateRegistered = Convert.ToDateTime(sDict["dateRegistered"]),
-                                    Type = sDict["type"].ToString()!,
-                                    TelePhoneNumber = Convert.ToInt64(sDict["telePhoneNumber"]),
-                                    EmailAddress = sDict["emailAddress"].ToString()!,
-                                    SystemAdminId = Convert.ToInt64(sDict["systemAdminId"]),
-                                    SchoolAddress = new()
-                                    {
-                                        AddressID = Convert.ToInt32(aDict!["addressID"]),
-                                        Street = aDict["street"].ToString()!,
-                                        Suburb = aDict["suburb"].ToString()!,
-                                        City = aDict["city"].ToString()!,
-                                        PostalCode = aDict["postalCode"].ToString()!,
-                                        Province = aDict["province"].ToString()!,
-                                        SchoolID = Convert.ToInt64(aDict["schoolID"])
-                                    }
-                                }
-                            };
-
+                        case "Learner":
+                            AssignValuesFromDictionary(learner, dict!);
                             _returnDictionary["Result"] = learner;
                             break;
 
@@ -207,6 +87,53 @@ namespace SchoolConnect_Web_App.Services
                 _returnDictionary["Success"] = false;
                 _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
+            }
+        }
+
+        public static void AssignValuesFromDictionary<T>(T obj, Dictionary<string, object> dict)
+        {
+            Type type = obj.GetType();
+
+            foreach (var kvp in dict)
+            {
+                var key = string.Concat(kvp.Key.First().ToString().ToUpper(), kvp.Key.AsSpan(1));
+                PropertyInfo propertyInfo = type.GetProperty(key);
+
+                if (propertyInfo is not null && propertyInfo.CanWrite)
+                {
+                    if (kvp.Value is Dictionary<string, object> nestedDictionary)
+                    {
+                        var nestedObj = Activator.CreateInstance(propertyInfo.PropertyType);
+                        AssignValuesFromDictionary(nestedObj, nestedDictionary);
+                        propertyInfo.SetValue(obj, nestedObj);
+                    }
+                    else if (propertyInfo.PropertyType.IsGenericType && propertyInfo.PropertyType != typeof(long) && typeof(IList<>).IsAssignableFrom(propertyInfo.PropertyType.GetGenericTypeDefinition()))
+                    {
+                        var elementType = propertyInfo.PropertyType.GetGenericArguments()[0];
+
+                        if (kvp.Value is IEnumerable<object> listValues)
+                        {
+                            var listType = typeof(List<>).MakeGenericType(elementType);
+                            var list = (IList)Activator.CreateInstance(listType)!;
+
+                            foreach (var item in listValues)
+                            {
+                                var convertedItem = Convert.ChangeType(item, elementType);
+                                list.Add(convertedItem);
+                            }
+                            propertyInfo.SetValue(obj, list);
+                        }
+                    }
+                    else
+                    {
+                        object valueToSet;
+                        if (Nullable.GetUnderlyingType(propertyInfo.PropertyType) is not null)
+                            valueToSet = kvp.Value is null ? null : Convert.ChangeType(kvp.Value, Nullable.GetUnderlyingType(propertyInfo.PropertyType));
+                        else
+                            valueToSet = Convert.ChangeType(kvp.Value, propertyInfo.PropertyType);
+                        propertyInfo.SetValue(obj, valueToSet);
+                    }
+                }
             }
         }
 

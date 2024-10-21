@@ -1,9 +1,7 @@
-﻿using Microsoft.Identity.Client;
-using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_RepositoryLayer.CommonAction;
+﻿using SchoolConnect_DomainLayer.Models;
+using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
-using System.ComponentModel.DataAnnotations;
 
 namespace SchoolConnect_ServiceLayer.ServerSideServices
 {
@@ -22,10 +20,10 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         {
             try
             {
-                _returnDictionary = CommonActions.AttemptObjectValidation(principal);
+                _returnDictionary = AttemptObjectValidation(principal);
                 if (!(bool)_returnDictionary["Success"]) return _returnDictionary;
 
-                _returnDictionary = await _principalRepo.Create(principal);
+                _returnDictionary = await _principalRepo.CreateAsync(principal);
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -46,7 +44,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
             catch (Exception ex)
             {
-                _returnDictionary["Success"] = true;
+                _returnDictionary["Success"] = false;
                 _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
             }
@@ -62,9 +60,22 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, object>> Update(Principal principal)
+        public async Task<Dictionary<string, object>> UpdateAsync(Principal principal)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _returnDictionary = AttemptObjectValidation(principal);
+                if (!(bool)_returnDictionary["Success"]) return _returnDictionary;
+
+                _returnDictionary = await _principalRepo.UpdateAsync(principal);
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = true;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
         }
     }
 }

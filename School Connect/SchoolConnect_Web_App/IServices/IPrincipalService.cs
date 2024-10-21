@@ -6,5 +6,6 @@ namespace SchoolConnect_Web_App.IServices
     {
         Task<Dictionary<string, object>> RegisterPrincipalAsync(Principal principal);
         Task<Dictionary<string, object>> GetPrincipalByIdAsync(long principalId);
+        Task<Dictionary<string, object>> UpdatePrincipalAsync(Principal principal);
     }
 }

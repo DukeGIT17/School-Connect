@@ -8777,6 +8777,10 @@
       "PackagePath": "staticwebassets\\js\\NewFolder\\SerNewPassword.js"
     },
     {
+      "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\Principal\\PrincipalMakeAnnouncement.js",
+      "PackagePath": "staticwebassets\\js\\Principal\\PrincipalMakeAnnouncement.js"
+    },
+    {
       "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\SysAdminJS\\RolesReg.js",
       "PackagePath": "staticwebassets\\js\\SysAdminJS\\RolesReg.js"
     },

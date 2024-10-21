@@ -110,7 +110,7 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(adminId);
 
                 var response = await _httpClient.GetAsync(buildString.ToString());
-                return CheckSuccessStatus(response, nameof(GetSchoolByAdminAsync));
+                return CheckSuccessStatus(response, "School");
             }
             catch (Exception ex)
             {
@@ -131,7 +131,7 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(schoolId);
 
                 var response = await _httpClient.GetAsync(buildString.ToString());
-                return CheckSuccessStatus(response, nameof(GetSchoolByIdAsync));
+                return CheckSuccessStatus(response, "School");
             }
             catch (Exception ex)
             {
@@ -152,7 +152,7 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(learnerIdNo);
 
                 var response = await _httpClient.GetAsync(buildString.ToString());
-                return CheckSuccessStatus(response, nameof(GetSchoolByLearnerIdNoAsync));
+                return CheckSuccessStatus(response, "School");
             }
             catch (Exception ex)
             {
