@@ -8781,12 +8781,20 @@
       "PackagePath": "staticwebassets\\js\\Principal\\PrincipalMakeAnnouncement.js"
     },
     {
+      "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\Principal\\PrincipalViewAnnouncement.js",
+      "PackagePath": "staticwebassets\\js\\Principal\\PrincipalViewAnnouncement.js"
+    },
+    {
       "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\SysAdminJS\\RolesReg.js",
       "PackagePath": "staticwebassets\\js\\SysAdminJS\\RolesReg.js"
     },
     {
       "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\SysAdminJS\\SchoolReg.js",
       "PackagePath": "staticwebassets\\js\\SysAdminJS\\SchoolReg.js"
+    },
+    {
+      "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\Teacher\\TeacherMakeAnnouncement.js",
+      "PackagePath": "staticwebassets\\js\\Teacher\\TeacherMakeAnnouncement.js"
     },
     {
       "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\site.js",

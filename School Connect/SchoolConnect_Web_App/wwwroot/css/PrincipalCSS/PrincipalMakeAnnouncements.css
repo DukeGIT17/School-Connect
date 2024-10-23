@@ -138,3 +138,10 @@ form{
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
     transform: translateY(-2px); /* Slight lift effect */
 }
+
+.custom-checkbox {
+    border: 2px solid black;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+}

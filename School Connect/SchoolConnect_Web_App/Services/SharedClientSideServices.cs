@@ -33,6 +33,7 @@ namespace SchoolConnect_Web_App.Services
                     School school = new();
                     Announcement ann = new();
                     Learner learner = new();
+                    Teacher teacher = new();
 
                     switch (convertTo)
                     {
@@ -49,6 +50,11 @@ namespace SchoolConnect_Web_App.Services
                         case "Principal":
                             AssignValuesFromDictionary(principal, dict!);
                             _returnDictionary["Result"] = principal;
+                            break;
+
+                        case "Teacher":
+                            AssignValuesFromDictionary(teacher, dict!);
+                            _returnDictionary["Result"] = teacher;
                             break;
 
                         case "Announcement":

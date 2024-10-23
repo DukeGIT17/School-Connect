@@ -3,7 +3,9 @@
     const uploadBtn = document.getElementById(uploadBtnId);
     const image = document.getElementById(imageId);
 
-    image.style.display = 'none';
+    if (image !== null) {
+        image.style.display = 'none';
+    }
     document.getElementById(inputFieldId).value = "";
     uploadBtn.style.display = "block";
     pElement.style.display = "block";

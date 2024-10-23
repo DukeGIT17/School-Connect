@@ -7,8 +7,8 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
     {
         Task<Dictionary<string, object>> BulkLoadTeacherFromExcel(IFormFile file, long schoolId);
         Task<Dictionary<string, object>> CreateAsync(Teacher teacher);
-        Task<Dictionary<string, object>> Update(Teacher teacher);
-        Task<Dictionary<string, object>> GetById(long teacherId);
+        Task<Dictionary<string, object>> UpdateAsync(Teacher teacher);
+        Task<Dictionary<string, object>> GetByIdAsync(long teacherId);
         Task<Dictionary<string, object>> GetTeacherByClass(string classId);
         Task<Dictionary<string, object>> GetAll();
         Task<Dictionary<string, object>> Remove(long teacherId);

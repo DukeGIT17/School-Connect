@@ -1,7 +1,11 @@
-﻿namespace SchoolConnect_RepositoryLayer.Interfaces
+﻿using SchoolConnect_DomainLayer.Models;
+
+namespace SchoolConnect_RepositoryLayer.Interfaces
 {
     public interface IGroupRepo
     {
-        Task<Dictionary<string, object>> AddActorToGroup(string actorId, long schoolId, string groupName);
+        Task<Dictionary<string, object>> AddToGroup(string actorId, long schoolId, string groupName);
+        Dictionary<string, object> AddTeacherToGroup(Teacher teacher, long schoolId, string groupName);
+        Dictionary<string, object> AddParentToGroup(Parent parent, long schoolId, string groupName);
     }
 }

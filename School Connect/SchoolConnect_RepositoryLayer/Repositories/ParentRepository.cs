@@ -80,7 +80,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                         }
 
 
-                        _returnDictionary = await _groupRepo.AddActorToGroup(parent.IdNo, parent.Children.First().Learner!.SchoolID, "All");
+                        _returnDictionary = _groupRepo.AddParentToGroup(parent, parent.Children.First().Learner!.SchoolID, "All");
                         if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                         parents.Add(parent);
@@ -152,7 +152,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 foreach (var learner in parent.Children)
                 {
-                    _returnDictionary = await _groupRepo.AddActorToGroup(parent.IdNo, learner.Learner!.SchoolID, "All");
+                    _returnDictionary = await _groupRepo.AddToGroup(parent.IdNo, learner.Learner!.SchoolID, "All");
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 }
 
@@ -201,6 +201,30 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         public Task<Dictionary<string, object>> GetByIdNo(string parentIdNo)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<Dictionary<string, object>> UpdateAsync(Parent parent)
+        {
+            try
+            {
+                var existingParent = await _context.Parents.FirstOrDefaultAsync(p => p.Id == parent.Id);
+                if (existingParent is null) throw new("Could not find a parent with the specified ID.");
+
+                parent.Children = existingParent.Children;
+                parent.GroupsNP = existingParent.GroupsNP;
+
+                _context.Update(parent);
+                _context.SaveChanges();
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\n\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
         }
     }
 }

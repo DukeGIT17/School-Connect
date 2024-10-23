@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KCLBYK33P7qi9nlmah52G+0u7RLZn0aFxbM7pswBb40=",
+  "Hash": "TAk12TGMf1OM9/IeRtVFlX15jbkWkgtcS1L23Y6oxEc=",
   "Source": "SchoolConnect_Web_App",
   "BasePath": "_content/SchoolConnect_Web_App",
   "Mode": "Default",
@@ -41753,6 +41753,25 @@
       "OriginalItemSpec": "wwwroot\\js\\Principal\\PrincipalMakeAnnouncement.js"
     },
     {
+      "Identity": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\Principal\\PrincipalViewAnnouncement.js",
+      "SourceId": "SchoolConnect_Web_App",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\",
+      "BasePath": "_content/SchoolConnect_Web_App",
+      "RelativePath": "js/Principal/PrincipalViewAnnouncement.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Principal\\PrincipalViewAnnouncement.js"
+    },
+    {
       "Identity": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\site.js",
       "SourceId": "SchoolConnect_Web_App",
       "SourceType": "Discovered",
@@ -41808,6 +41827,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\SysAdminJS\\SchoolReg.js"
+    },
+    {
+      "Identity": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\Teacher\\TeacherMakeAnnouncement.js",
+      "SourceId": "SchoolConnect_Web_App",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\",
+      "BasePath": "_content/SchoolConnect_Web_App",
+      "RelativePath": "js/Teacher/TeacherMakeAnnouncement.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Teacher\\TeacherMakeAnnouncement.js"
     },
     {
       "Identity": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",

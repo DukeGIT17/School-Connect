@@ -78,8 +78,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGFyZW50XFBhcmVudFZpZXdSZXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Principal/PrincipalDetailedAnnouncements.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpbmNpcGFsXFByaW5jaXBhbERldGFpbGVkQW5ub3VuY2VtZW50cy5jc2h0bWw=
+[C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Principal/PrincipalDetailedAnnouncement.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJpbmNpcGFsXFByaW5jaXBhbERldGFpbGVkQW5ub3VuY2VtZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Principal/PrincipalGradeLandingPage.cshtml]
@@ -188,6 +188,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Teacher/TeacherSubjectPage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxUZWFjaGVyU3ViamVjdFBhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Teacher/TeacherUpdateDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVhY2hlclxUZWFjaGVyVXBkYXRlRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Teacher/TeacherViewAnnouncements.cshtml]

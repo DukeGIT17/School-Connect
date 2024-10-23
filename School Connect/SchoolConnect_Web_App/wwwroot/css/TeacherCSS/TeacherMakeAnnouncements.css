@@ -26,16 +26,15 @@
     background-color: #0F2E34;
     color: #fff;
     padding: 20px;
-    /*Removed by Khaya, the border radius and filled 100% width*/
     text-align: center;
     width: 100%;
 }
 
-    .header h1 {
-        font-size: 26px;
-        margin: 0;
-        text-transform: uppercase;
-    }
+.header h1 {
+    font-size: 26px;
+    margin: 0;
+    text-transform: uppercase;
+}
 
 form {
     width: 90%;
@@ -46,25 +45,53 @@ form {
     margin-bottom: 20px;
 }
 
-    .form-group label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 
-    .form-group input[type="text"],
-    .form-group textarea,
-    .form-group select {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-    }
+#recipientsDisplay {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    min-height: 35px;
+    height: fit-content;
+    align-items: center;
+}
 
-    .form-group textarea {
-        resize: vertical;
-        min-height: 100px;
-    }
+.selected-groups {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    width: fit-content;
+    padding: 3px 5px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    background-color: #ddd;
+    margin: 0px 5px;
+    height: 20px;
+}
+
+.removeGroupBtn {
+    margin-left: 5px;
+    font-size: 13px;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
 
 .checkbox-group {
     margin-bottom: 20px;
@@ -93,8 +120,6 @@ form {
     display: flex; /* Use flexbox for centering */
     justify-content: center; /* Center content horizontally */
     align-items: center; /* Center content vertically */
-    height: 15px;
-    width: 12%;
     padding: 12px;
     font-size: 16px;
     font-weight: 800;
@@ -107,8 +132,15 @@ form {
     text-decoration: none;
 }
 
-    .button:hover {
-        background-color: #0F2E34; /* Lighter shade on hover */
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
-        transform: translateY(-2px); /* Slight lift effect */
-    }
+.button:hover {
+    background-color: #0F2E34; /* Lighter shade on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.custom-checkbox {
+    border: 2px solid black;
+    width: 10px;
+    height: 10px;
+    border-radius: 3px;
+}

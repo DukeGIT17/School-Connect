@@ -36,7 +36,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 principal.PrincipalSchoolNP = school!;
 
-                _returnDictionary = await _groupRepo.AddActorToGroup(principal.StaffNr, principal.SchoolID, "All");
+                _returnDictionary = await _groupRepo.AddToGroup(principal.StaffNr, principal.SchoolID, "All");
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                 _returnDictionary = await _signInRepo.CreateUserAccountAsync(principal.EmailAddress, principal.Role, principal.PhoneNumber.ToString());

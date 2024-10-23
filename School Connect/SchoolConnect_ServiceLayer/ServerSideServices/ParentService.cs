@@ -74,5 +74,19 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Dictionary<string, object>> UpdateAsync(Parent parent)
+        {
+            try
+            {
+                return await _parentRepo.UpdateAsync(parent);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
     }
 }

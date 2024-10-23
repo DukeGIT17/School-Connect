@@ -194,7 +194,7 @@ using (var scope = app.Services.CreateScope())
                 {
                     GroupName = "All",
                     GroupMemberIDs = [],
-                    GroupActorNP = [],
+                    GroupParentNP = [],
                     SchoolID = school.Id
                 };
 

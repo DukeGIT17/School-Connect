@@ -199,17 +199,16 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                         _returnDictionary = AddClassDetailsToLearner(ref learner);
                         if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
-                        foreach (var parent in parents)
-                        {
-                            _returnDictionary = await _groupRepo.AddActorToGroup(parent.IdNo, learner.SchoolID, "All");
-                            if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
-                        }
+                        
                         learners.Add(learner);
                     }
                 }
 
                 foreach (var parent in parents)
                 {
+                    _returnDictionary = _groupRepo.AddParentToGroup(parent, schoolId, "All");
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
                     _returnDictionary = await _signInRepo.CreateUserAccountAsync(parent.EmailAddress, parent.Role, parent.PhoneNumber.ToString());
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 }
@@ -346,9 +345,25 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, object>> UpdateLearner(Learner learner)
+        public async Task<Dictionary<string, object>> UpdateAsync(Learner learner)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var existingLearner = await _context.Learners.FirstOrDefaultAsync(l => l.Id == learner.Id);
+                if (existingLearner is null) throw new("Could not find a learner with the specified ID.");
+
+                _context.Update(learner);
+                _context.SaveChanges();
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInnerException: " + ex.InnerException;
+                return _returnDictionary;
+            }
         }
     }
 }

@@ -92,14 +92,57 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, object>> GetAnnouncementsByTeacher(long teacherId)
+        public async Task<Dictionary<string, object>> GetAnnouncementsByTeacherIdAsync(long teacherId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var teacher = await _context.Teachers
+                    .Include(a => a.GroupsNP)
+                    .Include(a => a.TeacherSchoolNP)
+                    .ThenInclude(a => a.SchoolAnnouncementsNP)
+                    .FirstOrDefaultAsync(s => s.Id == teacherId);
+                if (teacher is null) throw new("Could not find a teacher with the specified ID.");
+                var announcements = teacher.TeacherSchoolNP!.SchoolAnnouncementsNP!.ToList();
+                List<Announcement> teacherAnns = [];
+                foreach (var announcement in announcements)
+                {
+                    if (announcement.Recipients.Contains(teacher.StaffNr))
+                    {
+                        teacherAnns.Add(announcement);
+                    }
+                }
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = teacherAnns;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\n\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
         }
 
-        public Task<Dictionary<string, object>> Remove(int announcementId)
+        public async Task<Dictionary<string, object>> RemoveAsync(int announcementId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var announcement = await _context.Announcements.FirstOrDefaultAsync(a => a.AnnouncementId == announcementId);
+                if (announcement is null) throw new("Could not find an announcement with the specified ID.");
+
+                _context.Remove(announcement);
+                _context.SaveChanges();
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
         }
 
         public Task<Dictionary<string, object>> Update(Announcement announcement)

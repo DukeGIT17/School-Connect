@@ -11,7 +11,7 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
         Task<Dictionary<string, object>> GetByIdNo(string learnerIdNo);
         Task<Dictionary<string, object>> GetAll();
         Task<Dictionary<string, object>> GetClass(string classId);
-        Task<Dictionary<string, object>> UpdateLearner(Learner learner);
+        Task<Dictionary<string, object>> UpdateAsync(Learner learner);
         Task<Dictionary<string, object>> Remove(long learnerId);
         Task<Dictionary<string, object>> RemoveClass(string classId);
     }

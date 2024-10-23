@@ -1,0 +1,49 @@
+﻿@model Teacher
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="~/css/PrincipalCSS/PrincipalUpdateDetails.css" />
+
+
+<div class="card">
+    <div class="container">
+        <h3> Update Profile Details</h3>
+        <br />
+        <table>
+            <form method="post" asp-action="TeacherUpdateDetails">
+                <div asp-validation-summary="All"></div>
+
+                <input asp-for="Id" type="hidden" />
+                <input asp-for="ProfileImage" type="hidden" />
+                <input asp-for="Title" type="hidden" />
+                <input asp-for="Name" type="hidden" />
+                <input asp-for="Surname" type="hidden" />
+                <input asp-for="Gender" type="hidden" />
+                <input asp-for="Role" type="hidden" />
+                <input asp-for="StaffNr" type="hidden" />
+                <input asp-for="Subjects" type="hidden" />
+                <input asp-for="SchoolID" type="hidden" />
+
+                <div class="form-group">
+                    <label asp-for="PhoneNumber"></label>
+                    <input asp-for="PhoneNumber" id="contactNumber" placeholder="Enter your contact number" />
+                    <span asp-validation-for="PhoneNumber"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EmailAddress"></label>
+                    <input asp-for="EmailAddress" id="email" placeholder="Enter your email address" />
+                    <span asp-validation-for="EmailAddress"></span>
+                </div>
+
+                <div id="reset-password">
+                    <a asp-action="SetNewPassword" asp-controller="Login">Reset Password</a>
+                </div>
+
+                <div class="button">
+                    <button type="submit" class="btn">Update Profile</button>
+                </div>
+            </form>
+        </table>
+    </div>
+</div>

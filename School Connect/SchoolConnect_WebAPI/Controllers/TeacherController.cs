@@ -9,11 +9,9 @@ namespace SchoolConnect_WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TeacherController(ITeacherService teacherService, SchoolConnectDbContext context, ISignInRepo signInRepo) : ControllerBase
+    public class TeacherController(ITeacherService teacherService) : ControllerBase
     {
         private readonly ITeacherService _teacherService = teacherService;
-        private readonly ISignInRepo _signInRepo = signInRepo;
-        private readonly SchoolConnectDbContext _context = context;
         private Dictionary<string, object> _returnDictionary = [];
 
         [HttpPost(nameof(BulkLoadTeachersFromExcel))]
@@ -29,20 +27,6 @@ namespace SchoolConnect_WebAPI.Controllers
             {
                 return BadRequest(ex.Message);
             }
-        }
-
-        [HttpDelete(nameof(DeleteTeacherById))]
-        public IActionResult DeleteTeacherById(long id)
-        {
-            var teacher = _context.Teachers.FirstOrDefault(t => t.Id == id);
-            if (teacher != null)
-            {
-                _signInRepo.RemoveUserAccountAsync(teacher.EmailAddress, "Teacher");
-                _context.Remove(teacher);
-                _context.SaveChanges();
-                return Ok();
-            }
-            return BadRequest("Something went wrong.");
         }
 
         [HttpPost(nameof(Create))]
@@ -76,9 +60,25 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                _returnDictionary = _teacherService.GetById(id).Result;
+                _returnDictionary = _teacherService.GetByIdAsync(id).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
-                return Ok(_returnDictionary["Result"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut(nameof(UpdateTeacher))]
+        [Consumes("multipart/form-data")]
+        public IActionResult UpdateTeacher(Teacher teacher)
+        {
+            try
+            {
+                _returnDictionary = _teacherService.UpdateAsync(teacher).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {

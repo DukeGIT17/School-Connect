@@ -20,7 +20,8 @@ namespace SchoolConnect_DomainLayer.Models
 
         #region Navigation Properties
         public School? GroupSchoolNP { get; set; }
-        public IList<GroupActor> GroupActorNP { get; set; }
+        public IList<GroupParent> GroupParentNP { get; set; }
+        public IList<GroupTeacher> GroupTeacherNP { get; set; }
         #endregion
     }
 }

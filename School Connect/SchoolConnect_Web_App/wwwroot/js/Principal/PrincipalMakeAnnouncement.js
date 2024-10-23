@@ -1,15 +1,15 @@
 ﻿
 const recipients = document.getElementById("recipients");
 const recipientsDisplay = document.getElementById("recipientsDisplay");
-function addGroup() {
-    const selectedOption = recipients.value;
+
+function addGroup(option) {
     const selectedGroupDiv = document.createElement('div');
     const removeGroupDiv = document.createElement('div');
     const removeIcon = document.createElement('i');
 
     recipientsDisplay.appendChild(selectedGroupDiv);
     selectedGroupDiv.className = "selected-groups";
-    selectedGroupDiv.textContent = selectedOption;
+    selectedGroupDiv.textContent = option.value;
 
     selectedGroupDiv.appendChild(removeGroupDiv);
     removeGroupDiv.className = "remove-group";
@@ -22,18 +22,26 @@ function addGroup() {
 
 
 recipients.addEventListener("change", () => {
+    const selectedOptions = Array.from(recipients.selectedOptions)
     const selectedRecipients = Array.from(recipientsDisplay.children);
     let exists = false;
 
-    selectedRecipients.forEach(function (rec) {
-        if (rec.textContent === recipients.value) {
-            exists = true;
+    selectedOptions.forEach(option => {
+        if (selectedRecipients.length === 0) {
+            addGroup(option);
+        } else {
+            for (let rec of selectedRecipients) {
+                if (rec.textContent === option.value) {
+                    exists = true;
+                    break;
+                }
+            }
+
+            if (!exists) {
+                addGroup(option);
+            }
         }
     });
-
-    if (!exists) {
-        addGroup();
-    }
 });
 
 

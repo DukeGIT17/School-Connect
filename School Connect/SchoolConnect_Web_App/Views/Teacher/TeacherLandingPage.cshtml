@@ -1,23 +1,24 @@
-﻿@{
+﻿@model Teacher
+@{
     Layout = null;
 }
 <link rel="stylesheet" type="text/css" href="~/css/TeacherCSS/TeacherLandingPage.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="~/FontAwesome/css/all.min.css">
 
 <div class="container">
     <div class="icon"><i class="fas fa-user"></i></div>
-    <h2>Mr Kgopolo Mooi</h2>
+    <h2>@Model.Name @Model.Surname</h2>
     <div class="form-group-1">
-        <a asp-controller="Teacher" asp-action="TeacherViewProfile" class="button">View Profile</a>
+        <a asp-route-id="@Model.Id" asp-action="TeacherViewProfile" class="button">View Profile</a>
     </div>
     <br />
     <br />
     <div class="form-group">
-        <a asp-controller="Teacher" asp-action="TeacherMakeAnnouncements" class="button">Make Announcements</a>
+        <a asp-route-id="@Model.Id" asp-action="TeacherMakeAnnouncements" class="button">Make Announcements</a>
     </div>
     <br />
     <div class="form-group">
-        <a asp-controller="Teacher" asp-action="TeacherViewAnnouncements" class="button">View Announcements</a>
+        <a asp-route-id="@Model.Id" asp-action="TeacherViewAnnouncements" class="button">View Announcements</a>
     </div>
     <br />
     <div class="form-group">
@@ -27,18 +28,14 @@
     <br />
     <div class="title">Subjects:</div>
     <br />
-    <div class="form-group">
-        <a asp-controller="Teacher" asp-action="TeacherViewGrades" class="button">GEOGRAPHY</a>
-    </div>
-    <br />
-    <div class="form-group">
-        <a asp-controller="Teacher" asp-action="TeacherViewGrades" class="button">ENGLISH</a>
-    </div>
-    <br />
-    <div class="form-group">
-        <a asp-controller="Teacher" asp-action="TeacherViewGrades" class="button">LIFE ORIENTATION</a>
-    </div>
-    <br />
+
+    @foreach (var subject in Model.Subjects)
+    {
+        <div class="form-group">
+            <a asp-action="TeacherViewGrades" class="button">@subject.ToUpper()</a>
+        </div>
+        <br />
+    }
     <br />
     <br />
     <a asp-controller="Login" asp-action="Login" class="logout-button">LOGOUT</a>

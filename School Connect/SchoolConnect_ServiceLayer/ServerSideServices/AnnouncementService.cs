@@ -69,5 +69,33 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
                 return _returnDictionary;
             }
         }
+
+        public async Task<Dictionary<string, object>> GetAnnouncementByTeacherIdAsync(long teacherId)
+        {
+            try
+            {
+                return await _announcementRepo.GetAnnouncementsByTeacherIdAsync(teacherId);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> RemoveAsync(int announcementId)
+        {
+            try
+            {
+                return await _announcementRepo.RemoveAsync(announcementId);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
     }
 }

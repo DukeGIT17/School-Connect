@@ -18,7 +18,6 @@ namespace SchoolConnect_DomainLayer.Models
         public IList<string> Recipients { get; set; }
 
         [Required(ErrorMessage = "Please provide content for your announcement.")]
-        [StringLength(2000, MinimumLength = 1, ErrorMessage = "Announcment limited to between 1 and 650 characters.")]
         [DataType(DataType.MultilineText)]
         public string Content { get; set; }
 

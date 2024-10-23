@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
 
 namespace SchoolConnect_WebAPI.Controllers
@@ -65,6 +63,36 @@ namespace SchoolConnect_WebAPI.Controllers
             {
                 _returnDictionary = _announcementService.GetAllAnnBySchool(schoolId).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet(nameof(GetAnnouncementsByTeacherId))]
+        public IActionResult GetAnnouncementsByTeacherId(long id)
+        {
+            try
+            {
+                _returnDictionary = _announcementService.GetAnnouncementByTeacherIdAsync(id).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete(nameof(Delete))]
+        public IActionResult Delete(int announcementId)
+        {
+            try
+            {
+                _returnDictionary = _announcementService.RemoveAsync(announcementId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"] as string);
                 return Ok(_returnDictionary);
             }
             catch (Exception ex)

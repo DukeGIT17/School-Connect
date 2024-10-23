@@ -67,7 +67,6 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasMaxLength(650)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DateCreated")
@@ -136,7 +135,7 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.HasIndex("SchoolID");
 
-                    b.ToTable("Grade", (string)null);
+                    b.ToTable("Grade");
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Group", b =>
@@ -166,7 +165,24 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.ToTable("Groups", (string)null);
                 });
 
-            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.GroupActor", b =>
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.GroupParent", b =>
+                {
+                    b.Property<int>("GroupId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long?>("ParentId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("GroupId", "ParentId");
+
+                    b.HasIndex("ParentId");
+
+                    b.HasIndex("GroupId", "ParentId");
+
+                    b.ToTable("GroupParent");
+                });
+
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.GroupTeacher", b =>
                 {
                     b.Property<int>("GroupId")
                         .HasColumnType("INTEGER");
@@ -174,21 +190,13 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Property<long>("TeacherId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("ParentId")
-                        .HasColumnType("INTEGER");
+                    b.HasKey("GroupId", "TeacherId");
 
-                    b.Property<string>("ActorType")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("TEXT");
+                    b.HasIndex("TeacherId");
 
-                    b.HasKey("GroupId", "TeacherId", "ParentId");
+                    b.HasIndex("GroupId", "TeacherId");
 
-                    b.HasIndex("ParentId");
-
-                    b.HasIndex("TeacherId", "ParentId");
-
-                    b.ToTable("GroupActor", (string)null);
+                    b.ToTable("GroupTeacher");
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Learner", b =>
@@ -281,7 +289,7 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.HasIndex("ParentIdNo");
 
-                    b.ToTable("LearnerParents", (string)null);
+                    b.ToTable("LearnerParents");
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Parent", b =>
@@ -487,7 +495,7 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.HasIndex("MainTeacherId")
                         .IsUnique();
 
-                    b.ToTable("SubGrade", (string)null);
+                    b.ToTable("SubGrade");
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.SysAdmin", b =>
@@ -636,7 +644,7 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.HasIndex("StaffNr");
 
-                    b.ToTable("TeacherGrade", (string)null);
+                    b.ToTable("TeacherGrade");
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Address", b =>
@@ -658,7 +666,7 @@ namespace SchoolConnect_WebAPI.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("SchoolConnect_DomainLayer.Models.School", "AnnouncementSchoolNP")
-                        .WithMany("SchoolAnnouncementNP")
+                        .WithMany("SchoolAnnouncementsNP")
                         .HasForeignKey("SchoolID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -697,10 +705,10 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Navigation("GroupSchoolNP");
                 });
 
-            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.GroupActor", b =>
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.GroupParent", b =>
                 {
                     b.HasOne("SchoolConnect_DomainLayer.Models.Group", "GroupNP")
-                        .WithMany("GroupActorNP")
+                        .WithMany("GroupParentNP")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -711,6 +719,19 @@ namespace SchoolConnect_WebAPI.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.Navigation("GroupNP");
+
+                    b.Navigation("ParentNP");
+                });
+
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.GroupTeacher", b =>
+                {
+                    b.HasOne("SchoolConnect_DomainLayer.Models.Group", "GroupNP")
+                        .WithMany("GroupTeacherNP")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("SchoolConnect_DomainLayer.Models.Teacher", "TeacherNP")
                         .WithMany("GroupsNP")
                         .HasForeignKey("TeacherId")
@@ -718,8 +739,6 @@ namespace SchoolConnect_WebAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("GroupNP");
-
-                    b.Navigation("ParentNP");
 
                     b.Navigation("TeacherNP");
                 });
@@ -838,7 +857,9 @@ namespace SchoolConnect_WebAPI.Migrations
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Group", b =>
                 {
-                    b.Navigation("GroupActorNP");
+                    b.Navigation("GroupParentNP");
+
+                    b.Navigation("GroupTeacherNP");
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Learner", b =>
@@ -863,7 +884,7 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Navigation("SchoolAddress")
                         .IsRequired();
 
-                    b.Navigation("SchoolAnnouncementNP");
+                    b.Navigation("SchoolAnnouncementsNP");
 
                     b.Navigation("SchoolGradesNP");
 

@@ -47,7 +47,7 @@ namespace SchoolConnect_DomainLayer.Models
         /// <summary>
         /// The navigation property that references the bridging GroupActor class. All groups the parent is associated with can be access through it.
         /// </summary>
-        public IList<GroupActor>? GroupsNP { get; set; }
+        public IList<GroupParent>? GroupsNP { get; set; }
         #endregion
     }
 }

@@ -1,5 +1,4 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using SchoolConnect_DomainLayer.Models;
+﻿using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 using System.Text;
 using System.Net.Http.Headers;
@@ -21,7 +20,6 @@ namespace SchoolConnect_Web_App.Services
 
         public async Task<Dictionary<string, object>> GetAdminByIdAsync(long systemAdminId)
         {
-            _returnDictionary = [];
             try
             {
                 StringBuilder buildString = new();
@@ -44,7 +42,6 @@ namespace SchoolConnect_Web_App.Services
         
         public async Task<Dictionary<string, object>> GetAdminByStaffNr(string staffNr)
         {
-            _returnDictionary = [];
             try
             {
                 StringBuilder buildString = new();
@@ -65,7 +62,6 @@ namespace SchoolConnect_Web_App.Services
 
         public async Task<Dictionary<string, object>> UpdateAsync(SysAdmin systemAdmin)
         {
-            _returnDictionary = [];
             try
             {
                 StringBuilder buildString = new();

@@ -27,15 +27,33 @@
         @foreach (var value in Model)
         {
             <div class="announcement">
-                <i class="fa-regular fa-circle-check icon"></i>
-                <div class="details">
-                    <h4 class="title">@value.Title</h4>
-                    <div class="content">@value.Content</div>
-                </div>
+                @if (value.PrincipalID is not null)
+                {
+                    <i class="fa-regular fa-circle-check icon"></i>
+                    <div class="details">
+                        <h4 class="title">@value.Title</h4>
+                        <div class="content">@value.Content</div>
+                    </div>
+                    <a asp-action="PrincipalDetailedAnnouncement" asp-route-id="@value.AnnouncementId" style="display:none;"></a>
+                    <a asp-action="DeleteAnnouncement" asp-route-id="@value.AnnouncementId" asp-route-principalId="@value.PrincipalID">
+                        <i class="fa-regular fa-trash-can"></i>
+                    </a>
+                }
+                else
+                {
+                    <i class="fa-regular fa-circle"></i>
+                    <div class="details">
+                        <h4 class="title">@value.Title</h4>
+                        <div class="content">@value.Content</div>
+                    </div>
+                    <i class="fa-regular fa-trash-can opaque"></i>
+                }
             </div>
         }
     </div>
 </body>
+
+<script src="~/js/Principal/PrincipalViewAnnouncement.js"></script>
 
 
 

@@ -36,7 +36,7 @@ namespace SchoolConnect_DomainLayer.Models
         public SubGrade? MainClass { get; set; }
         public IList<TeacherGrade>? Classes { get; set; }
         public School? TeacherSchoolNP { get; set; }
-        public IList<GroupActor>? GroupsNP { get; set; }
+        public IList<GroupTeacher>? GroupsNP { get; set; }
         public IList<Announcement>? AnnouncementsNP { get; set; }
         #endregion
     }

@@ -45,7 +45,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     new() {
                         GroupName = "All",
                         GroupMemberIDs = [],
-                        GroupActorNP = []
+                        GroupParentNP = []
                     }
                 ];
 

@@ -149,9 +149,20 @@ namespace SchoolConnect_Web_App.Controllers
             return View();
         }
 
-        public IActionResult PrincipalDetailedAnnouncements()
+        [HttpGet]
+        public IActionResult PrincipalDetailedAnnouncement(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _returnDictionary = _announcementService.GetAnnouncementById(id).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                return View(_returnDictionary["Result"]);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         [HttpGet]
@@ -162,6 +173,23 @@ namespace SchoolConnect_Web_App.Controllers
                 _returnDictionary = _principalService.GetPrincipalByIdAsync(id).Result;
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 return View(_returnDictionary["Result"]);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult DeleteAnnouncement(int id, long principalId)
+        {
+            try
+            {
+                _returnDictionary = _announcementService.RemoveAnnouncementAsync(id).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                return RedirectToAction("PrincipalViewAnnouncements", new { id = principalId });
             }
             catch (Exception ex)
             {

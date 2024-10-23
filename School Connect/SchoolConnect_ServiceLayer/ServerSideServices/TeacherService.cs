@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_RepositoryLayer.CommonAction;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
 using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
@@ -42,17 +41,17 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
-        public async Task<Dictionary<string, object>> GetById(long id)
+        public async Task<Dictionary<string, object>> GetByIdAsync(long id)
         {
             try
             {
                 return id < 1 ?
                     throw new($"The provided id '{id}' is less than one. Please provide a valid id.") :
-                    await _teacherRepository.GetById(id);
+                    await _teacherRepository.GetByIdAsync(id);
             }
             catch (Exception ex)
             {
-                _returnDictionary["Success"] = true;
+                _returnDictionary["Success"] = false;
                 _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
             }
@@ -61,6 +60,20 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         public Task<Dictionary<string, object>> GetByStaffNr(string staffNr)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<Dictionary<string, object>> UpdateAsync(Teacher teacher)
+        {
+            try
+            {
+                return await _teacherRepository.UpdateAsync(teacher);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
         }
     }
 }

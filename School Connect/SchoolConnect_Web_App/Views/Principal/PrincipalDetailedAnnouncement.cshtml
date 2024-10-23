@@ -1,0 +1,26 @@
+﻿@model Announcement
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="~/css/PrincipalCSS/PrincipalDetailedAnnouncement.css" />
+
+<body>
+    <h1>School Announcements</h1>
+    <div class="container">
+        <div class="announcement-list">
+            <div class="announcement-card">
+                <div class="announcement-title">@Model.Title</div>
+                
+                @if (Model.TimeToPost is null)
+                {
+                    <div class="announcement-date">Posted on: @Model.DateCreated</div>
+                }
+                else
+                {
+                    <div class="announcement-date">Posted on: @Model.TimeToPost</div>
+                }
+                <div class="announcement-content">@Model.Content</div>
+            </div>
+        </div>
+    </div>
+</body>

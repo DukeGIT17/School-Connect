@@ -36,7 +36,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 teacher.TeacherSchoolNP = school;
 
-                _returnDictionary = await _groupRepo.AddActorToGroup(teacher.StaffNr, teacher.SchoolID, "All");
+                _returnDictionary = await _groupRepo.AddToGroup(teacher.StaffNr, teacher.SchoolID, "All");
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                 _returnDictionary = await _signInRepo.CreateUserAccountAsync(teacher.EmailAddress, teacher.Role, teacher.PhoneNumber.ToString());
@@ -65,15 +65,20 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public async Task<Dictionary<string, object>> GetById(long teacherId)
+        public async Task<Dictionary<string, object>> GetByIdAsync(long teacherId)
         {
             try
             {
-                return await GetActorById(teacherId, new Teacher(), _context);
+                var teacher = await _context.Teachers.Include(t => t.TeacherSchoolNP).ThenInclude(a => a!.SchoolAddress).FirstOrDefaultAsync();
+                if (teacher is null) throw new("Could not find a teacher with the specified ID.");
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = teacher;
+                return _returnDictionary;
             }
             catch (Exception ex)
             {
-                _returnDictionary["Success"] = true;
+                _returnDictionary["Success"] = false;
                 _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
             }
@@ -94,9 +99,27 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<Dictionary<string, object>> Update(Teacher teacher)
+        public async Task<Dictionary<string, object>> UpdateAsync(Teacher teacher)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var existingTeacher = await _context.Teachers.AsNoTracking().FirstOrDefaultAsync(t => t.Id == teacher.Id);
+                if (existingTeacher is null) throw new("Could not find a teacher with the specified ID");
+
+                teacher.Subjects = existingTeacher.Subjects;
+
+                _context.Update(teacher);
+                _context.SaveChanges();
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
         }
 
         public async Task<Dictionary<string, object>> BulkLoadTeacherFromExcel(IFormFile teacherSpreadsheet, long schoolId)
@@ -150,7 +173,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                             throw new(longErrorString);
                         }
 
-                        _returnDictionary = await _groupRepo.AddActorToGroup(teacher.StaffNr, schoolId, "All");
+                        _returnDictionary = _groupRepo.AddTeacherToGroup(teacher, schoolId, "All");
                         if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                         _returnDictionary = await _signInRepo.CreateUserAccountAsync(teacher.EmailAddress, teacher.Role, teacher.PhoneNumber.ToString());

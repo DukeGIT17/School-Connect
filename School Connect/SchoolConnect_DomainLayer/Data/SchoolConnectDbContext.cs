@@ -172,28 +172,40 @@ namespace SchoolConnect_DomainLayer.Data
                 .HasIndex(g => g.GroupMemberIDs)
                 .IsUnique(false);
 
-            modelBuilder.Entity<GroupActor>()
-                .HasKey(ga => new { ga.GroupId, ga.TeacherId, ga.ParentId });
+            modelBuilder.Entity<GroupParent>()
+                .HasKey(gp => new { gp.GroupId, gp.ParentId });
 
-            modelBuilder.Entity<GroupActor>()
-                .HasIndex(ga => new { ga.TeacherId, ga.ParentId }).IsUnique(false);
+            modelBuilder.Entity<GroupParent>()
+                .HasIndex(gp => new { gp.GroupId, gp.ParentId }).IsUnique(false);
 
-            modelBuilder.Entity<GroupActor>()
+            modelBuilder.Entity<GroupParent>()
                 .HasOne(ga => ga.GroupNP)
-                .WithMany(groups => groups.GroupActorNP)
+                .WithMany(groups => groups.GroupParentNP)
                 .HasForeignKey(ga => ga.GroupId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<GroupActor>()
+            modelBuilder.Entity<GroupParent>()
+                .HasOne(ga => ga.ParentNP)
+                .WithMany(teachers => teachers.GroupsNP)
+                .HasForeignKey(ga => ga.ParentId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<GroupTeacher>()
+                .HasKey(gp => new { gp.GroupId, gp.TeacherId });
+
+            modelBuilder.Entity<GroupTeacher>()
+                .HasIndex(gp => new { gp.GroupId, gp.TeacherId }).IsUnique(false);
+
+            modelBuilder.Entity<GroupTeacher>()
+                .HasOne(ga => ga.GroupNP)
+                .WithMany(groups => groups.GroupTeacherNP)
+                .HasForeignKey(ga => ga.GroupId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<GroupTeacher>()
                 .HasOne(ga => ga.TeacherNP)
                 .WithMany(teachers => teachers.GroupsNP)
                 .HasForeignKey(ga => ga.TeacherId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<GroupActor>()
-                .HasOne(ga => ga.ParentNP)
-                .WithMany(parents => parents.GroupsNP)
-                .HasForeignKey(ga => ga.ParentId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Teacher>()

@@ -85,5 +85,21 @@ namespace SchoolConnect_WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut(nameof(Update))]
+        [Consumes("multipart/form-data")]
+        public IActionResult Update(Learner learner)
+        {
+            try
+            {
+                _returnDictionary = _learnerService.UpdateAsync(learner).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

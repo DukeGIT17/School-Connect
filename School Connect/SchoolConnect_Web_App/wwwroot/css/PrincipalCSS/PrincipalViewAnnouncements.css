@@ -58,6 +58,15 @@
     background-color: #f0f0f0;
 }
 
+.announcement a {
+    text-decoration: none;
+    color: black;
+}
+
+.announcement a i {
+    margin-left: 5px;
+}
+
 .announcement .icon {
     font-size: 20px;
     margin-right: 10px;
@@ -108,4 +117,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     max-height: 40px;
+}
+
+.opaque {
+    opacity: .4;
 }
