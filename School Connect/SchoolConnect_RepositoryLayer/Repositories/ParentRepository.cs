@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 using Microsoft.AspNetCore.Http;
 using OfficeOpenXml;
+using System.Runtime.InteropServices;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -188,7 +189,20 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                return await GetActorById(parentId, new Parent(), _context);
+                var parent = await _context.Parents
+                    .Include(p => p.Children)!
+                    .ThenInclude(p => p.Learner)
+                    .FirstOrDefaultAsync(p => p.Id == parentId);
+                if (parent == null) throw new("Could not find a parent with the specified ID.");
+
+                foreach (var lp in parent.Children)
+                {
+                    lp.Learner!.Parents = null;
+                }
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = parent;
+                return _returnDictionary;
             }
             catch (Exception ex)
             {
