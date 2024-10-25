@@ -4,6 +4,9 @@ using SchoolConnect_Web_App.IServices;
 using System.Text;
 using System.Text.Json;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Options;
+using System.Collections;
+using Microsoft.Build.Graph;
 
 namespace SchoolConnect_Web_App.Services
 {
@@ -142,6 +145,33 @@ namespace SchoolConnect_Web_App.Services
 
                 var response = await _httpClient.GetAsync(buildString.ToString());
                 return CheckSuccessStatus(response, "Announcement");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> UpdateAnnouncementAsync(Announcement announcement)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(announcementBasePath);
+                buildString.Append("/Update");
+
+                var request = new HttpRequestMessage()
+                {
+                    Content = new StringContent(JsonSerializer.Serialize(announcement), Encoding.UTF8, "application/json"),
+                    Method = HttpMethod.Put,
+                    RequestUri = new Uri(buildString.ToString())
+                };
+
+                var response = await _httpClient.SendAsync(request);
+                return CheckSuccessStatus(response, "NoNeed");
             }
             catch (Exception ex)
             {

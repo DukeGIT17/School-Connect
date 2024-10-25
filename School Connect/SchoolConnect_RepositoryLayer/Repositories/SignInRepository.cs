@@ -84,11 +84,10 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 {
                     var result = await _signInManager.UserManager.CreateAsync(user, password);
                     if (!result.Succeeded)
-                        throw new Exception($"Failed to create account for user '{email}'. {result.Errors.First()} - plus {result.Errors.Count()} more");
+                        throw new($"Failed to create account for user '{email}'. {result.Errors.First()} - plus {result.Errors.Count()} more");
 
                     result = await _signInManager.UserManager.AddToRoleAsync(user, role);
-                    if (!result.Succeeded)
-                        throw new Exception($"Failed to add user to the {role} role. Action may have to be taken to clear malformed or incomplete user data in the database.");
+                    if (!result.Succeeded) throw new($"Failed to add user to the {role} role. Action may have to be taken to clear malformed or incomplete user data in the database.");
 
                     _returnDictionary["Success"] = true;
                     return _returnDictionary;
@@ -117,7 +116,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 var role = _returnDictionary["Role"] as string ?? throw new("Something went wrong. No role returned.");
 
                 var result = await _signInManager.PasswordSignInAsync(user, model.Password, false, false);
-                if (!result.Succeeded) throw new Exception("Incorrect Password.");
+                if (!result.Succeeded) throw new("Incorrect Password.");
 
                 _returnDictionary["Success"] = true;
                 _returnDictionary["ResetPassword"] = user.ResetPassword;
@@ -133,7 +132,6 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
         public async Task<Dictionary<string, object>> SetNewPasswordAsync(LoginModel model)
         {
-            _returnDictionary = [];
             try
             {
                 var user = await _signInManager.UserManager.FindByEmailAsync(model.EmailAddress);
@@ -146,7 +144,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 if (!isCorrect) throw new("The old password you entered is incorrect.");
 
                 var result = await _signInManager.UserManager.ChangePasswordAsync(user, model.Password, model.NewPassword!);
-                if (!result.Succeeded) throw new Exception(result.Errors.First().Description);
+                if (!result.Succeeded) throw new(result.Errors.First().Description);
                 user.ResetPassword = false;
 
                 result = await _signInManager.UserManager.UpdateAsync(user);
@@ -201,7 +199,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public async Task<Dictionary<string, object>> ChangeEmailAsync(string oldEmail, string newEmail)
+        public async Task<Dictionary<string, object>> ChangeEmailAddressAsync(string oldEmail, string newEmail)
         {
             try
             {

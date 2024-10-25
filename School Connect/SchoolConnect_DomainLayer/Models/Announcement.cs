@@ -30,9 +30,6 @@ namespace SchoolConnect_DomainLayer.Models
         [Display(Name = "Viewed Recipients")]
         public IList<string>? ViewedRecipients { get; set; }
 
-        [Display(Name = "Schedule For Later")]
-        public bool ScheduleForLater { get; set; }
-
         [Display(Name = "Date Created")]
         [DataType(DataType.DateTime)]
         public DateTime DateCreated { get; set; }

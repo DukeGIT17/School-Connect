@@ -62,10 +62,10 @@ namespace SchoolConnect_Web_App.Controllers
                 _returnDictionary = _principalService.GetPrincipalByIdAsync(id).Result;
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
-                var principal = _returnDictionary["Result"] as Principal;
+                if (_returnDictionary["Result"] is not Principal principal) throw new("There are validation errors!! Could not acquire principal data from the provided dictionary.");
                 ActorAnnouncementViewModel<Principal> model = new()
                 {
-                    Actor = principal!,
+                    Actor = principal,
                 };
                 return View(model);
             }
@@ -84,14 +84,19 @@ namespace SchoolConnect_Web_App.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    model.Announcement.ViewedRecipients = [];
+                    model.Announcement.ViewedRecipients.Add(model.StaffNr!);
+
                     _returnDictionary = _announcementService.CreateAnnouncementAsync(model.Announcement).Result;
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                     return RedirectToAction(nameof(PrincipalLandingPage), new { id = model.Announcement.PrincipalID });
                 }
 
-                Principal principal = new();
-                principal.Id = (long)model.Announcement.PrincipalID!;
+                _returnDictionary = _principalService.GetPrincipalByIdAsync((long)model.Announcement.PrincipalID!).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                if (_returnDictionary["Result"] is not Principal principal) throw new("There are validation errors!! Could not acquire principal data from the provided dictionary.");
                 model.Actor = principal;
                 return View(model);
             }
@@ -114,7 +119,20 @@ namespace SchoolConnect_Web_App.Controllers
 
                 _returnDictionary = _announcementService.GetAllAnnBySchoolAsync(principal.SchoolID).Result;
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
-                return View(_returnDictionary["Result"]);
+
+                if (_returnDictionary["Result"] is not IEnumerable<Announcement> announcements) throw new("Something went wrong, could not acquire announcements from the provided dictionary.");
+
+                List<ActorAnnouncementViewModel<Principal>> annCollection = [];
+                foreach (var announcment in announcements)
+                {
+                    annCollection.Add(new()
+                    {
+                        Actor = principal,
+                        Announcement = announcment
+                    });
+                }
+
+                return View(annCollection);
 
             }
             catch (Exception ex)
@@ -150,13 +168,23 @@ namespace SchoolConnect_Web_App.Controllers
         }
 
         [HttpGet]
-        public IActionResult PrincipalDetailedAnnouncement(int id)
+        public IActionResult PrincipalDetailedAnnouncement(int id, string principalStaffNr)
         {
             try
             {
                 _returnDictionary = _announcementService.GetAnnouncementById(id).Result;
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
-                return View(_returnDictionary["Result"]);
+
+                if (_returnDictionary["Result"] is not Announcement ann) throw new("Could not acquire announcement data.");
+
+                if (!ann.Recipients.Contains(principalStaffNr))
+                {
+                    ann.ViewedRecipients!.Add(principalStaffNr);
+                    _returnDictionary = _announcementService.UpdateAnnouncementAsync(ann).Result;
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                }
+
+                return View(ann);
             }
             catch (Exception ex)
             {

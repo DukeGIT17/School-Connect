@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Announcement>
+﻿@model IEnumerable<ActorAnnouncementViewModel<Principal>>
 @{
     Layout = null;
 }
@@ -18,34 +18,41 @@
 
 <body>
     <div class="container">
-        @* <a asp-action="PrincipalDetailedAnnouncements" asp-controller="Principal">Go To Detailed Announcement</a> *@
         <div class="search">
-            <div class="total">Total:12</div>
+            <div class="total">Total:@Model.Count()</div>
             <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
         </div>
 
         @foreach (var value in Model)
         {
             <div class="announcement">
-                @if (value.PrincipalID is not null)
+                @if (value.Announcement.PrincipalID is not null)
                 {
                     <i class="fa-regular fa-circle-check icon"></i>
                     <div class="details">
-                        <h4 class="title">@value.Title</h4>
-                        <div class="content">@value.Content</div>
+                        <h4 class="title">@value.Announcement.Title</h4>
+                        <div class="content">@value.Announcement.Content</div>
                     </div>
-                    <a asp-action="PrincipalDetailedAnnouncement" asp-route-id="@value.AnnouncementId" style="display:none;"></a>
-                    <a asp-action="DeleteAnnouncement" asp-route-id="@value.AnnouncementId" asp-route-principalId="@value.PrincipalID">
+                    <a asp-action="PrincipalDetailedAnnouncement" asp-route-id="@value,Announcement.AnnouncementId" style="display:none;"></a>
+                    <a asp-action="DeleteAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-principalId="@value.Announcement.PrincipalID">
                         <i class="fa-regular fa-trash-can"></i>
                     </a>
                 }
                 else
                 {
-                    <i class="fa-regular fa-circle"></i>
+                    if (value.Announcement.ViewedRecipients.Contains(value.Actor.StaffNr))
+                    {
+                        <i class="fa-regular fa-circle-check icon"></i>
+                    }
+                    else
+                    {
+                        <i class="fa-regular fa-circle icon"></i>
+                    }
                     <div class="details">
-                        <h4 class="title">@value.Title</h4>
-                        <div class="content">@value.Content</div>
+                        <h4 class="title">@value.Announcement.Title</h4>
+                        <div class="content">@value.Announcement.Content</div>
                     </div>
+                    <a asp-action="PrincipalDetailedAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-principalStaffNr="@value.Actor.StaffNr" style="display:none;"></a>
                     <i class="fa-regular fa-trash-can opaque"></i>
                 }
             </div>

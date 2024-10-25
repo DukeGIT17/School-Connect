@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 using SchoolConnect_Web_App.Models;
@@ -57,7 +58,6 @@ namespace schoolconnect.Controllers
             {
                 _returnDictionary = _teacherService.GetTeacherByIdAsync(id).Result;
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
-
                 if (_returnDictionary["Result"] is not Teacher teacher) throw new("Something went wrong, could not acquire teacher data.");
                 ActorAnnouncementViewModel<Teacher> model = new()
                 {
@@ -79,6 +79,9 @@ namespace schoolconnect.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    model.Announcement.ViewedRecipients = [];
+                    model.Announcement.ViewedRecipients.Add(model.Announcement.TeacherID.ToString()!);
+
                     _returnDictionary = _announcementService.CreateAnnouncementAsync(model.Announcement).Result;
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                     return RedirectToAction("TeacherLandingPage", new { id = model.Announcement.TeacherID });
@@ -97,9 +100,24 @@ namespace schoolconnect.Controllers
         {
             try
             {
+                _returnDictionary = _teacherService.GetTeacherByIdAsync(id).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not Teacher teacher) throw new("Something went wrong, could not acquire teacher data from the provided dictionary.");
+
                 _returnDictionary = _announcementService.GetAnnouncementByTeacherId(id).Result;
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
-                return View(_returnDictionary["Result"]);
+                if (_returnDictionary["Result"] is not IEnumerable<Announcement> announcements) throw new("Could not acquire announcements from the provided dictionary.");
+
+                List<ActorAnnouncementViewModel<Teacher>> annCollection = [];
+                foreach (var announcement in announcements)
+                {
+                    annCollection.Add(new()
+                    {
+                        Actor = teacher,
+                        Announcement = announcement
+                    });
+                }
+                return View(annCollection);
             }
             catch (Exception ex)
             {

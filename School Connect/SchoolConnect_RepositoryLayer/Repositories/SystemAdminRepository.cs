@@ -72,7 +72,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 if (sysAdmin.EmailAddress != admin.EmailAddress)
                 {
-                    _returnDictionary = await _signInRepo.ChangeEmailAsync(admin.EmailAddress, sysAdmin.EmailAddress);
+                    _returnDictionary = await _signInRepo.ChangeEmailAddressAsync(admin.EmailAddress, sysAdmin.EmailAddress);
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 }
                 

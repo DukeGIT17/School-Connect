@@ -68,11 +68,8 @@ namespace SchoolConnect_Web_App.Services
                 };
 
                 var response = await _httpClient.SendAsync(request);
-                _returnDictionary= SharedClientSideServices.CheckSuccessStatus(response, "NoNeed");
-                if (!(bool)_returnDictionary["Success"]) 
-                    throw new(_returnDictionary["ErrorMessage"] as string);
-
-                return _returnDictionary;
+                return CheckSuccessStatus(response, "NoNeed");
+                
             }
             catch (Exception ex)
             {

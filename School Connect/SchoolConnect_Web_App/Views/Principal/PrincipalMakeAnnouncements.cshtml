@@ -25,9 +25,10 @@
             <div id="recipientsDisplay"></div>
             <span asp-validation-for="Announcement.Recipients"></span>
             <select asp-for="Announcement.Recipients" id="recipients" multiple>
-                <option value="All">All</option>
-                <option value="Parents">All Parents</option>
-                <option value="Teachers">All Teacher</option>
+                @foreach (var recipientGroup in Model.Actor.PrincipalSchoolNP.SchoolGroupsNP)
+                {
+                    <option value="@recipientGroup.GroupName">@recipientGroup.GroupName</option>
+                }
             </select>
         </div>
 
@@ -43,15 +44,13 @@
             <label asp-for="Announcement.SendSMS">
                 <input asp-for="Announcement.SendSMS" type="checkbox"> Send an SMS
             </label>
-            <label asp-for="Announcement.ScheduleForLater">
-                <input type="checkbox" asp-for="Announcement.ScheduleForLater"> Schedule your announcement
-            </label>
         </div>
         <div class="date-picker">
             <label asp-for="Announcement.TimeToPost">Select Date and Time To Post:</label>
             <input asp-for="Announcement.TimeToPost" type="datetime-local" id="date" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")">
         </div>
         <input asp-for="Announcement.PrincipalID" type="hidden" value="@Model.Actor.Id" />
+        <input asp-for="StaffNr" type="hidden" value="@Model.Actor.StaffNr" />
         <input asp-for="Announcement.SchoolID" type="hidden" value="@Model.Actor.SchoolID" />
         <button type="submit" class="button">SEND</button>
     </form>

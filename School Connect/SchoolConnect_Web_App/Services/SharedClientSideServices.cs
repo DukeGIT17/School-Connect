@@ -105,6 +105,7 @@ namespace SchoolConnect_Web_App.Services
                 var key = string.Concat(kvp.Key.First().ToString().ToUpper(), kvp.Key.AsSpan(1));
                 PropertyInfo propertyInfo = type.GetProperty(key);
 
+
                 if (propertyInfo is not null && propertyInfo.CanWrite)
                 {
                     if (kvp.Value is Dictionary<string, object> nestedDictionary)
@@ -119,13 +120,29 @@ namespace SchoolConnect_Web_App.Services
 
                         if (kvp.Value is IEnumerable<object> listValues)
                         {
+
+                            if (elementType == typeof(string))
+                            {
+                                var lType = typeof(List<>).MakeGenericType(elementType);
+                                var l = (IList)Activator.CreateInstance(lType)!;
+                                foreach (var item in listValues)
+                                {
+                                    var convertedItem = Convert.ChangeType(item, elementType);
+                                    l.Add(convertedItem);
+                                }
+                                propertyInfo.SetValue(obj, l);
+                                continue;
+                            }
+
                             var listType = typeof(List<>).MakeGenericType(elementType);
                             var list = (IList)Activator.CreateInstance(listType)!;
 
                             foreach (var item in listValues)
                             {
-                                var convertedItem = Convert.ChangeType(item, elementType);
-                                list.Add(convertedItem);
+                                var typeToUse = Activator.CreateInstance(elementType);
+                                AssignValuesFromDictionary(typeToUse, item as Dictionary<string, object>);
+                                //var convertedItem = Convert.ChangeType(item, elementType);
+                                list.Add(typeToUse);
                             }
                             propertyInfo.SetValue(obj, list);
                         }
@@ -145,7 +162,6 @@ namespace SchoolConnect_Web_App.Services
 
         public static object ConvertJsonElement(JsonElement element)
         {
-            SysAdmin admin = new SysAdmin();
             switch (element.ValueKind)
             {
                 case JsonValueKind.Object:

@@ -79,9 +79,6 @@ namespace SchoolConnect_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("ScheduleForLater")
-                        .HasColumnType("INTEGER");
-
                     b.Property<long>("SchoolID")
                         .HasColumnType("INTEGER");
 

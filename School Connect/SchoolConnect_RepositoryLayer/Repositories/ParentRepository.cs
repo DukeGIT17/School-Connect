@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 using Microsoft.AspNetCore.Http;
 using OfficeOpenXml;
-using System.Runtime.InteropServices;
+using Microsoft.IdentityModel.Tokens;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -122,13 +122,11 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 List<LearnerParent> nonExistentLearner = [];
                 List<string> errors = [];
                 foreach (var child in parent.Children!)
-
                 {
                     var learner = await _context.Learners.FirstOrDefaultAsync(l => l.IdNo == child.LearnerIdNo);
                     if (learner == null)
                     {
                         nonExistentLearner.Add(child);
-                        parent.Children.Remove(child);
                         errors.Add($"A learner with the ID number {child.LearnerIdNo} does not exist, please create an account for them " +
                             "and link them to this parent.");
                     }
@@ -141,8 +139,10 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 }
 
                 if (errors.Count >= parent.Children.Count)
+                {
                     throw new("All the learners provided do not exist within the database thus this new parent has no children to be linked to. " +
                         "Please provide valid ID numbers or create profiles for the learners first.");
+                }
 
                 foreach (var learner in learnersToAttach)
                 {
@@ -153,14 +153,15 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 foreach (var learner in parent.Children)
                 {
-                    _returnDictionary = await _groupRepo.AddToGroup(parent.IdNo, learner.Learner!.SchoolID, "All");
+                    _returnDictionary = _groupRepo.AddParentToGroup(parent, learner.Learner!.SchoolID, "All");
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 }
 
                 _returnDictionary = await _signInRepo.CreateUserAccountAsync(parent.EmailAddress, parent.Role, parent.PhoneNumber.ToString());
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
-                _returnDictionary["AdditionalInformation"] = errors;
+                if (!errors.IsNullOrEmpty())
+                    _returnDictionary["AdditionalInformation"] = errors;
 
                 if (parent.ProfileImageFile is not null)
                 {
@@ -179,7 +180,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
             catch (Exception ex)
             {
-                _returnDictionary["Success"] = true;
+                _returnDictionary["Success"] = false;
                 _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
                 return _returnDictionary;
             }
@@ -206,7 +207,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
             catch (Exception ex)
             {
-                _returnDictionary["Success"] = true;
+                _returnDictionary["Success"] = false;
                 _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
             }
@@ -221,11 +222,23 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                var existingParent = await _context.Parents.FirstOrDefaultAsync(p => p.Id == parent.Id);
+                var existingParent = await _context.Parents.AsNoTracking().FirstOrDefaultAsync(p => p.Id == parent.Id);
                 if (existingParent is null) throw new("Could not find a parent with the specified ID.");
 
                 parent.Children = existingParent.Children;
                 parent.GroupsNP = existingParent.GroupsNP;
+
+                if (parent.EmailAddress != existingParent.EmailAddress)
+                {
+                    _returnDictionary = await _signInRepo.ChangeEmailAddressAsync(existingParent.EmailAddress, parent.EmailAddress);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                }
+
+                if (parent.PhoneNumber != existingParent.PhoneNumber)
+                {
+                    _returnDictionary = await _signInRepo.ChangePhoneNumberAsync(existingParent.PhoneNumber.ToString(), parent.PhoneNumber.ToString(), parent.EmailAddress);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                }
 
                 _context.Update(parent);
                 _context.SaveChanges();
@@ -236,7 +249,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             catch (Exception ex)
             {
                 _returnDictionary["Success"] = false;
-                _returnDictionary["ErrorMessage"] = ex.Message + "\n\nInner Exception: " + ex.InnerException;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
                 return _returnDictionary;
             }
         }

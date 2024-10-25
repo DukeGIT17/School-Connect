@@ -36,7 +36,7 @@ namespace SchoolConnect_WebAPI.Controllers
             {
                 _returnDictionary = _parentService.CreateAsync(parent).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
-                return Ok(_returnDictionary["Success"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {
@@ -51,7 +51,7 @@ namespace SchoolConnect_WebAPI.Controllers
             {
                 _returnDictionary = _parentService.GetById(id).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
-                return Ok(_returnDictionary["Result"]);
+                return Ok(_returnDictionary);
             }
             catch (Exception ex)
             {

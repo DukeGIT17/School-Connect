@@ -100,5 +100,20 @@ namespace SchoolConnect_WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut(nameof(Update))]
+        public IActionResult Update(Announcement announcement)
+        {
+            try
+            {
+                _returnDictionary = _announcementService.UpdateAsync(announcement).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

@@ -25,9 +25,10 @@
             <div id="recipientsDisplay"></div>
             <span asp-validation-for="Announcement.Recipients"></span>
             <select asp-for="Announcement.Recipients" id="recipients" multiple>
-                <option value="All">All</option>
-                <option value="Parents">All Parents</option>
-                <option value="Teachers">All Teacher</option>
+                @foreach (var item in Model.Actor.TeacherSchoolNP.SchoolGroupsNP)
+                {
+                    <option value="@item.GroupName">@item.GroupName.ToUpper()</option>
+                }
             </select>
         </div>
 
@@ -42,9 +43,6 @@
             </label>
             <label asp-for="Announcement.SendSMS">
                 <input asp-for="Announcement.SendSMS" type="checkbox"> Send an SMS
-            </label>
-            <label asp-for="Announcement.ScheduleForLater">
-                <input type="checkbox" asp-for="Announcement.ScheduleForLater"> Schedule your announcement
             </label>
         </div>
         <div class="date-picker">

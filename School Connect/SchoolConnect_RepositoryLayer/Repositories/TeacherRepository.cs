@@ -36,7 +36,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 teacher.TeacherSchoolNP = school;
 
-                _returnDictionary = await _groupRepo.AddToGroup(teacher.StaffNr, teacher.SchoolID, "All");
+                _returnDictionary = _groupRepo.AddTeacherToGroup(teacher, teacher.SchoolID, "All");
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                 _returnDictionary = await _signInRepo.CreateUserAccountAsync(teacher.EmailAddress, teacher.Role, teacher.PhoneNumber.ToString());
@@ -69,8 +69,23 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                var teacher = await _context.Teachers.Include(t => t.TeacherSchoolNP).ThenInclude(a => a!.SchoolAddress).FirstOrDefaultAsync();
+                var teacher = await _context.Teachers
+                    .Include(t => t.TeacherSchoolNP)
+                    .ThenInclude(a => a!.SchoolAnnouncementsNP)
+                    .FirstOrDefaultAsync();
                 if (teacher is null) throw new("Could not find a teacher with the specified ID.");
+
+                teacher.TeacherSchoolNP!.SchoolGroupsNP = [.. _context.Groups.Where(g => g.SchoolID == teacher.SchoolID)];
+
+                teacher.TeacherSchoolNP!.SchoolTeachersNP = null;
+
+                foreach (var ann in teacher.TeacherSchoolNP.SchoolAnnouncementsNP)
+                {
+                    if (ann.AnnouncementSchoolNP is not null)
+                    {
+                        ann.AnnouncementSchoolNP = null;
+                    }
+                }
 
                 _returnDictionary["Success"] = true;
                 _returnDictionary["Result"] = teacher;
@@ -107,6 +122,18 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 if (existingTeacher is null) throw new("Could not find a teacher with the specified ID");
 
                 teacher.Subjects = existingTeacher.Subjects;
+
+                if (teacher.EmailAddress != existingTeacher.EmailAddress)
+                {
+                    _returnDictionary = await _signInRepo.ChangeEmailAddressAsync(existingTeacher.EmailAddress, teacher.EmailAddress);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                }
+
+                if (teacher.PhoneNumber != existingTeacher.PhoneNumber)
+                {
+                    _returnDictionary = await _signInRepo.ChangePhoneNumberAsync(existingTeacher.PhoneNumber.ToString(), teacher.PhoneNumber.ToString(), existingTeacher.EmailAddress);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                }
 
                 _context.Update(teacher);
                 _context.SaveChanges();

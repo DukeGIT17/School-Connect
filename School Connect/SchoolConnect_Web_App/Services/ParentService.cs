@@ -60,7 +60,7 @@ namespace SchoolConnect_Web_App.Services
                 };
 
                 var response = await httpClient.SendAsync(request);
-                return CheckSuccessStatus(response, nameof(RegisterParentAsync));
+                return CheckSuccessStatus(response, "NoNeed");
             }
             catch (Exception ex)
             {

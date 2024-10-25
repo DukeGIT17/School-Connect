@@ -97,5 +97,19 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
                 return _returnDictionary;
             }
         }
+
+        public async Task<Dictionary<string, object>> UpdateAsync(Announcement announcement)
+        {
+            try
+            {
+                return await _announcementRepo.UpdateAnnouncementAsync(announcement);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
     }
 }

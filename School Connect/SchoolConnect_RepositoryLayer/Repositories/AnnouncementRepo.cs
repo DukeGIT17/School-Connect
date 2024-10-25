@@ -49,8 +49,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             try
             {
                 var ann = await _context.Announcements.FirstOrDefaultAsync(a => a.AnnouncementId == announcementId);
-                if (ann == null)
-                    throw new($"Could not find an announcement with the specified ID");
+                if (ann == null) throw new($"Could not find an announcement with the specified ID");
 
                 _returnDictionary["Success"] = true;
                 _returnDictionary["Result"] = ann;
@@ -69,14 +68,16 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             try
             {
                 var school = await _context.Schools.Include(a => a.SchoolAnnouncementsNP).FirstOrDefaultAsync(s => s.Id == schoolId);
-                if (school is null)
-                    throw new("Could not find a school with the specified ID.");
+                if (school is null) throw new("Could not find a school with the specified ID.");
 
-                if (school.SchoolAnnouncementsNP is null)
-                    throw new($"Could not find any announcements associated with {school.Name} {school.Type} School");
+                if (school.SchoolAnnouncementsNP is null) throw new($"Could not find any announcements associated with {school.Name} {school.Type} School");
+
+                var announcements = school.SchoolAnnouncementsNP.Where(a => a.TimeToPost is null || a.TimeToPost.Value <= DateTime.Now).ToList();
+                announcements.ForEach(x => x.AnnouncementSchoolNP!.SchoolAnnouncementsNP = null);
+
 
                 _returnDictionary["Success"] = true;
-                _returnDictionary["Result"] = school.SchoolAnnouncementsNP;
+                _returnDictionary["Result"] = announcements;
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -97,19 +98,28 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             try
             {
                 var teacher = await _context.Teachers
-                    .Include(a => a.GroupsNP)
+                    .Include(a => a.GroupsNP)!
+                    .ThenInclude(a => a.GroupNP)
                     .Include(a => a.TeacherSchoolNP)
                     .ThenInclude(a => a.SchoolAnnouncementsNP)
                     .FirstOrDefaultAsync(s => s.Id == teacherId);
                 if (teacher is null) throw new("Could not find a teacher with the specified ID.");
+
+                teacher.TeacherSchoolNP!.SchoolTeachersNP = null;
                 var announcements = teacher.TeacherSchoolNP!.SchoolAnnouncementsNP!.ToList();
+                var teacherGroups = teacher.GroupsNP!.ToList();
+
                 List<Announcement> teacherAnns = [];
                 foreach (var announcement in announcements)
                 {
-                    if (announcement.Recipients.Contains(teacher.StaffNr))
+                    foreach (var group in teacherGroups)
                     {
-                        teacherAnns.Add(announcement);
+                        if (announcement.Recipients.Contains(group.GroupNP.GroupName))
+                        {
+                            teacherAnns.Add(announcement);
+                        }
                     }
+                    announcement.AnnouncementSchoolNP = null;
                 }
 
                 _returnDictionary["Success"] = true;
@@ -145,9 +155,25 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public Task<Dictionary<string, object>> Update(Announcement announcement)
+        public async Task<Dictionary<string, object>> UpdateAnnouncementAsync(Announcement announcement)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var ann = await _context.Announcements.AsNoTracking().FirstOrDefaultAsync(a => a.AnnouncementId == announcement.AnnouncementId);
+                if (ann is null) throw new("Could not find an announcement with the specified ID.");
+
+                _context.Update(announcement);
+                _context.SaveChanges();
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
         }
 
         public async Task<Dictionary<string, object>> GetAnnouncementsByPrincipalIdAsync(long principalId)

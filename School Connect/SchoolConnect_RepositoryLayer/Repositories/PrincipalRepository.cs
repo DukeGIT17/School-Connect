@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
@@ -69,9 +68,8 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                var principal = await _context.Principals.Include(s => s.PrincipalSchoolNP).ThenInclude(a => a.SchoolAddress).FirstOrDefaultAsync(p => p.Id == principalId);
-                if (principal == null)
-                    throw new("Could not find a principal with the provided ID");
+                var principal = await _context.Principals.Include(s => s.PrincipalSchoolNP).ThenInclude(a => a.SchoolGroupsNP).FirstOrDefaultAsync(p => p.Id == principalId);
+                if (principal == null) throw new("Could not find a principal with the provided ID");
 
                 _returnDictionary["Success"] = true;
                 _returnDictionary["Result"] = principal;

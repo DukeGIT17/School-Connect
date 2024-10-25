@@ -96,6 +96,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.AnnouncementController",
+    "Method": "Update",
+    "RelativePath": "api/Announcement/Update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "announcement",
+        "Type": "SchoolConnect_DomainLayer.Models.Announcement",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.LearnerController",
     "Method": "Create",
     "RelativePath": "api/Learner/Create",
