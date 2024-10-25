@@ -75,6 +75,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     .FirstOrDefaultAsync();
                 if (teacher is null) throw new("Could not find a teacher with the specified ID.");
 
+                teacher.AnnouncementsNP = null;
                 teacher.TeacherSchoolNP!.SchoolGroupsNP = [.. _context.Groups.Where(g => g.SchoolID == teacher.SchoolID)];
 
                 teacher.TeacherSchoolNP!.SchoolTeachersNP = null;
@@ -87,6 +88,11 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     }
                 }
 
+                foreach (var group in teacher.TeacherSchoolNP.SchoolGroupsNP)
+                {
+                    if (group.GroupSchoolNP is not null)
+                        group.GroupSchoolNP = null;
+                }
                 _returnDictionary["Success"] = true;
                 _returnDictionary["Result"] = teacher;
                 return _returnDictionary;
