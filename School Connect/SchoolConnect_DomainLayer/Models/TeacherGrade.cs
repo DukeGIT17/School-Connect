@@ -7,12 +7,12 @@ namespace SchoolConnect_DomainLayer.Models
     {
         [Key]
         public long TeacherID { get; set; }
-        public long StaffNr { get; set; }
-        public Teacher Teacher { get; set; }
+        public string StaffNr { get; set; }
+        public Teacher? Teacher { get; set; }
 
         [Key]
         public int ClassID { get; set; }
         public string ClassDesignate { get; set; }
-        public SubGrade Class { get; set; }
+        public SubGrade? Class { get; set; }
     }
 }

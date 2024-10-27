@@ -1,0 +1,35 @@
+﻿@model School
+<link rel="stylesheet" href="~/css/SchoolCSS/SchoolLandingPage.css" />
+<link rel="stylesheet" href="~/FontAwesome/css/all.css" />
+@{
+    Layout = null;
+}
+
+<div class="container">
+    <div class="icon">
+        <i class="fa-solid fa-school"></i>
+    </div>
+    <h2>@Model.Name @Model.Type School</h2>
+    <div class="form-group-1">
+        <a asp-action="ViewSchoolProfile" asp-route-schoolId="@Model.Id" class="button">View School Information</a>
+    </div>
+    <br />
+    <br />
+    <div class="form-group">
+        <a asp-action="ManageTeacherClassAssignment" asp-route-schoolId="@Model.Id" class="button">Manage Teacher Class Assignment</a>
+    </div>
+    <br />
+    <div class="form-group">
+        <a asp-action="ManageAnnouncementGroups" asp-route-schoolId="@Model.Id" class="button">Manage Announcement Groups</a>
+    </div>
+    <br />
+    <div class="form-group">
+        <a asp-action="ManageSchool" asp-route-schoolId="@Model.Id" class="button">Manage School</a>
+    </div>
+    <br />
+    <div class="form-group">
+        <a asp-controller="ManageGrades" asp-action="PrincipalViewGrades" class="button">Manage Grades</a>
+    </div>
+    <br />
+</div>
+

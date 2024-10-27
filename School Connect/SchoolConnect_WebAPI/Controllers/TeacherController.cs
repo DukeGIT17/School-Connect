@@ -76,7 +76,52 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                _returnDictionary = _teacherService.UpdateAsync(teacher).Result;
+                _returnDictionary = _teacherService.UpdatePersonalInfoAsync(teacher).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet(nameof(GetTeachersBySchool))]
+        public IActionResult GetTeachersBySchool(long schoolId)
+        {
+            try
+            {
+                _returnDictionary = _teacherService.GetTeachersBySchoolAsync(schoolId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet(nameof(GetTeacherByEmailAddress))]
+        public IActionResult GetTeacherByEmailAddress(string email)
+        {
+            try
+            {
+                _returnDictionary = _teacherService.GetTeacherByEmailAddressAsync(email).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut(nameof(UpdateClassAllocation))]
+        public IActionResult UpdateClassAllocation(Teacher teacher)
+        {
+            try
+            {
+                _returnDictionary = _teacherService.UpdateClassAllocationAsync(teacher).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
                 return Ok(_returnDictionary);
             }

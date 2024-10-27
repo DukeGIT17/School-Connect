@@ -1,0 +1,47 @@
+﻿@model School
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="~/css/SchoolCSS/SchoolUpdateDetails.css" />
+
+
+<div class="card">
+    <div class="container">
+        <h3> Update Profile Details</h3>
+        <br />
+        <table>
+            <form method="post" asp-action="SchoolUpdateDetails">
+                <div asp-validation-summary="All"></div>
+
+                <input asp-for="Id" type="hidden" />
+                <input asp-for="EmisNumber" type="hidden" />
+                <input asp-for="Logo" type="hidden" />
+                <input asp-for="Name" type="hidden" />
+                <input asp-for="DateRegistered" type="hidden" />
+                <input asp-for="Type" type="hidden" />
+                <input asp-for="SystemAdminId" type="hidden" />
+                <input asp-for="SchoolAddress.AddressID" type="hidden" />
+                <input asp-for="SchoolAddress.Street" type="hidden" />
+                <input asp-for="SchoolAddress.Suburb" type="hidden" />
+                <input asp-for="SchoolAddress.City" type="hidden" />
+                <input asp-for="SchoolAddress.Province" type="hidden" />
+                <input asp-for="SchoolAddress.PostalCode" type="hidden" />
+                <input asp-for="SchoolAddress.SchoolID" type="hidden" />
+
+                <div class="form-group">
+                    <label asp-for="TelePhoneNumber"></label>
+                    <input asp-for="TelePhoneNumber" id="contactNumber" placeholder="Enter your contact number" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EmailAddress"></label>
+                    <input asp-for="EmailAddress" id="email" placeholder="Enter your email address" />
+                </div>
+
+                <div class="button">
+                    <button type="submit" class="btn">Update Profile</button>
+                </div>
+            </form>
+        </table>
+    </div>
+</div>

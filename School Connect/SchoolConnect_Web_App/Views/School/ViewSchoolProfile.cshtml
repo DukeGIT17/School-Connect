@@ -1,0 +1,98 @@
+﻿@model School
+@{
+    Layout = null;
+}
+<link rel="stylesheet" href="~/css/SchoolCSS/SchoolViewProfile.css" />
+<link rel="stylesheet" href="~/FontAwesome/css/all.min.css">
+
+<div class="card">
+    <div class="left-container">
+        <div class="profile-image">
+            <div class="icon">
+                <i class="fa-solid fa-school"></i>
+            </div>
+        </div>
+        <h2 class="gradienttext">@Model.Name @Model.Type <br /> Principal: @Model.SchoolPrincipalNP.Name @Model.SchoolPrincipalNP.Surname</h2>
+        <a asp-action="SchoolUpdateDetails" asp-route-schoolId="@Model.Id" class="UpdateButton">Update</a>
+    </div>
+    <div class="right-container">
+        <h3>Profile Details</h3>
+        <table>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.EmisNumber)</td>
+                <td>@Model.EmisNumber</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.Name)</td>
+                <td>@Model.Name</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.Type)</td>
+                <td>@Model.Type</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.TelePhoneNumber)</td>
+                <td>@Model.TelePhoneNumber</td>
+            </tr>
+            
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.EmailAddress)</td>
+                <td>@Model.EmailAddress</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.DateRegistered)</td>
+                <td>@Model.DateRegistered</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="subheadings">School Address</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.SchoolAddress.Street)</td>
+                <td>@Model.SchoolAddress.Street</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.SchoolAddress.Suburb)</td>
+                <td>@Model.SchoolAddress.Suburb</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.SchoolAddress.City)</td>
+                <td>@Model.SchoolAddress.City</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.SchoolAddress.Province)</td>
+                <td>@Model.SchoolAddress.Province</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.SchoolAddress.PostalCode)</td>
+                <td>@Model.SchoolAddress.PostalCode</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="subheadings">System Admin Details</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.SchoolSysAdminNP.Name)</td>
+                <td>@Model.SchoolSysAdminNP.Name</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.SchoolSysAdminNP.Surname)</td>
+                <td>@Model.SchoolSysAdminNP.Surname</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.SchoolSysAdminNP.Gender)</td>
+                <td>@Model.SchoolSysAdminNP.Gender</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.SchoolSysAdminNP.StaffNr)</td>
+                <td>@Model.SchoolSysAdminNP.StaffNr</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.SchoolSysAdminNP.EmailAddress)</td>
+                <td>@Model.SchoolSysAdminNP.EmailAddress</td>
+            </tr>
+            <tr>
+                <td>@Html.DisplayNameFor(s => s.SchoolSysAdminNP.PhoneNumber)</td>
+                <td>@Model.SchoolSysAdminNP.PhoneNumber</td>
+            </tr>
+        </table>
+    </div>
+</div>

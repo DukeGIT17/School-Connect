@@ -1,0 +1,195 @@
+﻿body {
+    padding: 20px;
+    background: ghostwhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+html, body {
+    height: 100%;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    height: 100%;
+    background: #0F2E34;
+    color: white;
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.left-container {
+    background-color: ghostwhite; /* Subtle gradient for depth */
+    color: #333; /* Slightly darker text for readability */
+    flex: 1;
+    max-width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 390px;
+    padding: 10px; /* More padding for breathing room */
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for interaction */
+}
+
+
+.left-container h2 {
+    margin: 10px 0;
+    font-weight: 600; /* Slightly bolder for formality */
+    text-align: center;
+    color: #0F2E34; /* Match with overall color scheme */
+}
+
+
+.icon {
+    font-size: 80px;
+    color: #0F2E34;
+    margin-bottom: 20px;
+}
+
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 860px) {
+    .left-container {
+        max-width: 100%;
+        height: auto;
+        padding: 15px;
+    }
+
+    .icon {
+        font-size: 60px;
+    }
+}
+
+
+.right-container {
+    background-color: ghostwhite;
+    flex: 1;
+    max-width: 65%;
+    height: 90%;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+}
+
+h3 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #0F2E34;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+td:first-child {
+    font-weight: bold;
+    color: #0F2E34;
+}
+
+.subheadings {
+    text-align: center;
+}
+
+.fas fa-eye {
+    cursor: pointer;
+}
+
+.save-btn {
+    display: none;
+}
+
+.edit-btn {
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: #0F2E34;
+    color: white;
+    border: none;
+    padding: 5px;
+    width: 15%;
+    border-radius: 16px;
+}
+
+.save-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #0F2E34;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+}
+
+.updateButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #0F2E34;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+input[readonly] {
+    border: none;
+    background: transparent;
+    color: #333;
+    font-size: 16px;
+}
+
+input:focus {
+    outline: none;
+    border-bottom: 1px solid #0F2E34;
+}
+
+@media only screen and (max-width: 860px) {
+    .card {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .left-container, .right-container {
+        max-width: 100%;
+        margin: 10px 0;
+    }
+}

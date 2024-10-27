@@ -5,7 +5,6 @@ using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 using Microsoft.AspNetCore.Http;
 using OfficeOpenXml;
 using Microsoft.EntityFrameworkCore;
-using SQLitePCL;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -70,13 +69,14 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             try
             {
                 var teacher = await _context.Teachers
+                    .AsNoTracking()
                     .Include(t => t.TeacherSchoolNP)
                     .ThenInclude(a => a!.SchoolAnnouncementsNP)
                     .FirstOrDefaultAsync();
                 if (teacher is null) throw new("Could not find a teacher with the specified ID.");
 
                 teacher.AnnouncementsNP = null;
-                teacher.TeacherSchoolNP!.SchoolGroupsNP = [.. _context.Groups.Where(g => g.SchoolID == teacher.SchoolID)];
+                teacher.TeacherSchoolNP!.SchoolGroupsNP = [.. _context.Groups.AsNoTracking().Where(g => g.SchoolID == teacher.SchoolID)];
 
                 teacher.TeacherSchoolNP!.SchoolTeachersNP = null;
 
@@ -120,7 +120,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<Dictionary<string, object>> UpdateAsync(Teacher teacher)
+        public async Task<Dictionary<string, object>> UpdatePersonalInfoAsync(Teacher teacher)
         {
             try
             {
@@ -231,6 +231,78 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             {
                 _returnDictionary = DeleteFile(@"C:\Users\innoc\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\Application Files\Misc\" + teacherSpreadsheet.FileName);
                 if (!(bool)_returnDictionary["Success"]) _returnDictionary["AdditionalInformation"] = _returnDictionary["ErrorMessage"];
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetTeachersBySchoolAsync(long schoolId)
+        {
+            try
+            {
+                var school = await _context.Schools.AsNoTracking().Include(a => a.SchoolTeachersNP).FirstOrDefaultAsync(s => s.Id == schoolId);
+                if (school is null) throw new("Could not find a school with the specified ID.");
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = school.SchoolTeachersNP!;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetTeacherByEmailAddressAsync(string email)
+        {
+            try
+            {
+                var teacher = await _context.Teachers.AsNoTracking().FirstOrDefaultAsync(t => t.EmailAddress == email);
+                if (teacher is null) throw new("Could not find a teacher with the specified email address.");
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = teacher;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> UpdateClassAllocationAsync(Teacher teacher)
+        {
+            try
+            {
+                var existingTeacher = await _context.Teachers.FirstOrDefaultAsync(t => t.Id == teacher.Id);
+                if (existingTeacher is null) throw new("Could not find the teacher who's information is being updated.");
+                
+                if (teacher.MainClass is not null)
+                {
+                    existingTeacher.MainClass = teacher.MainClass;
+                    _returnDictionary = _groupRepo.AddTeacherToGroup(teacher, teacher.SchoolID, $"Grade {teacher.MainClass.ClassDesignate} Teachers");
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                }
+                else
+                {
+                    existingTeacher.Classes = teacher.Classes;
+                    _returnDictionary = _groupRepo.AddTeacherToGroup(teacher, teacher.SchoolID, $"Grade {teacher.Classes!.First().ClassDesignate} Teachers");
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                }
+
+                _context.SaveChanges();
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
                 _returnDictionary["Success"] = false;
                 _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
                 return _returnDictionary;

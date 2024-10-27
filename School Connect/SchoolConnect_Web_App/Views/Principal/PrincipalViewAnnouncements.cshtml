@@ -33,7 +33,7 @@
                         <h4 class="title">@value.Announcement.Title</h4>
                         <div class="content">@value.Announcement.Content</div>
                     </div>
-                    <a asp-action="PrincipalDetailedAnnouncement" asp-route-id="@value,Announcement.AnnouncementId" style="display:none;"></a>
+                    <a asp-action="PrincipalDetailedAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-principalStaffNr="@value.StaffNr" style="display:none;"></a>
                     <a asp-action="DeleteAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-principalId="@value.Announcement.PrincipalID">
                         <i class="fa-regular fa-trash-can"></i>
                     </a>
@@ -52,7 +52,7 @@
                         <h4 class="title">@value.Announcement.Title</h4>
                         <div class="content">@value.Announcement.Content</div>
                     </div>
-                    <a asp-action="PrincipalDetailedAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-principalStaffNr="@value.Actor.StaffNr" style="display:none;"></a>
+                    <a asp-action="PrincipalDetailedAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-principalStaffNr="@value.StaffNr" style="display:none;"></a>
                     <i class="fa-regular fa-trash-can opaque"></i>
                 }
             </div>

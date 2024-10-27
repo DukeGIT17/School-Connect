@@ -27,7 +27,7 @@
             <select asp-for="Announcement.Recipients" id="recipients" multiple>
                 @foreach (var item in Model.Actor.TeacherSchoolNP.SchoolGroupsNP)
                 {
-                    <option value="@item.GroupName">@item.GroupName.ToUpper()</option>
+                    <option value="@item.GroupName">@item.GroupName</option>
                 }
             </select>
         </div>
@@ -50,6 +50,7 @@
             <input asp-for="Announcement.TimeToPost" type="datetime-local" id="date" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")">
         </div>
         <input asp-for="Announcement.TeacherID" type="hidden" value="@Model.Actor.Id" />
+        <input asp-for="StaffNr" type="hidden" value="@Model.StaffNr" />
         <input asp-for="Announcement.SchoolID" type="hidden" value="@Model.Actor.SchoolID" />
         <button type="submit" class="button">SEND</button>
     </form>

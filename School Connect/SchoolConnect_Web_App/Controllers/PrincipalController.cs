@@ -66,6 +66,7 @@ namespace SchoolConnect_Web_App.Controllers
                 ActorAnnouncementViewModel<Principal> model = new()
                 {
                     Actor = principal,
+                    StaffNr = principal.StaffNr
                 };
                 return View(model);
             }
@@ -95,8 +96,8 @@ namespace SchoolConnect_Web_App.Controllers
 
                 _returnDictionary = _principalService.GetPrincipalByIdAsync((long)model.Announcement.PrincipalID!).Result;
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
-
                 if (_returnDictionary["Result"] is not Principal principal) throw new("There are validation errors!! Could not acquire principal data from the provided dictionary.");
+                
                 model.Actor = principal;
                 return View(model);
             }
@@ -114,12 +115,10 @@ namespace SchoolConnect_Web_App.Controllers
             {
                 _returnDictionary = _principalService.GetPrincipalByIdAsync(id).Result;
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
-
                 if (_returnDictionary["Result"] is not Principal principal) throw new("Something went wrong, could not acquire principal data from the provided dictionary.");
 
                 _returnDictionary = _announcementService.GetAllAnnBySchoolAsync(principal.SchoolID).Result;
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
-
                 if (_returnDictionary["Result"] is not IEnumerable<Announcement> announcements) throw new("Something went wrong, could not acquire announcements from the provided dictionary.");
 
                 List<ActorAnnouncementViewModel<Principal>> annCollection = [];
@@ -128,7 +127,8 @@ namespace SchoolConnect_Web_App.Controllers
                     annCollection.Add(new()
                     {
                         Actor = principal,
-                        Announcement = announcment
+                        Announcement = announcment,
+                        StaffNr = principal.StaffNr
                     });
                 }
 
@@ -177,7 +177,7 @@ namespace SchoolConnect_Web_App.Controllers
 
                 if (_returnDictionary["Result"] is not Announcement ann) throw new("Could not acquire announcement data.");
 
-                if (!ann.Recipients.Contains(principalStaffNr))
+                if (!ann.ViewedRecipients!.Contains(principalStaffNr))
                 {
                     ann.ViewedRecipients!.Add(principalStaffNr);
                     _returnDictionary = _announcementService.UpdateAnnouncementAsync(ann).Result;

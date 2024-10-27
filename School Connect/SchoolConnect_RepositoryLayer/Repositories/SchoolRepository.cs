@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.IdentityModel.Tokens;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
+using SQLitePCL;
 using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
@@ -113,6 +113,21 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                         throw new($"Something went wrong. The value {newSchool.Type} does not match any of the valid school type options.");
                 }
 
+                foreach (var grade in newSchool.SchoolGradesNP)
+                {
+                    newSchool.SchoolGroupsNP.Add(new()
+                    {
+                        GroupMemberIDs = [],
+                        GroupName = $"Grade {grade.GradeDesignate}A Parents"
+                    });
+
+                    newSchool.SchoolGroupsNP.Add(new()
+                    {
+                        GroupMemberIDs = [],
+                        GroupName = $"Grade {grade.GradeDesignate}A Teachers"
+                    });
+                }
+
                 if (newSchool.SchoolLogoFile is not null)
                 {
                     _returnDictionary = SaveFile($"{newSchool.Name}", "School Logos Folder", newSchool.SchoolLogoFile);
@@ -202,7 +217,12 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                var school = await _context.Schools.Include(s => s.SchoolAddress).FirstOrDefaultAsync(s => s.Id == schoolId);
+                var school = await _context.Schools
+                    .AsNoTracking()
+                    .Include(s => s.SchoolAddress)
+                    .Include(p => p.SchoolPrincipalNP)
+                    .Include(s => s.SchoolSysAdminNP)
+                    .FirstOrDefaultAsync(s => s.Id == schoolId);
                 if (school is null) throw new($"Could not find a school with the ID: {schoolId}");
 
                 _returnDictionary["Success"] = true;
@@ -227,9 +247,125 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, object>> UpdateSchoolInfo(School school)
+        public async Task<Dictionary<string, object>> UpdateSchoolInfoAsync(School school)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var existingSchool = await _context.Schools.AsNoTracking().FirstOrDefaultAsync(s => s.Id == school.Id);
+                if (existingSchool is null) throw new("Could not find a school with the specified ID.");
+
+                _context.Update(school);
+                _context.SaveChanges();
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInnerException: " + ex.InnerException;
+                return _returnDictionary;
+            }
         }
+
+        public async Task<Dictionary<string, object>> GetSchoolGradesAsync(long schoolId, string? fromGrade = null, string? toGrade = null)
+        {
+            try
+            {
+                var school = await _context.Schools
+                    .AsNoTracking()
+                    .Include(a => a.SchoolGradesNP)!
+                    .ThenInclude(a => a.Classes)
+                    .FirstOrDefaultAsync(s => s.Id == schoolId);
+                if (school is null) throw new("Could not acquire a school with the specified ID.");
+
+                List<Grade> grades = [];
+                foreach (var grade in school.SchoolGradesNP!)
+                    grades.Add(grade);
+
+                if (fromGrade is not null || toGrade is not null)
+                {
+                    if (school.Type == "Primary")
+                    {
+                        if (fromGrade != "R")
+                            if (Convert.ToInt32(fromGrade) > 7) throw new("The fromGrade filter value cannot be greater than 7 for a primary school.");
+                    }
+
+                    if (school.Type == "High")
+                            if (Convert.ToInt32(fromGrade) < 8) throw new("The fromGrade filter value cannot be less than 8 for a high school.");
+
+                    if (fromGrade is not null)
+                        grades = grades.Where(grade => Convert.ToInt32(grade.GradeDesignate) >= Convert.ToInt32(fromGrade)).ToList();
+
+                    if (toGrade is not null)
+                        grades = grades.Where(grade => Convert.ToInt32(grade.GradeDesignate) <= Convert.ToInt32(toGrade)).ToList();
+                }
+
+                foreach (var grade in grades)
+                {
+                    if (grade.GradeSchoolNP!.SchoolGradesNP is not null)
+                        grade.GradeSchoolNP.SchoolGradesNP = null;
+                }
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = grades;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInnerException: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetAllClassesBySchoolAsync(long schoolId)
+        {
+            try
+            {
+                var classes = await _context.SubGrade
+                    .AsNoTracking()
+                    .Include(g => g.Grade)!
+                    .ToListAsync();
+                if (classes is null) throw new("Could not find any classes in the database.");
+
+                classes = classes.Where(a => a.Grade!.SchoolID == schoolId).ToList();
+                classes.ForEach(cls => cls.Grade = null);
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = classes;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetClassBySchoolAsync(string classDesignate, long schoolId)
+        {
+            try
+            {
+                var classes = await _context.SubGrade.AsNoTracking().Include(g => g.Grade).ToListAsync();
+                if (classes is null) throw new("Could not find any classes in the database.");
+
+                var clss = classes.FirstOrDefault(cls => cls.ClassDesignate == classDesignate && cls.Grade!.SchoolID == schoolId);
+                if (clss is null) throw new("Could not find the specified class in the specified school.");
+
+                clss.Grade = null;
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = clss;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
+            }
     }
 }

@@ -96,5 +96,65 @@ namespace SchoolConnect_WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet(nameof(GetSchoolGrades))]
+        public IActionResult GetSchoolGrades(long schoolId, string? fromGrade, string? toGrade)
+        {
+            try
+            {
+                _returnDictionary = _school.GetSchoolGradesAsync(schoolId, fromGrade, toGrade).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut(nameof(UpdateSchool))]
+        public IActionResult UpdateSchool(School school)
+        {
+            try
+            {
+                _returnDictionary = _school.UpdateSchoolInfoAsync(school).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet(nameof(GetAllClassesBySchool))]
+        public IActionResult GetAllClassesBySchool(long schoolId)
+        {
+            try
+            {
+                _returnDictionary = _school.GetAllClassesBySchoolAsync(schoolId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet(nameof(GetClassBySchool))]
+        public IActionResult GetClassBySchool(string classDesignate, long schoolId)
+        {
+            try
+            {
+                _returnDictionary = _school.GetClassBySchoolAsync(classDesignate, schoolId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

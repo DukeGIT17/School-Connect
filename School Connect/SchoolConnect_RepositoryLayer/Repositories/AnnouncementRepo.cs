@@ -98,6 +98,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             try
             {
                 var teacher = await _context.Teachers
+                    .AsNoTracking()
                     .Include(a => a.GroupsNP)!
                     .ThenInclude(a => a.GroupNP)
                     .Include(a => a.TeacherSchoolNP)

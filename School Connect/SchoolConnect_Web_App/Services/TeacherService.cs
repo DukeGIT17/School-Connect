@@ -1,6 +1,7 @@
-﻿using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_RepositoryLayer.Interfaces;
+﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
+using System.Collections;
 using System.Net.Http.Headers;
 using System.Text;
 using static SchoolConnect_Web_App.Services.SharedClientSideServices;
@@ -177,6 +178,133 @@ namespace SchoolConnect_Web_App.Services
                 }
 
                 var request = new HttpRequestMessage
+                {
+                    Content = formData,
+                    Method = HttpMethod.Put,
+                    RequestUri = new Uri(buildString.ToString())
+                };
+
+                var response = await _httpClient.SendAsync(request);
+                return CheckSuccessStatus(response, "NoNeed");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetTeachersBySchoolAsync(long schoolId)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(teacherBasePath);
+                buildString.Append("/GetTeachersBySchool?schoolId=");
+                buildString.Append(schoolId);
+
+                var response = await _httpClient.GetAsync(buildString.ToString());
+                return CheckSuccessStatus(response, "Teacher");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetTeacherByEmailAddressAsync(string email)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(teacherBasePath);
+                buildString.Append("/GetTeacherByEmailAddress?email=");
+                buildString.Append(email);
+
+                var response = await _httpClient.GetAsync(buildString.ToString());
+                return CheckSuccessStatus(response, "Teacher");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> UpdateClassAllocationAsync(Teacher teacher)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(teacherBasePath);
+                buildString.Append("/UpdateClassAllocation");
+
+                var formData = new MultipartFormDataContent();
+
+                foreach (var property in typeof(Teacher).GetProperties())
+                {
+                    var value = property.GetValue(teacher);
+                    if (value is IFormFile || value is School || value is IEnumerable<GroupTeacher> || value is IEnumerable<Announcement>)
+                        continue;
+                    else if (value is IEnumerable<string> subjects)
+                    {
+                        int index = 0;
+                        foreach (var subject in subjects)
+                        {
+                            formData.Add(new StringContent(subject), $"{property.Name}[{index}]");
+                            index++;
+                        }
+                    }
+                    else if (value is not null && value is SubGrade subGrade)
+                    {
+                        foreach (var gradeProperty in typeof(SubGrade).GetProperties())
+                        {
+                            var gradeValue = gradeProperty.GetValue(subGrade);
+                            if ((gradeValue is IEnumerable || value is Teacher || value is Grade) && gradeValue is not string)
+                                continue;
+
+                            if (gradeValue is not null)
+                                formData.Add(new StringContent(gradeValue.ToString()), $"{property.Name}.{gradeProperty.Name}");
+                        }
+                    }
+                    else if (value is not null && value is IEnumerable<TeacherGrade> classes)
+                    {
+                        int index = 0;
+                        foreach (var item in classes)
+                        {
+                            foreach (var itemProperty in typeof(TeacherGrade).GetProperties())
+                            {
+                                var itemValue = itemProperty.GetValue(item);
+                                if (itemValue is SubGrade || itemValue is Teacher)
+                                    continue;
+
+                                if (itemValue is not null)
+                                    formData.Add(new StringContent(itemValue.ToString()), $"{property.Name}[{index}].{itemProperty.Name}");
+                            }
+                            index++;
+                        }
+                        continue;
+                    }
+
+                    if (value is not null)
+                        formData.Add(new StringContent(value.ToString()), property.Name);
+                }
+
+                if (teacher.ProfileImageFile is not null)
+                {
+                    var fileStreamContent = new StreamContent(teacher.ProfileImageFile.OpenReadStream());
+                    fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue(teacher.ProfileImageFile.ContentType);
+                    formData.Add(fileStreamContent, "ProfileImageFile", teacher.ProfileImageFile.FileName);
+                }
+
+                var request = new HttpRequestMessage()
                 {
                     Content = formData,
                     Method = HttpMethod.Put,

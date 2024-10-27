@@ -34,6 +34,7 @@ namespace SchoolConnect_Web_App.Services
                     Announcement ann = new();
                     Learner learner = new();
                     Teacher teacher = new();
+                    SubGrade subGrade = new();
 
                     switch (convertTo)
                     {
@@ -53,8 +54,22 @@ namespace SchoolConnect_Web_App.Services
                             break;
 
                         case "Teacher":
-                            AssignValuesFromDictionary(teacher, dict!);
-                            _returnDictionary["Result"] = teacher;
+                            if (dict is null)
+                            {
+                                List<Teacher> teachers = [];
+                                foreach (var val in list)
+                                {
+                                    AssignValuesFromDictionary(teacher, val as Dictionary<string, object>);
+                                    var teacherString = JsonSerializer.Serialize(teacher);
+                                    teachers.Add(JsonSerializer.Deserialize<Teacher>(teacherString)!);
+                                }
+                                _returnDictionary["Result"] = teachers;
+                            }
+                            else
+                            {
+                                AssignValuesFromDictionary(teacher, dict!);
+                                _returnDictionary["Result"] = teacher;
+                            }
                             break;
 
                         case "Announcement":
@@ -82,6 +97,25 @@ namespace SchoolConnect_Web_App.Services
                             _returnDictionary["Result"] = learner;
                             break;
 
+                        case "SubGrade":
+                            if (dict is null)
+                            {
+                                List<SubGrade> subGrades = [];
+                                foreach (var val in list)
+                                {
+                                    AssignValuesFromDictionary(subGrade, val as Dictionary<string, object>);
+                                    var subGradeString = JsonSerializer.Serialize(subGrade);
+                                    subGrades.Add(JsonSerializer.Deserialize<SubGrade>(subGradeString)!);
+                                }
+                                _returnDictionary["Result"] = subGrades;
+                            }
+                            else
+                            {
+                                AssignValuesFromDictionary(subGrade, dict!);
+                                _returnDictionary["Result"] = subGrade;
+                            }
+                            break;
+
                         default: throw new("Something went wrong");
                     }
                 }
@@ -101,7 +135,7 @@ namespace SchoolConnect_Web_App.Services
             Type type = obj.GetType();
 
             foreach (var kvp in dict)
-            {
+             {
                 var key = string.Concat(kvp.Key.First().ToString().ToUpper(), kvp.Key.AsSpan(1));
                 PropertyInfo propertyInfo = type.GetProperty(key);
 
@@ -141,7 +175,6 @@ namespace SchoolConnect_Web_App.Services
                             {
                                 var typeToUse = Activator.CreateInstance(elementType);
                                 AssignValuesFromDictionary(typeToUse, item as Dictionary<string, object>);
-                                //var convertedItem = Convert.ChangeType(item, elementType);
                                 list.Add(typeToUse);
                             }
                             propertyInfo.SetValue(obj, list);

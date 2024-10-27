@@ -40,8 +40,8 @@
     <Folder Include="Application Files\Misc\" />
     <Folder Include="Application Files\Profile Images Folder\Learners\" />
     <Folder Include="Application Files\Profile Images Folder\Principals\" />
-    <Folder Include="Application Files\Profile Images Folder\Teachers\" />
     <Folder Include="Application Files\Profile Images Folder\Parents\" />
+    <Folder Include="Application Files\Profile Images Folder\Teachers\" />
   </ItemGroup>
 
 </Project>

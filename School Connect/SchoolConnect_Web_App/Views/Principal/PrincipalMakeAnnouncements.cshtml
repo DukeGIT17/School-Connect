@@ -50,7 +50,7 @@
             <input asp-for="Announcement.TimeToPost" type="datetime-local" id="date" min="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")">
         </div>
         <input asp-for="Announcement.PrincipalID" type="hidden" value="@Model.Actor.Id" />
-        <input asp-for="StaffNr" type="hidden" value="@Model.Actor.StaffNr" />
+        <input asp-for="StaffNr" type="hidden" value="@Model.StaffNr" />
         <input asp-for="Announcement.SchoolID" type="hidden" value="@Model.Actor.SchoolID" />
         <button type="submit" class="button">SEND</button>
     </form>

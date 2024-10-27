@@ -8,7 +8,10 @@ namespace SchoolConnect_ServiceLayer.IServerSideServices
         Task<Dictionary<string, object>> BulkLoadTeacherAsync(IFormFile teacherFile, long schoolId);
         Task<Dictionary<string, object>> CreateTeacherAsync(Teacher teacher);
         Task<Dictionary<string, object>> GetByIdAsync(long id);
+        Task<Dictionary<string, object>> GetTeachersBySchoolAsync(long schoolId);
         Task<Dictionary<string, object>> GetByStaffNr(string staffNr);
-        Task<Dictionary<string, object>> UpdateAsync(Teacher teacher);
+        Task<Dictionary<string, object>> GetTeacherByEmailAddressAsync(string email);
+        Task<Dictionary<string, object>> UpdatePersonalInfoAsync(Teacher teacher);
+        Task<Dictionary<string, object>> UpdateClassAllocationAsync(Teacher teacher);
     }
 }

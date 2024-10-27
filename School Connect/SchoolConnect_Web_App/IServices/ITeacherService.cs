@@ -7,6 +7,9 @@ namespace SchoolConnect_Web_App.IServices
         Task<Dictionary<string, object>> BulkLoadTeachersAsync(IFormFile teachersFile, long schoolId);
         Task<Dictionary<string, object>> RegisterTeacherAsync(Teacher teacher);
         Task<Dictionary<string, object>> GetTeacherByIdAsync(long teacherId);
+        Task<Dictionary<string, object>> GetTeachersBySchoolAsync(long schoolId);
+        Task<Dictionary<string, object>> GetTeacherByEmailAddressAsync(string email);
         Task<Dictionary<string, object>> UpdateTeacherAsync(Teacher teacher);
+        Task<Dictionary<string, object>> UpdateClassAllocationAsync(Teacher teacher);
     }
 }

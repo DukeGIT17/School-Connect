@@ -62,11 +62,53 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             throw new NotImplementedException();
         }
 
-        public async Task<Dictionary<string, object>> UpdateAsync(Teacher teacher)
+        public async Task<Dictionary<string, object>> GetTeacherByEmailAddressAsync(string email)
         {
             try
             {
-                return await _teacherRepository.UpdateAsync(teacher);
+                return await _teacherRepository.GetTeacherByEmailAddressAsync(email);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetTeachersBySchoolAsync(long schoolId)
+        {
+            try
+            {
+                return await _teacherRepository.GetTeachersBySchoolAsync(schoolId);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> UpdateClassAllocationAsync(Teacher teacher)
+        {
+            try
+            {
+                return await _teacherRepository.UpdateClassAllocationAsync(teacher);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> UpdatePersonalInfoAsync(Teacher teacher)
+        {
+            try
+            {
+                return await _teacherRepository.UpdatePersonalInfoAsync(teacher);
             }
             catch (Exception ex)
             {

@@ -630,8 +630,9 @@ namespace SchoolConnect_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("StaffNr")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("StaffNr")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("TeacherID", "ClassID");
 

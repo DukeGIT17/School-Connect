@@ -8653,6 +8653,22 @@
       "PackagePath": "staticwebassets\\css\\PrincipalCSS\\PrincipalViewReports.css"
     },
     {
+      "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SchoolCSS\\ManageTeacherClassAssignment.css",
+      "PackagePath": "staticwebassets\\css\\SchoolCSS\\ManageTeacherClassAssignment.css"
+    },
+    {
+      "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SchoolCSS\\SchoolLandingPage.css",
+      "PackagePath": "staticwebassets\\css\\SchoolCSS\\SchoolLandingPage.css"
+    },
+    {
+      "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SchoolCSS\\SchoolUpdateDetails.css",
+      "PackagePath": "staticwebassets\\css\\SchoolCSS\\SchoolUpdateDetails.css"
+    },
+    {
+      "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SchoolCSS\\SchoolViewProfile.css",
+      "PackagePath": "staticwebassets\\css\\SchoolCSS\\SchoolViewProfile.css"
+    },
+    {
       "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\RolesReg.css",
       "PackagePath": "staticwebassets\\css\\SysAdminCSS\\RolesReg.css"
     },
@@ -8795,6 +8811,10 @@
     {
       "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\Teacher\\TeacherMakeAnnouncement.js",
       "PackagePath": "staticwebassets\\js\\Teacher\\TeacherMakeAnnouncement.js"
+    },
+    {
+      "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\Teacher\\TeacherViewAnnouncement.js",
+      "PackagePath": "staticwebassets\\js\\Teacher\\TeacherViewAnnouncement.js"
     },
     {
       "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\site.js",

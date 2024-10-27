@@ -27,14 +27,14 @@
                         <h4 class="title">@value.Announcement.Title</h4>
                         <div class="content">@value.Announcement.Content</div>
                     </div>
-                    <a asp-action="TeacherDetailedAnnouncement" asp-route-id="@value,Announcement.AnnouncementId" style="display:none;"></a>
-                    <a asp-action="DeleteAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-teacherId="@value.Announcement.TeacherID">
+                    <a asp-action="TeacherDetailedAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-teacherStaffNr="@value.StaffNr" style="display:none;"></a>
+                    <a asp-action="DeleteAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-teacherId="@value.Actor.Id">
                         <i class="fa-regular fa-trash-can"></i>
                     </a>
                 }
                 else
                 {
-                    if (value.Announcement.ViewedRecipients.Contains(value.Actor.Id.ToString()))
+                    if (value.Announcement.ViewedRecipients.Contains(value.Actor.StaffNr))
                     {
                         <i class="fa-regular fa-circle-check icon"></i>
                     }
@@ -46,7 +46,7 @@
                         <h4 class="title">@value.Announcement.Title</h4>
                         <div class="content">@value.Announcement.Content</div>
                     </div>
-                    <a asp-action="TeacherDetailedAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" style="display:none;"></a>
+                    <a asp-action="TeacherDetailedAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-teacherStaffNr="@value.StaffNr" style="display:none;"></a>
                     <i class="fa-regular fa-trash-can opaque"></i>
                 }
             </div>
@@ -54,5 +54,5 @@
     </div>
 </body>
 
-
+<script src="~/js/Teacher/TeacherViewAnnouncement.js"></script>
 
