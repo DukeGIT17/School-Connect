@@ -21280,6 +21280,27 @@
   },
   {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.SchoolController",
+    "Method": "AddClassesToSchool",
+    "RelativePath": "api/School/AddClassesToSchool",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classes",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      },
+      {
+        "Name": "schoolId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.SchoolController",
     "Method": "GetAllClassesBySchool",
     "RelativePath": "api/School/GetAllClassesBySchool",
     "HttpMethod": "GET",

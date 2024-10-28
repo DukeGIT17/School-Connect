@@ -3,6 +3,7 @@ using SchoolConnect_Web_App.IServices;
 using System.Text;
 using static SchoolConnect_Web_App.Services.SharedClientSideServices;
 using System.Net.Http.Headers;
+using System.Text.Json;
 
 namespace SchoolConnect_Web_App.Services
 {
@@ -253,6 +254,35 @@ namespace SchoolConnect_Web_App.Services
 
                 var response = await _httpClient.GetAsync(buildString.ToString());
                 return CheckSuccessStatus(response, "SubGrade");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> AddClassesToSchool(List<string> classDesignates, long schoolId)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(SchoolBasePath);
+                buildString.Append("/AddClassesToSchool?schoolId=");
+                buildString.Append(schoolId);
+
+                var request = new HttpRequestMessage
+                {
+                    Content = new StringContent(JsonSerializer.Serialize(classDesignates), Encoding.UTF8, "application/json"),
+                    Method = HttpMethod.Put,
+                    RequestUri = new Uri(buildString.ToString())
+                };
+
+
+                var response = await _httpClient.SendAsync(request);
+                return CheckSuccessStatus(response, "NoNeed");
             }
             catch (Exception ex)
             {

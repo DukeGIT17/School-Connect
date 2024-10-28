@@ -24,13 +24,12 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             _returnDictionary = [];
         }
 
-        public async Task<Dictionary<string, object>> BatchLoadParentsFromExcel(IFormFile parentSpreadsheet)
+        public async Task<Dictionary<string, object>> BatchLoadParentsFromExcelAsync(IFormFile parentSpreadsheet)
         {
             try
             {
                 var learners = await _context.Learners.ToListAsync();
-                if (learners is null)
-                    throw new("Cannot register a parent while there are no learners in the database. Please register learners first.");
+                if (learners is null) throw new("Cannot register a parent while there are no learners in the database. Please register learners first.");
 
                 _returnDictionary = SaveFile(parentSpreadsheet.FileName, "Misc", parentSpreadsheet);
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
@@ -49,24 +48,24 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     {
                         var parent = new Parent
                         {
-                            ProfileImage = worksheet.Cells[row, 1].Value.ToString()!,
-                            Name = worksheet.Cells[row, 2].Value.ToString()!,
-                            Surname = worksheet.Cells[row, 3].Value.ToString()!,
-                            Gender = worksheet.Cells[row, 4].Value.ToString()!,
-                            IdNo = worksheet.Cells[row, 5].Value.ToString()!,
-                            ParentType = worksheet.Cells[row, 6].Value.ToString()!,
-                            EmailAddress = worksheet.Cells[row, 7].Value.ToString()!,
+                            ProfileImage = worksheet.Cells[row, 1].Value.ToString()!.Trim(),
+                            Name = worksheet.Cells[row, 2].Value.ToString()!.Trim(),
+                            Surname = worksheet.Cells[row, 3].Value.ToString()!.Trim(),
+                            Gender = worksheet.Cells[row, 4].Value.ToString()!.Trim(),
+                            IdNo = worksheet.Cells[row, 5].Value.ToString()!.Trim(),
+                            ParentType = worksheet.Cells[row, 6].Value.ToString()!.Trim(),
+                            EmailAddress = worksheet.Cells[row, 7].Value.ToString()!.Trim(),
                             PhoneNumber = Convert.ToInt64(worksheet.Cells[row, 8].Value),
                             Role = "Parent",
-                            Title = worksheet.Cells[row, 9].Value.ToString()!,
+                            Title = worksheet.Cells[row, 9].Value.ToString()!.Trim(),
                             Children =
                             [
                                 new()
                                 {
-                                    LearnerID = learners.FirstOrDefault(l => l.IdNo == worksheet.Cells[row, 10].Value.ToString())!.Id,
+                                    LearnerID = learners.FirstOrDefault(l => l.IdNo == worksheet.Cells[row, 10].Value.ToString()!.Trim())!.Id,
                                     LearnerIdNo = worksheet.Cells[row, 10].Value.ToString()!,
-                                    Learner = learners.FirstOrDefault(l => l.IdNo == worksheet.Cells[row, 10].Value.ToString()),
-                                    ParentIdNo = worksheet.Cells[row, 5].Value.ToString()!
+                                    Learner = learners.FirstOrDefault(l => l.IdNo == worksheet.Cells[row, 10].Value.ToString()!.Trim()),
+                                    ParentIdNo = worksheet.Cells[row, 5].Value.ToString()!.Trim()
                                 }
                             ]
                         };
@@ -186,7 +185,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public async Task<Dictionary<string, object>> GetById(long parentId)
+        public async Task<Dictionary<string, object>> GetByIdAsync(long parentId)
         {
             try
             {
@@ -213,7 +212,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public Task<Dictionary<string, object>> GetByIdNo(string parentIdNo)
+        public Task<Dictionary<string, object>> GetByIdNoAsync(string parentIdNo)
         {
             throw new NotImplementedException();
         }

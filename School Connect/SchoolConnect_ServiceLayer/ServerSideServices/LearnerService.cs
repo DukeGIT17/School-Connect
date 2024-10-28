@@ -21,7 +21,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         {
             try
             {
-                return await _learnerRepo.BatchLoadLearnersFromExcel(file, schoolId);
+                return await _learnerRepo.BatchLoadLearnersFromExcelAsync(file, schoolId);
             }
             catch (Exception ex)
             {

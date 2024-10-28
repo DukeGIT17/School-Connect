@@ -21,6 +21,16 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             _returnDictionary = [];
         }
 
+        private int GetGradeFromClassDesignate(string classDesignate)
+        {
+            int rc = -1;
+            if (classDesignate.First() == 'R')
+                rc = 0;
+            else
+                rc = Convert.ToInt32(classDesignate.Remove(classDesignate.IndexOf(classDesignate.Last())));
+            return rc;
+        }
+
         public async Task<Dictionary<string, object>> RegisterSchoolAsync(School newSchool)
         {
             try
@@ -367,5 +377,62 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 return _returnDictionary;
             }
             }
+
+        public async Task<Dictionary<string, object>> AddClassesToSchool(List<string> classDesignates, long schoolId)
+        {
+            try
+            {
+                var school = await _context.Schools.Include(g => g.SchoolGradesNP)!.ThenInclude(c => c.Classes).FirstOrDefaultAsync(s => s.Id == schoolId);
+                if (school is null) throw new("Could not find a school with the specified ID.");
+
+                if (school.Type == "Primary")
+                {
+                    classDesignates = classDesignates.Where(designate => GetGradeFromClassDesignate(designate) > -1 && GetGradeFromClassDesignate(designate) < 8).ToList();
+                    if (classDesignates.IsNullOrEmpty()) throw new("The provided classes are not appropriate for the school type Primary");
+                }
+                else if (school.Type == "High")
+                {
+                    classDesignates = classDesignates.Where(designate => GetGradeFromClassDesignate(designate) > 7 && GetGradeFromClassDesignate(designate) < 13).ToList();
+                    if (classDesignates.IsNullOrEmpty()) throw new("The provided classes are not appropriate for the school type High");
+                }
+                else
+                {
+                    classDesignates = classDesignates.Where(designate => GetGradeFromClassDesignate(designate) > -1 && GetGradeFromClassDesignate(designate) < 13).ToList();
+                    if (classDesignates.IsNullOrEmpty()) throw new("The provided classes are not appropriate for the school type Combined");
+                }
+
+                foreach (var grade in school.SchoolGradesNP!)
+                    classDesignates = classDesignates.Where(designate => grade.Classes.FirstOrDefault(c => c.ClassDesignate == designate) == null).ToList();
+
+                if (!classDesignates.IsNullOrEmpty())
+                {
+                    foreach (var grade in school.SchoolGradesNP)
+                    {
+                        var designate = classDesignates.FirstOrDefault(designate => grade.GradeDesignate == designate.Remove(designate.IndexOf(designate.Last())));
+                        if (designate is not null)
+                        {
+                            grade.Classes.Add(new()
+                            {
+                                ClassDesignate = designate,
+                                GradeId = grade.Id,
+                            });
+                        }
+                    }
+
+                    _context.SaveChanges();
+                }
+                else
+                    throw new("All the provided classes already exist.");
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public Dictionary<string, object> AddTeacherToGroup(Teacher teacher, long schoolId, string groupName)
+        public Dictionary<string, object> AddTeacherToGroup(ref Teacher teacher, long schoolId, string groupName)
         {
             try
             {

@@ -156,5 +156,20 @@ namespace SchoolConnect_WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPut(nameof(AddClassesToSchool))]
+        public IActionResult AddClassesToSchool(List<string> classes, long schoolId)
+        {
+            try
+            {
+                _returnDictionary = _school.AddClassesToSchoolAsync(classes, schoolId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

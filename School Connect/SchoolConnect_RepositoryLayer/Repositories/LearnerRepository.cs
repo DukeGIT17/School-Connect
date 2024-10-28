@@ -98,7 +98,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 return _returnDictionary;
             }
         }
-        public async Task<Dictionary<string, object>> BatchLoadLearnersFromExcel(IFormFile learnerSpreadSheet, long schoolId)
+        public async Task<Dictionary<string, object>> BatchLoadLearnersFromExcelAsync(IFormFile learnerSpreadSheet, long schoolId)
         {
             try
             {
@@ -125,11 +125,11 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     {
                         var parent = new Parent
                         {
-                            ProfileImage = parentWorksheet.Cells[row, 1].Value?.ToString(),
-                            Name = parentWorksheet.Cells[row, 2].Value?.ToString(),
-                            Surname = parentWorksheet.Cells[row, 3].Value?.ToString(),
-                            Gender = parentWorksheet.Cells[row, 4].Value?.ToString(),
-                            IdNo = parentWorksheet.Cells[row, 5].Value?.ToString(),
+                            ProfileImage = parentWorksheet.Cells[row, 1].Value?.ToString()!.Trim(),
+                            Name = parentWorksheet.Cells[row, 2].Value?.ToString()!.Trim(),
+                            Surname = parentWorksheet.Cells[row, 3].Value?.ToString()!.Trim(),
+                            Gender = parentWorksheet.Cells[row, 4].Value?.ToString()!.Trim(),
+                            IdNo = parentWorksheet.Cells[row, 5].Value?.ToString()!.Trim()!,
                             ParentType = parentWorksheet.Cells[row, 6].Value?.ToString(),
                             EmailAddress = parentWorksheet.Cells[row, 7].Value?.ToString(),
                             PhoneNumber = Convert.ToInt64(parentWorksheet.Cells[row, 8].Value),

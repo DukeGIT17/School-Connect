@@ -14,5 +14,6 @@ namespace SchoolConnect_ServiceLayer.IServerSideServices
         Task<Dictionary<string, object>> GetSchoolGradesAsync(long schoolid, string? fromGrade = null, string? toGrade = null);
         Task<Dictionary<string, object>> GetAllClassesBySchoolAsync(long schoolId);
         Task<Dictionary<string, object>> GetClassBySchoolAsync(string classDesignate, long schoolId);
+        Task<Dictionary<string, object>> AddClassesToSchoolAsync(List<string> classDesignates, long schoolId);
     }
 }

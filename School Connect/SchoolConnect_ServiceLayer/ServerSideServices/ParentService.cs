@@ -15,7 +15,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         {
             try
             {
-                return await _parentRepo.BatchLoadParentsFromExcel(parentFile);
+                return await _parentRepo.BatchLoadParentsFromExcelAsync(parentFile);
             }
             catch (Exception ex)
             {
@@ -60,7 +60,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             {
                 return id < 1 ?
                     throw new($"The provided id '{id}' is less than one. Please provide a valid id.") :
-                    await _parentRepo.GetById(id);
+                    await _parentRepo.GetByIdAsync(id);
             }
             catch (Exception ex)
             {

@@ -15,5 +15,6 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
         Task<Dictionary<string, object>> RemoveSchool(string emisNumber, long schoolId = -1);
         Task<Dictionary<string, object>> GetAllClassesBySchoolAsync(long schoolId);
         Task<Dictionary<string, object>> GetClassBySchoolAsync(string classDesignate, long schoolId);
+        Task<Dictionary<string, object>> AddClassesToSchool(List<string> classDesignates, long schoolId);
     }
 }

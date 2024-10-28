@@ -70,7 +70,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
-        public async Task<Dictionary<string, object>> GetAnnouncementByTeacherIdAsync(long teacherId)
+        public async Task<Dictionary<string, object>> GetAnnouncementsByTeacherIdAsync(long teacherId)
         {
             try
             {

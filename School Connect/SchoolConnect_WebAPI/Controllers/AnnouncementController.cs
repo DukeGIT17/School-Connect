@@ -76,7 +76,7 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                _returnDictionary = _announcementService.GetAnnouncementByTeacherIdAsync(id).Result;
+                _returnDictionary = _announcementService.GetAnnouncementsByTeacherIdAsync(id).Result;
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 return Ok(_returnDictionary);
             }

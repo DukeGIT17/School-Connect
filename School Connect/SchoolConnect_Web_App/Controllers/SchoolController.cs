@@ -199,5 +199,56 @@ namespace SchoolConnect_Web_App.Controllers
                 return RedirectToAction("Index", "Home");
             }
         }
+
+        [HttpGet]
+        public IActionResult ManageSchoolGrades(long schoolId)
+        {
+            try
+            {
+                _returnDictionary = _schoolService.GetAllClassesBySchoolAsync(schoolId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not IEnumerable<SubGrade> classes) throw new("Could not acquire class from the provided dictionary.");
+
+                classes = [.. classes.OrderBy(c => c.ClassDesignate.StartsWith('R') ? 0 : 1).ThenBy(c => c.ClassDesignate)];
+                GradeClassesVIewModel model = new()
+                {
+                    Classes = classes,
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        
+        [HttpPost]
+        public IActionResult ManageSchoolGrades(GradeClassesVIewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    char[] seperators = [',', ' '];
+                    List<string> classDesignates = model.ClassesToAdd.Split(seperators, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToList();
+                    _returnDictionary = _schoolService.AddClassesToSchool(classDesignates, model.SchoolId).Result;
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                    return RedirectToAction("SchoolManagementLandingPage", new { schoolId = model.SchoolId });
+                }
+
+                _returnDictionary = _schoolService.GetAllClassesBySchoolAsync(model.SchoolId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not IEnumerable<SubGrade> classes) throw new("Could not acqurie classes from the provided dictionary.");
+                model.Classes = classes;
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
+        }
     }
 }

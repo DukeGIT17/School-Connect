@@ -8653,6 +8653,10 @@
       "PackagePath": "staticwebassets\\css\\PrincipalCSS\\PrincipalViewReports.css"
     },
     {
+      "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SchoolCSS\\ManageSchoolGrades.css",
+      "PackagePath": "staticwebassets\\css\\SchoolCSS\\ManageSchoolGrades.css"
+    },
+    {
       "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SchoolCSS\\ManageTeacherClassAssignment.css",
       "PackagePath": "staticwebassets\\css\\SchoolCSS\\ManageTeacherClassAssignment.css"
     },

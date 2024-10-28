@@ -35,7 +35,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 teacher.TeacherSchoolNP = school;
 
-                _returnDictionary = _groupRepo.AddTeacherToGroup(teacher, teacher.SchoolID, "All");
+                _returnDictionary = _groupRepo.AddTeacherToGroup(ref teacher, teacher.SchoolID, "All");
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                 _returnDictionary = await _signInRepo.CreateUserAccountAsync(teacher.EmailAddress, teacher.Role, teacher.PhoneNumber.ToString());
@@ -72,7 +72,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     .AsNoTracking()
                     .Include(t => t.TeacherSchoolNP)
                     .ThenInclude(a => a!.SchoolAnnouncementsNP)
-                    .FirstOrDefaultAsync();
+                    .FirstOrDefaultAsync(t => t.Id == teacherId);
                 if (teacher is null) throw new("Could not find a teacher with the specified ID.");
 
                 teacher.AnnouncementsNP = null;
@@ -180,19 +180,19 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     {
                         var teacher = new Teacher
                         {
-                            ProfileImage = worksheet.Cells[row, 1].Value?.ToString(),
-                            Title = worksheet.Cells[row, 2].Value?.ToString(),
-                            Name = worksheet.Cells[row, 3].Value?.ToString(),
-                            Surname = worksheet.Cells[row, 4].Value?.ToString(),
-                            Gender = worksheet.Cells[row, 5].Value?.ToString(),
-                            StaffNr = worksheet.Cells[row, 6].Value?.ToString()!,
-                            Subjects = worksheet.Cells[row, 7].Value?.ToString()
+                            ProfileImage = worksheet.Cells[row, 1].Value?.ToString()!.Trim(),
+                            Title = worksheet.Cells[row, 2].Value?.ToString()!.Trim(),
+                            Name = worksheet.Cells[row, 3].Value?.ToString()!.Trim(),
+                            Surname = worksheet.Cells[row, 4].Value?.ToString()!.Trim(),
+                            Gender = worksheet.Cells[row, 5].Value?.ToString()!.Trim(),
+                            StaffNr = worksheet.Cells[row, 6].Value?.ToString()!.Trim()!,
+                            Subjects = worksheet.Cells[row, 7].Value?.ToString()!.Trim()
                             .Split(',', StringSplitOptions.RemoveEmptyEntries)
                             .Select(subject => subject.Trim())
                             .Where(subject => !string.IsNullOrWhiteSpace(subject))
                             .ToList()!,
                             PhoneNumber = Convert.ToInt64(worksheet.Cells[row, 8].Value),
-                            EmailAddress = worksheet.Cells[row, 9].Value?.ToString()!,
+                            EmailAddress = worksheet.Cells[row, 9].Value?.ToString()!.Trim()!,
                             SchoolID = schoolId,
                             Role = "Teacher"
                         };
@@ -206,7 +206,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                             throw new(longErrorString);
                         }
 
-                        _returnDictionary = _groupRepo.AddTeacherToGroup(teacher, schoolId, "All");
+                        _returnDictionary = _groupRepo.AddTeacherToGroup(ref teacher, schoolId, "All");
                         if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                         _returnDictionary = await _signInRepo.CreateUserAccountAsync(teacher.EmailAddress, teacher.Role, teacher.PhoneNumber.ToString());
@@ -279,21 +279,32 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                var existingTeacher = await _context.Teachers.FirstOrDefaultAsync(t => t.Id == teacher.Id);
+                var existingTeacher = await _context.Teachers.Include(m => m.MainClass).Include(c => c.Classes).FirstOrDefaultAsync(t => t.Id == teacher.Id);
                 if (existingTeacher is null) throw new("Could not find the teacher who's information is being updated.");
                 
                 if (teacher.MainClass is not null)
                 {
+                    if (existingTeacher.MainClass is not null)
+                        throw new("This teacher already has a main class associated with them. A teacher can not have more than one main class.");
+
                     existingTeacher.MainClass = teacher.MainClass;
-                    _returnDictionary = _groupRepo.AddTeacherToGroup(teacher, teacher.SchoolID, $"Grade {teacher.MainClass.ClassDesignate} Teachers");
+                    _returnDictionary = _groupRepo.AddTeacherToGroup(ref existingTeacher, teacher.SchoolID, $"Grade {teacher.MainClass.ClassDesignate} Teachers");
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 }
-                else
+                
+                if (teacher.Classes is not null)
                 {
-                    existingTeacher.Classes = teacher.Classes;
-                    _returnDictionary = _groupRepo.AddTeacherToGroup(teacher, teacher.SchoolID, $"Grade {teacher.Classes!.First().ClassDesignate} Teachers");
-                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    if (existingTeacher.Classes is not null)
+                    {
+                        teacher.Classes = teacher.Classes.Where(cls => existingTeacher.Classes.FirstOrDefault(c => c.ClassDesignate == cls.ClassDesignate) == null).ToList();
+                    }
 
+                    if (!teacher.Classes.Any())
+                        throw new("This teacher already teaches the provided class.");
+
+                    existingTeacher.Classes = teacher.Classes;
+                    _returnDictionary = _groupRepo.AddTeacherToGroup(ref existingTeacher, teacher.SchoolID, $"Grade {teacher.Classes.First().ClassDesignate} Teachers");
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 }
 
                 _context.SaveChanges();

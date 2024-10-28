@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "L5NNS0s6WUlJGfdtCMnvMRMjF7ZDdD8dko2yZeIi1ZA=",
+  "Hash": "iew+lR8i7BZDxk777u2qrzYkJjkL92ZXfbOWhbYM/gU=",
   "Source": "SchoolConnect_Web_App",
   "BasePath": "_content/SchoolConnect_Web_App",
   "Mode": "Default",
@@ -502,6 +502,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\PrincipalCSS\\PrincipalViewReports.css"
+    },
+    {
+      "Identity": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SchoolCSS\\ManageSchoolGrades.css",
+      "SourceId": "SchoolConnect_Web_App",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\",
+      "BasePath": "_content/SchoolConnect_Web_App",
+      "RelativePath": "css/SchoolCSS/ManageSchoolGrades.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\SchoolCSS\\ManageSchoolGrades.css"
     },
     {
       "Identity": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SchoolCSS\\ManageTeacherClassAssignment.css",

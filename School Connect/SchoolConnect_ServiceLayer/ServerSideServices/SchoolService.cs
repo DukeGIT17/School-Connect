@@ -10,7 +10,21 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         private readonly ISchool _schoolRepo = schoolRepo;
         private Dictionary<string, object> _returnDictionary = [];
 
-        public Task<Dictionary<string, object>> DeleteSchoolAsync(School school)
+        public async Task<Dictionary<string, object>> AddClassesToSchoolAsync(List<string> classDesignates, long schoolId)
+        {
+            try
+            {
+                return await _schoolRepo.AddClassesToSchool(classDesignates, schoolId);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> DeleteSchoolAsync(School school)
         {
             throw new NotImplementedException();
         }
