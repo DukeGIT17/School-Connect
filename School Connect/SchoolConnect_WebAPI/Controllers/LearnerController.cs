@@ -17,7 +17,7 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                _returnDictionary = _learnerService.LoadLearners(file, schoolId).Result;
+                _returnDictionary = _learnerService.LoadLearnersAsync(file, schoolId).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
                 return Ok(_returnDictionary);
             }
@@ -61,7 +61,7 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                _returnDictionary = _learnerService.GetById(id).Result;
+                _returnDictionary = _learnerService.GetLearnerByIdAsync(id).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
                 return Ok(_returnDictionary);
             }
@@ -76,7 +76,7 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                _returnDictionary = _learnerService.GetByIdNo(idNo).Result;
+                _returnDictionary = _learnerService.GetLearnerByIdNoAsync(idNo).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
                 return Ok(_returnDictionary);
             }
@@ -93,6 +93,21 @@ namespace SchoolConnect_WebAPI.Controllers
             try
             {
                 _returnDictionary = _learnerService.UpdateAsync(learner).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet(nameof(GetLearnersByClass))]
+        public IActionResult GetLearnersByClass(long teacherId)
+        {
+            try
+            {
+                _returnDictionary = _learnerService.GetLearnersByClassAsync(teacherId).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
                 return Ok(_returnDictionary);
             }

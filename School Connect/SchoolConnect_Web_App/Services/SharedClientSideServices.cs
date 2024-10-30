@@ -94,8 +94,22 @@ namespace SchoolConnect_Web_App.Services
                             break;
 
                         case "Learner":
-                            AssignValuesFromDictionary(learner, dict!);
-                            _returnDictionary["Result"] = learner;
+                            if (dict is null)
+                            {
+                                List<Learner> learners = [];
+                                foreach (var val in list)
+                                {
+                                    AssignValuesFromDictionary(learner, val as Dictionary<string, object>);
+                                    var learnerString = JsonSerializer.Serialize(learner);
+                                    learners.Add(JsonSerializer.Deserialize<Learner>(learnerString)!);
+                                }
+                                _returnDictionary["Result"] = learners;
+                            }
+                            else
+                            {
+                                AssignValuesFromDictionary(learner, dict!);
+                                _returnDictionary["Result"] = learner;
+                            }
                             break;
 
                         case "SubGrade":

@@ -17,7 +17,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             _returnDictionary = [];
         }
 
-        public async Task<Dictionary<string, object>> LoadLearners(IFormFile file, long schoolId)
+        public async Task<Dictionary<string, object>> LoadLearnersAsync(IFormFile file, long schoolId)
         {
             try
             {
@@ -60,13 +60,13 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
-        public async Task<Dictionary<string, object>> GetById(long id)
+        public async Task<Dictionary<string, object>> GetLearnerByIdAsync(long id)
         {
             try
             {
                 return id < 1 ?
                     throw new($"The provided id '{id}' is less than one. Please provide a valid id.") :
-                    await _learnerRepo.GetById(id);
+                    await _learnerRepo.GetLearnerByIdAsync(id);
             }
             catch (Exception ex)
             {
@@ -76,11 +76,11 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
-        public async Task<Dictionary<string, object>> GetByIdNo(string idNo)
+        public async Task<Dictionary<string, object>> GetLearnerByIdNoAsync(string idNo)
         {
             try
             {
-                return await _learnerRepo.GetByIdNo(idNo);
+                return await _learnerRepo.GetLearnerByIdNoAsync(idNo);
             }
             catch (Exception ex)
             {
@@ -95,6 +95,20 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             try
             {
                 return await _learnerRepo.UpdateAsync(learner);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetLearnersByClassAsync(long teacherId)
+        {
+            try
+            {
+                return await _learnerRepo.GetLearnersByClassAsync(teacherId);
             }
             catch (Exception ex)
             {

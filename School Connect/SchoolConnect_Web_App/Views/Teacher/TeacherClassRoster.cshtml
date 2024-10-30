@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Learner>
+@{
+    Layout = null;
+}
+
+<link rel="stylesheet" href="~/css/TeacherCSS/TeacherClassRoster.css" />
+<link rel="stylesheet" href="~/FontAwesome/css/all.min.css" />
+
+<body>
+    <header>
+        <div class="header">
+            <h1>Class Roaster</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="table-scrollable">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Number</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    @{
+                        int index = 1;
+                        foreach (var learner in Model)
+                        {
+                            <a id="@learner.Id" asp-action="TeacherViewLearnerProfile" asp-route-learnerIdNo="@learner.IdNo" style="display:none;">LearnerLink</a>
+                            <tr onclick="moveTo(@learner.Id)">
+                                <td>@index</td>
+                                <td>@learner.Name</td>
+                                <td>@learner.Surname</td>
+                            </tr>
+                            index++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Buttons Section -->
+        <a asp-controller="Teacher" asp-action="TeacherMarkAttendance" class="button">MARK ATTENDANCE</a>
+        <a asp-controller="Teacher" asp-action="TeacherMakeReports" class="button">MAKE REPORTS</a>
+
+        <!-- Chat Button -->
+        <a asp-controller="Teacher" asp-action="TeacherChatList" class="chat-button">
+            <i class="fas fa-comments chat-icon"></i>
+        </a>
+    </div>
+</body>
+
+<script src="~/js/Teacher/TeacherClassRoster.js"></script>

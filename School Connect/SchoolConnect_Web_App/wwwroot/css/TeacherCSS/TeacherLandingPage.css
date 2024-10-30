@@ -50,23 +50,23 @@ body {
     position: relative;
 }
 
-    .form-group-1 label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-        text-size-adjust: 10%;
-    }
+.form-group-1 label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-size-adjust: 10%;
+}
 
-    .form-group-1 input {
-        background: transparent;
-        border: none;
-        outline: none;
-        color: white;
-        width: 100%;
-        padding-left: 40px;
-        line-height: 12px;
-        border-radius: 25px;
-    }
+.form-group-1 input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    width: 100%;
+    padding-left: 40px;
+    line-height: 12px;
+    border-radius: 25px;
+}
 
 .form-group {
     background-color: rgba(255, 255, 255, 0.1);
@@ -121,10 +121,10 @@ body {
 }
 
 
-    .logout-button:hover {
-        background-color: rgba(255, 255, 255, 0.2); /* Slightly opaque on hover */
-        box-shadow: 0 0 10px rgba(255, 255, 255, 1);
-    }
+.logout-button:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly opaque on hover */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 1);
+}
 
 .icon {
     font-size: 100px;
@@ -145,4 +145,8 @@ h2 {
     font-weight: bold;
     margin: 10px 0;
     color: ghostwhite;
+}
+
+.opaque {
+    opacity: .4
 }

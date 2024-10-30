@@ -8976,6 +8976,22 @@
   },
   {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.LearnerController",
+    "Method": "GetLearnersByClass",
+    "RelativePath": "api/Learner/GetLearnersByClass",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "teacherId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.LearnerController",
     "Method": "LoadLearnersFromExcel",
     "RelativePath": "api/Learner/LoadLearnersFromExcel",
     "HttpMethod": "POST",
@@ -21340,6 +21356,22 @@
     "Parameters": [
       {
         "Name": "schoolId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.SchoolController",
+    "Method": "GetClassByMainTeacher",
+    "RelativePath": "api/School/GetClassByMainTeacher",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "teacherId",
         "Type": "System.Int64",
         "IsRequired": false
       }

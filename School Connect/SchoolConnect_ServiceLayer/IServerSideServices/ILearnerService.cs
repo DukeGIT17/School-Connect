@@ -5,10 +5,11 @@ namespace SchoolConnect_ServiceLayer.IServerSideServices
 {
     public interface ILearnerService
     {
-        Task<Dictionary<string, object>> LoadLearners(IFormFile file, long schoolId);
+        Task<Dictionary<string, object>> LoadLearnersAsync(IFormFile file, long schoolId);
         Task<Dictionary<string, object>> CreateAsync(Learner learner);
         Task<Dictionary<string, object>> UpdateAsync(Learner learner);
-        Task<Dictionary<string, object>> GetById(long id);
-        Task<Dictionary<string, object>> GetByIdNo(string idNo);
+        Task<Dictionary<string, object>> GetLearnerByIdAsync(long id);
+        Task<Dictionary<string, object>> GetLearnerByIdNoAsync(string idNo);
+        Task<Dictionary<string, object>> GetLearnersByClassAsync(long teacherId);
     }
 }

@@ -111,14 +111,14 @@ namespace SchoolConnect_Web_App.Services
             }
         }
 
-        public async Task<Dictionary<string, object>> GetLearnerByIdNo(string idNo)
+        public async Task<Dictionary<string, object>> GetLearnerByIdNoAsync(string idNo)
         {
             try
             {
                 StringBuilder builString = new();
                 builString.Append("http://localhost:5293");
                 builString.Append(learnerBasePath);
-                builString.Append("/GetLearnerByIdNo?=");
+                builString.Append("/GetLearnerByIdNo?idNo=");
                 builString.Append(idNo);
 
                 var response = await _httpClient.GetAsync(builString.ToString());
@@ -157,6 +157,27 @@ namespace SchoolConnect_Web_App.Services
 
                 var response = await _httpClient.SendAsync(request);
                 return CheckSuccessStatus(response, "NoNeed");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetLearnersByClassAsync(long teacherId)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(learnerBasePath);
+                buildString.Append("/GetLearnersByClass?teacherId=");
+                buildString.Append(teacherId);
+
+                var response = await _httpClient.GetAsync(buildString.ToString());
+                return CheckSuccessStatus(response, "Learner");
             }
             catch (Exception ex)
             {

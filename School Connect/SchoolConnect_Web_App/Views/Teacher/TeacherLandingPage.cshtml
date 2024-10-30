@@ -21,9 +21,18 @@
         <a asp-route-id="@Model.Id" asp-action="TeacherViewAnnouncements" class="button">View Announcements</a>
     </div>
     <br />
-    <div class="form-group">
-        <a asp-controller="Teacher" asp-action="TeacherClassRoaster" class="button">Class Roaster</a>
-    </div>
+    @if (Model.MainClass is not null)
+    {
+        <div class="form-group">
+            <a asp-action="TeacherClassRoster" asp-route-teacherId="@Model.Id" class="button">Class Roaster</a>
+        </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <a class="button opaque">Class Roaster</a>
+        </div>
+    }
     <br />
     <br />
     <div class="title">Subjects:</div>

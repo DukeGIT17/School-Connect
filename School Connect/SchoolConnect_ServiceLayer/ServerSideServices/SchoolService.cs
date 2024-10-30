@@ -57,6 +57,20 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
+        public async Task<Dictionary<string, object>> GetClassByMainTeacher(long teacherId)
+        {
+            try
+            {
+                return await _schoolRepo.GetClassByMainTeacher(teacherId);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
         public async Task<Dictionary<string, object>> GetClassBySchoolAsync(string classDesignate, long schoolId)
         {
             try

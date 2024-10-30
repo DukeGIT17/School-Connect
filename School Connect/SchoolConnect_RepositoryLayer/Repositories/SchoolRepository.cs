@@ -114,7 +114,6 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                                     {
                                         ClassDesignate = grade.ToString() + "A",
                                         SubjectsTaught = DetermineClassSubjects(int.Parse(grade.ToString())),
-
                                     }
                                 ]
                             };
@@ -399,7 +398,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                var school = await _context.Schools.Include(g => g.SchoolGradesNP)!.ThenInclude(c => c.Classes).FirstOrDefaultAsync(s => s.Id == schoolId);
+                var school = await _context.Schools.Include(sg => sg.SchoolGroupsNP).Include(g => g.SchoolGradesNP)!.ThenInclude(c => c.Classes).FirstOrDefaultAsync(s => s.Id == schoolId);
                 if (school is null) throw new("Could not find a school with the specified ID.");
 
                 if (school.Type == "Primary")
@@ -433,6 +432,13 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                                 ClassDesignate = designate,
                                 GradeId = grade.Id,
                                 SubjectsTaught = grade.GradeDesignate == "R" ? DetermineClassSubjects(0) : DetermineClassSubjects(Convert.ToInt32(grade.GradeDesignate))
+                            });
+
+                            school.SchoolGroupsNP.Add(new()
+                            {
+                                GroupMemberIDs = [],
+                                GroupName = $"Grade {designate} Teachers",
+                                SchoolID = school.Id,
                             });
                         }
                     }
@@ -511,9 +517,11 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                var cls = await _context.SubGrade.FirstOrDefaultAsync(c => c.MainTeacherId == teacherId);
+                var cls = await _context.SubGrade.Include(m => m.MainTeacher).FirstOrDefaultAsync(c => c.MainTeacherId == teacherId);
                 if (cls is null) throw new("Could not find a class with the specified teacher as the main teacher.");
 
+                 _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = cls;
                 return _returnDictionary;
             }
             catch (Exception ex)

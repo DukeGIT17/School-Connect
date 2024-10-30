@@ -8701,8 +8701,8 @@
       "PackagePath": "staticwebassets\\css\\TeacherCSS\\TeacherChatList.css"
     },
     {
-      "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherClassRoaster.css",
-      "PackagePath": "staticwebassets\\css\\TeacherCSS\\TeacherClassRoaster.css"
+      "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherClassRoster.css",
+      "PackagePath": "staticwebassets\\css\\TeacherCSS\\TeacherClassRoster.css"
     },
     {
       "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherDetailedAnnouncement.css",
@@ -8815,6 +8815,10 @@
     {
       "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\SysAdminJS\\SchoolReg.js",
       "PackagePath": "staticwebassets\\js\\SysAdminJS\\SchoolReg.js"
+    },
+    {
+      "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\Teacher\\TeacherClassRoster.js",
+      "PackagePath": "staticwebassets\\js\\Teacher\\TeacherClassRoster.js"
     },
     {
       "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\Teacher\\TeacherMakeAnnouncement.js",

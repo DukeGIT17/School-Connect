@@ -1,0 +1,145 @@
+﻿/* Header Styles */
+.header {
+    background-color: #0F2E34;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+}
+
+/* Header Title */
+.header h1 {
+    font-size: 26px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* Body Styles */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: ghostwhite;
+    height: 100vh;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Container Styles */
+.container {
+    background-color: #f5f5f5;
+    margin: 0;
+    border-radius: 8px;
+    box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.4);
+    width: 100vw;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Scrollable Table Container */
+.table-scrollable {
+    flex-grow: 1; /* Allows this div to take up all available space */
+    overflow-y: auto; /* Enable vertical scroll */
+    width: 100%;
+    background-color: ghostwhite;
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    height: min-content;
+    max-height: 70vh;
+}
+
+/* Table Styles */
+table {
+    width: 100%; /* Full width of the table */
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #0F2E34;
+    color: white;
+    text-transform: uppercase;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover effect on rows */
+tbody tr:hover {
+    background-color: white;
+}
+
+/* Icon styles for attendance */
+.icon {
+    font-size: 18px;
+}
+
+.present {
+    color: green;
+}
+
+.absent {
+    color: red;
+}
+
+.learner-link {
+    text-decoration: none;
+    color: #0F2E34;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+/* Button Styling */
+.button {
+    display: block;
+    background-color: #0F2E34;
+    color: white;
+    padding: 15px;
+    margin: 10px auto;
+    width: 300px;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Chat Button Styles */
+.chat-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: lightgrey;
+    border: none;
+    border-radius: 50%;
+    padding: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.chat-button:hover {
+    background-color: #757575;
+}
+
+.chat-icon {
+    color: #0F2E34;
+    font-size: 30px;
+}
+
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    table th, table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}

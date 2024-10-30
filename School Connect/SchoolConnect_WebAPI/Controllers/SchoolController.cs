@@ -200,6 +200,21 @@ namespace SchoolConnect_WebAPI.Controllers
             {
                 return BadRequest(ex.Message);
             }
-        }        
+        }
+        
+        [HttpGet(nameof(GetClassByMainTeacher))]
+        public IActionResult GetClassByMainTeacher(long teacherId)
+        {
+            try
+            {
+                _returnDictionary = _school.GetClassByMainTeacher(teacherId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

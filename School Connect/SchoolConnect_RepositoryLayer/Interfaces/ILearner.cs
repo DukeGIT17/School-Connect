@@ -7,10 +7,10 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
     {
         Task<Dictionary<string, object>> BatchLoadLearnersFromExcelAsync(IFormFile file, long schoolId);
         Task<Dictionary<string, object>> CreateAsync(Learner learner);
-        Task<Dictionary<string, object>> GetById(long learnerId);
-        Task<Dictionary<string, object>> GetByIdNo(string learnerIdNo);
+        Task<Dictionary<string, object>> GetLearnerByIdAsync(long learnerId);
+        Task<Dictionary<string, object>> GetLearnerByIdNoAsync(string learnerIdNo);
         Task<Dictionary<string, object>> GetAll();
-        Task<Dictionary<string, object>> GetClass(string classId);
+        Task<Dictionary<string, object>> GetLearnersByClassAsync(long teacherId);
         Task<Dictionary<string, object>> UpdateAsync(Learner learner);
         Task<Dictionary<string, object>> Remove(long learnerId);
         Task<Dictionary<string, object>> RemoveClass(string classId);

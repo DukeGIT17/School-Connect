@@ -1,41 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_WebAPI\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\innoc\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\controllers\\schoolcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8960FA26-AFA1-4BDE-9701-70BA1EE08720}|..\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj|c:\\users\\innoc\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_repositorylayer\\repositories\\schoolrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\innoc\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\views\\school\\schoolupdatedetails.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\innoc\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\controllers\\principalcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\innoc\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\views\\principal\\principalgradelandingpage.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\innoc\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\services\\schoolservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\innoc\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\views\\teacher\\teacherviewprofile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\innoc\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\views\\principal\\principalviewgrades.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8960FA26-AFA1-4BDE-9701-70BA1EE08720}|..\\SchoolConnect_RepositoryLayer\\SchoolConnect_RepositoryLayer.csproj|c:\\users\\innoc\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_repositorylayer\\repositories\\announcementrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9EFA8890-5DB8-4CFE-BF86-A62EE59959AF}|..\\SchoolConnect_Web_App\\SchoolConnect_Web_App.csproj|c:\\users\\innoc\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_web_app\\controllers\\teachercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C79390AB-C36C-400E-8F6A-0E05D065A72B}|..\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj|c:\\users\\innoc\\desktop\\git repo\\school-connect\\school connect\\schoolconnect_domainlayer\\models\\grade.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -43,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 550,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -60,145 +26,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "SchoolUpdateDetails.cshtml",
-              "DocumentMoniker": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\School\\SchoolUpdateDetails.cshtml",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Views\\School\\SchoolUpdateDetails.cshtml",
-              "ToolTip": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\School\\SchoolUpdateDetails.cshtml",
-              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Views\\School\\SchoolUpdateDetails.cshtml",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAAA/AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-30T10:05:01.905Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SchoolService.cs",
-              "DocumentMoniker": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Services\\SchoolService.cs",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Services\\SchoolService.cs",
-              "ToolTip": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Services\\SchoolService.cs",
-              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Services\\SchoolService.cs",
-              "ViewState": "AgIAACUBAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T09:46:43.422Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "TeacherViewProfile.cshtml",
-              "DocumentMoniker": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Teacher\\TeacherViewProfile.cshtml",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Views\\Teacher\\TeacherViewProfile.cshtml",
-              "ToolTip": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Teacher\\TeacherViewProfile.cshtml",
-              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Views\\Teacher\\TeacherViewProfile.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-30T01:32:02.101Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PrincipalGradeLandingPage.cshtml",
-              "DocumentMoniker": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalGradeLandingPage.cshtml",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalGradeLandingPage.cshtml",
-              "ToolTip": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalGradeLandingPage.cshtml",
-              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalGradeLandingPage.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-30T01:31:33.249Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "AnnouncementRepo.cs",
-              "DocumentMoniker": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\Repositories\\AnnouncementRepo.cs",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_RepositoryLayer\\Repositories\\AnnouncementRepo.cs",
-              "ToolTip": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\Repositories\\AnnouncementRepo.cs",
-              "RelativeToolTip": "..\\SchoolConnect_RepositoryLayer\\Repositories\\AnnouncementRepo.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAowHAAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T01:20:54.623Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "TeacherController.cs",
-              "DocumentMoniker": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\TeacherController.cs",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Controllers\\TeacherController.cs",
-              "ToolTip": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\TeacherController.cs",
-              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Controllers\\TeacherController.cs",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAswIEAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T01:19:14.61Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SchoolController.cs",
-              "DocumentMoniker": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\SchoolController.cs",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Controllers\\SchoolController.cs",
-              "ToolTip": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\SchoolController.cs",
-              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Controllers\\SchoolController.cs",
-              "ViewState": "AgIAAHEAAAAAAAAAAAAswHcAAABMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T01:19:11.955Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "SchoolRepository.cs",
-              "DocumentMoniker": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\Repositories\\SchoolRepository.cs",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_RepositoryLayer\\Repositories\\SchoolRepository.cs",
-              "ToolTip": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_RepositoryLayer\\Repositories\\SchoolRepository.cs",
-              "RelativeToolTip": "..\\SchoolConnect_RepositoryLayer\\Repositories\\SchoolRepository.cs",
-              "ViewState": "AgIAABABAAAAAAAAAAAUwAQCAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T00:57:16.374Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "PrincipalController.cs",
-              "DocumentMoniker": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\PrincipalController.cs",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Controllers\\PrincipalController.cs",
-              "ToolTip": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Controllers\\PrincipalController.cs",
-              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Controllers\\PrincipalController.cs",
-              "ViewState": "AgIAAJcAAAAAAAAAAAAowKoAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T00:56:36.26Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PrincipalViewGrades.cshtml",
-              "DocumentMoniker": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalViewGrades.cshtml",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalViewGrades.cshtml",
-              "ToolTip": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalViewGrades.cshtml",
-              "RelativeToolTip": "..\\SchoolConnect_Web_App\\Views\\Principal\\PrincipalViewGrades.cshtml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAQAAAA+AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-10-30T00:50:30.86Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Grade.cs",
-              "DocumentMoniker": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\Models\\Grade.cs",
-              "RelativeDocumentMoniker": "..\\SchoolConnect_DomainLayer\\Models\\Grade.cs",
-              "ToolTip": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\Models\\Grade.cs",
-              "RelativeToolTip": "..\\SchoolConnect_DomainLayer\\Models\\Grade.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBYAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T00:50:40.594Z"
             }
           ]
         },

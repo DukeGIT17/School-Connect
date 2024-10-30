@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 using SchoolConnect_Web_App.Models;
@@ -10,11 +11,13 @@ namespace schoolconnect.Controllers
     {
         private readonly ITeacherService _teacherService;
         private readonly IAnnouncementService _announcementService;
+        private readonly ILearnerService _learnerService;
         private Dictionary<string, object> _returnDictionary;
-        public TeacherController(ITeacherService teacherService, IAnnouncementService announcementService)
+        public TeacherController(ITeacherService teacherService, IAnnouncementService announcementService, ILearnerService learner)
         {
             _teacherService = teacherService;
             _announcementService = announcementService;
+            _learnerService = learner;
             _returnDictionary = [];
         }
 
@@ -179,9 +182,21 @@ namespace schoolconnect.Controllers
             }
         }
 
-        public IActionResult TeacherClassRoaster()
+        [HttpGet]
+        public IActionResult TeacherClassRoster(long teacherId)
         {
-            return View();
+            try
+            {
+                _returnDictionary = _learnerService.GetLearnersByClassAsync(teacherId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not IEnumerable<Learner> learners) throw new("Could not acquire learners from the provided dictionary.");
+                return View(learners);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public IActionResult TeacherMarkAttendance()
@@ -194,9 +209,21 @@ namespace schoolconnect.Controllers
             return View();
         }
 
-        public IActionResult TeacherViewLearnerProfile()
+        [HttpGet]
+        public IActionResult TeacherViewLearnerProfile(string learnerIdNo)
         {
-            return View();
+            try
+            {
+                _returnDictionary = _learnerService.GetLearnerByIdNoAsync(learnerIdNo).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not Learner learner) throw new("Could not acquire learner data from the specified dictionary.");
+                return View(learner);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public IActionResult TeacherViewGrades()

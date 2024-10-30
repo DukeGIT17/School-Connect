@@ -167,8 +167,10 @@ namespace SchoolConnect_Web_App.Controllers
         {
             try
             {
-                //_returnDictionary = _schoolService.GetClassBySchoolAsync()
-                return View();
+                _returnDictionary = _schoolService.GetClassByMainTeacherAsync(teacherId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not SubGrade subGrade) throw new("Could not acquire class data from the provided dictionary.");
+                return View(subGrade);
             }
             catch (Exception ex)
             {

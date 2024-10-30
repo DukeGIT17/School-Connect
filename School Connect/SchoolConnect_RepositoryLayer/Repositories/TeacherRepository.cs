@@ -71,6 +71,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             {
                 var teacher = await _context.Teachers
                     .AsNoTracking()
+                    .Include(m => m.MainClass)
                     .Include(t => t.TeacherSchoolNP)
                     .ThenInclude(a => a!.SchoolAnnouncementsNP)
                     .FirstOrDefaultAsync(t => t.Id == teacherId);
@@ -84,9 +85,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 foreach (var ann in teacher.TeacherSchoolNP.SchoolAnnouncementsNP)
                 {
                     if (ann.AnnouncementSchoolNP is not null)
-                    {
                         ann.AnnouncementSchoolNP = null;
-                    }
                 }
 
                 foreach (var group in teacher.TeacherSchoolNP.SchoolGroupsNP)
@@ -94,6 +93,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     if (group.GroupSchoolNP is not null)
                         group.GroupSchoolNP = null;
                 }
+
                 _returnDictionary["Success"] = true;
                 _returnDictionary["Result"] = teacher;
                 return _returnDictionary;

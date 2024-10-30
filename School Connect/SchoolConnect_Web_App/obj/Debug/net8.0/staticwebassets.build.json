@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hhZnhjq6R0aMuDiwBKeBly056SioVxa3b9LgxqU2GXM=",
+  "Hash": "14VoRAwLrfsBNsta8xd5WHWwcKVgldnCb4RilsyfzOY=",
   "Source": "SchoolConnect_Web_App",
   "BasePath": "_content/SchoolConnect_Web_App",
   "Mode": "Default",
@@ -751,12 +751,12 @@
       "OriginalItemSpec": "wwwroot\\css\\TeacherCSS\\TeacherChatList.css"
     },
     {
-      "Identity": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherClassRoaster.css",
+      "Identity": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherClassRoster.css",
       "SourceId": "SchoolConnect_Web_App",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\",
       "BasePath": "_content/SchoolConnect_Web_App",
-      "RelativePath": "css/TeacherCSS/TeacherClassRoaster.css",
+      "RelativePath": "css/TeacherCSS/TeacherClassRoster.css",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -767,7 +767,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\TeacherCSS\\TeacherClassRoaster.css"
+      "OriginalItemSpec": "wwwroot\\css\\TeacherCSS\\TeacherClassRoster.css"
     },
     {
       "Identity": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\TeacherCSS\\TeacherDetailedAnnouncement.css",
@@ -41941,6 +41941,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\SysAdminJS\\SchoolReg.js"
+    },
+    {
+      "Identity": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\Teacher\\TeacherClassRoster.js",
+      "SourceId": "SchoolConnect_Web_App",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\",
+      "BasePath": "_content/SchoolConnect_Web_App",
+      "RelativePath": "js/Teacher/TeacherClassRoster.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Teacher\\TeacherClassRoster.js"
     },
     {
       "Identity": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\Teacher\\TeacherMakeAnnouncement.js",

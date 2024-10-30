@@ -5,6 +5,7 @@ using SchoolConnect_DomainLayer.Models;
 using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.Tokens;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -287,7 +288,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public async Task<Dictionary<string, object>> GetById(long learnerId)
+        public async Task<Dictionary<string, object>> GetLearnerByIdAsync(long learnerId)
         {
             try
             {
@@ -301,13 +302,24 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public async Task<Dictionary<string, object>> GetByIdNo(string learnerIdNo)
+        public async Task<Dictionary<string, object>> GetLearnerByIdNoAsync(string learnerIdNo)
         {
             try
             {
-                var learner = await _context.Learners.Include(s => s.LearnerSchoolNP).FirstOrDefaultAsync(l => l.IdNo == learnerIdNo);
+                var learner = await _context.Learners
+                    .AsNoTracking()
+                    .Include(s => s.LearnerSchoolNP)
+                    .Include(c => c.Class)
+                    .ThenInclude(m => m.MainTeacher)
+                    .Include(p => p.Parents)
+                    .ThenInclude(p => p.Parent)
+                    .FirstOrDefaultAsync(l => l.IdNo == learnerIdNo);
                 if (learner is null)
                     throw new("Could not find a learner with the specified ID number. Has the learner been registered yet?");
+
+                learner.LearnerSchoolNP.SchoolLearnersNP = null;
+                learner.Parents.ToList().ForEach(lp => lp.Parent.Children = null);
+                learner.Class.Learners = null;
 
                 _returnDictionary["Success"] = true;
                 _returnDictionary["Result"] = learner;
@@ -326,9 +338,25 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Dictionary<string, object>> GetClass(string classId)
+        public async Task<Dictionary<string, object>> GetLearnersByClassAsync(long teacherId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var cls = await _context.SubGrade.Include(a => a.Learners).FirstOrDefaultAsync(c => c.MainTeacherId == teacherId);
+                if (cls is null) throw new("Could not find a class whose main teacher is the specified teacher.");
+
+                if (cls.Learners.IsNullOrEmpty()) throw new("The specified class does not yet have any learners assigned to it.");
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = cls.Learners!;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInnerException: " + ex.InnerException;
+                return _returnDictionary;
+            }
         }
 
         public Task<Dictionary<string, object>> Remove(long learnerId)
