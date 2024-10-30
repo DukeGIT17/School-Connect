@@ -31,6 +31,22 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             return rc;
         }
 
+        private List<string> DetermineClassSubjects(int grade)
+        {
+            if (grade == 0)
+                return ["Language and Literacy", "Mathematics", "Life Skills", "Physical Education"];
+            else if (grade >= 1 && grade <= 3)
+                return ["Home Language", "First Additional Language", "Mathematics", "Life Skills"];
+            else if (grade >= 4 && grade <= 6)
+                return ["Home Language", "First Additional Language", "Mathematics", "Natural Science and Technology", "Social Science Geography", "Social Science History", "Life Skills"];
+            else if (grade >= 7 && grade <= 9)
+                return ["Home Language", "First Additional Language", "Mathematics", "Natural Sciences", "Social Science Geography", "Social Science History", "Technology", "Economic And Management Science", "Life Orientation", "Creative Arts"];
+            else if (grade >= 10 && grade <= 12)
+                return ["Home Language", "First Additional Language", "Life Orientation"];
+            else
+                throw new("Something went wrong. Invalid grade provided");
+        }
+
         public async Task<Dictionary<string, object>> RegisterSchoolAsync(School newSchool)
         {
             try
@@ -77,7 +93,8 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                                 [
                                     new() 
                                     {
-                                        ClassDesignate = grade.ToString() + "A"
+                                        ClassDesignate = grade.ToString() + "A",
+                                        SubjectsTaught = grade == 'R' ? DetermineClassSubjects(0) : DetermineClassSubjects(int.Parse(grade.ToString())),
                                     }
                                 ]
                             };
@@ -95,7 +112,9 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                                 [
                                     new()
                                     {
-                                        ClassDesignate = grade.ToString() + "A"
+                                        ClassDesignate = grade.ToString() + "A",
+                                        SubjectsTaught = DetermineClassSubjects(int.Parse(grade.ToString())),
+
                                     }
                                 ]
                             };
@@ -112,7 +131,9 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                                 [
                                     new()
                                     {
-                                        ClassDesignate = grade.ToString() + "A"
+                                        ClassDesignate = grade.ToString() + "A",
+                                        SubjectsTaught = grade == "R" ? DetermineClassSubjects(0) : DetermineClassSubjects(int.Parse(grade.ToString())),
+
                                     }
                                 ]
                             };
@@ -183,16 +204,12 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                _returnDictionary = await _sysAdminRepo.GetAdminByIdAsync(id);
-                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
-
-                var admin = _returnDictionary["Result"] as SysAdmin;
-                if (admin!.SysAdminSchoolNP is null)
-                    throw new("Could not find a school linked to this admin's ID. Has this admin registered a school yet?");
+                var school = await _context.Schools.Include(a => a.SchoolPrincipalNP).FirstOrDefaultAsync(s => s.SystemAdminId == id);
+                if (school is null) throw new("Could not find a school associated with the specified administrator.");
 
                 _returnDictionary.Clear();
                 _returnDictionary["Success"] = true;
-                _returnDictionary["Result"] = admin.SysAdminSchoolNP;
+                _returnDictionary["Result"] = school;
                 return _returnDictionary;
             }
             catch (Exception ex)
@@ -378,7 +395,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
             }
 
-        public async Task<Dictionary<string, object>> AddClassesToSchool(List<string> classDesignates, long schoolId)
+        public async Task<Dictionary<string, object>> AddClassesToSchoolAsync(List<string> classDesignates, long schoolId)
         {
             try
             {
@@ -415,6 +432,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                             {
                                 ClassDesignate = designate,
                                 GradeId = grade.Id,
+                                SubjectsTaught = grade.GradeDesignate == "R" ? DetermineClassSubjects(0) : DetermineClassSubjects(Convert.ToInt32(grade.GradeDesignate))
                             });
                         }
                     }
@@ -425,6 +443,77 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     throw new("All the provided classes already exist.");
 
                 _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> AddSubjectsToSchoolAsync(List<string> subjects, long schoolId)
+        {
+            try
+            {
+                var school = await _context.Schools.Include(c => c.SchoolGradesNP)!.ThenInclude(g => g.Classes).FirstOrDefaultAsync(s => s.Id == schoolId);
+                if (school is null) throw new("Could not find a school with the specified ID.");
+
+                List<SubGrade> classes = [];
+                foreach (var grade in school.SchoolGradesNP!)
+                    classes.AddRange(grade.Classes.Where(cls => GetGradeFromClassDesignate(cls.ClassDesignate) >= 10).ToList());
+
+                if (!classes.IsNullOrEmpty())
+                {
+                    foreach (var cls in classes)
+                    {
+                        foreach (var subject in subjects)
+                            cls.SubjectsTaught.Add(subject);
+                    }
+                }
+                else
+                    throw new("There no grade 10 and above classes in the specified school");
+
+                _context.SaveChanges();
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetGradesBySchoolAsync(long schoolId)
+        {
+            try
+            {
+                var school = await _context.Schools.AsNoTracking().Include(g => g.SchoolGradesNP)!.ThenInclude(c => c.Classes).ThenInclude(s => s.MainTeacher).FirstOrDefaultAsync(s => s.Id == schoolId);
+                if (school is null) throw new("Could not find a school with the specified ID.");
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = school.SchoolGradesNP!;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetClassByMainTeacher(long teacherId)
+        {
+            try
+            {
+                var cls = await _context.SubGrade.FirstOrDefaultAsync(c => c.MainTeacherId == teacherId);
+                if (cls is null) throw new("Could not find a class with the specified teacher as the main teacher.");
+
                 return _returnDictionary;
             }
             catch (Exception ex)

@@ -255,10 +255,6 @@ namespace SchoolConnect_DomainLayer.Data
                 .IsRequired();
 
             modelBuilder.Entity<Learner>()
-                .HasIndex(learner => learner.Subjects)
-                .IsUnique(false);
-
-            modelBuilder.Entity<Learner>()
                 .HasOne(grade => grade.Class)
                 .WithMany(learners => learners.Learners)
                 .HasForeignKey(learner => learner.ClassID)

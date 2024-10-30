@@ -14,7 +14,21 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         {
             try
             {
-                return await _schoolRepo.AddClassesToSchool(classDesignates, schoolId);
+                return await _schoolRepo.AddClassesToSchoolAsync(classDesignates, schoolId);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> AddSubjectsAsync(List<string> subjects, long schoolId)
+        {
+            try
+            {
+                return await _schoolRepo.AddSubjectsToSchoolAsync(subjects, schoolId);
             }
             catch (Exception ex)
             {
@@ -48,6 +62,20 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             try
             {
                 return await _schoolRepo.GetClassBySchoolAsync(classDesignate, schoolId);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetGradesBySchoolAsync(long schoolId)
+        {
+            try
+            {
+                return await _schoolRepo.GetGradesBySchoolAsync(schoolId);
             }
             catch (Exception ex)
             {

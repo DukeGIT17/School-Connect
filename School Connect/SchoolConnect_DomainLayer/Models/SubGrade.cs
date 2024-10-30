@@ -14,6 +14,8 @@ namespace SchoolConnect_DomainLayer.Models
         [Display(Name = "Class")]
         public string ClassDesignate { get; set; }
 
+        public IList<string> SubjectsTaught { get; set; }
+
         #region Foreign Key Properties
         [ForeignKey(nameof(MainTeacher))]
         public long? MainTeacherId { get; set; }

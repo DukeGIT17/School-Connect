@@ -1,9 +1,9 @@
-﻿@{
+﻿@model IEnumerable<Grade>
+@{
     Layout = null;
 }
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="~/FontAwesome/css/all.min.css" />
 <link rel="stylesheet" href="~/css/PrincipalCSS/PrincipalViewGrades.css" />
-<!--Do we need the body tag??-->
 
 <header>
     <div class="header-section">
@@ -12,43 +12,22 @@
 </header>
 
 <div class="container">
-    <div class="grade-section">
-        <h2>Grade 8</h2>
-        <div class="grade-buttons">
-            <a asp-controller="Principal" asp-action="PrincipalGradeLandingPage" class="button">8A</a>
-            <a asp-controller="Principal" asp-action="PrincipalGradeLandingPage" class="button">8B</a>
+    @foreach (var grade in Model)
+    {
+        <div class="grade-section">
+            <h2>Grade @grade.GradeDesignate</h2>
+            <div class="grade-buttons">
+                @foreach (var cls in grade.Classes)
+                {
+                    if (cls.MainTeacher is null)
+                    {
+                        <a href="#" class="button opaque">@cls.ClassDesignate</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Principal" asp-action="PrincipalGradeLandingPage" asp-route-teacherId="@cls.MainTeacher.Id" class="button">@cls.ClassDesignate</a>
+                    }
+                }
+            </div>
         </div>
-    </div>
-
-    <div class="grade-section">
-        <h2>Grade 9</h2>
-        <div class="grade-buttons">
-            <a asp-controller="Principal" asp-action="PrincipalGradeLandingPage" class="button">9A</a>
-            <a asp-controller="Principal" asp-action="PrincipalGradeLandingPage" class="button">9B</a>
-        </div>
-    </div>
-
-    <div class="grade-section">
-        <h2>Grade 10</h2>
-        <div class="grade-buttons">
-            <a asp-controller="Principal" asp-action="PrincipalGradeLandingPage" class="button">10A</a>
-            <a asp-controller="Principal" asp-action="PrincipalGradeLandingPage" class="button">10B</a>
-        </div>
-    </div>
-
-    <div class="grade-section">
-        <h2>Grade 11</h2>
-        <div class="grade-buttons">
-            <a asp-controller="Principal" asp-action="PrincipalGradeLandingPage" class="button">11A</a>
-            <a asp-controller="Principal" asp-action="PrincipalGradeLandingPage" class="button">11B</a>
-        </div>
-    </div>
-
-    <div class="grade-section">
-        <h2>Grade 12</h2>
-        <div class="grade-buttons">
-            <a asp-controller="Principal" asp-action="PrincipalGradeLandingPage" class="button">12A</a>
-            <a asp-controller="Principal" asp-action="PrincipalGradeLandingPage" class="button">12B</a>
-        </div>
-    </div>
-</div>
+    }

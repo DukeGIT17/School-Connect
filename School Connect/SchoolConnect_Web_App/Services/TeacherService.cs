@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+﻿using Microsoft.AspNetCore.Mvc.TagHelpers;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 using System.Collections;
@@ -261,14 +262,26 @@ namespace SchoolConnect_Web_App.Services
                             formData.Add(new StringContent(subject), $"{property.Name}[{index}]");
                             index++;
                         }
+                        continue;
                     }
                     else if (value is not null && value is SubGrade subGrade)
                     {
                         foreach (var gradeProperty in typeof(SubGrade).GetProperties())
                         {
                             var gradeValue = gradeProperty.GetValue(subGrade);
-                            if ((gradeValue is IEnumerable || value is Teacher || value is Grade) && gradeValue is not string)
+                            if ((gradeValue is Teacher || gradeValue is Grade) && gradeValue is not string)
                                 continue;
+
+                            if (gradeValue is IEnumerable<string> subjectsTaught)
+                            {
+                                int index = 0;
+                                foreach (var subjectTaught in subjectsTaught)
+                                {
+                                    formData.Add(new StringContent(subjectTaught), $"{property.Name}.{gradeProperty.Name}[{index}]");
+                                    index++;
+                                }
+                                continue;
+                            }
 
                             if (gradeValue is not null)
                                 formData.Add(new StringContent(gradeValue.ToString()), $"{property.Name}.{gradeProperty.Name}");
@@ -282,8 +295,36 @@ namespace SchoolConnect_Web_App.Services
                             foreach (var itemProperty in typeof(TeacherGrade).GetProperties())
                             {
                                 var itemValue = itemProperty.GetValue(item);
-                                if (itemValue is SubGrade || itemValue is Teacher)
+                                if (itemValue is Teacher)
                                     continue;
+                                
+                                if (itemValue is not null && itemValue is SubGrade cls)
+                                {
+                                    foreach (var gradeProperty in typeof(SubGrade).GetProperties())
+                                    {
+                                        var gradeValue = gradeProperty.GetValue(cls);
+                                        if ((gradeValue is Teacher || gradeValue is Grade) && gradeValue is not string)
+                                            continue;
+
+                                        if (gradeValue is IEnumerable<string> subjectsTaught)
+                                        {
+                                            int count = 0;
+                                            foreach (var subjectTaught in subjectsTaught)
+                                            {
+                                                var val = $"{property.Name}[{index}].{itemProperty.Name}.{gradeProperty.Name}[{count}]";
+                                                formData.Add(new StringContent(subjectTaught), $"{property.Name}[{index}].{itemProperty.Name}.{gradeProperty.Name}[{count}]");
+                                                count++;
+                                            }
+                                            continue;
+                                        }
+
+                                        if (gradeValue is not null)
+                                        {
+                                            var val = $"{property.Name}[{index}].{gradeProperty.Name}";
+                                            formData.Add(new StringContent(gradeValue.ToString()), $"{property.Name}[{index}].{itemProperty.Name}.{gradeProperty.Name}");
+                                        }
+                                    }
+                                }
 
                                 if (itemValue is not null)
                                     formData.Add(new StringContent(itemValue.ToString()), $"{property.Name}[{index}].{itemProperty.Name}");

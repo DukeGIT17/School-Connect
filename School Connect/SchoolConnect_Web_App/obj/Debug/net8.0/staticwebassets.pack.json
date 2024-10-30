@@ -8673,6 +8673,10 @@
       "PackagePath": "staticwebassets\\css\\SchoolCSS\\SchoolViewProfile.css"
     },
     {
+      "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\AddSubjectsPage.css",
+      "PackagePath": "staticwebassets\\css\\SysAdminCSS\\AddSubjectsPage.css"
+    },
+    {
       "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\css\\SysAdminCSS\\RolesReg.css",
       "PackagePath": "staticwebassets\\css\\SysAdminCSS\\RolesReg.css"
     },

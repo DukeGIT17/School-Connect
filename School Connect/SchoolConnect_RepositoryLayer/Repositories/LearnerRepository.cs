@@ -161,10 +161,6 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                             Gender = learnerWorksheet.Cells[row, 4].Value?.ToString(),
                             IdNo = learnerWorksheet.Cells[row, 5].Value?.ToString(),
                             ClassCode = learnerWorksheet.Cells[row, 6].Value?.ToString(),
-                            Subjects = learnerWorksheet.Cells[row, 7].Value?.ToString()
-                            .Split(',', StringSplitOptions.RemoveEmptyEntries)
-                            .Select(item => item.Trim())
-                            .ToList(),
                             SchoolID = schoolId,
                             Parents =
                             [
@@ -176,7 +172,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                                 }
                             ],
                             Role = "Learner",
-                            Title = learnerWorksheet.Cells[row, 8].Value?.ToString(),
+                            Title = learnerWorksheet.Cells[row, 7].Value?.ToString(),
                         };
 
                         _returnDictionary = await LearnerExistsAsync(learner);

@@ -42,35 +42,6 @@ function updateSubjectsField() {
 
 subjectSelect.addEventListener('change', updateSubjectsField);
 
-
-let subjectSelectLearner = document.getElementById("subjects-learner");
-let subjectFieldLearner = document.getElementById("subjects-field-learner");
-
-function updateSubjectsFieldLearner() {
-    const selectedOptions = Array.from(subjectSelectLearner.selectedOptions).map(option => option.value);
-    subjectFieldLearner.value += selectedOptions;
-    subjectFieldLearner.value += ", ";
-}
-
-subjectSelectLearner.addEventListener('change', updateSubjectsFieldLearner);
-
-let visibleLearnerIdNoField = document.getElementById("idNum-learner");
-let visibleParentIdNoField = document.getElementById("visible-parent-idno");
-//let visiblePIdNoField = document.getElementById("idNum");
-
-visibleLearnerIdNoField.addEventListener("change", () => {
-    document.getElementById("learner-idno").value = visibleLearnerIdNoField.value;
-});
-
-visibleParentIdNoField.addEventListener("change", () => {
-    document.getElementById("parent-idno").value = visibleParentIdNoField.value;
-});
-
-//visiblePIdNoField.addEventListener("focusout", () => {
-//    document.getElementById("p-IdNo").value = visiblePIdNoField.value;
-//});
-
-
 let principalFileInputField = document.getElementById("uploadBox-Principal");
 let principalUploadButton = document.getElementById("uploadImageBtn-Principal");
 let principalFileNameDisplayField = document.getElementById("fileNameDisplay-Principal");
@@ -82,7 +53,6 @@ principalUploadButton.addEventListener("click", function () {
 });
 
 principalFileInputField.addEventListener("change", function () {
-   // principalFileNameDisplayField.innerHTML = principalFileInputField.files[0] ? principalFileInputField.files[0].name : "No file selected";
     removeFileBtnPrincipal.style.display = "block";
 
     const file = this.files[0];

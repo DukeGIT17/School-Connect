@@ -13,10 +13,10 @@ body {
     text-align: center;
 }
 
-    .header-section h1 {
-        font-size: 32px;
-        margin: 0;
-    }
+.header-section h1 {
+    font-size: 32px;
+    margin: 0;
+}
 
 
 /* Container for the content */
@@ -34,13 +34,13 @@ body {
     margin-bottom: 30px;
 }
 
-    .grade-section h2 {
-        font-size: 20px;
-        color: #333;
-        font-weight: bold;
-        margin-bottom: 15px;
-        text-align: left;
-    }
+.grade-section h2 {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: left;
+}
 
 .grade-buttons {
     display: flex;
@@ -61,10 +61,14 @@ body {
     transition: background-color 0.3s ease;
 }
 
-    .button:hover {
-        background-color: #0F2E34;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
+.button:hover {
+    background-color: #0F2E34;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.opaque {
+    opacity: .8;
+}
 
 /* Responsive design */
 @media (max-width: 600px) {

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 using SchoolConnect_Web_App.Models;
@@ -85,9 +86,86 @@ namespace SchoolConnect_Web_App.Controllers
                     model.School.Logo = model.School.SchoolLogoFile?.FileName;
                     _returnDictionary = _schoolService.RegisterSchoolAsync(model.School!).Result;
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                    if (model.School.Type == "High" || model.School.Type == "Combined")
+                        return RedirectToAction("GetSubjectsPage", new { adminId = model.School.SystemAdminId });
+
                     return RedirectToAction(nameof(SysAdminLandingPage), new { id = model.School!.SystemAdminId });
                 }
                 return View(model);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpGet] 
+        public IActionResult GetSubjectsPage(long adminId, string? destination = null)
+        {
+            try
+            {
+                _returnDictionary = _schoolService.GetSchoolByAdminAsync(adminId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not School school) throw new("Could not acquire school data from the provided dictionary");
+
+                return View("AddSubjectsPage", new SubjectsViewModel
+                {
+                    SchoolId = school.Id,
+                    AdminId = adminId,
+                    Subjects =
+                    [
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                    ],
+                    Destination = destination
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        public IActionResult AddSubjectsPage(SubjectsViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _returnDictionary = _schoolService.AddSubjectsAsync(model.Subjects, model.SchoolId).Result;
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                    if (model.Destination is not null)
+                        return RedirectToAction(model.Destination.Split(',').First(), model.Destination.Split(',').Last(), new { schoolId = model.SchoolId });
+
+                    return RedirectToAction(nameof(SysAdminLandingPage), new { id = model.AdminId });
+                }
+
+                _returnDictionary = _schoolService.GetSchoolByAdminAsync(model.AdminId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not School school) throw new("Could not acquire school data from the provided dictionary");
+
+                return View(new SubjectsViewModel
+                {
+                    SchoolId = school.Id,
+                    AdminId = model.AdminId,
+                    Subjects =
+                    [
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                    ],
+                    Destination = model.Destination
+                });
             }
             catch (Exception ex)
             {
@@ -103,10 +181,10 @@ namespace SchoolConnect_Web_App.Controllers
             {
                 _returnDictionary = _schoolService.GetSchoolByAdminAsync(id).Result;
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
-                var school = _returnDictionary["Result"] as School;
+                if (_returnDictionary["Result"] is not School school) throw new("Could not acquire school data from the provided dictionary.");
                 ActorRegistrationViewModel model = new()
                 {
-                    Principal = new(),
+                    Principal = school.SchoolPrincipalNP,
                     Teacher = new(),
                     Parent = new()
                     {
@@ -167,14 +245,7 @@ namespace SchoolConnect_Web_App.Controllers
                         _returnDictionary = _parentService.RegisterParentAsync(model.Parent).Result;
                     }
                     else if (model.Learner is not null)
-                    {
-                        int index = model.Learner!.Subjects!.IndexOf(model.Learner.Subjects.FirstOrDefault(s => s.Contains(',')) ?? "");
-                        if (index > -1)
-                            model.Learner.Subjects.RemoveAt(index);
-                        model.Learner.Subjects = model.Learner.Subjects.Distinct().ToList();
-
                         _returnDictionary = _learnerService.RegisterLearnerAsync(model.Learner!).Result;
-                    }
                     else
                         throw new("Something went wrong. Please review your information");
 

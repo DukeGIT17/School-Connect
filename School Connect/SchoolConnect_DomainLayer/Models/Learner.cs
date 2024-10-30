@@ -27,11 +27,6 @@ namespace SchoolConnect_DomainLayer.Models
         [RegularExpression(@"^[0-9A-Z]+$", ErrorMessage = "Please specify a valid class. No special or lower case characters allowed.")]
         public string ClassCode { get; set; }
 
-        /// <summary>
-        /// A collection of all the subjects this learner is undertaking.
-        /// </summary>
-        public IList<string>? Subjects { get; set; }
-
         #region Foreign Key Properties
         /// <summary>
         /// The foreign key referencing the school in which this learner is registered.

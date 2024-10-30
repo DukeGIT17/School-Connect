@@ -122,6 +122,8 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     announcement.AnnouncementSchoolNP = null;
                 }
 
+                teacherAnns = teacherAnns.Distinct().ToList();
+
                 _returnDictionary["Success"] = true;
                 _returnDictionary["Result"] = teacherAnns;
                 return _returnDictionary;

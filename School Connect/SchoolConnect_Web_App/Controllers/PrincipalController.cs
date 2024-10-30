@@ -9,12 +9,14 @@ namespace SchoolConnect_Web_App.Controllers
     {
         private readonly IPrincipalService _principalService;
         private readonly IAnnouncementService _announcementService;
+        private readonly ISchoolService _schoolService;
         private Dictionary<string, object> _returnDictionary;
 
-        public PrincipalController(IPrincipalService principalService, IAnnouncementService announcementService)
+        public PrincipalController(IPrincipalService principalService, IAnnouncementService announcementService, ISchoolService schoolService)
         {
             _principalService = principalService;
             _announcementService = announcementService;
+            _schoolService = schoolService;
             _returnDictionary = [];
         }
 
@@ -62,7 +64,7 @@ namespace SchoolConnect_Web_App.Controllers
                 _returnDictionary = _principalService.GetPrincipalByIdAsync(id).Result;
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
-                if (_returnDictionary["Result"] is not Principal principal) throw new("There are validation errors!! Could not acquire principal data from the provided dictionary.");
+                if (_returnDictionary["Result"] is not Principal principal) throw new("Could not acquire principal data from the provided dictionary.");
                 ActorAnnouncementViewModel<Principal> model = new()
                 {
                     Actor = principal,
@@ -142,14 +144,37 @@ namespace SchoolConnect_Web_App.Controllers
             }
         }
 
-        public IActionResult PrincipalViewGrades()
-		{
-			return View();
-		}
-
-        public IActionResult PrincipalGradeLandingPage()
+        [HttpGet]
+        public IActionResult PrincipalViewGrades(long schoolId)
         {
-            return View();
+            try
+            {
+                _returnDictionary = _schoolService.GetGradesBySchoolAsync(schoolId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not IEnumerable<Grade> grades) throw new("Could not acquire grades data from the provided dictionary.");
+
+                return View(grades);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpGet]
+        public IActionResult PrincipalGradeLandingPage(long teacherId)
+        {
+            try
+            {
+                //_returnDictionary = _schoolService.GetClassBySchoolAsync()
+                return View();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public IActionResult PrincipalViewAttendance()

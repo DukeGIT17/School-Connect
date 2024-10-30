@@ -1,27 +1,23 @@
-﻿
-<link rel="stylesheet" href="~/css/PrincipalCSS/PrincipalGradeLandingPage.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+﻿@model SubGrade
 @{
     Layout = null;
 }
-
-
-<header>
-    <h1>Teacher Profile</h1>
-</header>
+<link rel="stylesheet" href="~/css/PrincipalCSS/PrincipalGradeLandingPage.css" />
+<link rel="stylesheet" href="~/FontAwesome/css/all.min.css">
 
 <div class="container">
     <div class="profile-info">
         <div class="icon"><i class="fas fa-user"></i></div>
-        <div class="name">Kgopolo Mooi</div>
+        <div class="name">Class @Model.ClassDesignate</div>
     </div>
 
     <div class="details-box">
-        <div class="teacher">CLASS TEACHER: 10B</div>
+        <div class="teacher">CLASS TEACHER: @Model.MainTeacher.Title @Model.MainTeacher.Name @Model.MainTeacher.Surname</div>
         <div class="subject">SUBJECTS TAUGHT:</div>
-        <div>MATHEMATICS</div>
-        <div>GEOGRAPHY</div>
-        <div>LIFE ORIENTATION</div>
+        @foreach (var subject in Model.SubjectsTaught)
+        {
+            <div>@subject.ToUpper()</div>
+        }
     </div>
     <br />
     <a asp-controller="Principal" asp-action="PrincipalViewAttendance" class="button">View Attendance</a>

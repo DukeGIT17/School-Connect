@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 using SchoolConnect_Web_App.Models;
@@ -171,7 +172,8 @@ namespace SchoolConnect_Web_App.Controllers
                             TeacherID = teacher.Id,
                             ClassID = subGrade.Id,
                             StaffNr = teacher.StaffNr,
-                            ClassDesignate = subGrade.ClassDesignate
+                            ClassDesignate = subGrade.ClassDesignate,
+                            Class = subGrade
                         });
                     }
 
@@ -209,7 +211,7 @@ namespace SchoolConnect_Web_App.Controllers
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 if (_returnDictionary["Result"] is not IEnumerable<SubGrade> classes) throw new("Could not acquire class from the provided dictionary.");
 
-                classes = [.. classes.OrderBy(c => c.ClassDesignate.StartsWith('R') ? 0 : 1).ThenBy(c => c.ClassDesignate)];
+                classes = [.. classes.OrderBy(c => c.ClassDesignate.StartsWith('R') ? 0 : 1).ThenBy(c => Convert.ToInt32(c.ClassDesignate.Remove(c.ClassDesignate.IndexOf(c.ClassDesignate.Last()))))];
                 GradeClassesVIewModel model = new()
                 {
                     Classes = classes,
@@ -234,6 +236,11 @@ namespace SchoolConnect_Web_App.Controllers
                     List<string> classDesignates = model.ClassesToAdd.Split(seperators, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToList();
                     _returnDictionary = _schoolService.AddClassesToSchool(classDesignates, model.SchoolId).Result;
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                    var val = classDesignates.Select(s => s.Remove(s.IndexOf(s.Last()))).Intersect(["10", "11", "12"]).ToList();
+                    var val1 = val.IsNullOrEmpty();
+                    if (!classDesignates.Select(s => s.Remove(s.IndexOf(s.Last()))).Intersect(["10", "11", "12"]).IsNullOrEmpty())
+                        return RedirectToAction("GetSubjectsPage", "SysAdmin", new { adminId = model.SchoolId, destination = "SchoolManagementLandingPage,School" });
 
                     return RedirectToAction("SchoolManagementLandingPage", new { schoolId = model.SchoolId });
                 }

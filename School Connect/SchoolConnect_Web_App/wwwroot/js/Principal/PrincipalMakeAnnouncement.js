@@ -1,8 +1,10 @@
-﻿
-const recipients = document.getElementById("recipients");
+﻿const recipients = document.getElementById("recipients");
 const recipientsDisplay = document.getElementById("recipientsDisplay");
 
 function addGroup(option) {
+    // Check if the option is already selected
+    option.selected = true; // Ensure it's selected in the original <select>
+
     const selectedGroupDiv = document.createElement('div');
     const removeGroupDiv = document.createElement('div');
     const removeIcon = document.createElement('i');
@@ -15,31 +17,19 @@ function addGroup(option) {
     removeGroupDiv.className = "remove-group";
 
     removeGroupDiv.appendChild(removeIcon);
-    removeIcon.classList.add("fa-regular");
-    removeIcon.classList.add("fa-circle-xmark");
-    removeIcon.classList.add("removeGroupBtn");
+    removeIcon.classList.add("fa-regular", "fa-circle-xmark", "removeGroupBtn");
 }
 
 
 recipients.addEventListener("change", () => {
-    const selectedOptions = Array.from(recipients.selectedOptions)
+    const selectedOptions = Array.from(recipients.selectedOptions);
     const selectedRecipients = Array.from(recipientsDisplay.children);
-    let exists = false;
 
     selectedOptions.forEach(option => {
-        if (selectedRecipients.length === 0) {
+        // Check if the option is already displayed
+        const exists = selectedRecipients.some(rec => rec.textContent === option.value);
+        if (!exists) {
             addGroup(option);
-        } else {
-            for (let rec of selectedRecipients) {
-                if (rec.textContent === option.value) {
-                    exists = true;
-                    break;
-                }
-            }
-
-            if (!exists) {
-                addGroup(option);
-            }
         }
     });
 });
@@ -48,7 +38,17 @@ recipients.addEventListener("change", () => {
 recipientsDisplay.addEventListener("click", (event) => {
     if (event.target.tagName === 'I') {
         const clickedIcon = event.target;
-        parentDiv = clickedIcon.parentElement;
+        const parentDiv = clickedIcon.parentElement;
+        const selectedValue = parentDiv.parentElement.textContent;
+
+        // Find and deselect the option in the original <select>
+        Array.from(recipients.options).forEach(option => {
+            if (option.value === selectedValue) {
+                option.selected = false;
+            }
+        });
+
+        // Remove the displayed group
         parentDiv.parentElement.remove();
     }
 });

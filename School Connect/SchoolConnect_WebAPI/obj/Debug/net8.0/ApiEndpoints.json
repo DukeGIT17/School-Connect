@@ -130,11 +130,6 @@
         "IsRequired": false
       },
       {
-        "Name": "Subjects",
-        "Type": "System.Collections.Generic.IList\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
         "Name": "SchoolID",
         "Type": "System.Int64",
         "IsRequired": false
@@ -2300,6 +2295,11 @@
         "IsRequired": false
       },
       {
+        "Name": "Class.SubjectsTaught",
+        "Type": "System.Collections.Generic.IList\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
         "Name": "Class.MainTeacherId",
         "Type": "System.Nullable\u00601[[System.Int64, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
@@ -2347,6 +2347,11 @@
       {
         "Name": "Class.MainTeacher.MainClass.ClassDesignate",
         "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Class.MainTeacher.MainClass.SubjectsTaught",
+        "Type": "System.Collections.Generic.IList\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
@@ -9034,11 +9039,6 @@
         "IsRequired": false
       },
       {
-        "Name": "Subjects",
-        "Type": "System.Collections.Generic.IList\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
-        "IsRequired": false
-      },
-      {
         "Name": "SchoolID",
         "Type": "System.Int64",
         "IsRequired": false
@@ -11204,6 +11204,11 @@
         "IsRequired": false
       },
       {
+        "Name": "Class.SubjectsTaught",
+        "Type": "System.Collections.Generic.IList\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
         "Name": "Class.MainTeacherId",
         "Type": "System.Nullable\u00601[[System.Int64, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
@@ -11251,6 +11256,11 @@
       {
         "Name": "Class.MainTeacher.MainClass.ClassDesignate",
         "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Class.MainTeacher.MainClass.SubjectsTaught",
+        "Type": "System.Collections.Generic.IList\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
@@ -21301,6 +21311,27 @@
   },
   {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.SchoolController",
+    "Method": "AddSubjectsToSchool",
+    "RelativePath": "api/School/AddSubjectsToSchool",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subjects",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": true
+      },
+      {
+        "Name": "schoolId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.SchoolController",
     "Method": "GetAllClassesBySchool",
     "RelativePath": "api/School/GetAllClassesBySchool",
     "HttpMethod": "GET",
@@ -21328,6 +21359,22 @@
         "Type": "System.String",
         "IsRequired": false
       },
+      {
+        "Name": "schoolId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.SchoolController",
+    "Method": "GetGradesBySchool",
+    "RelativePath": "api/School/GetGradesBySchool",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
         "Name": "schoolId",
         "Type": "System.Int64",
@@ -27614,6 +27661,11 @@
       {
         "Name": "MainClass.ClassDesignate",
         "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MainClass.SubjectsTaught",
+        "Type": "System.Collections.Generic.IList\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {
@@ -34311,6 +34363,11 @@
         "IsRequired": false
       },
       {
+        "Name": "MainClass.SubjectsTaught",
+        "Type": "System.Collections.Generic.IList\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
         "Name": "MainClass.MainTeacherId",
         "Type": "System.Nullable\u00601[[System.Int64, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
@@ -40954,6 +41011,11 @@
       {
         "Name": "MainClass.ClassDesignate",
         "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "MainClass.SubjectsTaught",
+        "Type": "System.Collections.Generic.IList\u00601[[System.String, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
         "IsRequired": false
       },
       {

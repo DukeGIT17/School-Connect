@@ -234,9 +234,6 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Property<long>("SchoolID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Subjects")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -254,8 +251,6 @@ namespace SchoolConnect_WebAPI.Migrations
                         .IsUnique();
 
                     b.HasIndex("SchoolID");
-
-                    b.HasIndex("Subjects");
 
                     b.ToTable("Learners", (string)null);
                 });
@@ -482,6 +477,10 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.Property<long?>("MainTeacherId")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("SubjectsTaught")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

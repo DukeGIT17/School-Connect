@@ -5,6 +5,7 @@ using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 using Microsoft.AspNetCore.Http;
 using OfficeOpenXml;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -287,24 +288,33 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     if (existingTeacher.MainClass is not null)
                         throw new("This teacher already has a main class associated with them. A teacher can not have more than one main class.");
 
-                    existingTeacher.MainClass = teacher.MainClass;
-                    _returnDictionary = _groupRepo.AddTeacherToGroup(ref existingTeacher, teacher.SchoolID, $"Grade {teacher.MainClass.ClassDesignate} Teachers");
-                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    if (!teacher.Subjects.Intersect(teacher.MainClass.SubjectsTaught).IsNullOrEmpty())
+                    {
+                        existingTeacher.MainClass = teacher.MainClass;
+                        _returnDictionary = _groupRepo.AddTeacherToGroup(ref existingTeacher, teacher.SchoolID, $"Grade {teacher.MainClass.ClassDesignate} Teachers");
+                        if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    }
+                    else
+                        throw new("Cannot assign the main teacher role for this class to this teacher. They do not teacher any of the subjects taught in this class.");
                 }
                 
                 if (teacher.Classes is not null)
                 {
                     if (existingTeacher.Classes is not null)
-                    {
                         teacher.Classes = teacher.Classes.Where(cls => existingTeacher.Classes.FirstOrDefault(c => c.ClassDesignate == cls.ClassDesignate) == null).ToList();
-                    }
 
                     if (!teacher.Classes.Any())
                         throw new("This teacher already teaches the provided class.");
 
-                    existingTeacher.Classes = teacher.Classes;
-                    _returnDictionary = _groupRepo.AddTeacherToGroup(ref existingTeacher, teacher.SchoolID, $"Grade {teacher.Classes.First().ClassDesignate} Teachers");
-                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    var subsTaught = teacher.Classes.First().Class!.SubjectsTaught;
+                    if (!teacher.Subjects.Intersect(subsTaught).IsNullOrEmpty())
+                    {
+                        existingTeacher.Classes = teacher.Classes;
+                        _returnDictionary = _groupRepo.AddTeacherToGroup(ref existingTeacher, teacher.SchoolID, $"Grade {teacher.Classes.First().ClassDesignate} Teachers");
+                        if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    }
+                    else
+                        throw new("The specified teacher does not teach any subjects taught in this grade.");
                 }
 
                 _context.SaveChanges();

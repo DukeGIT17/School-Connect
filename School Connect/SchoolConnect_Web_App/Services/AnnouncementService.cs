@@ -3,10 +3,6 @@ using static SchoolConnect_Web_App.Services.SharedClientSideServices;
 using SchoolConnect_Web_App.IServices;
 using System.Text;
 using System.Text.Json;
-using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Options;
-using System.Collections;
-using Microsoft.Build.Graph;
 
 namespace SchoolConnect_Web_App.Services
 {

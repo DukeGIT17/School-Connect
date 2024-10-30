@@ -1,0 +1,25 @@
+﻿.container form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    place-self: center;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.input-fields {
+    margin-bottom: 15px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+button {
+    height: 50px;
+    width: 20%;
+    border-radius: 30px;
+    background-color: #0F2E34;
+    color: white;
+    font-weight: bolder;
+}

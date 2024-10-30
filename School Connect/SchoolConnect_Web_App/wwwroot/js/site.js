@@ -7,7 +7,9 @@
         image.style.display = 'none';
     }
     document.getElementById(inputFieldId).value = "";
-    uploadBtn.style.display = "block";
+    if (uploadBtn !== null) {
+        uploadBtn.style.display = "block";
+    }
     pElement.style.display = "block";
     pElement.innerHTML = "No file selected";
     document.getElementById(thisBtnId).style.display = "none";

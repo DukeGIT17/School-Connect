@@ -171,5 +171,35 @@ namespace SchoolConnect_WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        
+        [HttpPut(nameof(AddSubjectsToSchool))]
+        public IActionResult AddSubjectsToSchool(List<string> subjects, long schoolId)
+        {
+            try
+            {
+                _returnDictionary = _school.AddSubjectsAsync(subjects, schoolId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet(nameof(GetGradesBySchool))]
+        public IActionResult GetGradesBySchool(long schoolId)
+        {
+            try
+            {
+                _returnDictionary = _school.GetGradesBySchoolAsync(schoolId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }        
     }
 }
