@@ -306,8 +306,10 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     if (!teacher.Classes.Any())
                         throw new("This teacher already teaches the provided class.");
 
-                    var subsTaught = teacher.Classes.First().Class!.SubjectsTaught;
-                    if (!teacher.Subjects.Intersect(subsTaught).IsNullOrEmpty())
+                    var cls = await _context.SubGrade.AsNoTracking().FirstOrDefaultAsync(c => c.ClassDesignate == teacher.Classes.First().Class!.ClassDesignate);
+                    if (cls is null) throw new($"Could not find the class {teacher.Classes.First().Class!.ClassDesignate} in the dictionary.");
+
+                    if (!teacher.Subjects.Intersect(cls.SubjectsTaught).IsNullOrEmpty())
                     {
                         existingTeacher.Classes = teacher.Classes;
                         _returnDictionary = _groupRepo.AddTeacherToGroup(ref existingTeacher, teacher.SchoolID, $"Grade {teacher.Classes.First().ClassDesignate} Teachers");

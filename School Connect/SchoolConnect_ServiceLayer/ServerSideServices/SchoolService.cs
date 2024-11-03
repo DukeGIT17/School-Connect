@@ -24,11 +24,11 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
-        public async Task<Dictionary<string, object>> AddSubjectsAsync(List<string> subjects, long schoolId)
+        public async Task<Dictionary<string, object>> AddSubjectsAsync(List<string> subjects, long schoolId, string? newClasses = null)
         {
             try
             {
-                return await _schoolRepo.AddSubjectsToSchoolAsync(subjects, schoolId);
+                return await _schoolRepo.AddSubjectsToSchoolAsync(subjects, schoolId, newClasses);
             }
             catch (Exception ex)
             {

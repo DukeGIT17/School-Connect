@@ -173,11 +173,11 @@ namespace SchoolConnect_WebAPI.Controllers
         }
         
         [HttpPut(nameof(AddSubjectsToSchool))]
-        public IActionResult AddSubjectsToSchool(List<string> subjects, long schoolId)
+        public IActionResult AddSubjectsToSchool(List<string> subjects, long schoolId, string? newClasses = null)
         {
             try
             {
-                _returnDictionary = _school.AddSubjectsAsync(subjects, schoolId).Result;
+                _returnDictionary = _school.AddSubjectsAsync(subjects, schoolId, newClasses).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
                 return Ok(_returnDictionary);
             }

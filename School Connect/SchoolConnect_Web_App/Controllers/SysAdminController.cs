@@ -88,7 +88,7 @@ namespace SchoolConnect_Web_App.Controllers
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                     if (model.School.Type == "High" || model.School.Type == "Combined")
-                        return RedirectToAction("GetSubjectsPage", new { adminId = model.School.SystemAdminId });
+                        return RedirectToAction("GetSubjectsPage", new { adminId = model.School.SystemAdminId, newClasses = "10A, 11A, 12A" });
 
                     return RedirectToAction(nameof(SysAdminLandingPage), new { id = model.School!.SystemAdminId });
                 }
@@ -102,7 +102,7 @@ namespace SchoolConnect_Web_App.Controllers
         }
 
         [HttpGet] 
-        public IActionResult GetSubjectsPage(long adminId, string? destination = null)
+        public IActionResult GetSubjectsPage(long adminId, string? destination = null, string? newClasses = null)
         {
             try
             {
@@ -122,7 +122,8 @@ namespace SchoolConnect_Web_App.Controllers
                         "",
                         "",
                     ],
-                    Destination = destination
+                    Destination = destination,
+                    NewClasses = newClasses
                 });
             }
             catch (Exception ex)
@@ -139,7 +140,7 @@ namespace SchoolConnect_Web_App.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    _returnDictionary = _schoolService.AddSubjectsAsync(model.Subjects, model.SchoolId).Result;
+                    _returnDictionary = _schoolService.AddSubjectsAsync(model.Subjects, model.SchoolId, model.NewClasses).Result;
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                     if (model.Destination is not null)
@@ -164,7 +165,8 @@ namespace SchoolConnect_Web_App.Controllers
                         "",
                         "",
                     ],
-                    Destination = model.Destination
+                    Destination = model.Destination,
+                    NewClasses = model.NewClasses,
                 });
             }
             catch (Exception ex)

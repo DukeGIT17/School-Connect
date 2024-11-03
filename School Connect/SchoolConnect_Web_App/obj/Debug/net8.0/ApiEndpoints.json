@@ -21342,6 +21342,11 @@
         "Name": "schoolId",
         "Type": "System.Int64",
         "IsRequired": false
+      },
+      {
+        "Name": "newClasses",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

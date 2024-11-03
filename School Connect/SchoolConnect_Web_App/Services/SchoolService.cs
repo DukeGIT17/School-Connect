@@ -292,7 +292,7 @@ namespace SchoolConnect_Web_App.Services
             }
         }
 
-        public async Task<Dictionary<string, object>> AddSubjectsAsync(List<string> subjects, long schoolId)
+        public async Task<Dictionary<string, object>> AddSubjectsAsync(List<string> subjects, long schoolId, string? newClasses = null)
         {
             try
             {
@@ -301,6 +301,8 @@ namespace SchoolConnect_Web_App.Services
                 buildString.Append(SchoolBasePath);
                 buildString.Append("/AddSubjectsToSchool?schoolId=");
                 buildString.Append(schoolId);
+                buildString.Append("&newClasses=");
+                buildString.Append(newClasses);
 
                 var request = new HttpRequestMessage
                 {
@@ -308,7 +310,6 @@ namespace SchoolConnect_Web_App.Services
                     Method = HttpMethod.Put,
                     RequestUri = new Uri(buildString.ToString())
                 };
-
 
                 var response = await _httpClient.SendAsync(request);
                 return CheckSuccessStatus(response, "NoNeed");

@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
-using SQLitePCL;
 using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
@@ -459,27 +459,33 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public async Task<Dictionary<string, object>> AddSubjectsToSchoolAsync(List<string> subjects, long schoolId)
+        public async Task<Dictionary<string, object>> AddSubjectsToSchoolAsync(List<string> subjects, long schoolId, string? newClasses = null)
         {
             try
             {
+                if (newClasses is null) throw new("Failed to acquire new classes.");
+
                 var school = await _context.Schools.Include(c => c.SchoolGradesNP)!.ThenInclude(g => g.Classes).FirstOrDefaultAsync(s => s.Id == schoolId);
                 if (school is null) throw new("Could not find a school with the specified ID.");
 
                 List<SubGrade> classes = [];
+                List<string> newClsDesignates = [.. newClasses.Split([',', ' '], StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim())];
                 foreach (var grade in school.SchoolGradesNP!)
-                    classes.AddRange(grade.Classes.Where(cls => GetGradeFromClassDesignate(cls.ClassDesignate) >= 10).ToList());
+                    classes.AddRange(grade.Classes.Where(cls => newClsDesignates.Contains(cls.ClassDesignate)).ToList());
 
+                classes = classes.Intersect(classes.Where(cls => GetGradeFromClassDesignate(cls.ClassDesignate) >= 10).ToList()).ToList();
                 if (!classes.IsNullOrEmpty())
                 {
                     foreach (var cls in classes)
                     {
                         foreach (var subject in subjects)
                             cls.SubjectsTaught.Add(subject);
+                        cls.SubjectsTaught = cls.SubjectsTaught.Distinct().ToList();
                     }
+
                 }
                 else
-                    throw new("There no grade 10 and above classes in the specified school");
+                    throw new($"{school.Name} {school.Type} School does not have the provided classes. Or the classes present do not possess classes above grade 10 ({newClasses})");
 
                 _context.SaveChanges();
 
