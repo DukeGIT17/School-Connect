@@ -36,6 +36,7 @@ namespace SchoolConnect_Web_App.Services
                     Teacher teacher = new();
                     SubGrade subGrade = new();
                     Grade grade = new();
+                    Attendance attendance = new();
 
                     switch (convertTo)
                     {
@@ -142,6 +143,25 @@ namespace SchoolConnect_Web_App.Services
                                     grades.Add(JsonSerializer.Deserialize<Grade>(gradeString)!);
                                 }
                                 _returnDictionary["Result"] = grades;
+                            }
+                            else
+                            {
+                                AssignValuesFromDictionary(subGrade, dict!);
+                                _returnDictionary["Result"] = subGrade;
+                            }
+                            break;
+
+                        case "Attendance":
+                            if (dict is null)
+                            {
+                                List<Attendance> attendanceRecords = [];
+                                foreach (var val in list)
+                                {
+                                    AssignValuesFromDictionary(attendance, val as Dictionary<string, object>);
+                                    var attRecString = JsonSerializer.Serialize(attendance);
+                                    attendanceRecords.Add(JsonSerializer.Deserialize<Attendance>(attRecString)!);
+                                }
+                                _returnDictionary["Result"] = attendanceRecords;
                             }
                             else
                             {

@@ -11,5 +11,7 @@ namespace SchoolConnect_Web_App.IServices
         Task<Dictionary<string, object>> GetTeacherByEmailAddressAsync(string email);
         Task<Dictionary<string, object>> UpdateTeacherAsync(Teacher teacher);
         Task<Dictionary<string, object>> UpdateClassAllocationAsync(Teacher teacher);
+        Task<Dictionary<string, object>> GetAttendanceRecordsByTeacher(long teacherId);
+        Task<Dictionary<string, object>> MarkAttendanceAsync(IEnumerable<Attendance> attendanceRecords);
     }
 }

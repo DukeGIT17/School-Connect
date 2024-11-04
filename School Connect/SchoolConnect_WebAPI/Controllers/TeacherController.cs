@@ -130,5 +130,35 @@ namespace SchoolConnect_WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet(nameof(GetAttendanceRecordsByTeacher))]
+        public IActionResult GetAttendanceRecordsByTeacher(long teacherId)
+        {
+            try
+            {
+                _returnDictionary = _teacherService.GetAttendanceRecordsByTeacherAsync(teacherId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut(nameof(MarkAttendance))]
+        public IActionResult MarkAttendance(IEnumerable<Attendance> attendanceRecords)
+        {
+            try
+            {
+                _returnDictionary = _teacherService.MarkClassAttendanceAsync(attendanceRecords).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

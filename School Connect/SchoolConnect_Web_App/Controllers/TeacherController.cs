@@ -198,9 +198,52 @@ namespace schoolconnect.Controllers
             }
         }
 
-        public IActionResult TeacherMarkAttendance()
+        [HttpGet]
+        public IActionResult TeacherMarkAttendance(long teacherId)
         {
-            return View();
+            try
+            {
+                _returnDictionary = _teacherService.GetAttendanceRecordsByTeacher(teacherId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not Teacher teacher) throw new("Could not acquire teacher data from the provided dictionary.");
+
+                TeacherMarkAttendanceViewModel model = new()
+                {
+                    Teacher = teacher,
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        
+        [HttpPost]
+        public IActionResult TeacherMarkAttendance(TeacherMarkAttendanceViewModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _returnDictionary = _teacherService.MarkAttendanceAsync(model.AttendanceRecords).Result;
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    return RedirectToAction(nameof(TeacherClassRoster), new { teacherId = model.AttendanceRecords.First().TeacherId });
+                }
+
+                _returnDictionary = _teacherService.GetAttendanceRecordsByTeacher(model.AttendanceRecords.First().TeacherId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not Teacher teacher) throw new("Could not acquire teacher data from the provided dictionary.");
+
+                model.Teacher = teacher;
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public IActionResult TeacherMakeReports()

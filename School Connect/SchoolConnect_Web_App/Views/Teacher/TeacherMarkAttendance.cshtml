@@ -1,85 +1,96 @@
-﻿@{
+﻿@model TeacherMarkAttendanceViewModel
+@{
     Layout = null;
 }
 <link rel="stylesheet" href="~/css/TeacherCSS/TeacherMarkAttendance.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="~/FontAwesome/css/all.min.css" />
 
+@{
+    List<Attendance> attendanceRecs = new List<Attendance>();
+
+    // Calculate the last Monday date
+    DateTime today = DateTime.Now.Date;
+    DateTime lastMonday = today.AddDays(-(int)today.DayOfWeek + (int)DayOfWeek.Monday - 7);
+
+    // Filter attendance records from last Monday to today, then keep only unique dates
+    attendanceRecs = Model.Teacher.AttendanceRecords
+        .Where(a => a.Date.Date >= lastMonday && a.Date.Date <= today)
+        .GroupBy(a => a.Date.Date)  // Group by Date to get unique dates
+        .Select(g => g.First())     // Take the first record for each unique date
+        .OrderBy(a => a.Date)       // Sort by date
+        .ToList();
+}
 
 <body>
     <div class="container">
         <div class="table-container">
             <div class="header">
-                <h2>2024 Academic Year <i class="fas fa-book"></i> <br> Mark Learner Attendance : Grade 10B <i class="fa-solid fa-clipboard-user"></i></h2>
+                <h2>
+                    2024 Academic Year <i class="fas fa-book"></i> <br />
+                    Mark Learner Attendance : @Model.Teacher.MainClass.ClassDesignate <i class="fa-solid fa-clipboard-user"></i>
+                </h2>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Learners</th>
-                        <th>Monday</th>
-                        <th>Tuesday</th>
-                        <th>Wednesday</th>
-                        <th>Thursday</th>
-                        <th>Friday</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Khaya Poti</td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon absent" onclick="toggleAttendance(this)">&#10007;</span></td>
-                    </tr>
-                    <tr>
-                        <td>Thabiso Soaisa</td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon absent" onclick="toggleAttendance(this)">&#10007;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                    </tr>
-                    <tr>
-                        <td>Lukhanyo May</td>
-                        <td><span class="icon absent" onclick="toggleAttendance(this)">&#10007;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                    </tr>
-                    <tr>
-                        <td>Lebo Senyane</td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                    </tr>
-                    <tr>
-                        <td>Puleng Senyatso</td>
-                        <td><span class="icon absent" onclick="toggleAttendance(this)">&#10007;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                        <td><span class="icon absent" onclick="toggleAttendance(this)">&#10007;</span></td>
-                        <td><span class="icon present" onclick="toggleAttendance(this)">&#10003;</span></td>
-                    </tr>
-                </tbody>
-            </table>
+            <form asp-action="TeacherMarkAttendance" method="post">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Learners</th>
+                            @if (attendanceRecs is not null)
+                            {
+                                @foreach (var attRec in attendanceRecs)
+                                {
+                                    <th>
+                                        @attRec.Date.ToString("MMM dd") <br />
+                                        @attRec.Date.DayOfWeek
+                                    </th>
+                                }
+                            }
+                            <th>
+                                @DateTime.Now.ToString("MMM dd") <br />
+                                @DateTime.Now.DayOfWeek
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.Teacher.AttendanceRecords is not null)
+                        {
+                            int index = 0;
+                            @foreach (var learner in Model.Teacher.MainClass.Learners)
+                            {
+                                <tr>
+                                    <td>@learner.Name @learner.Surname</td>
+                                    @foreach (var attRecc in learner.AttendanceRecords)
+                                    {
+                                        if (attRecc.Date.Date >= lastMonday && attRecc.Date.Date <= today)
+                                        {
+                                            if (attRecc.Status)
+                                            {
+                                                <td><span class="icon present">&#10003;</span></td>
+                                            }
+                                            else
+                                            {
+                                                <td><span class="icon absent">&#10007;</span></td>
+                                            }
+                                        }
+                                    }
+                                    <td>
+                                        <input asp-for="AttendanceRecords[index].Status" />
+                                        <input asp-for="AttendanceRecords[index].Date" type="hidden" value="@DateTime.Now" />
+                                        <input asp-for="AttendanceRecords[index].ClassID" type="hidden" value="@Model.Teacher.MainClass.Id" />
+                                        <input asp-for="AttendanceRecords[index].LearnerNP" type="hidden" value="@learner" />
+                                        <input asp-for="AttendanceRecords[index].LearnerId" type="hidden" value="@learner.Id" />
+                                        <input asp-for="AttendanceRecords[index].TeacherId" type="hidden" value="@Model.Teacher.Id" />
+                                        <input asp-for="AttendanceRecords[index].SchoolID" type="hidden" value="@Model.Teacher.SchoolID" />
+                                    </td>
+                                </tr>
+                                index++;
+                            }
+                        }
+                    </tbody>
+                </table>
+                <button type="submit">Submit</button>
+            </form>
+
         </div>
-    </div>
 
-    <script>
-        function toggleAttendance(element) {
-            if (element.classList.contains('present')) {
-                element.classList.remove('present');
-                element.classList.add('absent');
-                element.innerHTML = '&#10007;'; // Cross
-            } else {
-                element.classList.remove('absent');
-                element.classList.add('present');
-                element.innerHTML = '&#10003;'; // Tick
-            }
-        }
-    </script>
 </body>
-

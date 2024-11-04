@@ -41,6 +41,20 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
+        public async Task<Dictionary<string, object>> GetAttendanceRecordsByTeacherAsync(long teacherId)
+        {
+            try
+            {
+                return await _teacherRepository.GetAttendanceRecordsByTeacherAsync(teacherId);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
         public async Task<Dictionary<string, object>> GetByIdAsync(long id)
         {
             try
@@ -81,6 +95,20 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             try
             {
                 return await _teacherRepository.GetTeachersBySchoolAsync(schoolId);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> MarkClassAttendanceAsync(IEnumerable<Attendance> attendanceRecords)
+        {
+            try
+            {
+                return await _teacherRepository.MarkClassAttendanceAsync(attendanceRecords);
             }
             catch (Exception ex)
             {

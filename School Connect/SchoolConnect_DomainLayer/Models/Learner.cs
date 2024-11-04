@@ -51,6 +51,8 @@ namespace SchoolConnect_DomainLayer.Models
         public IList<LearnerParent> Parents { get; set; }
 
         public SubGrade? Class { get; set; }
+
+        public IList<Attendance>? AttendanceRecords { get; set; }
         #endregion
     }
 }

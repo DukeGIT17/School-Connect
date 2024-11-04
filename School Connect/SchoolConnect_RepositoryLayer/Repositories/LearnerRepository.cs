@@ -342,7 +342,10 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                var cls = await _context.SubGrade.Include(a => a.Learners).FirstOrDefaultAsync(c => c.MainTeacherId == teacherId);
+                var cls = await _context.SubGrade
+                    .Include(a => a.Learners)!
+                    .Include(m => m.MainTeacher)
+                    .FirstOrDefaultAsync(c => c.MainTeacherId == teacherId);
                 if (cls is null) throw new("Could not find a class whose main teacher is the specified teacher.");
 
                 if (cls.Learners.IsNullOrEmpty()) throw new("The specified class does not yet have any learners assigned to it.");

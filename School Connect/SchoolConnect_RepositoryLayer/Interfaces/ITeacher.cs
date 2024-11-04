@@ -13,7 +13,8 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
         Task<Dictionary<string, object>> GetTeachersBySchoolAsync(long schoolId);
         Task<Dictionary<string, object>> GetTeacherByClass(string classId);
         Task<Dictionary<string, object>> GetTeacherByEmailAddressAsync(string email);
-        Task<Dictionary<string, object>> GetAll();
+        Task<Dictionary<string, object>> GetAttendanceRecordsByTeacherAsync(long teacherId);
+        Task<Dictionary<string, object>> MarkClassAttendanceAsync(IEnumerable<Attendance> attendanceRecords);
         Task<Dictionary<string, object>> Remove(long teacherId);
     }
 }

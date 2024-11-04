@@ -113,6 +113,45 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.ToTable("Announcements", (string)null);
                 });
 
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Attendance", b =>
+                {
+                    b.Property<int>("AttendanceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ClassId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("LearnerId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("SchoolId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("TeacherId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("AttendanceId");
+
+                    b.HasIndex("ClassId");
+
+                    b.HasIndex("Date");
+
+                    b.HasIndex("LearnerId");
+
+                    b.HasIndex("SchoolId");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("Attendance");
+                });
+
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Grade", b =>
                 {
                     b.Property<int>("Id")
@@ -680,6 +719,41 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Navigation("TeacherAnnouncementNP");
                 });
 
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Attendance", b =>
+                {
+                    b.HasOne("SchoolConnect_DomainLayer.Models.SubGrade", "Class")
+                        .WithMany("AttendanceRecords")
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolConnect_DomainLayer.Models.Learner", "LearnerNP")
+                        .WithMany("AttendanceRecords")
+                        .HasForeignKey("LearnerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SchoolConnect_DomainLayer.Models.School", "School")
+                        .WithMany("AttendanceRecords")
+                        .HasForeignKey("SchoolId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolConnect_DomainLayer.Models.Teacher", "TeacherNP")
+                        .WithMany("AttendanceRecords")
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Class");
+
+                    b.Navigation("LearnerNP");
+
+                    b.Navigation("School");
+
+                    b.Navigation("TeacherNP");
+                });
+
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Grade", b =>
                 {
                     b.HasOne("SchoolConnect_DomainLayer.Models.School", "GradeSchoolNP")
@@ -861,6 +935,8 @@ namespace SchoolConnect_WebAPI.Migrations
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Learner", b =>
                 {
+                    b.Navigation("AttendanceRecords");
+
                     b.Navigation("Parents");
                 });
 
@@ -878,6 +954,8 @@ namespace SchoolConnect_WebAPI.Migrations
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.School", b =>
                 {
+                    b.Navigation("AttendanceRecords");
+
                     b.Navigation("SchoolAddress")
                         .IsRequired();
 
@@ -896,6 +974,8 @@ namespace SchoolConnect_WebAPI.Migrations
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.SubGrade", b =>
                 {
+                    b.Navigation("AttendanceRecords");
+
                     b.Navigation("Learners");
 
                     b.Navigation("Teachers");
@@ -909,6 +989,8 @@ namespace SchoolConnect_WebAPI.Migrations
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Teacher", b =>
                 {
                     b.Navigation("AnnouncementsNP");
+
+                    b.Navigation("AttendanceRecords");
 
                     b.Navigation("Classes");
 

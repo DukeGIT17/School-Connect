@@ -8,15 +8,9 @@ namespace SchoolConnect_DomainLayer.Models
         [Key]
         public int AttendanceId { get; set; }
 
-        public bool MondayDate { get; set; }
+        public DateTime Date { get; set; }
 
-        public bool TuesdayDate { get; set; }
-
-        public bool WednesdayDate { get; set; }
-
-        public bool ThursdayDate { get; set; }
-
-        public bool FridayDate { get; set; }
+        public bool Status { get; set; }
 
         #region Foreign Key Properties
         [ForeignKey(nameof(LearnerNP))]
@@ -24,11 +18,19 @@ namespace SchoolConnect_DomainLayer.Models
 
         [ForeignKey(nameof(TeacherNP))]
         public long TeacherId { get; set; }
+
+        [ForeignKey(nameof(Class))]
+        public int ClassID { get; set; }
+
+        [ForeignKey(nameof(School))]
+        public long SchoolID { get; set; }
         #endregion
 
         #region Navigation Properties
-        public Teacher TeacherNP { get; set; }
-        public Learner LearnerNP { get; set; }
+        public Teacher? TeacherNP { get; set; }
+        public Learner? LearnerNP { get; set; }
+        public SubGrade? Class { get; set; }
+        public School? School { get; set; }
         #endregion
     }
 }

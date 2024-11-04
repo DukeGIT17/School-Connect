@@ -13,5 +13,7 @@ namespace SchoolConnect_ServiceLayer.IServerSideServices
         Task<Dictionary<string, object>> GetTeacherByEmailAddressAsync(string email);
         Task<Dictionary<string, object>> UpdatePersonalInfoAsync(Teacher teacher);
         Task<Dictionary<string, object>> UpdateClassAllocationAsync(Teacher teacher);
+        Task<Dictionary<string, object>> GetAttendanceRecordsByTeacherAsync(long teacherId);
+        Task<Dictionary<string, object>> MarkClassAttendanceAsync(IEnumerable<Attendance> attendanceRecords);
     }
 }

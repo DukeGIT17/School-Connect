@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SchoolConnect_DomainLayer.Models;
 
 namespace SchoolConnect_DomainLayer.Data
@@ -16,6 +17,7 @@ namespace SchoolConnect_DomainLayer.Data
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<SubGrade> SubGrade { get; set; }
+        public DbSet<Attendance> Attendance { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -54,6 +56,13 @@ namespace SchoolConnect_DomainLayer.Data
                 .HasForeignKey<School>(school => school.SystemAdminId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(false);
+
+            modelBuilder.Entity<School>()
+                .HasMany(attRecs => attRecs.AttendanceRecords)
+                .WithOne(school => school.School)
+                .HasForeignKey(a => a.SchoolID)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
 
             modelBuilder.Entity<SysAdmin>()
                 .HasIndex(admin => admin.StaffNr)
@@ -118,6 +127,13 @@ namespace SchoolConnect_DomainLayer.Data
                 .HasForeignKey<SubGrade>(grade => grade.MainTeacherId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired(false);
+
+            modelBuilder.Entity<Teacher>()
+                .HasMany(attRecs => attRecs.AttendanceRecords)
+                .WithOne(teacher => teacher.TeacherNP)
+                .HasForeignKey(a => a.TeacherId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired();
 
             modelBuilder.Entity<TeacherGrade>()
                 .HasKey(tg => new { tg.TeacherID, tg.ClassID });
@@ -260,9 +276,27 @@ namespace SchoolConnect_DomainLayer.Data
                 .HasForeignKey(learner => learner.ClassID)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<Learner>()
+                .HasMany(attRecs => attRecs.AttendanceRecords)
+                .WithOne(learner => learner.LearnerNP)
+                .HasForeignKey(attRec => attRec.LearnerId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired();
+
             modelBuilder.Entity<Grade>()
                 .HasIndex(grade => grade.GradeDesignate)
                 .IsUnique(false);
+
+            modelBuilder.Entity<Attendance>()
+                .HasIndex(att => att.Date)
+                .IsUnique(false);
+
+            modelBuilder.Entity<SubGrade>()
+                .HasMany(attRecs => attRecs.AttendanceRecords)
+                .WithOne(cls => cls.Class)
+                .HasForeignKey(a => a.ClassID)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
             
             modelBuilder.Entity<SubGrade>()
                 .HasIndex(subGrade => subGrade.ClassDesignate)

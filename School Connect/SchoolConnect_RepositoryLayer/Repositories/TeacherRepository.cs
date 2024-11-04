@@ -106,9 +106,29 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public Task<Dictionary<string, object>> GetAll()
+        public async Task<Dictionary<string, object>> GetAttendanceRecordsByTeacherAsync(long teacherId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var teacher = await _context.Teachers
+                    .AsNoTracking()
+                    .Include(m => m.MainClass)
+                    .ThenInclude(l => l.Learners)!
+                    .ThenInclude(a => a.AttendanceRecords)
+                    .Include(a => a.AttendanceRecords)
+                    .FirstOrDefaultAsync(t => t.Id == teacherId);
+                if (teacher is null) throw new("Could not find a teacher with the specified ID.");
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = teacher;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
         }
 
         public Task<Dictionary<string, object>> GetTeacherByClass(string classId)
@@ -319,6 +339,32 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                         throw new("The specified teacher does not teach any subjects taught in this grade.");
                 }
 
+                _context.SaveChanges();
+
+                _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> MarkClassAttendanceAsync(IEnumerable<Attendance> attendanceRecords)
+        {
+            try
+            {
+                if (!attendanceRecords.Any()) throw new("Something went wrong, empty attendance record provided.");
+
+                var existingAttendanceRecords = _context.Attendance.AsNoTracking().Where(a => a.SchoolID == attendanceRecords.First().SchoolID).ToList();
+                foreach (var existingAttRecs in existingAttendanceRecords)
+                    attendanceRecords = attendanceRecords.Where(a => a.Date.Date != existingAttRecs.Date.Date);
+
+                if (!attendanceRecords.Any()) throw new("Attendance records for the specified date already exist.");
+                
+                _context.AddRange(attendanceRecords);
                 _context.SaveChanges();
 
                 _returnDictionary["Success"] = true;

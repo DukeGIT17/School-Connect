@@ -38,6 +38,7 @@ namespace SchoolConnect_DomainLayer.Models
         public School? TeacherSchoolNP { get; set; }
         public IList<GroupTeacher>? GroupsNP { get; set; }
         public IList<Announcement>? AnnouncementsNP { get; set; }
+        public IList<Attendance>? AttendanceRecords { get; set; }
         #endregion
     }
 }

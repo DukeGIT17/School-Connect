@@ -87,10 +87,11 @@ namespace SchoolConnect_DomainLayer.Models
         public SysAdmin? SchoolSysAdminNP { get; set; }
         public Principal? SchoolPrincipalNP { get; set; }
         public IList<Learner>? SchoolLearnersNP { get; set; }
-        public IList<Teacher?>? SchoolTeachersNP { get; set; }
+        public IList<Teacher>? SchoolTeachersNP { get; set; }
         public IList<Announcement>? SchoolAnnouncementsNP { get; set; }
         public IList<Group>? SchoolGroupsNP { get; set; }
         public IList<Grade>? SchoolGradesNP { get; set; }
+        public IList<Attendance>? AttendanceRecords { get; set; }
         #endregion
     }
 }

@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.TagHelpers;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SchoolConnect_DomainLayer.Models;
+﻿using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
-using System.Collections;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
 using static SchoolConnect_Web_App.Services.SharedClientSideServices;
 
 namespace SchoolConnect_Web_App.Services
@@ -348,6 +346,54 @@ namespace SchoolConnect_Web_App.Services
                 var request = new HttpRequestMessage()
                 {
                     Content = formData,
+                    Method = HttpMethod.Put,
+                    RequestUri = new Uri(buildString.ToString())
+                };
+
+                var response = await _httpClient.SendAsync(request);
+                return CheckSuccessStatus(response, "NoNeed");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetAttendanceRecordsByTeacher(long teacherId)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(teacherBasePath);
+                buildString.Append("/GetAttendanceRecordsByTeacher?teacherId=");
+                buildString.Append(teacherId);
+
+                var response = await _httpClient.GetAsync(buildString.ToString());
+                return CheckSuccessStatus(response, "Teacher");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> MarkAttendanceAsync(IEnumerable<Attendance> attendanceRecords)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(teacherBasePath);
+                buildString.Append("/MarkAttendance");
+
+                var request = new HttpRequestMessage
+                {
+                    Content = new StringContent(JsonSerializer.Serialize(attendanceRecords), Encoding.UTF8, "application/json"),
                     Method = HttpMethod.Put,
                     RequestUri = new Uri(buildString.ToString())
                 };

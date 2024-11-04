@@ -29,6 +29,7 @@ namespace SchoolConnect_DomainLayer.Models
         public Teacher? MainTeacher { get; set; }
         public IList<TeacherGrade>? Teachers { get; set; }
         public Grade? Grade { get; set; }
+        public IList<Attendance>? AttendanceRecords { get; set; }
         #endregion
     }
 }
