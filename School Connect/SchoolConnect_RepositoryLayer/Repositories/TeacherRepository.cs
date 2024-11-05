@@ -145,10 +145,8 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                var existingTeacher = await _context.Teachers.AsNoTracking().FirstOrDefaultAsync(t => t.Id == teacher.Id);
+                var existingTeacher = await _context.Teachers.FirstOrDefaultAsync(t => t.Id == teacher.Id);
                 if (existingTeacher is null) throw new("Could not find a teacher with the specified ID");
-
-                teacher.Subjects = existingTeacher.Subjects;
 
                 if (teacher.EmailAddress != existingTeacher.EmailAddress)
                 {
@@ -158,11 +156,13 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 if (teacher.PhoneNumber != existingTeacher.PhoneNumber)
                 {
-                    _returnDictionary = await _signInRepo.ChangePhoneNumberAsync(existingTeacher.PhoneNumber.ToString(), teacher.PhoneNumber.ToString(), existingTeacher.EmailAddress);
+                    _returnDictionary = await _signInRepo.ChangePhoneNumberAsync(existingTeacher.PhoneNumber.ToString(), teacher.PhoneNumber.ToString(), teacher.EmailAddress);
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 }
 
-                _context.Update(teacher);
+                existingTeacher.EmailAddress = teacher.EmailAddress;
+                existingTeacher.PhoneNumber = teacher.PhoneNumber;
+
                 _context.SaveChanges();
 
                 _returnDictionary["Success"] = true;
@@ -358,7 +358,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             {
                 if (!attendanceRecords.Any()) throw new("Something went wrong, empty attendance record provided.");
 
-                var existingAttendanceRecords = _context.Attendance.AsNoTracking().Where(a => a.SchoolID == attendanceRecords.First().SchoolID).ToList();
+                var existingAttendanceRecords = await _context.Attendance.AsNoTracking().Where(a => a.SchoolID == attendanceRecords.First().SchoolID).ToListAsync();
                 foreach (var existingAttRecs in existingAttendanceRecords)
                     attendanceRecords = attendanceRecords.Where(a => a.Date.Date != existingAttRecs.Date.Date);
 

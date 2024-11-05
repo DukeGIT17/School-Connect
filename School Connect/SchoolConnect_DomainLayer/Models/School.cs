@@ -92,6 +92,7 @@ namespace SchoolConnect_DomainLayer.Models
         public IList<Group>? SchoolGroupsNP { get; set; }
         public IList<Grade>? SchoolGradesNP { get; set; }
         public IList<Attendance>? AttendanceRecords { get; set; }
+        public IList<Chat>? Chats { get; set; }
         #endregion
     }
 }

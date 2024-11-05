@@ -119,7 +119,7 @@ namespace SchoolConnect_WebAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("ClassId")
+                    b.Property<int>("ClassID")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("Date")
@@ -128,7 +128,7 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Property<long>("LearnerId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("SchoolId")
+                    b.Property<long>("SchoolID")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("Status")
@@ -139,17 +139,63 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.HasKey("AttendanceId");
 
-                    b.HasIndex("ClassId");
+                    b.HasIndex("ClassID");
 
                     b.HasIndex("Date");
 
                     b.HasIndex("LearnerId");
 
-                    b.HasIndex("SchoolId");
+                    b.HasIndex("SchoolID");
 
                     b.HasIndex("TeacherId");
 
                     b.ToTable("Attendance");
+                });
+
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Chat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("TEXT");
+
+                    b.Property<long>("ParentId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("RecieverId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("SchoolID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("SenderId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<long>("TeacherId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("TimeSent")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
+
+                    b.HasIndex("RecieverId");
+
+                    b.HasIndex("SchoolID");
+
+                    b.HasIndex("SenderId");
+
+                    b.HasIndex("TeacherId");
+
+                    b.HasIndex("TimeSent");
+
+                    b.ToTable("Chats", (string)null);
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Grade", b =>
@@ -723,7 +769,7 @@ namespace SchoolConnect_WebAPI.Migrations
                 {
                     b.HasOne("SchoolConnect_DomainLayer.Models.SubGrade", "Class")
                         .WithMany("AttendanceRecords")
-                        .HasForeignKey("ClassId")
+                        .HasForeignKey("ClassID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -735,7 +781,7 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.HasOne("SchoolConnect_DomainLayer.Models.School", "School")
                         .WithMany("AttendanceRecords")
-                        .HasForeignKey("SchoolId")
+                        .HasForeignKey("SchoolID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -752,6 +798,33 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Navigation("School");
 
                     b.Navigation("TeacherNP");
+                });
+
+            modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Chat", b =>
+                {
+                    b.HasOne("SchoolConnect_DomainLayer.Models.Parent", "Parent")
+                        .WithMany("Chats")
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("SchoolConnect_DomainLayer.Models.School", "School")
+                        .WithMany("Chats")
+                        .HasForeignKey("SchoolID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SchoolConnect_DomainLayer.Models.Teacher", "Teacher")
+                        .WithMany("Chats")
+                        .HasForeignKey("TeacherId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Parent");
+
+                    b.Navigation("School");
+
+                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Grade", b =>
@@ -942,6 +1015,8 @@ namespace SchoolConnect_WebAPI.Migrations
 
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.Parent", b =>
                 {
+                    b.Navigation("Chats");
+
                     b.Navigation("Children");
 
                     b.Navigation("GroupsNP");
@@ -955,6 +1030,8 @@ namespace SchoolConnect_WebAPI.Migrations
             modelBuilder.Entity("SchoolConnect_DomainLayer.Models.School", b =>
                 {
                     b.Navigation("AttendanceRecords");
+
+                    b.Navigation("Chats");
 
                     b.Navigation("SchoolAddress")
                         .IsRequired();
@@ -991,6 +1068,8 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Navigation("AnnouncementsNP");
 
                     b.Navigation("AttendanceRecords");
+
+                    b.Navigation("Chats");
 
                     b.Navigation("Classes");
 

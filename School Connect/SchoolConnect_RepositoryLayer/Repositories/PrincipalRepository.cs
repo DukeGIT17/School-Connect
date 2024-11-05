@@ -97,10 +97,24 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                var princ = await _context.Principals.AsNoTracking().FirstOrDefaultAsync(p => p.Id == principal.Id);
-                if (princ == null) throw new("Could not find a principal with the specified ID.");
+                var existingPrincipal = await _context.Principals.FirstOrDefaultAsync(p => p.Id == principal.Id);
+                if (existingPrincipal == null) throw new("Could not find a principal with the specified ID.");
 
-                _context.Update(principal);
+                if (principal.EmailAddress != existingPrincipal.EmailAddress)
+                {
+                    _returnDictionary = await _signInRepo.ChangeEmailAddressAsync(existingPrincipal.EmailAddress, principal.EmailAddress);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                }
+
+                if (principal.PhoneNumber != existingPrincipal.PhoneNumber)
+                {
+                    _returnDictionary = await _signInRepo.ChangePhoneNumberAsync(existingPrincipal.PhoneNumber.ToString(), principal.PhoneNumber.ToString(), principal.EmailAddress);
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                }
+
+                existingPrincipal.EmailAddress = principal.EmailAddress;
+                existingPrincipal.PhoneNumber = principal.PhoneNumber;
+
                 await _context.SaveChangesAsync();
 
                 _returnDictionary["Success"] = true;

@@ -30,6 +30,7 @@ namespace SchoolConnect_DomainLayer.Data
             modelBuilder.Entity<Learner>().ToTable("Learners");
             modelBuilder.Entity<Announcement>().ToTable("Announcements");
             modelBuilder.Entity<Group>().ToTable("Groups");
+            modelBuilder.Entity<Chat>().ToTable("Chats");
 
             modelBuilder.Entity<School>()
                 .HasIndex(school => school.EmisNumber)
@@ -61,6 +62,13 @@ namespace SchoolConnect_DomainLayer.Data
                 .HasMany(attRecs => attRecs.AttendanceRecords)
                 .WithOne(school => school.School)
                 .HasForeignKey(a => a.SchoolID)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
+
+            modelBuilder.Entity<School>()
+                .HasMany(chats => chats.Chats)
+                .WithOne(school => school.School)
+                .HasForeignKey(c => c.SchoolID)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
 
@@ -132,6 +140,13 @@ namespace SchoolConnect_DomainLayer.Data
                 .HasMany(attRecs => attRecs.AttendanceRecords)
                 .WithOne(teacher => teacher.TeacherNP)
                 .HasForeignKey(a => a.TeacherId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired();
+
+            modelBuilder.Entity<Teacher>()
+                .HasMany(chats => chats.Chats)
+                .WithOne(teacher => teacher.Teacher)
+                .HasForeignKey(c => c.TeacherId)
                 .OnDelete(DeleteBehavior.Restrict)
                 .IsRequired();
 
@@ -232,6 +247,13 @@ namespace SchoolConnect_DomainLayer.Data
                 .IsRequired(false);
 
             modelBuilder.Entity<Parent>()
+                .HasMany(chats => chats.Chats)
+                .WithOne(parent => parent.Parent)
+                .HasForeignKey(c => c.ParentId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired();
+
+            modelBuilder.Entity<Parent>()
                 .HasIndex(parent => parent.IdNo)
                 .IsUnique();
             
@@ -308,6 +330,18 @@ namespace SchoolConnect_DomainLayer.Data
                 .HasForeignKey(subGrade => subGrade.GradeId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
+
+            modelBuilder.Entity<Chat>()
+                .HasIndex(chat => chat.TimeSent)
+                .IsUnique(false);
+            
+            modelBuilder.Entity<Chat>()
+                .HasIndex(chat => chat.SenderId)
+                .IsUnique(false);
+            
+            modelBuilder.Entity<Chat>()
+                .HasIndex(chat => chat.RecieverId)
+                .IsUnique(false);
         }
     }
 }

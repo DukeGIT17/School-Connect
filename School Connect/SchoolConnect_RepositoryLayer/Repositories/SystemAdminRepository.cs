@@ -67,23 +67,25 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                var admin = await _context.SystemAdmins.AsNoTracking().FirstOrDefaultAsync(a => a.Id == sysAdmin.Id);
-                if (admin == null) throw new("No admin with the specified Id and staff numbers was found.");
+                var existingSysAdmin = await _context.SystemAdmins.FirstOrDefaultAsync(a => a.Id == sysAdmin.Id);
+                if (existingSysAdmin == null) throw new("No admin with the specified Id and staff numbers was found.");
 
-                if (sysAdmin.EmailAddress != admin.EmailAddress)
+                if (sysAdmin.EmailAddress != existingSysAdmin.EmailAddress)
                 {
-                    _returnDictionary = await _signInRepo.ChangeEmailAddressAsync(admin.EmailAddress, sysAdmin.EmailAddress);
+                    _returnDictionary = await _signInRepo.ChangeEmailAddressAsync(existingSysAdmin.EmailAddress, sysAdmin.EmailAddress);
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 }
                 
-                if (sysAdmin.PhoneNumber != admin.PhoneNumber)
+                if (sysAdmin.PhoneNumber != existingSysAdmin.PhoneNumber)
                 {
-                    _returnDictionary = await _signInRepo.ChangePhoneNumberAsync(admin.PhoneNumber.ToString(), sysAdmin.PhoneNumber.ToString(), sysAdmin.EmailAddress);
+                    _returnDictionary = await _signInRepo.ChangePhoneNumberAsync(existingSysAdmin.PhoneNumber.ToString(), sysAdmin.PhoneNumber.ToString(), sysAdmin.EmailAddress);
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 }
 
-                _context.Update(sysAdmin);
-                _context.SaveChanges();
+                existingSysAdmin.PhoneNumber = sysAdmin.PhoneNumber;
+                existingSysAdmin.EmailAddress = sysAdmin.EmailAddress;
+
+                await _context.SaveChangesAsync();
 
                 _returnDictionary["Success"] = true;
                 return _returnDictionary;
