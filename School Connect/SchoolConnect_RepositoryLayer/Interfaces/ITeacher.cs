@@ -16,5 +16,6 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
         Task<Dictionary<string, object>> GetAttendanceRecordsByTeacherAsync(long teacherId);
         Task<Dictionary<string, object>> MarkClassAttendanceAsync(IEnumerable<Attendance> attendanceRecords);
         Task<Dictionary<string, object>> Remove(long teacherId);
+        Task<Dictionary<string, object>> GetParentsByTeacherClassesAsync(long teacherId);
     }
 }

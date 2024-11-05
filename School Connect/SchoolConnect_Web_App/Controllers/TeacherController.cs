@@ -278,6 +278,40 @@ namespace schoolconnect.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult TeacherChatList(long teacherId)
+        {
+            try
+            {
+                _returnDictionary = _teacherService.GetParentsByTeacherClassesAsync(teacherId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not IEnumerable<Parent> parents) throw new("Could not acquire parents from the provided dictionary.");
+
+                parents.ToList().ForEach(parent =>
+                {
+                    var cleanBase64 = parent.ProfileImageBase64!.Contains(',') ? parent.ProfileImageBase64.Split(',')[1] : parent.ProfileImageBase64;
+                    var stream = new MemoryStream(Convert.FromBase64String(cleanBase64));
+
+                    IFormFile file = new FormFile(stream, 0, stream.Length, "ProfileImage", "ProfileImage")
+                    {
+                        Headers = new HeaderDictionary(),
+                        ContentType = "image/" + parent.ProfileImageType!
+                    };
+
+                    parent.ProfileImageFile = file;
+
+                    parent.ProfileImageBase64 = $"data:image/{parent.ProfileImageType};base64,{parent.ProfileImageBase64}";
+                });
+                return View(parents);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
         public IActionResult TeacherChatList()
         {
             return View();

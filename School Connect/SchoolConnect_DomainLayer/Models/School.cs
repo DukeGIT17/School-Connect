@@ -36,6 +36,12 @@ namespace SchoolConnect_DomainLayer.Models
         [DataType(DataType.Upload)]
         public IFormFile? SchoolLogoFile { get; set; }
 
+        [NotMapped]
+        public string? SchoolLogoBase64 { get; set; }
+
+        [NotMapped]
+        public string? SchoolLogoType { get; set; }
+
         /// <summary>
         /// The name of this particular school.
         /// </summary>

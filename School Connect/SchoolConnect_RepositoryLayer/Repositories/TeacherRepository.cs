@@ -377,5 +377,63 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 return _returnDictionary;
             }
         }
+
+        public async Task<Dictionary<string, object>> GetParentsByTeacherClassesAsync(long teacherId)
+        {
+            try
+            {
+                var teacher = await _context.Teachers
+                    .AsNoTracking()
+                    .Include(m => m.MainClass)
+                    .ThenInclude(l => l.Learners)!
+                    .ThenInclude(lp => lp.Parents)
+                    .ThenInclude(p => p.Parent)
+                    .Include(c => c.Classes)
+                    .FirstOrDefaultAsync(t => t.Id == teacherId);
+                if (teacher is null) throw new("Could not find a teacher with the specified ID.");
+
+                List<Parent> parents = [];
+                if (teacher.MainClass is not null)
+                {
+                    foreach (var value in teacher.MainClass.Learners)
+                        value.Parents.ToList().ForEach(val => parents.Add(val.Parent!));
+                }
+
+                if (!teacher.Classes.IsNullOrEmpty())
+                {
+                    foreach (var value in teacher.Classes)
+                        value.Class!.Learners!.ToList().ForEach(val => val.Parents.ToList().ForEach(lp => parents.Add(lp.Parent!)));
+                }
+
+                if (parents.IsNullOrEmpty()) throw new("No parents associated with the specified Teacher's classes.");
+
+                parents.ForEach(async parent =>
+                {
+                    _returnDictionary = await RetrieveImageAsBase64Async(parent.ProfileImage ?? "Default Pic.png", "Parents");
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                    parent.ProfileImageBase64 = _returnDictionary["Result"] as string;
+                    parent.ProfileImageType = _returnDictionary["ImageType"] as string;
+
+                    parent.Children!.ToList().ForEach(lp =>
+                    {
+                        lp.Parent = null;
+                        lp.Learner.Parents = [];
+                        lp.Learner.Class.Learners = null;
+                        lp.Learner.Class.MainTeacher = null;
+                    });
+                });
+                
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = parents;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
     }
 }

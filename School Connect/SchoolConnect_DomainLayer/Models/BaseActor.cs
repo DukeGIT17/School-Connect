@@ -24,12 +24,19 @@ namespace SchoolConnect_DomainLayer.Models
         /// </summary>
         [Display(Name = "Profile Picture")]
         public string? ProfileImage { get; set; }
+
         /// <summary>
         /// The file containing the image the user selected for their profile image.
         /// </summary>
         [NotMapped]
         [AllowedExtensions(".jpg", ".jpeg", ".png", ".webp", ".jfif")]
         public IFormFile? ProfileImageFile { get; set; }
+
+        [NotMapped]
+        public string? ProfileImageBase64 { get; set; }
+
+        [NotMapped]
+        public string? ProfileImageType { get; set; }
 #nullable disable
 
         [Required(ErrorMessage = "Please specify the title.")]

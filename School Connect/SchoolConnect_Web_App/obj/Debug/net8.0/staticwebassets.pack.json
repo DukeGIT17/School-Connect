@@ -8817,6 +8817,10 @@
       "PackagePath": "staticwebassets\\js\\SysAdminJS\\SchoolReg.js"
     },
     {
+      "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\Teacher\\TeacherChatList.js",
+      "PackagePath": "staticwebassets\\js\\Teacher\\TeacherChatList.js"
+    },
+    {
       "Id": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\Teacher\\TeacherClassRoster.js",
       "PackagePath": "staticwebassets\\js\\Teacher\\TeacherClassRoster.js"
     },

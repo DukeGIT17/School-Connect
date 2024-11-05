@@ -30,6 +30,7 @@ namespace SchoolConnect_Web_App.Services
 
                     SysAdmin admin = new();
                     Principal principal = new();
+                    Parent parent = new();
                     School school = new();
                     Announcement ann = new();
                     Learner learner = new();
@@ -146,8 +147,8 @@ namespace SchoolConnect_Web_App.Services
                             }
                             else
                             {
-                                AssignValuesFromDictionary(subGrade, dict!);
-                                _returnDictionary["Result"] = subGrade;
+                                AssignValuesFromDictionary(grade, dict!);
+                                _returnDictionary["Result"] = grade;
                             }
                             break;
 
@@ -165,8 +166,27 @@ namespace SchoolConnect_Web_App.Services
                             }
                             else
                             {
-                                AssignValuesFromDictionary(subGrade, dict!);
-                                _returnDictionary["Result"] = subGrade;
+                                AssignValuesFromDictionary(attendance, dict!);
+                                _returnDictionary["Result"] = attendance;
+                            }
+                            break;
+
+                        case "Parent":
+                            if (dict is null)
+                            {
+                                List<Parent> parents = [];
+                                foreach (var val in list)
+                                {
+                                    AssignValuesFromDictionary(parent, val as Dictionary<string, object>);
+                                    var parentString = JsonSerializer.Serialize(parent);
+                                    parents.Add(JsonSerializer.Deserialize<Parent>(parentString)!);
+                                }
+                                _returnDictionary["Result"] = parents;
+                            }
+                            else
+                            {
+                                AssignValuesFromDictionary(parent, dict!);
+                                _returnDictionary["Result"] = parent;
                             }
                             break;
 

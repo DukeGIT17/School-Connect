@@ -4,12 +4,12 @@ using SchoolConnect_DomainLayer.Data;
 using SchoolConnect_DomainLayer.Models;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Routing.Constraints;
 
 namespace SchoolConnect_RepositoryLayer.CommonAction
 {
     public static class CommonActions
     {
+        public const string ApplicationFilesPath = $@"C:\Users\innoc\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\Application Files";
         public static Dictionary<string, object> AttemptObjectValidation<T>(T obj)
         {
             Dictionary<string, object> _returnDictionary = [];
@@ -121,7 +121,7 @@ namespace SchoolConnect_RepositoryLayer.CommonAction
             {
 
                 string fileName = Path.GetExtension(file.FileName) == ".xlsx" ? name : name + $" - {Guid.NewGuid()}" + Path.GetExtension(file.FileName);
-                using var fileStream = new FileStream($@"C:\Users\innoc\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\Application Files\{destinationFolder}\{fileName}", FileMode.Create);
+                using var fileStream = new FileStream($@"{ApplicationFilesPath}\{destinationFolder}\{fileName}", FileMode.Create);
                 file.CopyTo(fileStream);
 
                 _returnDictionary["Success"] = true;
@@ -146,6 +146,27 @@ namespace SchoolConnect_RepositoryLayer.CommonAction
 
                 File.Delete(filePath);
                 _returnDictionary["Success"] = true;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+        
+        public static async Task<Dictionary<string, object>> RetrieveImageAsBase64Async(string fileName, string targetFolder)
+        {
+            Dictionary<string, object> _returnDictionary = [];
+            try
+            {
+                string filePath = fileName == "Default Pic.png" ? $@"{ApplicationFilesPath}\Profile Images Folder\{fileName}" : $@"{ApplicationFilesPath}\Profile Images Folder\{targetFolder}\{fileName}";
+                if (!File.Exists(filePath)) throw new FileNotFoundException($"The file in the path '{filePath}' could not be found.");
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = Convert.ToBase64String(await File.ReadAllBytesAsync(filePath));
+                _returnDictionary["ImageType"] = Path.GetExtension(filePath).Remove(0, 1);
                 return _returnDictionary;
             }
             catch (Exception ex)

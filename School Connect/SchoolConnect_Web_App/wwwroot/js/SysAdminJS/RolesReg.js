@@ -170,3 +170,17 @@ bulkParentFileInputField.addEventListener("change", function () {
     bulkParentFileNameDisplayField.innerHTML = bulkParentFileInputField.files[0] ? bulkParentFileInputField.files[0].name : "No file selected";
     removeFileBtnBulkParent.style.display = "block";
 });
+
+const visibleLearnerIdNoField = document.getElementById('idNum-learner');
+const hiddenLearnerIdNoField = document.getElementById('learner-idno');
+
+visibleLearnerIdNoField.addEventListener("focusout", () => {
+    hiddenLearnerIdNoField.value = visibleLearnerIdNoField.value;
+});
+
+const visibleLearnerParentIdNoField = document.getElementById('visible-parent-idno');
+const hiddenLearnerParentIdNoField = document.getElementById('parent-idno');
+
+visibleLearnerParentIdNoField.addEventListener("focusout", () => {
+    hiddenLearnerParentIdNoField.value = visibleLearnerParentIdNoField.value;
+});
