@@ -358,7 +358,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             {
                 if (!attendanceRecords.Any()) throw new("Something went wrong, empty attendance record provided.");
 
-                var existingAttendanceRecords = await _context.Attendance.AsNoTracking().Where(a => a.SchoolID == attendanceRecords.First().SchoolID).ToListAsync();
+                var existingAttendanceRecords = await _context.Attendance.AsNoTracking().Where(a => a.ClassID == attendanceRecords.First().ClassID).ToListAsync();
                 foreach (var existingAttRecs in existingAttendanceRecords)
                     attendanceRecords = attendanceRecords.Where(a => a.Date.Date != existingAttRecs.Date.Date);
 
@@ -392,6 +392,8 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     .FirstOrDefaultAsync(t => t.Id == teacherId);
                 if (teacher is null) throw new("Could not find a teacher with the specified ID.");
 
+                var chats = _context.Chats.AsNoTracking().Where(c => c.SenderId == teacherId || c.ReceiverId == teacherId).ToList();
+
                 List<Parent> parents = [];
                 if (teacher.MainClass is not null)
                 {
@@ -414,6 +416,9 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                     parent.ProfileImageBase64 = _returnDictionary["Result"] as string;
                     parent.ProfileImageType = _returnDictionary["ImageType"] as string;
+
+                    parent.Chats ??= [];
+                    parent.Chats = [.. chats.Where(c => c.SenderId == parent.Id || c.ReceiverId == parent.Id)];
 
                     parent.Children!.ToList().ForEach(lp =>
                     {

@@ -112,6 +112,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.ChatController",
+    "Method": "SaveChatMessage",
+    "RelativePath": "api/Chat/SaveChatMessage",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "chatMessage",
+        "Type": "SchoolConnect_DomainLayer.Models.Chat",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.LearnerController",
     "Method": "Create",
     "RelativePath": "api/Learner/Create",

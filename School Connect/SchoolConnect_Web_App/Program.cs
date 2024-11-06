@@ -30,6 +30,7 @@ builder.Services.AddScoped<IPrincipalService, PrincipalService>();
 builder.Services.AddScoped<ILearnerService, LearnerService>();
 builder.Services.AddScoped<IParentService, ParentService>();
 builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
+builder.Services.AddScoped<IChatService, ChatService>();
 
 var app = builder.Build();
 

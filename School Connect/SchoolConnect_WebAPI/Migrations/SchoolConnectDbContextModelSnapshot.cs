@@ -166,7 +166,7 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Property<long>("ParentId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("RecieverId")
+                    b.Property<long>("ReceiverId")
                         .HasColumnType("INTEGER");
 
                     b.Property<long>("SchoolID")
@@ -185,7 +185,7 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.HasIndex("RecieverId");
+                    b.HasIndex("ReceiverId");
 
                     b.HasIndex("SchoolID");
 

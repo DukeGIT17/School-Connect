@@ -1,8 +1,12 @@
 ﻿@model IEnumerable<Parent>
+
+@using Microsoft.IdentityModel.Tokens;
+
 @{
     Layout = null;
 }
-<link rel="stylesheet" href="~/FontAwesome/css/all.min.css" />
+
+<link rel="stylesheet" href="~/FontAwesome/css/all.css" />
 <link rel="stylesheet" href="~/css/TeacherCSS/TeacherChatList.css" />
 
 
@@ -48,12 +52,38 @@
                 </div>
 
 
-                <div class="chat-messages">
+                <div class="chat-messages" id="chat-messages-@parent.Id">
                     <!-- Message bubbles will be inserted here dynamically -->
+                    @if (!parent.Chats.IsNullOrEmpty())
+                    {
+                        @foreach (var chat in parent.Chats!)
+                        {
+                            if (chat.SenderId == parent.Id)
+                            {
+                                <div class="message sent">
+                                    @chat.Message
+                                    <div class="message-details">
+                                        @chat.TimeSent
+                                        <i class="fa-solid fa-check-double"></i>
+                                    </div>
+                                </div>
+                            }
+
+                            if (chat.ReceiverId == parent.Id)
+                            {
+                                <div class="message received">
+                                    @chat.Message
+                                    <div class="message-details">
+                                        @chat.TimeSent
+                                    </div>
+                                </div>
+                            }
+                        }
+                    }
                 </div>
                 <div class="chat-input">
-                    <input type="text" placeholder="Type a message">
-                    <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+                    <input id="chatInput-@parent.Id" type="text" placeholder="Type a message">
+                    <button onclick="sendMessage('chatInput-@parent.Id', 'chat-messages-@parent.Id', '@parent.Children!.First().Learner!.Class!.MainTeacherId', '@parent.Id', '@parent.Children!.First().Learner!.SchoolID', '@parent.Children!.First().Learner!.Class!.MainTeacherId', '@parent.Id')" class="send-btn"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
         }        

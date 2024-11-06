@@ -18,6 +18,7 @@ namespace SchoolConnect_DomainLayer.Data
         public DbSet<Group> Groups { get; set; }
         public DbSet<SubGrade> SubGrade { get; set; }
         public DbSet<Attendance> Attendance { get; set; }
+        public DbSet<Chat> Chats { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -340,7 +341,7 @@ namespace SchoolConnect_DomainLayer.Data
                 .IsUnique(false);
             
             modelBuilder.Entity<Chat>()
-                .HasIndex(chat => chat.RecieverId)
+                .HasIndex(chat => chat.ReceiverId)
                 .IsUnique(false);
         }
     }

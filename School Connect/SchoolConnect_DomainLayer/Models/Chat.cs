@@ -15,7 +15,7 @@ namespace SchoolConnect_DomainLayer.Models
 
         public long SenderId { get; set; }
 
-        public long RecieverId { get; set; }
+        public long ReceiverId { get; set; }
 
 
         #region Foreign Key Properties
@@ -31,11 +31,11 @@ namespace SchoolConnect_DomainLayer.Models
 
 
         #region Navigation Properties
-        public Teacher Teacher { get; set; }
+        public Teacher? Teacher { get; set; }
 
-        public Parent Parent { get; set; }
+        public Parent? Parent { get; set; }
 
-        public School School { get; set; }
+        public School? School { get; set; }
         #endregion
     }
 }

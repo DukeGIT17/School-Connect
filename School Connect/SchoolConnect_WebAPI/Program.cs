@@ -28,6 +28,8 @@ builder.Services.AddScoped<ISchoolService, SchoolService>();
 builder.Services.AddScoped<IAnnouncement, AnnouncementRepo>();
 builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
 builder.Services.AddScoped<IGroupRepo, GroupRepository>();
+builder.Services.AddScoped<IChats, ChatsRepository>();
+builder.Services.AddScoped<IChatService, ChatService>();
 
 // Actors Services
 builder.Services.AddScoped<ISysAdmin, SystemAdminRepository>();

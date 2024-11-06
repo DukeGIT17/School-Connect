@@ -162,7 +162,7 @@ body {
     height: 70%;
 }
 
-.message {
+/*.message {
     margin-bottom: 10px;
     display: flex;
 }
@@ -179,7 +179,7 @@ body {
 
 .message.received .message-text {
     background-color: #fff;
-}
+}*/
 
 .chat-input {
     display: flex;
