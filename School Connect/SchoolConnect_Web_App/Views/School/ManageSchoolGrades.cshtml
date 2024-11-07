@@ -4,27 +4,26 @@
 }
 <link rel="stylesheet" href="~/css/SchoolCSS/ManageSchoolGrades.css" />
 
-<body>
-    <div class="container">
-        <h2>Manage School Grades</h2>
 
-        <form id="add-grade-form" method="post" asp-action="ManageSchoolGrades">
-            <div class="form-group">
-                <input asp-for="ClassesToAdd" id="grade-input" placeholder="Enter grades (e.g., 10B, 11B, 12D)" >
-                <input asp-for="SchoolId" type="hidden" />
-                <button type="submit">Add Grade</button>
-            </div>
-        </form>
+<div class="container">
+    <h1>Manage School Grades</h1>
 
-        <div class="grades-list">
-            <h3>Existing Grades</h3>
-            <div id="grade-list">
-                @foreach (var item in Model.Classes)
-                {
-                    <option value="@item.ClassDesignate">@item.ClassDesignate</option>
-                }
-            </div>
+    <form id="add-grade-form" method="post" asp-action="ManageSchoolGrades">
+        <div class="form-group">
+            <input asp-for="ClassesToAdd" id="grade-input" placeholder="Enter grades (e.g., 10B, 11B, 12D)">
+            <input asp-for="SchoolId" type="hidden" />
+            <button type="submit">Add Grade</button>
+        </div>
+    </form>
+
+    <div class="grades-list">
+        <h2>Existing Grades</h2>
+        <div id="grade-list">
+            @foreach (var item in Model.Classes)
+            {
+                <option value="@item.ClassDesignate">@item.ClassDesignate</option>
+            }
         </div>
     </div>
-</body>
+</div>
 

@@ -22,15 +22,33 @@
             <div class="announcement">
                 @if (value.Announcement.TeacherID is not null)
                 {
-                    <i class="fa-regular fa-circle-check icon"></i>
+                    if (value.Announcement.TeacherID == value.Actor.Id)
+                    {
+                        <i class="fa-regular fa-circle-check icon"></i>
+                    }
+                    else if (value.Announcement.ViewedRecipients.Contains(value.Actor.StaffNr))
+                    {
+                            <i class="fa-regular fa-circle-check icon"></i>
+                    }
+                    else
+                    {
+                        <i class="fa-regular fa-circle icon"></i>
+                    }
                     <div class="details">
                         <h4 class="title">@value.Announcement.Title</h4>
                         <div class="content">@value.Announcement.Content</div>
                     </div>
                     <a asp-action="TeacherDetailedAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-teacherStaffNr="@value.StaffNr" style="display:none;"></a>
-                    <a asp-action="DeleteAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-teacherId="@value.Actor.Id">
-                        <i class="fa-regular fa-trash-can"></i>
-                    </a>
+                    if (value.Announcement.TeacherID == value.Actor.Id)
+                    {
+                        <a asp-action="DeleteAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-teacherId="@value.Actor.Id">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <i class="fa-regular fa-trash-can opaque"></i>
+                    }
                 }
                 else
                 {

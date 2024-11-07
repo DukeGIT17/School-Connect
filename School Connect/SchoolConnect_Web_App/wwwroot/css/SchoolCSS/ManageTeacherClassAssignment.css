@@ -1,53 +1,91 @@
-﻿body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+﻿/* General styles */
+body {
+    background-color: #0F2E34;
     margin: 0;
     padding: 20px;
+    justify-content: center;
+    align-content: center;
 }
 
+/* Container for form */
 .container {
-    max-width: 800px;
+    width: 70%;
+    height: 60%;
+    background-color: ghostwhite;
+    padding: 30px;
     margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 30px;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid #0F2E34;
+    align-items: center;
 }
 
-h1, h2 {
+/* Header styles */
+h1 {
+    color: #0F2E34;
+    font-size: 28px;
+    margin-bottom: 20px;
     text-align: center;
 }
 
+/* Header styles */
+h2 {
+    color: #0F2E34;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Form elements */
 form {
     display: flex;
     flex-direction: column;
 }
 
 label {
-    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 15px;
+    color: #0F2E34;
 }
 
 input, textarea, select {
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px;
+    margin-top: 8px;
+    border: 1px solid #0F2E34;
+    border-radius: 15px;
+    background-color: ghostwhite;
+    font-size: 16px;
 }
 
+select:focus,
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #0F2E34;
+    box-shadow: 0 0 5px rgba(15, 46, 52, 0.2);
+}
+
+/* Button styling */
 button {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #0F2E34;
+    color: ghostwhite;
+    font-weight: bold;
     border: none;
-    border-radius: 4px;
+    border-radius: 15px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    width: 15%;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #084547;
 }
 
-#assignTeachers {
-    margin-top: 20px;
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(8, 69, 71, 0.4);
 }

@@ -10733,6 +10733,22 @@
   },
   {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.LearnerController",
+    "Method": "GetLearnersByClassID",
+    "RelativePath": "api/Learner/GetLearnersByClassID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "classId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.LearnerController",
     "Method": "LoadLearnersFromExcel",
     "RelativePath": "api/Learner/LoadLearnersFromExcel",
     "HttpMethod": "POST",

@@ -11,12 +11,14 @@ body {
     color: white;
     padding: 40px 20px;
     text-align: center;
+    height: 15px;
+    align-items: center;
 }
 
-.header-section h1 {
-    font-size: 32px;
-    margin: 0;
-}
+    .header-section h1 {
+        font-size: 32px;
+        margin: 0;
+    }
 
 
 /* Container for the content */
@@ -34,13 +36,13 @@ body {
     margin-bottom: 30px;
 }
 
-.grade-section h2 {
-    font-size: 20px;
-    color: #333;
-    font-weight: bold;
-    margin-bottom: 15px;
-    text-align: left;
-}
+    .grade-section h2 {
+        font-size: 20px;
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 15px;
+        text-align: left;
+    }
 
 .grade-buttons {
     display: flex;

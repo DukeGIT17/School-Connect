@@ -1,9 +1,9 @@
 ﻿body {
-    padding: 20px;
     background: ghostwhite;
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 html, body {
@@ -19,15 +19,15 @@ html, body {
     padding: 20px;
     box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
     width: 80%;
-    height: 100%;
+    height: 80%;
     background: #0F2E34;
     color: white;
     transition: box-shadow 0.3s ease;
 }
 
-.card:hover {
-    box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.4);
-}
+    .card:hover {
+        box-shadow: 0px 12px 40px rgba(0, 0, 0, 0.4);
+    }
 
 .left-container {
     background-color: ghostwhite; /* Subtle gradient for depth */
@@ -100,7 +100,7 @@ html, body {
 }
 
 h3 {
-    font-size: 28px;
+    font-size: 22px;
     font-weight: bold;
     color: #0F2E34;
     margin-bottom: 20px;

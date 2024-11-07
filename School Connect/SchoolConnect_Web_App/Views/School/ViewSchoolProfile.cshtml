@@ -16,7 +16,7 @@
         <a asp-action="SchoolUpdateDetails" asp-route-schoolId="@Model.Id" class="UpdateButton">Update</a>
     </div>
     <div class="right-container">
-        <h3>Profile Details</h3>
+        <h3>School Profile Details</h3>
         <table>
             <tr>
                 <td>@Html.DisplayNameFor(s => s.EmisNumber)</td>
@@ -34,7 +34,7 @@
                 <td>@Html.DisplayNameFor(s => s.TelePhoneNumber)</td>
                 <td>@Model.TelePhoneNumber</td>
             </tr>
-            
+
             <tr>
                 <td>@Html.DisplayNameFor(s => s.EmailAddress)</td>
                 <td>@Model.EmailAddress</td>
@@ -44,7 +44,7 @@
                 <td>@Model.DateRegistered</td>
             </tr>
             <tr>
-                <td colspan="2" class="subheadings">School Address</td>
+                <td colspan="2" class="subheadings"><h3>School Address</h3></td>
             </tr>
             <tr>
                 <td>@Html.DisplayNameFor(s => s.SchoolAddress.Street)</td>
@@ -67,7 +67,7 @@
                 <td>@Model.SchoolAddress.PostalCode</td>
             </tr>
             <tr>
-                <td colspan="2" class="subheadings">System Admin Details</td>
+                <td colspan="2" class="subheadings"><h3>System Admin Details</h3></td>
             </tr>
             <tr>
                 <td>@Html.DisplayNameFor(s => s.SchoolSysAdminNP.Name)</td>

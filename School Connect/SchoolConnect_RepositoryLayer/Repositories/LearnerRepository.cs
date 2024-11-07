@@ -393,10 +393,18 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public async Task<Dictionary<string, object>> GetLearnersByClassID(long classId)
+        public async Task<Dictionary<string, object>> GetLearnersByClassID(int classId)
         {
             try
             {
+                var cls = await _context.SubGrade.AsNoTracking().Include(l => l.Learners).FirstOrDefaultAsync(c => c.Id == classId);
+                if (cls is null) throw new("Could not find a class with the specified ID.");
+                if (cls.Learners.IsNullOrEmpty()) throw new("THe specified class does not have any learners associated with it.");
+
+                cls.Learners!.ToList().ForEach(l => l.Class = null);
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = cls.Learners!.ToList();
                 return _returnDictionary;
             }
             catch (Exception ex)

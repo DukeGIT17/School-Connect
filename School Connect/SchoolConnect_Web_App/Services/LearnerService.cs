@@ -9,7 +9,7 @@ namespace SchoolConnect_Web_App.Services
     public class LearnerService : ILearnerService
     {
         private readonly HttpClient _httpClient;
-        private const string learnerBasePath = "/api/Learner";
+        private const string LearnerBasePath = "/api/Learner";
         private Dictionary<string, object> _returnDictionary;
 
         public LearnerService(HttpClient httpClient)
@@ -24,7 +24,7 @@ namespace SchoolConnect_Web_App.Services
             {
                 StringBuilder buildString = new();
                 buildString.Append("http://localhost:5293");
-                buildString.Append(learnerBasePath);
+                buildString.Append(LearnerBasePath);
                 buildString.Append("/Create");
 
                 var formData = new MultipartFormDataContent();
@@ -117,7 +117,7 @@ namespace SchoolConnect_Web_App.Services
             {
                 StringBuilder builString = new();
                 builString.Append("http://localhost:5293");
-                builString.Append(learnerBasePath);
+                builString.Append(LearnerBasePath);
                 builString.Append("/GetLearnerByIdNo?idNo=");
                 builString.Append(idNo);
 
@@ -138,7 +138,7 @@ namespace SchoolConnect_Web_App.Services
             {
                 StringBuilder builString = new();
                 builString.Append("http://localhost:5293");
-                builString.Append(learnerBasePath);
+                builString.Append(LearnerBasePath);
                 builString.Append("/LoadLearnersFromExcel?schoolId=");
                 builString.Append(schoolId);
 
@@ -172,9 +172,30 @@ namespace SchoolConnect_Web_App.Services
             {
                 StringBuilder buildString = new();
                 buildString.Append("http://localhost:5293");
-                buildString.Append(learnerBasePath);
+                buildString.Append(LearnerBasePath);
                 buildString.Append("/GetLearnersByClass?teacherId=");
                 buildString.Append(teacherId);
+
+                var response = await _httpClient.GetAsync(buildString.ToString());
+                return CheckSuccessStatus(response, "Learner");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetLearnersByClassIdAsync(int classId)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(LearnerBasePath);
+                buildString.Append("/GetLearnersByClassID?classId=");
+                buildString.Append(classId);
 
                 var response = await _httpClient.GetAsync(buildString.ToString());
                 return CheckSuccessStatus(response, "Learner");

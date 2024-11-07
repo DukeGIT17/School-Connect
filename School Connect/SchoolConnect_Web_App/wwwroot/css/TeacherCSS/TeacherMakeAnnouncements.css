@@ -30,11 +30,11 @@
     width: 100%;
 }
 
-.header h1 {
-    font-size: 26px;
-    margin: 0;
-    text-transform: uppercase;
-}
+    .header h1 {
+        font-size: 26px;
+        margin: 0;
+        text-transform: uppercase;
+    }
 
 form {
     width: 90%;
@@ -45,11 +45,11 @@ form {
     margin-bottom: 20px;
 }
 
-.form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
 
 #recipientsDisplay {
     display: flex;
@@ -130,13 +130,11 @@ form {
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
     text-decoration: none;
+    width: 10%;
+    height: 40px;
 }
 
-.button:hover {
-    background-color: #0F2E34; /* Lighter shade on hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
-    transform: translateY(-2px); /* Slight lift effect */
-}
+
 
 .custom-checkbox {
     border: 2px solid black;

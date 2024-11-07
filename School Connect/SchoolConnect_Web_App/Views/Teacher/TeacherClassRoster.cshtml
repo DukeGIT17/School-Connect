@@ -44,7 +44,6 @@
 
         <!-- Buttons Section -->
         <a asp-action="TeacherMarkAttendance" asp-route-teacherId="@Model.First().Class!.MainTeacher!.Id" class="button">MARK ATTENDANCE</a>
-        <a asp-controller="Teacher" asp-action="TeacherMakeReports" class="button">MAKE REPORTS</a>
 
         <!-- Chat Button -->
         <a asp-action="TeacherChatList" asp-route-teacherId="@Model.First().Class!.MainTeacher!.Id" class="chat-button">

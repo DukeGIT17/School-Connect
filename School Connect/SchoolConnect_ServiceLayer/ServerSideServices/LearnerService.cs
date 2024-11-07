@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using OfficeOpenXml.Drawing.Chart.ChartEx;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.CommonAction;
 using SchoolConnect_RepositoryLayer.Interfaces;
@@ -109,6 +110,20 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             try
             {
                 return await _learnerRepo.GetLearnersByMainTeacherAsync(teacherId);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetLearnersByClassIdAsync(int classId)
+        {
+            try
+            {
+                return await _learnerRepo.GetLearnersByClassID(classId);
             }
             catch (Exception ex)
             {

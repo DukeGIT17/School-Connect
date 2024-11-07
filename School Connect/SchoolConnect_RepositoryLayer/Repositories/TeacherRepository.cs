@@ -445,28 +445,25 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             {
                 var teacher = await _context.Teachers
                     .AsNoTracking()
-                    .Include(s => s.TeacherSchoolNP)
-                    .ThenInclude(g => g.SchoolGradesNP)!
-                    .ThenInclude(c => c.Classes)
-                    .ThenInclude(t => t.Teachers)
+                    .Include(t => t.TeacherSchoolNP)
+                    .ThenInclude(s => s.SchoolGradesNP)!
+                    .ThenInclude(g => g.Classes)
+                    .ThenInclude(cls => cls.Teachers)
                     .FirstOrDefaultAsync(t => t.Id == teacherId);
+
                 if (teacher is null) throw new("Could not find a teacher with the specified ID.");
 
-                List<Grade> grades = [];
-                foreach (var grade in teacher.TeacherSchoolNP.SchoolGradesNP)
-                {
-                    foreach (var cls in grade.Classes)
-                    {
-                        foreach (var teach in cls.Teachers)
-                        {
-                            if (teach.TeacherID == teacherId)
-                                grades.Add(grade);
-                        }
-                    }
-                }
+                var grades = teacher.TeacherSchoolNP.SchoolGradesNP
+                    .Where(grade => grade.Classes
+                        .Any(cls => cls.Teachers.Any(tg => tg.TeacherID == teacherId)))
+                    .ToList();
 
                 grades.ForEach(grade =>
                 {
+                    grade.Classes = grade.Classes
+                        .Where(cls => cls.Teachers.Any(tg => tg.TeacherID == teacherId))
+                        .ToList();
+
                     grade.GradeSchoolNP = null;
                     grade.Classes.ToList().ForEach(cls => cls.Grade = null);
                 });
@@ -482,5 +479,6 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 return _returnDictionary;
             }
         }
+
     }
 }

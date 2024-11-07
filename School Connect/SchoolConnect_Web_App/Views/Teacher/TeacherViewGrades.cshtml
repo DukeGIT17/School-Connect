@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Grade>
+﻿@model PassWithTeacherIdViewModel<IEnumerable<Grade>>
 @{
     Layout = null;
 }
@@ -14,33 +14,16 @@
 
 <div class="container">
     
-    @foreach (var grade in Model)
+    @foreach (var grade in Model.ActualModel)
     {
         <div class="grade-section">
             <h2>Grade @grade.GradeDesignate</h2>
             <div class="grade-buttons">
                 @foreach (var cls in grade.Classes)
                 {
-                    <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">@cls.ClassDesignate</a>
+                    <a asp-action="TeacherSubjectPage" asp-route-classId="@cls.Id" asp-route-teacherId="@Model.TeacherId" class="button">@cls.ClassDesignate</a>
                 }
             </div>
         </div>
     }
-    
-
-    @* <div class="grade-section">
-        <h2>Grade 11</h2>
-        <div class="grade-buttons">
-            <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">11A</a>
-            <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">11B</a>
-        </div>
-    </div>
-
-    <div class="grade-section">
-        <h2>Grade 12</h2>
-        <div class="grade-buttons">
-            <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">12A</a>
-            <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">12B</a>
-        </div>
-    </div> *@
 </div>

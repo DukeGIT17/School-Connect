@@ -430,7 +430,7 @@ namespace SchoolConnect_Web_App.Services
             }
         }
 
-        public async Task<Dictionary<string, object>> GetGradesByTeacher(long teacherId)
+        public async Task<Dictionary<string, object>> GetGradesByTeacherAsync(long teacherId)
         {
             try
             {

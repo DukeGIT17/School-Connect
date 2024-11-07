@@ -122,8 +122,10 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     announcement.AnnouncementSchoolNP = null;
                 }
 
+                teacherAnns.AddRange(announcements.Where(ann => ann.TeacherID == teacherId));
                 teacherAnns = teacherAnns.Distinct().ToList();
 
+                teacherAnns.ForEach(ann => ann.TeacherAnnouncementNP = null);
                 _returnDictionary["Success"] = true;
                 _returnDictionary["Result"] = teacherAnns;
                 return _returnDictionary;

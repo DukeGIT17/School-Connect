@@ -116,5 +116,20 @@ namespace SchoolConnect_WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet(nameof(GetLearnersByClassID))]
+        public IActionResult GetLearnersByClassID(int classId)
+        {
+            try
+            {
+                _returnDictionary = _learnerService.GetLearnersByClassIdAsync(classId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

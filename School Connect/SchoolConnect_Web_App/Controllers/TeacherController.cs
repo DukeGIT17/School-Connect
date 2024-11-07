@@ -77,7 +77,7 @@ namespace schoolconnect.Controllers
         }
 
         [HttpPost]
-        public IActionResult TeacherMakeAnnouncement(ActorAnnouncementViewModel<Teacher> model)
+        public IActionResult TeacherMakeAnnouncements(ActorAnnouncementViewModel<Teacher> model)
         {
             try
             {
@@ -274,10 +274,14 @@ namespace schoolconnect.Controllers
         {
             try
             {
-                _returnDictionary = _teacherService.GetGradesByTeacher(teacherId).Result;
+                _returnDictionary = _teacherService.GetGradesByTeacherAsync(teacherId).Result;
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 if (_returnDictionary["Result"] is not IEnumerable<Grade> grades) throw new("Could not acquire grades from the provided dictionary.");
-                return View(grades);
+                return View(new PassWithTeacherIdViewModel<IEnumerable<Grade>>
+                {
+                    TeacherId = teacherId,
+                    ActualModel = grades
+                });
             }
             catch (Exception ex)
             {
@@ -286,14 +290,26 @@ namespace schoolconnect.Controllers
             }
         }
 
-        public IActionResult TeacherViewGrades()
+        [HttpGet]
+        public IActionResult TeacherSubjectPage(int classId, long teacherId)
         {
-            return View();
-        }
+            try
+            {
+                _returnDictionary = _learnerService.GetLearnersByClassIdAsync(classId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not IEnumerable<Learner> learners) throw new("Could not extract learners from the provided dictionary.");
+                return View(new PassWithTeacherIdViewModel<IEnumerable<Learner>>
+                {
+                    TeacherId = teacherId,
+                    ActualModel = learners
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
 
-        public IActionResult TeacherSubjectPage()
-        {
-            return View();
         }
 
         [HttpGet]

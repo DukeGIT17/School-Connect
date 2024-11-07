@@ -1,50 +1,84 @@
-﻿body {
-    font-family: Arial, sans-serif;
+﻿/* General styles */
+body {
+    background-color: #0F2E34;
     margin: 0;
-    padding: 0;
-    display: flex;
+    padding: 20px;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f5f5f5;
+    align-content: center;
 }
 
+/* Container for form */
 .container {
-    width: 80%;
-    max-width: 600px;
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    width: 70%;
+    height: 60%;
+    background-color: ghostwhite;
+    padding: 30px;
+    margin: auto;
+    border-radius: 30px;
+    box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid #0F2E34;
+    align-items: center;
+    overflow-y: auto;
 }
+
+h1 {
+    color: #0F2E34;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
 
 h2 {
-    text-align: center;
-    color: #333;
+    color: #0F2E34;
+    font-size: 25px;
+    margin-bottom: 20px;
 }
 
+/* Form group */
 .form-group {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .form-group input {
-    width: 70%;
-    padding: 8px;
-    font-size: 1em;
+    width: 70%; /* Adjust width so button fits in line */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #0F2E34;
+    border-radius: 15px;
+    background-color: ghostwhite;
+    transition: box-shadow 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #0F2E34;
+    box-shadow: 0 0 8px rgba(15, 46, 52, 0.3);
 }
 
 .form-group button {
-    padding: 8px 15px;
-    font-size: 1em;
-    background-color: #28a745;
-    color: #fff;
+    margin-left: 10px; /* Add spacing between input and button */
+    padding: 12px;
+    background-color: #0F2E34;
+    color: ghostwhite;
+    font-weight: bold;
     border: none;
+    border-radius: 15px;
     cursor: pointer;
-    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    width: 25%; /* Adjust button width to fit well with input */
 }
 
+.form-group button:hover {
+    background-color: #084547;
+}
+
+
+/* Grades list */
 .grades-list {
     margin-top: 20px;
 }
@@ -57,17 +91,26 @@ h2 {
 .grades-list li {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    align-items: center;
+    padding: 12px;
     background-color: #f1f1f1;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     border-radius: 5px;
+    border: 1px solid #ccc;
+    color: #0F2E34;
 }
 
 .grades-list li button {
     background-color: #dc3545;
-    color: #fff;
+    color: white;
     border: none;
     cursor: pointer;
-    padding: 5px 10px;
+    padding: 5px 12px;
+    font-size: 14px;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.grades-list li button:hover {
+    background-color: #c82333;
 }

@@ -4,39 +4,37 @@
 }
 <link rel="stylesheet" href="~/css/SchoolCSS/ManageTeacherClassAssignment.css" />
 
-<body>
-    <div class="container">
-        <div id="assignTeachers">
-            <h2>Assign Teachers to Classes</h2>
-            <form method="post" asp-action="ManageTeacherClassAssignment">
-                <div asp-validation-summary="All"></div>
-                <label>Teacher:</label>
-                <input asp-for="TeacherEmailAddress" list="teachers" id="assignTeacher" placeholder="Enter teachers..." />
-                <datalist id="teachers">
-                    @foreach (var teacher in Model.Teachers!)
-                    {
-                        <option value="@teacher.EmailAddress">@teacher.EmailAddress</option>
-                    }
-                </datalist>
+<div class="container">
+    <div id="assignTeachers">
+        <h1>Assign Teacher</h1>
+        <form method="post" asp-action="ManageTeacherClassAssignment">
+            <div asp-validation-summary="All"></div>
+            <label>Teacher:</label>
+            <input asp-for="TeacherEmailAddress" list="teachers" id="assignTeacher" placeholder="Enter teachers..." />
+            <datalist id="teachers">
+                @foreach (var teacher in Model.Teachers!)
+                {
+                    <option value="@teacher.EmailAddress">@teacher.EmailAddress</option>
+                }
+            </datalist>
 
-                <label>Grade:</label>
-                <input asp-for="ClassDesignate" list="grade" placeholder="Enter class..." />
-                <datalist id="grade" name="grade">
-                    @foreach (var grade in Model.Classes!)
-                    {
-                        <option value="@grade.ClassDesignate">@grade.ClassDesignate</option>
-                    }
-                </datalist>
-               
-                <label>
-                    <input asp-for="MainClass" type="checkbox" />
-                    Main Class?
-                </label>
+            <label>Grade:</label>
+            <input asp-for="ClassDesignate" list="grade" placeholder="Enter class..." />
+            <datalist id="grade" name="grade">
+                @foreach (var grade in Model.Classes!)
+                {
+                    <option value="@grade.ClassDesignate">@grade.ClassDesignate</option>
+                }
+            </datalist>
 
-                <input asp-for="SchoolId" type="hidden" />
+            <label>
+                <input asp-for="MainClass" type="checkbox" />
+                Main Class?
+            </label>
 
-                <button type="submit" id="assignBtn">Assign</button>
-            </form>
-        </div>
+            <input asp-for="SchoolId" type="hidden" />
+
+            <button type="submit" id="assignBtn">Assign</button>
+        </form>
     </div>
-</body>
+</div>

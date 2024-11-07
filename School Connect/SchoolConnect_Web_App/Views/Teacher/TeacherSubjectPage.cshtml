@@ -1,10 +1,10 @@
-﻿@{
+﻿@model PassWithTeacherIdViewModel<IEnumerable<Learner>>
+@{
     Layout = null;
 }
 
-<link rel="stylesheet" href="~/css/TeacherCSS/TeacherClassRoaster.css" />
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="~/css/TeacherCSS/TeacherSubjectPage.css" />
+<link rel="stylesheet" href="~/FontAwesome/css/all.min.css" />
 
 <body>
     <header>
@@ -24,113 +24,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>1</td>
-                        <td>Khaya</td>
-                        <td>Poti</td>
-                    </tr>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>2</td>
-                        <td>Lindiwe</td>
-                        <td>Zulu</td>
-                    </tr>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>3</td>
-                        <td>Musa</td>
-                        <td>Nkosi</td>
-                    </tr>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>1</td>
-                        <td>Khaya</td>
-                        <td>Poti</td>
-                    </tr>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>1</td>
-                        <td>Khaya</td>
-                        <td>Poti</td>
-                    </tr>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>1</td>
-                        <td>Khaya</td>
-                        <td>Poti</td>
-                    </tr>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>1</td>
-                        <td>Khaya</td>
-                        <td>Poti</td>
-                    </tr>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>1</td>
-                        <td>Khaya</td>
-                        <td>Poti</td>
-                    </tr>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>1</td>
-                        <td>Khaya</td>
-                        <td>Poti</td>
-                    </tr>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>1</td>
-                        <td>Khaya</td>
-                        <td>Poti</td>
-                    </tr>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>1</td>
-                        <td>Khaya</td>
-                        <td>Poti</td>
-                    </tr>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>1</td>
-                        <td>Khaya</td>
-                        <td>Poti</td>
-                    </tr>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>1</td>
-                        <td>Khaya</td>
-                        <td>Poti</td>
-                    </tr>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>1</td>
-                        <td>Khaya</td>
-                        <td>Poti</td>
-                    </tr>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>1</td>
-                        <td>Khaya</td>
-                        <td>Poti</td>
-                    </tr>
-                    <tr data-href="/Teacher/TeacherViewLearnerProfile">
-                        <td>1</td>
-                        <td>Khaya</td>
-                        <td>Poti</td>
-                    </tr>
-                    <!-- Add more rows here -->
+
+                    @{
+                        int index = 1;
+                        foreach (var learner in Model.ActualModel)
+                        {
+                            <a id="@learner.Id" asp-action="TeacherViewLearnerProfile" asp-route-learnerIdNo="@learner.IdNo" style="display:none;">LearnerLink</a>
+                            <tr onclick="moveTo(@learner.Id)">
+                                <td>@index</td>
+                                <td>@learner.Name</td>
+                                <td>@learner.Surname</td>
+                            </tr>
+                            index++;
+                        }
+                    }
                 </tbody>
             </table>
         </div>
 
-        <!-- Buttons Section -->
-        <a asp-controller="Teacher" asp-action="TeacherMarkAttendance" class="button">MARK ATTENDANCE</a>
-        <a asp-controller="Teacher" asp-action="TeacherMakeReports" class="button">MAKE REPORTS</a>
-
         <!-- Chat Button -->
-        <a asp-controller="Teacher" asp-action="TeacherChatList" class="chat-button">
+        <a asp-action="TeacherChatList" asp-route-teacherId="@Model.TeacherId" class="chat-button">
             <i class="fas fa-comments chat-icon"></i>
         </a>
     </div>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const rows = document.querySelectorAll("tbody tr");
-            rows.forEach(row => {
-                row.addEventListener("click", function () {
-                    const href = this.getAttribute("data-href");
-                    if (href) {
-                        window.location.href = href;
-                    }
-                });
-            });
-        });
-    </script>
+    <script src="~/js/Teacher/TeacherClassRoster.js"></script>
 </body>
 

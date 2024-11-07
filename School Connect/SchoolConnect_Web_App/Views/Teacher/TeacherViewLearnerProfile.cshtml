@@ -31,10 +31,21 @@
                 <td>@Html.DisplayNameFor(a => a.ClassCode):</td>
                 <td>@Model.ClassCode</td>
             </tr>
-            <tr>
-                <td>Class Teacher:</td>
-                <td>@Model.Class.MainTeacher.Name @Model.Class.MainTeacher.Surname</td>
-            </tr>
+            @if (Model.Class.MainTeacher is null)
+            {
+                <tr>
+                    <td>Class Teacher:</td>
+                    <td>No Main Teacher Assigned To This Class</td>
+                </tr>
+            }
+            else
+            {
+                <tr>
+                    <td>Class Teacher:</td>
+                    <td>@Model.Class.MainTeacher.Name @Model.Class.MainTeacher.Surname</td>
+                </tr>
+            }
+            
             @foreach (var learnerParent in Model.Parents)
             {
                 <tr>
