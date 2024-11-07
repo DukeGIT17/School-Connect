@@ -429,5 +429,26 @@ namespace SchoolConnect_Web_App.Services
                 return _returnDictionary;
             }
         }
+
+        public async Task<Dictionary<string, object>> GetGradesByTeacher(long teacherId)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(teacherBasePath);
+                buildString.Append("/GetGradesByTeacher?teacherId=");
+                buildString.Append(teacherId);
+
+                var response = await _httpClient.GetAsync(buildString.ToString());
+                return CheckSuccessStatus(response, "Grade");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
     }
 }

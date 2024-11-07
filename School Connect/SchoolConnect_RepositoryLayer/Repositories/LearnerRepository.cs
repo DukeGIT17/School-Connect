@@ -338,7 +338,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             throw new NotImplementedException();
         }
 
-        public async Task<Dictionary<string, object>> GetLearnersByClassAsync(long teacherId)
+        public async Task<Dictionary<string, object>> GetLearnersByMainTeacherAsync(long teacherId)
         {
             try
             {
@@ -389,6 +389,20 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             {
                 _returnDictionary["Success"] = false;
                 _returnDictionary["ErrorMessage"] = ex.Message + "\nInnerException: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetLearnersByClassID(long classId)
+        {
+            try
+            {
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex + "\nInner Exception: " + ex.InnerException;
                 return _returnDictionary;
             }
         }

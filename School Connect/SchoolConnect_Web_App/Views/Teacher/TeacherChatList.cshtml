@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Parent>
-
+﻿@model TeacherChatViewModel
 @using Microsoft.IdentityModel.Tokens;
 
 @{
@@ -22,7 +21,7 @@
                 <i class="fas fa-search search-icon"></i>
             </div>
             <div class="contacts" id="contacts-list">
-                @foreach (var parent in Model)
+                @foreach (var parent in Model.Parents)
                 {
                     <div class="contact" onclick="openChat(@parent.Id)">
                         <img src="@parent.ProfileImageBase64" alt="@parent.Name @parent.Surname">
@@ -32,7 +31,7 @@
             </div>
         </div>
 
-        @foreach (var parent in Model)
+        @foreach (var parent in Model.Parents)
         {
             <div id="@parent.Id" class="chat-section" style="display: none;">
                 <div class="chat-header">
@@ -40,14 +39,15 @@
                     <div class="profile-name">Chat with @parent.Title @parent.Name @parent.Surname</div>
                 </div>
                 <div class="subject-container">
-                    <div class="subject-button" onclick="toggleOptions()">
-                        <span>Subject: Enquire</span>
+                    <div class="subject-button" onclick="toggleOptions('options-menu-@parent.Id')">
+                        Subject: Enquire
+                        <input id="subject-@parent.Id" type="hidden" value="Enquire" />
                         <div class="dots">•••</div>
                     </div>
-                    <div class="options-menu" style="display: none;">
-                        <div class="option" onclick="selectSubject('Enquire')">Enquire</div>
-                        <div class="option" onclick="selectSubject('Complaint')">Complaint</div>
-                        <div class="option" onclick="selectSubject('Report')">Report</div>
+                    <div id="options-menu-@parent.Id" class="options-menu" style="display: none;">
+                        <div class="option" onclick="selectSubject('Enquire', 'subject-@parent.Id', 'options-menu-@parent.Id')">Enquire</div>
+                        <div class="option" onclick="selectSubject('Complaint', 'subject-@parent.Id', 'options-menu-@parent.Id')">Complaint</div>
+                        <div class="option" onclick="selectSubject('Report', 'subject-@parent.Id', 'options-menu-@parent.Id')">Report</div>
                     </div>
                 </div>
 
@@ -58,23 +58,24 @@
                     {
                         @foreach (var chat in parent.Chats!)
                         {
-                            if (chat.SenderId == parent.Id)
-                            {
-                                <div class="message sent">
-                                    @chat.Message
-                                    <div class="message-details">
-                                        @chat.TimeSent
-                                        <i class="fa-solid fa-check-double"></i>
-                                    </div>
-                                </div>
-                            }
-
-                            if (chat.ReceiverId == parent.Id)
+                            if (chat.SenderIdentificate == parent.IdNo)
                             {
                                 <div class="message received">
                                     @chat.Message
                                     <div class="message-details">
-                                        @chat.TimeSent
+                                        @chat.TimeSent.ToString("HH:mm")
+                                    </div>
+                                </div>
+                            }
+
+                            if (chat.ReceiverIdentificate == parent.IdNo)
+                            {
+                                <div class="message sent">
+                                    @chat.Message
+                                    <div class="message-details">
+                                        @chat.Subject 
+                                        @chat.TimeSent.ToString("HH:mm")
+                                        <i class="fa-solid fa-check"></i>
                                     </div>
                                 </div>
                             }
@@ -82,8 +83,8 @@
                     }
                 </div>
                 <div class="chat-input">
-                    <input id="chatInput-@parent.Id" type="text" placeholder="Type a message">
-                    <button onclick="sendMessage('chatInput-@parent.Id', 'chat-messages-@parent.Id', '@parent.Children!.First().Learner!.Class!.MainTeacherId', '@parent.Id', '@parent.Children!.First().Learner!.SchoolID', '@parent.Children!.First().Learner!.Class!.MainTeacherId', '@parent.Id')" class="send-btn"><i class="fas fa-paper-plane"></i></button>
+                    <textarea id="chatInput-@parent.Id" class="chatInput" rows="1" placeholder="Type a message"></textarea>
+                    <button onclick="sendMessage('chatInput-@parent.Id', 'subject-@parent.Id', 'chat-messages-@parent.Id', '@Model.Teacher.StaffNr', '@parent.IdNo', '@Model.Teacher.SchoolID', '@Model.Teacher.Id', '@parent.Id')" class="send-btn"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
         }        

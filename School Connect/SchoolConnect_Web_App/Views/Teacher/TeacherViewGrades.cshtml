@@ -1,7 +1,8 @@
-﻿@{
+﻿@model IEnumerable<Grade>
+@{
     Layout = null;
 }
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="~/FontAwesome/css/all.min.css" />
 <link rel="stylesheet" href="~/css/TeacherCSS/TeacherViewGrades.css" />
 
 
@@ -13,15 +14,21 @@
 
 <div class="container">
     
-    <div class="grade-section">
-        <h2>Grade 10</h2>
-        <div class="grade-buttons">
-            <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">10A</a>
-            <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">10B</a>
+    @foreach (var grade in Model)
+    {
+        <div class="grade-section">
+            <h2>Grade @grade.GradeDesignate</h2>
+            <div class="grade-buttons">
+                @foreach (var cls in grade.Classes)
+                {
+                    <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">@cls.ClassDesignate</a>
+                }
+            </div>
         </div>
-    </div>
+    }
+    
 
-    <div class="grade-section">
+    @* <div class="grade-section">
         <h2>Grade 11</h2>
         <div class="grade-buttons">
             <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">11A</a>
@@ -35,5 +42,5 @@
             <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">12A</a>
             <a asp-controller="Teacher" asp-action="TeacherSubjectPage" class="button">12B</a>
         </div>
-    </div>
+    </div> *@
 </div>

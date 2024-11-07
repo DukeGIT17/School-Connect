@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 using SchoolConnect_Web_App.Models;
@@ -268,6 +269,23 @@ namespace schoolconnect.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult TeacherViewGrades(long teacherId)
+        {
+            try
+            {
+                _returnDictionary = _teacherService.GetGradesByTeacher(teacherId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not IEnumerable<Grade> grades) throw new("Could not acquire grades from the provided dictionary.");
+                return View(grades);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
         public IActionResult TeacherViewGrades()
         {
             return View();
@@ -302,19 +320,24 @@ namespace schoolconnect.Controllers
 
                     parent.ProfileImageBase64 = $"data:image/{parent.ProfileImageType};base64,{parent.ProfileImageBase64}";
                 });
-                return View(parents);
+
+                _returnDictionary = _teacherService.GetTeacherByIdAsync(teacherId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not Teacher teacher) throw new("Could not acquire teacher data from the provided dictionary.");
+
+                TeacherChatViewModel model = new()
+                {
+                    Parents = parents,
+                    Teacher = teacher
+                };
+
+                return View(model);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
                 return RedirectToAction("Index", "Home");
             }
-        }
-
-        [HttpPost]
-        public IActionResult TeacherChatList()
-        {
-            return View();
         }
 
         [HttpGet]

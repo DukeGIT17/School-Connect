@@ -107,7 +107,7 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                _returnDictionary = _learnerService.GetLearnersByClassAsync(teacherId).Result;
+                _returnDictionary = _learnerService.GetLearnersByMainTeacherAsync(teacherId).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
                 return Ok(_returnDictionary);
             }

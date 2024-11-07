@@ -269,6 +269,55 @@ namespace SchoolConnect_Web_App.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+
+                _returnDictionary = _schoolService.GetSchoolByIdAsync(model.SchoolID).Result;
+                if (!(bool)_returnDictionary["Success"])
+                {
+                    ModelState.AddModelError("", ex.Message);
+                    model.Parent = new()
+                    {
+                        Children = [new()]
+                    };
+
+                    model.Learner = new()
+                    {
+                        Parents = [new()]
+                    };
+                    return View(model);
+                }
+                
+                if (_returnDictionary["Result"] is School school)
+                {
+                    if (school.SchoolPrincipalNP is null)
+                    {
+                        ModelState.AddModelError("", ex.Message);
+                        model.Parent = new()
+                        {
+                            Children = [new()]
+                        };
+
+                        model.Learner = new()
+                        {
+                            Parents = [new()]
+                        };
+                        return View(model);
+                    }
+
+                    ModelState.AddModelError("", ex.Message);
+                    model.Principal = school.SchoolPrincipalNP;
+
+                    model.Parent = new()
+                    {
+                        Children = [new()]
+                    };
+
+                    model.Learner = new()
+                    {
+                        Parents = [new()]
+                    };
+                    return View(model);
+                }
+
                 ModelState.AddModelError("", ex.Message);
                 model.Parent = new()
                 {
@@ -279,7 +328,7 @@ namespace SchoolConnect_Web_App.Controllers
                 {
                     Parents = [new()]
                 };
-                return View(model); 
+                return View(model);
             }
         }
 

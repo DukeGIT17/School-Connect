@@ -166,14 +166,20 @@ namespace SchoolConnect_WebAPI.Migrations
                     b.Property<long>("ParentId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("ReceiverId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("ReceiverIdentificate")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<long>("SchoolID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("SenderId")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("SenderIdentificate")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Subject")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.Property<long>("TeacherId")
                         .HasColumnType("INTEGER");
@@ -185,11 +191,11 @@ namespace SchoolConnect_WebAPI.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.HasIndex("ReceiverId");
+                    b.HasIndex("ReceiverIdentificate");
 
                     b.HasIndex("SchoolID");
 
-                    b.HasIndex("SenderId");
+                    b.HasIndex("SenderIdentificate");
 
                     b.HasIndex("TeacherId");
 

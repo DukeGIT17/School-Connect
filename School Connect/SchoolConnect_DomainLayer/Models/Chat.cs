@@ -13,10 +13,12 @@ namespace SchoolConnect_DomainLayer.Models
 
         public DateTime TimeSent { get; set; }
 
-        public long SenderId { get; set; }
+        public string SenderIdentificate { get; set; }
 
-        public long ReceiverId { get; set; }
+        public string ReceiverIdentificate { get; set; }
 
+        [AllowedValues("Enquire", "Report", "Complaint", ErrorMessage = "Invalid Value! Allowed subjects are Enquire, Report, and Complaint.")]
+        public string Subject { get; set; }
 
         #region Foreign Key Properties
         [ForeignKey(nameof(Teacher))]

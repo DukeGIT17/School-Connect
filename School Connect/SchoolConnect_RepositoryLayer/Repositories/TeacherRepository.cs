@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using OfficeOpenXml;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using OfficeOpenXml.Drawing.Chart.ChartEx;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -72,6 +73,8 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 var teacher = await _context.Teachers
                     .AsNoTracking()
                     .Include(m => m.MainClass)
+                    .Include(c => c.Classes)
+                    .ThenInclude(c => c.Class)
                     .Include(t => t.TeacherSchoolNP)
                     .ThenInclude(a => a!.SchoolAnnouncementsNP)
                     .FirstOrDefaultAsync(t => t.Id == teacherId);
@@ -82,17 +85,13 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 teacher.TeacherSchoolNP!.SchoolTeachersNP = null;
 
-                foreach (var ann in teacher.TeacherSchoolNP.SchoolAnnouncementsNP)
+                teacher.TeacherSchoolNP.SchoolAnnouncementsNP.ToList().ForEach(ann => ann.AnnouncementSchoolNP = null);
+                teacher.TeacherSchoolNP.SchoolGroupsNP.ToList().ForEach(group => group.GroupSchoolNP = null);
+                teacher.Classes.ToList().ForEach(cls => 
                 {
-                    if (ann.AnnouncementSchoolNP is not null)
-                        ann.AnnouncementSchoolNP = null;
-                }
-
-                foreach (var group in teacher.TeacherSchoolNP.SchoolGroupsNP)
-                {
-                    if (group.GroupSchoolNP is not null)
-                        group.GroupSchoolNP = null;
-                }
+                    cls.Teacher = null;
+                    cls.Class.Teachers = null;
+                });
 
                 _returnDictionary["Success"] = true;
                 _returnDictionary["Result"] = teacher;
@@ -101,7 +100,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             catch (Exception ex)
             {
                 _returnDictionary["Success"] = false;
-                _returnDictionary["ErrorMessage"] = ex.Message;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
                 return _returnDictionary;
             }
         }
@@ -392,7 +391,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     .FirstOrDefaultAsync(t => t.Id == teacherId);
                 if (teacher is null) throw new("Could not find a teacher with the specified ID.");
 
-                var chats = _context.Chats.AsNoTracking().Where(c => c.SenderId == teacherId || c.ReceiverId == teacherId).ToList();
+                var chats = _context.Chats.AsNoTracking().Where(c => c.SenderIdentificate == teacher.StaffNr || c.ReceiverIdentificate == teacher.StaffNr).ToList();
 
                 List<Parent> parents = [];
                 if (teacher.MainClass is not null)
@@ -409,7 +408,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 if (parents.IsNullOrEmpty()) throw new("No parents associated with the specified Teacher's classes.");
 
-                parents.ForEach(async parent =>
+                foreach (var parent in parents)
                 {
                     _returnDictionary = await RetrieveImageAsBase64Async(parent.ProfileImage ?? "Default Pic.png", "Parents");
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
@@ -418,19 +417,64 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     parent.ProfileImageType = _returnDictionary["ImageType"] as string;
 
                     parent.Chats ??= [];
-                    parent.Chats = [.. chats.Where(c => c.SenderId == parent.Id || c.ReceiverId == parent.Id)];
+                    parent.Chats = [.. chats.Where(c => c.SenderIdentificate == parent.IdNo || c.ReceiverIdentificate == parent.IdNo)];
 
-                    parent.Children!.ToList().ForEach(lp =>
+                    foreach (var lp in parent.Children!)
                     {
                         lp.Parent = null;
                         lp.Learner.Parents = [];
                         lp.Learner.Class.Learners = null;
                         lp.Learner.Class.MainTeacher = null;
-                    });
-                });
-                
+                    }
+                }
+
+                _returnDictionary.Clear();
                 _returnDictionary["Success"] = true;
                 _returnDictionary["Result"] = parents;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetGradesByTeacherAsync(long teacherId)
+        {
+            try
+            {
+                var teacher = await _context.Teachers
+                    .AsNoTracking()
+                    .Include(s => s.TeacherSchoolNP)
+                    .ThenInclude(g => g.SchoolGradesNP)!
+                    .ThenInclude(c => c.Classes)
+                    .ThenInclude(t => t.Teachers)
+                    .FirstOrDefaultAsync(t => t.Id == teacherId);
+                if (teacher is null) throw new("Could not find a teacher with the specified ID.");
+
+                List<Grade> grades = [];
+                foreach (var grade in teacher.TeacherSchoolNP.SchoolGradesNP)
+                {
+                    foreach (var cls in grade.Classes)
+                    {
+                        foreach (var teach in cls.Teachers)
+                        {
+                            if (teach.TeacherID == teacherId)
+                                grades.Add(grade);
+                        }
+                    }
+                }
+
+                grades.ForEach(grade =>
+                {
+                    grade.GradeSchoolNP = null;
+                    grade.Classes.ToList().ForEach(cls => cls.Grade = null);
+                });
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = grades;
                 return _returnDictionary;
             }
             catch (Exception ex)

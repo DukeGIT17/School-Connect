@@ -1,4 +1,5 @@
-﻿@model Teacher
+﻿@using Microsoft.IdentityModel.Tokens
+@model Teacher
 @{
     Layout = null;
 }
@@ -40,10 +41,30 @@
 
     @foreach (var subject in Model.Subjects)
     {
-        <div class="form-group">
-            <a asp-action="TeacherViewGrades" class="button">@subject.ToUpper()</a>
-        </div>
-        <br />
+        if (!Model.Classes.IsNullOrEmpty())
+        {
+            if (Model.Classes.ToList().FirstOrDefault(c => c.Class.SubjectsTaught.Contains(subject)) is not null)
+            {
+                <div class="form-group">
+                    <a asp-action="TeacherViewGrades" asp-route-teacherId="@Model.Id" class="button">@subject.ToUpper()</a>
+                </div>
+                <br />
+            }
+            else
+            {
+                <div class="form-group">
+                    <a class="button opaque" >@subject.ToUpper()</a>
+                </div>
+                <br />
+            }
+        }
+        else
+        {
+            <div class="form-group">
+                <a class="button opaque">@subject.ToUpper()</a>
+            </div>
+            <br />
+        }
     }
     <br />
     <br />

@@ -175,5 +175,20 @@ namespace SchoolConnect_WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet(nameof(GetGradesByTeacher))]
+        public IActionResult GetGradesByTeacher(long teacherId)
+        {
+            try
+            {
+                _returnDictionary = _teacherService.GetGradesByTeacherAsync(teacherId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

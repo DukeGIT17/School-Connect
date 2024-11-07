@@ -104,11 +104,11 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
-        public async Task<Dictionary<string, object>> GetLearnersByClassAsync(long teacherId)
+        public async Task<Dictionary<string, object>> GetLearnersByMainTeacherAsync(long teacherId)
         {
             try
             {
-                return await _learnerRepo.GetLearnersByClassAsync(teacherId);
+                return await _learnerRepo.GetLearnersByMainTeacherAsync(teacherId);
             }
             catch (Exception ex)
             {

@@ -40857,6 +40857,22 @@
   },
   {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.TeacherController",
+    "Method": "GetGradesByTeacher",
+    "RelativePath": "api/Teacher/GetGradesByTeacher",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "teacherId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.TeacherController",
     "Method": "GetParentsByTeacherClasses",
     "RelativePath": "api/Teacher/GetParentsByTeacherClasses",
     "HttpMethod": "GET",

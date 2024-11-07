@@ -155,19 +155,52 @@ body {
 
 
 .chat-messages {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
     padding: 20px;
     overflow-y: auto;
     margin-bottom: 10px;
     height: 70%;
 }
 
-/*.message {
+.message {
+    padding: 4px 10px;
     margin-bottom: 10px;
-    display: flex;
+    border: 0px solid black;
+    border-radius: 15px;
+    max-width: 90%;
+    width: fit-content;
+    color: white;
 }
 
-.message.sent {
+.received {
+    text-align: start;
+    background-color: grey;
+}
+
+.received .message-details {
+    font-size: 11px;
+    margin-top: 4px;
+    font-weight: bolder;
+}
+
+.sent {
+    place-self: end;
+    background-color: #0F2E34;
+    text-align: end;
+}
+
+.sent .message-details {
+    font-size: 11px;
+    margin-top: 4px;
+    font-weight: bolder;
+}
+
+.message-details i {
+    margin-right: 3px;
+}
+
+/*.message.sent {
     justify-content: flex-end;
 }
 
@@ -188,11 +221,17 @@ body {
     padding: 10px;
 }
 
-.chat-input input {
+.chat-input textarea {
     flex: 1;
     padding: 10px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 25px;
+    width: 100%;
+    resize: none;
+    overflow-y: auto;
+    min-height: 40px;
+    max-height: 70px;
 }
 
 .chat-input button {

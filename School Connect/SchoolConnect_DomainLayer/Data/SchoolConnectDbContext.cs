@@ -337,11 +337,11 @@ namespace SchoolConnect_DomainLayer.Data
                 .IsUnique(false);
             
             modelBuilder.Entity<Chat>()
-                .HasIndex(chat => chat.SenderId)
+                .HasIndex(chat => chat.SenderIdentificate)
                 .IsUnique(false);
             
             modelBuilder.Entity<Chat>()
-                .HasIndex(chat => chat.ReceiverId)
+                .HasIndex(chat => chat.ReceiverIdentificate)
                 .IsUnique(false);
         }
     }

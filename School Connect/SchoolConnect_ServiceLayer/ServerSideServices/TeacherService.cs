@@ -76,6 +76,20 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             throw new NotImplementedException();
         }
 
+        public async Task<Dictionary<string, object>> GetGradesByTeacherAsync(long teacherId)
+        {
+            try
+            {
+                return await _teacherRepository.GetGradesByTeacherAsync(teacherId);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
         public async Task<Dictionary<string, object>> GetParentsByTeacherClassesAsync(long teacherId)
         {
             try
