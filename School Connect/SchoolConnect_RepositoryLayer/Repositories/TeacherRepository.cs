@@ -387,7 +387,11 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     .ThenInclude(l => l.Learners)!
                     .ThenInclude(lp => lp.Parents)
                     .ThenInclude(p => p.Parent)
-                    .Include(c => c.Classes)
+                    .Include(c => c.Classes)!
+                    .ThenInclude(c => c.Class)
+                    .ThenInclude(l => l.Learners)!
+                    .ThenInclude(lp => lp.Parents)
+                    .ThenInclude(p => p.Parent)
                     .FirstOrDefaultAsync(t => t.Id == teacherId);
                 if (teacher is null) throw new("Could not find a teacher with the specified ID.");
 
@@ -419,13 +423,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     parent.Chats ??= [];
                     parent.Chats = [.. chats.Where(c => c.SenderIdentificate == parent.IdNo || c.ReceiverIdentificate == parent.IdNo)];
 
-                    foreach (var lp in parent.Children!)
-                    {
-                        lp.Parent = null;
-                        lp.Learner.Parents = [];
-                        lp.Learner.Class.Learners = null;
-                        lp.Learner.Class.MainTeacher = null;
-                    }
+                    parent.Children = null;
                 }
 
                 _returnDictionary.Clear();
