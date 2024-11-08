@@ -164,11 +164,11 @@ namespace SchoolConnect_RepositoryLayer.CommonAction
                 string filePath;
                 if (entity == "School")
                 {
-                    filePath = fileName == "Default Pic.png" ? $@"{ApplicationFilesPath}\School Logos Folder\{fileName}" : $@"{ApplicationFilesPath}\School Logos Folder\{targetFolder}\{fileName}";
+                    filePath = fileName == "Default Pic.png" ? $@"{ApplicationFilesPath}\School Logos Folder\{fileName}" : $@"{ApplicationFilesPath}\{targetFolder}\{fileName}";
                 }
                 else
                 {
-                    filePath = fileName == "Default Pic.png" ? $@"{ApplicationFilesPath}\Profile Images Folder\{fileName}" : $@"{ApplicationFilesPath}\Profile Images Folder\{targetFolder}\{fileName}";
+                    filePath = fileName == "Default Pic.png" ? $@"{ApplicationFilesPath}\Profile Images Folder\{fileName}" : $@"{ApplicationFilesPath}\{targetFolder}\{entity}\{fileName}";
                 }
                 if (!File.Exists(filePath)) throw new FileNotFoundException($"The file in the path '{filePath}' could not be found.");
 

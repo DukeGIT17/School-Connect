@@ -8,5 +8,6 @@ namespace SchoolConnect_Web_App.IServices
         Task<Dictionary<string, object>> BulkLoadParentsAsync(IFormFile file);
         Task<Dictionary<string, object>> GetParentByIdAsync(long id);
         Task<Dictionary<string, object>> UpdateParentInfo(Parent parent);
+        Task<Dictionary<string, object>> GetTeachersByParentAync(long parentId);
     }
 }

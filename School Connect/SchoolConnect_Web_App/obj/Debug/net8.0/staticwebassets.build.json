@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "2dP+tHHc+n52nw4/370mYirgmQcBSkfCX9Zm4NBV5yQ=",
+  "Hash": "SUCODbOXIQOu1rIOlXqY55hQDO77ai+wMl7APs4zwkQ=",
   "Source": "SchoolConnect_Web_App",
   "BasePath": "_content/SchoolConnect_Web_App",
   "Mode": "Default",
@@ -41846,6 +41846,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\NewFolder\\SerNewPassword.js"
+    },
+    {
+      "Identity": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\Parent\\ParentChatList.js",
+      "SourceId": "SchoolConnect_Web_App",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\",
+      "BasePath": "_content/SchoolConnect_Web_App",
+      "RelativePath": "js/Parent/ParentChatList.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\Parent\\ParentChatList.js"
     },
     {
       "Identity": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_Web_App\\wwwroot\\js\\Principal\\PrincipalMakeAnnouncement.js",

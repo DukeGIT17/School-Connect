@@ -253,5 +253,61 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 return _returnDictionary;
             }
         }
+
+        public async Task<Dictionary<string, object>> GetTeachersByParentAsync(long parentId)
+        {
+            try
+            {
+                var parent = await _context.Parents
+                    .AsNoTracking()
+                    .Include(c => c.Children)!
+                    .ThenInclude(l => l.Learner)
+                    .ThenInclude(c => c.Class)
+                    .ThenInclude(t => t.Teachers)!
+                    .ThenInclude(t => t.Teacher)
+                    .ThenInclude(c => c.Chats)
+                    .FirstOrDefaultAsync(p => p.Id == parentId);
+                if (parent is null) throw new("Could not find a parent with the specified ID.");
+
+                List<Teacher> teachers = [];
+                foreach (var child in parent.Children!)
+                {
+                    var t = await _context.Teachers.Include(m => m.MainClass).Include(c => c.Chats).FirstOrDefaultAsync(t => t.MainClass.Id == child.Learner.Class.Id);
+                    _returnDictionary = await RetrieveImageAsBase64Async(t.ProfileImage, "Profile Images Folder", "Teachers");
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                    t.ProfileImageBase64 = _returnDictionary["Result"] as string;
+                    t.ProfileImageType = _returnDictionary["ImageType"] as string;
+                    teachers.Add(t);
+
+                    if (child.Learner!.Class!.Teachers is not null)
+                    {
+                        child.Learner.Class.Learners = null;
+                        foreach (var tg in child.Learner.Class.Teachers)
+                        {
+                            tg.Teacher.Classes = null;
+                            _returnDictionary = await RetrieveImageAsBase64Async(tg.Teacher.ProfileImage, "Profile Images Folder", "Teachers");
+                            if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                            tg.Teacher.ProfileImageBase64 = _returnDictionary["Result"] as string;
+                            tg.Teacher.ProfileImageType = _returnDictionary["ImageType"] as string;
+
+                            tg.Teacher.Chats = await _context.Chats.Where(c => c.TeacherId == tg.TeacherID || c.SenderIdentificate == tg.Teacher.StaffNr).ToListAsync();
+                            teachers.Add(tg.Teacher!);
+                        }
+                    }
+                }
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = teachers;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
     }
 }

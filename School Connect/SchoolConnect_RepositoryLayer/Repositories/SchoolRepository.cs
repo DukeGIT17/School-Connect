@@ -546,7 +546,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 school.SchoolLearnersNP = school.SchoolLearnersNP!.Where(l => l.Parents.Any(lp => lp.ParentID == parentId)).ToList();
 
-                _returnDictionary = await RetrieveImageAsBase64Async(school.Logo!, "School Logo Folder", "School");
+                _returnDictionary = await RetrieveImageAsBase64Async(school.Logo!, "School Logos Folder", "School");
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                 school.SchoolLogoBase64 = _returnDictionary["Result"] as string;

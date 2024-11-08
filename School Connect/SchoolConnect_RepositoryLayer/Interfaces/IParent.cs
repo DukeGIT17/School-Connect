@@ -10,5 +10,6 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
         Task<Dictionary<string, object>> UpdateAsync(Parent parent);
         Task<Dictionary<string, object>> GetParentByIdAsync(long parentId);
         Task<Dictionary<string, object>> GetByIdNoAsync(string parentIdNo);
+        Task<Dictionary<string, object>> GetTeachersByParentAsync(long parentId);
     }
 }

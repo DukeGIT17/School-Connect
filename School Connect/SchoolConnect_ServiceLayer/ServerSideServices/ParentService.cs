@@ -70,7 +70,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
-        public Task<Dictionary<string, object>> GetByIdNo(string idNo)
+        public Task<Dictionary<string, object>> GetByIdNoAsync(string idNo)
         {
             throw new NotImplementedException();
         }
@@ -80,6 +80,20 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             try
             {
                 return await _parentRepo.UpdateAsync(parent);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetTeachersByParentAsync(long parentId)
+        {
+            try
+            {
+                return await _parentRepo.GetTeachersByParentAsync(parentId);
             }
             catch (Exception ex)
             {

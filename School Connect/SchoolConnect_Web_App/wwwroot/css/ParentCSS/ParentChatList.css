@@ -41,13 +41,13 @@ body {
     margin: 10px 0;
 }
 
-    .sidebar-search input {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 25px;
-        outline: none;
-    }
+.sidebar-search input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    outline: none;
+}
 
 .search-icon {
     position: absolute;
@@ -72,21 +72,21 @@ body {
     transition: background-color 0.3s ease;
 }
 
-    .contact:hover {
-        background-color: #ddd;
-    }
+.contact:hover {
+    background-color: #ddd;
+}
 
-    .contact img {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        margin-right: 15px;
-    }
+.contact img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
 
-    .contact .name {
-        font-size: 16px;
-        color: #333;
-    }
+.contact .name {
+    font-size: 16px;
+    color: #333;
+}
 
 /* Chat Section */
 .chat-section {
@@ -105,6 +105,7 @@ body {
     display: flex;
     align-items: center;
     border-radius: 8px;
+    margin-bottom: 5px;
 }
 
 .profile-img {
@@ -124,7 +125,8 @@ body {
     background-color: rgba(0, 0, 0, 0.1);
     padding: 12px;
     cursor: pointer;
-    position: relative; /* Needed for positioning the options menu */
+    position: relative;
+    border-radius: 8px;
 }
 
 .dots {
@@ -146,36 +148,56 @@ body {
     cursor: pointer;
 }
 
-    .option:hover {
-        background-color: rgba(0, 0, 0, 0.1); /* Highlight on hover */
-    }
+.option:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Highlight on hover */
+}
 
 
 
 .chat-messages {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
     padding: 20px;
     overflow-y: auto;
     margin-bottom: 10px;
+    height: 70%;
 }
 
 .message {
+    padding: 4px 10px;
     margin-bottom: 10px;
-    display: flex;
+    border: 0px solid black;
+    border-radius: 15px;
+    max-width: 90%;
+    width: fit-content;
+    color: white;
 }
 
-    .message.sent {
-        justify-content: flex-end;
-    }
+.received {
+    text-align: start;
+    background-color: grey;
+}
 
-.message-text {
+.received .message-details {
+    font-size: 11px;
+    margin-top: 4px;
+    font-weight: bolder;
+}
+
+.sent {
+    place-self: end;
     background-color: #0F2E34;
-    padding: 10px;
-    border-radius: 8px;
+    text-align: end;
 }
 
-.message.received .message-text {
-    background-color: #fff;
+.sent .message-details {
+    font-size: 11px;
+    margin-top: 4px;
+    font-weight: bolder;
+}
+
+.message-details i {
+    margin-right: 3px;
 }
 
 .chat-input {
@@ -185,25 +207,31 @@ body {
     padding: 10px;
 }
 
-    .chat-input input {
-        flex: 1;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 25px;
-    }
+.chat-input textarea {
+    flex: 1;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    width: 100%;
+    resize: none;
+    overflow-y: auto;
+    min-height: 40px;
+    max-height: 70px;
+}
 
-    .chat-input button {
-        padding: 10px;
-        background-color: #0F2E34;
-        color: white;
-        border-radius: 50%;
-        margin-left: 10px;
-        cursor: pointer;
-    }
+.chat-input button {
+    padding: 10px;
+    background-color: #0F2E34;
+    color: white;
+    border-radius: 50%;
+    margin-left: 10px;
+    cursor: pointer;
+}
 
-        .chat-input button:hover {
-            background-color: #128C7E;
-        }
+.chat-input button:hover {
+    background-color: #128C7E;
+}
 
 /* No chat placeholder */
 .no-chat {
@@ -215,11 +243,11 @@ body {
     text-align: center;
 }
 
-    .no-chat h2 {
-        color: #00796b;
-    }
+.no-chat h2 {
+    color: #00796b;
+}
 
-    .no-chat p {
-        color: #666;
-        font-size: 16px;
-        margin-top:
+.no-chat p {
+    color: #666;
+    font-size: 16px;
+}

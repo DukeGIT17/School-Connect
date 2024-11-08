@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_Web_App.IServices;
+using SchoolConnect_Web_App.Models;
 
 namespace SchoolConnect_Web_App.Controllers
 {
@@ -100,7 +102,16 @@ namespace SchoolConnect_Web_App.Controllers
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 if (_returnDictionary["Result"] is not School school) throw new("Could not acquire school data from the provided dictionary");
                 school.SchoolLogoBase64 = $"data:image/{school.SchoolLogoType};base64,{school.SchoolLogoBase64}";
-                return View(school);
+
+                _returnDictionary = _parentService.GetParentByIdAsync(parentId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not Parent parent) throw new("Could not acquire parent data from the provided dictionary.");
+
+                return View(new ParentModelViewModel<School>
+                {
+                    ActualModel = school,
+                    Parent = parent
+                });
             }
             catch (Exception ex)
             {
@@ -110,7 +121,7 @@ namespace SchoolConnect_Web_App.Controllers
         }
 
         [HttpGet]
-        public IActionResult ParentViewChildProfile(long learnerId)
+        public IActionResult ParentViewChildProfile(long learnerId, long parentId)
         {
             try
             {
@@ -118,7 +129,16 @@ namespace SchoolConnect_Web_App.Controllers
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 if (_returnDictionary["Result"] is not Learner learner) throw new("Could not acquire learner data from the provided dictionary");
                 learner.ProfileImageBase64 = $"data:image/{learner.ProfileImageType};base64,{learner.ProfileImageBase64}";
-                return View(learner);
+
+                _returnDictionary = _parentService.GetParentByIdAsync(parentId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not Parent parent) throw new("Could not acquire parent data from the provided dictionary");
+
+                return View(new ParentModelViewModel<Learner>
+                {
+                    ActualModel = learner,
+                    Parent = parent
+                });
             }
             catch (Exception ex)
             {
@@ -147,10 +167,33 @@ namespace SchoolConnect_Web_App.Controllers
             return View();
         }
 
-
-        public IActionResult ParentChatList()
+        [HttpGet]
+        public IActionResult ParentChatList(long parentId)
         {
-            return View();
+            try
+            {
+                _returnDictionary = _parentService.GetTeachersByParentAync(parentId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not IEnumerable<Teacher> teachers) throw new("Could not acquire teacher data from the provided dictionary.");
+
+                foreach (var teacher in teachers)
+                    teacher.ProfileImageBase64 = $"data:image/{teacher.ProfileImageType};base64,{teacher.ProfileImageBase64}";
+
+                _returnDictionary = _parentService.GetParentByIdAsync(parentId).Result;
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                if (_returnDictionary["Result"] is not Parent parent) throw new("Could not acquire parent data from the provided dictionary");
+                
+                return View(new ParentChatViewModel
+                {
+                    Teachers = teachers,
+                    Parent = parent
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+                return RedirectToAction("Index", "Home");
+            }
         }
 
         public IActionResult ParentUpdateDetails()

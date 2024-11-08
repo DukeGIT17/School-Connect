@@ -177,5 +177,26 @@ namespace SchoolConnect_Web_App.Services
                 return _returnDictionary;
             }
         }
+
+        public async Task<Dictionary<string, object>> GetTeachersByParentAync(long parentId)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(ParentBasePath);
+                buildString.Append("/GetTeachersByParent?parentId=");
+                buildString.Append(parentId);
+
+                var response = await httpClient.GetAsync(buildString.ToString());
+                return CheckSuccessStatus(response, "Teacher");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
     }
 }

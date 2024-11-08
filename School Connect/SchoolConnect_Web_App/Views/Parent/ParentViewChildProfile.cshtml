@@ -1,4 +1,4 @@
-﻿@model Learner
+﻿@model ParentModelViewModel<Learner>
 @{
     Layout = null;
 }
@@ -6,32 +6,37 @@
 <link rel="stylesheet" href="~/css/ParentCSS/ParentViewChildProfile.css" />
 <link rel="stylesheet" href="~/FontAwesome/css/all.min.css" />
 
-    <header>
-        <h1>Child Profile</h1>
-    </header>
+<header>
+    <h1>Child Profile</h1>
+</header>
 
-    <a class="container">
-        <div class="profile-info">
-            <div class="icon"><i class="fas fa-user"></i></div>
-            <div class="name">@Model.Name @Model.Surname</div>
-            <div class="grade">Grade @Model.Class.ClassDesignate</div>
-        </div>
+<a class="container">
+    <div class="profile-info">
+        <div class="icon"><i class="fas fa-user"></i></div>
+        <div class="name">@Model.ActualModel.Name @Model.ActualModel.Surname</div>
+        <div class="grade">Grade @Model.ActualModel.Class!.ClassDesignate</div>
+    </div>
 
-        <div class="details-box">
-        <div class="teacher">CLASS TEACHER: @Model.Class.MainTeacher.Name @Model.Class.MainTeacher.Surname</div>
-            <div class="subject">SUBJECTS:</div>
-        @foreach (var subject in Model.Class.SubjectsTaught)
+    <div class="details-box">
+        @if (Model.ActualModel.Class.MainTeacher is not null)
+        {
+            <div class="teacher">CLASS TEACHER: @Model.ActualModel.Class.MainTeacher.Title @Model.ActualModel.Class.MainTeacher.Name @Model.ActualModel.Class.MainTeacher.Surname</div>
+        }
+        else
+        {
+            <div class="teacher">CLASS TEACHER: No main teacher assigned yet</div>
+        }
+        <div class="subject">SUBJECTS:</div>
+        @foreach (var subject in Model.ActualModel.Class.SubjectsTaught)
         {
             <div>@subject.ToUpper()</div>
 
         }
-        </div>
+    </div>
 
-        <a asp-controller="Parent" asp-action="ParentViewAnnouncements" class="button">ANNOUNCEMENTS</a>
-        <a asp-controller="Parent" asp-action="ParentViewReports" class="button">REPORT</a>
-        <a asp-controller="Parent" asp-action="ParentViewAttendance" class="button">ATTENDANCE</a>
-        <a asp-controller="Teacher" asp-action="TeacherChatList" class="chat-button">
-            <i class="fas fa-comments chat-icon"></i>
-        </a>
-    </a> <!-- Add closing </a> tag -->
-
+    <a asp-controller="Parent" asp-action="ParentViewAnnouncements" class="button">ANNOUNCEMENTS</a>
+    <a asp-controller="Parent" asp-action="ParentViewAttendance" class="button">ATTENDANCE</a>
+    <a asp-action="ParentChatList" asp-route-parentId="@Model.Parent.Id" class="chat-button">
+        <i class="fas fa-comments chat-icon"></i>
+    </a>
+</a> <!-- Add closing </a> tag -->

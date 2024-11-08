@@ -1,4 +1,4 @@
-﻿@model School
+﻿@model ParentModelViewModel<School>
 @{
     Layout = null;
 }
@@ -8,16 +8,16 @@
 
 
 <header>
-    <h1>@Model.Name @Model.Type</h1>
+    <h1>@Model.ActualModel.Name @Model.ActualModel.Type</h1>
 </header>
 
 <div class="content">
-    <img src="@Model.SchoolLogoBase64" alt="@Model.Name @Model.Type" />
+    <img src="@Model.ActualModel.SchoolLogoBase64" alt="@Model.ActualModel.Name @Model.ActualModel.Type" />
 
     <div class="profile-list">
-        @foreach (var learner in Model.SchoolLearnersNP)
+        @foreach (var learner in Model.ActualModel.SchoolLearnersNP)
         {
-            <a asp-action="ParentViewChildProfile" asp-route-learnerId="@learner.Id" class="button">
+            <a asp-action="ParentViewChildProfile" asp-route-learnerId="@learner.Id" asp-route-parentId="@Model.Parent.Id" class="button">
                 <i class="fa-solid fa-user profile-icon"></i> @learner.Name @learner.Surname
                 <i class="fa-solid fa-arrow-right arrow-icon"></i>
             </a>

@@ -21479,6 +21479,22 @@
   },
   {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.ParentController",
+    "Method": "GetTeachersByParent",
+    "RelativePath": "api/Parent/GetTeachersByParent",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "parentId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.ParentController",
     "Method": "Update",
     "RelativePath": "api/Parent/Update",
     "HttpMethod": "PUT",

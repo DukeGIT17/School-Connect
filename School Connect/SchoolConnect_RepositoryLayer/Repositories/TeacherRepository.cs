@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using OfficeOpenXml;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using OfficeOpenXml.Drawing.Chart.ChartEx;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -415,7 +414,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                 foreach (var parent in parents)
                 {
-                    _returnDictionary = await RetrieveImageAsBase64Async(parent.ProfileImage ?? "Default Pic.png", "Parents");
+                    _returnDictionary = await RetrieveImageAsBase64Async(parent.ProfileImage ?? "Default Pic.png", "Profile Images Folder", "Parents");
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
 
                     parent.ProfileImageBase64 = _returnDictionary["Result"] as string;
