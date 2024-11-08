@@ -1,9 +1,10 @@
-﻿@{
+﻿@model Learner
+@{
     Layout = null;
 }
 
-<link rel="stylesheet" href="~/css/ParentCSS/ParentViewChildProfile.css"> <!-- Link to external stylesheet -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="~/css/ParentCSS/ParentViewChildProfile.css" />
+<link rel="stylesheet" href="~/FontAwesome/css/all.min.css" />
 
     <header>
         <h1>Child Profile</h1>
@@ -12,19 +13,18 @@
     <a class="container">
         <div class="profile-info">
             <div class="icon"><i class="fas fa-user"></i></div>
-            <div class="name">Thembile Poti</div>
-            <div class="grade">Grade 10B</div>
+            <div class="name">@Model.Name @Model.Surname</div>
+            <div class="grade">Grade @Model.Class.ClassDesignate</div>
         </div>
 
         <div class="details-box">
-            <div class="teacher">CLASS TEACHER: KGOPOLO MOOI</div>
+        <div class="teacher">CLASS TEACHER: @Model.Class.MainTeacher.Name @Model.Class.MainTeacher.Surname</div>
             <div class="subject">SUBJECTS:</div>
-            <div>MATHEMATICS</div>
-            <div>PHYSICS</div>
-            <div>ENGLISH HL</div>
-            <div>XHOSA FAL</div>
-            <div>GEOGRAPHY</div>
-            <div>LIFE ORIENTATION</div>
+        @foreach (var subject in Model.Class.SubjectsTaught)
+        {
+            <div>@subject.ToUpper()</div>
+
+        }
         </div>
 
         <a asp-controller="Parent" asp-action="ParentViewAnnouncements" class="button">ANNOUNCEMENTS</a>

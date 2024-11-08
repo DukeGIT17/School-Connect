@@ -54,13 +54,13 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             }
         }
 
-        public async Task<Dictionary<string, object>> GetById(long id)
+        public async Task<Dictionary<string, object>> GetParentByIdAsync(long id)
         {
             try
             {
                 return id < 1 ?
                     throw new($"The provided id '{id}' is less than one. Please provide a valid id.") :
-                    await _parentRepo.GetByIdAsync(id);
+                    await _parentRepo.GetParentByIdAsync(id);
             }
             catch (Exception ex)
             {

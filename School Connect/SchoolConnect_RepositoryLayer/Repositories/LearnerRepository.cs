@@ -6,6 +6,7 @@ using static SchoolConnect_RepositoryLayer.CommonAction.CommonActions;
 using SchoolConnect_RepositoryLayer.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
+using System.Diagnostics.Metrics;
 
 namespace SchoolConnect_RepositoryLayer.Repositories
 {
@@ -292,12 +293,22 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                return await GetActorById(learnerId, new Learner(), _context);
+                var learner = await _context.Learners
+                    .Include(m => m.Class)
+                    .ThenInclude(m => m.MainTeacher)
+                    .FirstOrDefaultAsync(l => l.Id == learnerId);
+                if (learner is null) throw new("Could not find a learner with the specified ID.");
+
+                learner.Class.Learners = null;
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = learner;
+                return _returnDictionary;
             }
             catch (Exception ex)
             {
-                _returnDictionary["Success"] = true;
-                _returnDictionary["ErrorMessage"] = ex.Message;
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
                 return _returnDictionary;
             }
         }

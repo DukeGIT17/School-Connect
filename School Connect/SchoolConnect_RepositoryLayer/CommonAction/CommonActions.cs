@@ -156,12 +156,20 @@ namespace SchoolConnect_RepositoryLayer.CommonAction
             }
         }
         
-        public static async Task<Dictionary<string, object>> RetrieveImageAsBase64Async(string fileName, string targetFolder)
+        public static async Task<Dictionary<string, object>> RetrieveImageAsBase64Async(string fileName, string targetFolder, string? entity = null)
         {
             Dictionary<string, object> _returnDictionary = [];
             try
             {
-                string filePath = fileName == "Default Pic.png" ? $@"{ApplicationFilesPath}\Profile Images Folder\{fileName}" : $@"{ApplicationFilesPath}\Profile Images Folder\{targetFolder}\{fileName}";
+                string filePath;
+                if (entity == "School")
+                {
+                    filePath = fileName == "Default Pic.png" ? $@"{ApplicationFilesPath}\School Logos Folder\{fileName}" : $@"{ApplicationFilesPath}\School Logos Folder\{targetFolder}\{fileName}";
+                }
+                else
+                {
+                    filePath = fileName == "Default Pic.png" ? $@"{ApplicationFilesPath}\Profile Images Folder\{fileName}" : $@"{ApplicationFilesPath}\Profile Images Folder\{targetFolder}\{fileName}";
+                }
                 if (!File.Exists(filePath)) throw new FileNotFoundException($"The file in the path '{filePath}' could not be found.");
 
                 _returnDictionary["Success"] = true;

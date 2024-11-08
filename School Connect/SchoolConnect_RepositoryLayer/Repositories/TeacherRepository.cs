@@ -330,7 +330,8 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                     if (!teacher.Subjects.Intersect(cls.SubjectsTaught).IsNullOrEmpty())
                     {
-                        existingTeacher.Classes = teacher.Classes;
+                        foreach (var kls in teacher.Classes)
+                            existingTeacher.Classes.Add(kls);
                         _returnDictionary = _groupRepo.AddTeacherToGroup(ref existingTeacher, teacher.SchoolID, $"Grade {teacher.Classes.First().ClassDesignate} Teachers");
                         if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                     }

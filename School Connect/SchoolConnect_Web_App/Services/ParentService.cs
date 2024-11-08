@@ -10,6 +10,7 @@ namespace SchoolConnect_Web_App.Services
     {
         private Dictionary<string, object> _returnDictionary = [];
         private const string ParentBasePath = "/api/Parent";
+
         public async Task<Dictionary<string, object>> RegisterParentAsync(Parent parent)
         {
             try
@@ -93,6 +94,80 @@ namespace SchoolConnect_Web_App.Services
                 };
 
                 var response = await httpClient.SendAsync(request);
+                return CheckSuccessStatus(response, "NoNeed");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetParentByIdAsync(long id)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(ParentBasePath);
+                buildString.Append("/GetParentById?id=");
+                buildString.Append(id);
+
+                var response = await httpClient.GetAsync(buildString.ToString());
+                return CheckSuccessStatus(response, "Parent");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> UpdateParentInfo(Parent parent)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(ParentBasePath);
+                buildString.Append("/Update");
+
+                var formData = new MultipartFormDataContent();
+
+                foreach (var property in typeof(Parent).GetProperties())
+                {
+                    var value = property.GetValue(parent);
+                    if (value is IFormFile)
+                        continue;
+
+                    if (value is IEnumerable<LearnerParent>)
+                    {
+                        foreach (var learnerParentProperty in typeof(LearnerParent).GetProperties())
+                        {
+                            var lpValue = learnerParentProperty.GetValue(parent.Children!.First());
+                            if (lpValue is IFormFile || lpValue is Learner || lpValue is Parent)
+                                continue;
+
+                            if (lpValue is not null)
+                                formData.Add(new StringContent(lpValue.ToString()), "Children[0]." + learnerParentProperty.Name);
+                        }
+                        continue;
+                    }
+
+                    if (value is not null)
+                        formData.Add(new StringContent(value.ToString()), property.Name);
+                }
+
+                if (parent.ProfileImageFile is not null)
+                {
+                    var fileStreamContent = new StreamContent(parent.ProfileImageFile.OpenReadStream());
+                    fileStreamContent.Headers.ContentType = new MediaTypeHeaderValue(parent.ProfileImageFile.ContentType);
+                    formData.Add(fileStreamContent, "ProfileImageFile", parent.ProfileImageFile.FileName);
+                }
+
+                var response = await httpClient.PutAsync(buildString.ToString(), formData);
                 return CheckSuccessStatus(response, "NoNeed");
             }
             catch (Exception ex)

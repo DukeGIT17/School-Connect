@@ -363,5 +363,28 @@ namespace SchoolConnect_Web_App.Services
                 return _returnDictionary;
             }
         }
+
+        public async Task<Dictionary<string, object>> GetSchoolAndLearnersAsync(long parentId, long schoolId)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(SchoolBasePath);
+                buildString.Append("/GetSchoolAndLearners?parentId=");
+                buildString.Append(parentId);
+                buildString.Append("&schoolId=");
+                buildString.Append(schoolId);
+
+                var response = await _httpClient.GetAsync(buildString.ToString());
+                return CheckSuccessStatus(response, "School");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using OfficeOpenXml.Drawing.Chart.ChartEx;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_RepositoryLayer.CommonAction;
 using SchoolConnect_RepositoryLayer.Interfaces;
@@ -65,13 +64,11 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         {
             try
             {
-                return id < 1 ?
-                    throw new($"The provided id '{id}' is less than one. Please provide a valid id.") :
-                    await _learnerRepo.GetLearnerByIdAsync(id);
+                return await _learnerRepo.GetLearnerByIdAsync(id);
             }
             catch (Exception ex)
             {
-                _returnDictionary["Success"] = true;
+                _returnDictionary["Success"] = false;
                 _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
             }

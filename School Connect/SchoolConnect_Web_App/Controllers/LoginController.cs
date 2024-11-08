@@ -32,14 +32,9 @@ namespace SchoolConnect_Web_App.Controllers
                 if (ModelState.IsValid)
                 {
                     _resultDictionary = _signInService.SignInWithEmailAndPassword(model);
-
-                    if (!(bool)_resultDictionary["Success"])
-                        throw new Exception($"Error!! {_resultDictionary["ErrorMessage"]}");
-
-                    if ((bool)_resultDictionary["ResetPassword"])
-                        return RedirectToAction(nameof(SetNewPassword));
-
-                    var id = _resultDictionary["ActorID"] as long?;
+                    if (!(bool)_resultDictionary["Success"]) throw new(_resultDictionary["ErrorMessage"] as string);
+                    if ((bool)_resultDictionary["ResetPassword"]) return RedirectToAction(nameof(SetNewPassword));
+                    if (_resultDictionary["ActorID"] is not long id) throw new("Could not acquire actor ID from the provided dictionary.");
 
                     return (_resultDictionary["Role"] as string) switch
                     {

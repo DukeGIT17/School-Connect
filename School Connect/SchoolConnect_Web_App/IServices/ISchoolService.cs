@@ -16,5 +16,6 @@ namespace SchoolConnect_Web_App.IServices
         Task<Dictionary<string, object>> AddSubjectsAsync(List<string> subjects, long schoolId, string? newClasses = null);
         Task<Dictionary<string, object>> GetGradesBySchoolAsync(long schoolId);
         Task<Dictionary<string, object>> GetClassByMainTeacherAsync(long teacherId);
+        Task<Dictionary<string, object>> GetSchoolAndLearnersAsync(long classId, long schoolId);
     }
 }

@@ -25544,6 +25544,27 @@
   },
   {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.SchoolController",
+    "Method": "GetSchoolAndLearners",
+    "RelativePath": "api/School/GetSchoolAndLearners",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "parentId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      },
+      {
+        "Name": "schoolId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.SchoolController",
     "Method": "GetSchoolByAdminId",
     "RelativePath": "api/School/GetSchoolByAdminId",
     "HttpMethod": "GET",

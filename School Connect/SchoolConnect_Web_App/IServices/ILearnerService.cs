@@ -9,5 +9,6 @@ namespace SchoolConnect_Web_App.IServices
         Task<Dictionary<string, object>> BulkLoadLearnersAsync(IFormFile file, long schoolId);
         Task<Dictionary<string, object>> GetLearnersByClassAsync(long teacherId);
         Task<Dictionary<string, object>> GetLearnersByClassIdAsync(int classId);
+        Task<Dictionary<string, object>> GetLearnerByIdAsync(long learnerId);
     }
 }

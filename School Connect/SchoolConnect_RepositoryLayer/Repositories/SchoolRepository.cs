@@ -518,7 +518,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public async Task<Dictionary<string, object>> GetClassByMainTeacher(long teacherId)
+        public async Task<Dictionary<string, object>> GetClassByMainTeacherAsync(long teacherId)
         {
             try
             {
@@ -527,6 +527,33 @@ namespace SchoolConnect_RepositoryLayer.Repositories
 
                  _returnDictionary["Success"] = true;
                 _returnDictionary["Result"] = cls;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetSchoolAndLearnersAsync(long parentId, long schoolId)
+        {
+            try
+            {
+                var school = await _context.Schools.Include(l => l.SchoolLearnersNP)!.ThenInclude(p => p.Parents).FirstOrDefaultAsync(s => s.Id == schoolId);
+                if (school is null) throw new("Could not find a school with the specified ID.");
+
+                school.SchoolLearnersNP = school.SchoolLearnersNP!.Where(l => l.Parents.Any(lp => lp.ParentID == parentId)).ToList();
+
+                _returnDictionary = await RetrieveImageAsBase64Async(school.Logo!, "School Logo Folder", "School");
+                if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                school.SchoolLogoBase64 = _returnDictionary["Result"] as string;
+                school.SchoolLogoType = _returnDictionary["ImageType"] as string;
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = school;
                 return _returnDictionary;
             }
             catch (Exception ex)

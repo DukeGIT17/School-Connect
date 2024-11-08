@@ -8,7 +8,7 @@ namespace SchoolConnect_RepositoryLayer.Interfaces
         Task<Dictionary<string, object>> BatchLoadParentsFromExcelAsync(IFormFile file);
         Task<Dictionary<string, object>> CreateAsync(Parent parent);
         Task<Dictionary<string, object>> UpdateAsync(Parent parent);
-        Task<Dictionary<string, object>> GetByIdAsync(long parentId);
+        Task<Dictionary<string, object>> GetParentByIdAsync(long parentId);
         Task<Dictionary<string, object>> GetByIdNoAsync(string parentIdNo);
     }
 }

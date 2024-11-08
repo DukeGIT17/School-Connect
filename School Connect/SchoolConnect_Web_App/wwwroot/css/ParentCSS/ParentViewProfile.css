@@ -48,12 +48,12 @@ html, body {
 }
 
 
-    .left-container h2 {
-        margin: 10px 0;
-        font-weight: 600; /* Slightly bolder for formality */
-        text-align: center;
-        color: #0F2E34; /* Match with overall color scheme */
-    }
+.left-container h2 {
+    margin: 10px 0;
+    font-weight: 600; /* Slightly bolder for formality */
+    text-align: center;
+    color: #0F2E34; /* Match with overall color scheme */
+}
 
 
 .icon {
@@ -162,6 +162,11 @@ input[readonly] {
     font-size: 16px;
 }
 
+input:focus {
+    outline: none;
+    border-bottom: 1px solid #0F2E34;
+}
+
 .updateButton {
     margin-top: 20px;
     padding: 10px 20px;
@@ -171,11 +176,6 @@ input[readonly] {
     border-radius: 16px;
     cursor: pointer;
     text-decoration: none;
-}
-
-input:focus {
-    outline: none;
-    border-bottom: 1px solid #0F2E34;
 }
 
 @media only screen and (max-width: 860px) {

@@ -185,20 +185,23 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             }
         }
 
-        public async Task<Dictionary<string, object>> GetByIdAsync(long parentId)
+        public async Task<Dictionary<string, object>> GetParentByIdAsync(long parentId)
         {
             try
             {
                 var parent = await _context.Parents
                     .Include(p => p.Children)!
                     .ThenInclude(p => p.Learner)
+                    .ThenInclude(s => s.LearnerSchoolNP)
                     .FirstOrDefaultAsync(p => p.Id == parentId);
                 if (parent == null) throw new("Could not find a parent with the specified ID.");
 
-                foreach (var lp in parent.Children)
+                parent.Children!.ToList().ForEach(lp =>
                 {
-                    lp.Learner!.Parents = null;
-                }
+                    lp.Learner!.Parents = [];
+                    lp.Parent = null;
+                    lp.Learner.LearnerSchoolNP!.SchoolLearnersNP = null;
+                });
 
                 _returnDictionary["Success"] = true;
                 _returnDictionary["Result"] = parent;
@@ -207,7 +210,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
             catch (Exception ex)
             {
                 _returnDictionary["Success"] = false;
-                _returnDictionary["ErrorMessage"] = ex.Message;
+                _returnDictionary["ErrorMessage"] = ex.Message + "\nInner Exception: " + ex.InnerException;
                 return _returnDictionary;
             }
         }
@@ -221,26 +224,24 @@ namespace SchoolConnect_RepositoryLayer.Repositories
         {
             try
             {
-                var existingParent = await _context.Parents.AsNoTracking().FirstOrDefaultAsync(p => p.Id == parent.Id);
+                var existingParent = await _context.Parents.FirstOrDefaultAsync(p => p.Id == parent.Id);
                 if (existingParent is null) throw new("Could not find a parent with the specified ID.");
-
-                parent.Children = existingParent.Children;
-                parent.GroupsNP = existingParent.GroupsNP;
 
                 if (parent.EmailAddress != existingParent.EmailAddress)
                 {
                     _returnDictionary = await _signInRepo.ChangeEmailAddressAsync(existingParent.EmailAddress, parent.EmailAddress);
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    existingParent.EmailAddress = parent.EmailAddress;
                 }
 
                 if (parent.PhoneNumber != existingParent.PhoneNumber)
                 {
                     _returnDictionary = await _signInRepo.ChangePhoneNumberAsync(existingParent.PhoneNumber.ToString(), parent.PhoneNumber.ToString(), parent.EmailAddress);
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+                    existingParent.PhoneNumber = parent.PhoneNumber;
                 }
 
-                _context.Update(parent);
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
 
                 _returnDictionary["Success"] = true;
                 return _returnDictionary;

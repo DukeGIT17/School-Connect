@@ -49,7 +49,7 @@ namespace SchoolConnect_WebAPI.Controllers
         {
             try
             {
-                _returnDictionary = _parentService.GetById(id).Result;
+                _returnDictionary = _parentService.GetParentByIdAsync(id).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
                 return Ok(_returnDictionary);
             }

@@ -8,7 +8,7 @@ namespace SchoolConnect_ServiceLayer.IServerSideServices
         Task<Dictionary<string, object>> BatchLoadParentsAsync(IFormFile parentFile);
         Task<Dictionary<string, object>> CreateAsync(Parent parent);
         Task<Dictionary<string, object>> UpdateAsync(Parent parent);
-        Task<Dictionary<string, object>> GetById(long id);
+        Task<Dictionary<string, object>> GetParentByIdAsync(long id);
         Task<Dictionary<string, object>> GetByIdNo(string idNo);
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolConnect_DomainLayer.Models;
-using SchoolConnect_RepositoryLayer.Interfaces;
 using SchoolConnect_ServiceLayer.IServerSideServices;
 
 namespace SchoolConnect_WebAPI.Controllers
@@ -208,6 +207,21 @@ namespace SchoolConnect_WebAPI.Controllers
             try
             {
                 _returnDictionary = _school.GetClassByMainTeacher(teacherId).Result;
+                if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
+                return Ok(_returnDictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet(nameof(GetSchoolAndLearners))]
+        public IActionResult GetSchoolAndLearners(long parentId, long schoolId)
+        {
+            try
+            {
+                _returnDictionary = _school.GetSchoolAndLearnersAsync(parentId, schoolId).Result;
                 if (!(bool)_returnDictionary["Success"]) return BadRequest(_returnDictionary["ErrorMessage"]);
                 return Ok(_returnDictionary);
             }

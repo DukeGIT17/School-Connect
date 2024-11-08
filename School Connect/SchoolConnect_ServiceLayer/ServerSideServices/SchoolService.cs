@@ -61,7 +61,7 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
         {
             try
             {
-                return await _schoolRepo.GetClassByMainTeacher(teacherId);
+                return await _schoolRepo.GetClassByMainTeacherAsync(teacherId);
             }
             catch (Exception ex)
             {
@@ -90,6 +90,20 @@ namespace SchoolConnect_ServiceLayer.ServerSideServices
             try
             {
                 return await _schoolRepo.GetGradesBySchoolAsync(schoolId);
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetSchoolAndLearnersAsync(long parentId, long schoolId)
+        {
+            try
+            {
+                return await _schoolRepo.GetSchoolAndLearnersAsync(parentId, schoolId);
             }
             catch (Exception ex)
             {
