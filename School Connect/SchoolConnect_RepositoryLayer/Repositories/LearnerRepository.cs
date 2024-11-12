@@ -254,6 +254,9 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 {
                     _returnDictionary = await _signInRepo.CreateUserAccountAsync(parent.Parent!.EmailAddress, parent.Parent.Role, parent.Parent.PhoneNumber.ToString());
                     if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
+
+                    _returnDictionary = _groupRepo.AddParentToGroup(parent.Parent, learner.LearnerSchoolNP.Id, "All");
+                    if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 }
 
                 if (learner.ProfileImageFile is not null)

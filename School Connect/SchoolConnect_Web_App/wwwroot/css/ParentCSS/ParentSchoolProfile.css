@@ -30,14 +30,14 @@ h1 {
     max-width: 800px;
 }
 
-    .content img {
-        width: 100%;
-        max-width: 600px;
-        height: auto;
-        display: block;
-        margin: 0 auto 20px auto;
-        border-radius: 8px;
-    }
+.content img {
+    width: 50%;
+    max-width: 600px;
+    height: 300px;
+    display: block;
+    margin: 0 auto 20px auto;
+    border-radius: 8px;
+}
 
 .profile-list {
     display: flex;

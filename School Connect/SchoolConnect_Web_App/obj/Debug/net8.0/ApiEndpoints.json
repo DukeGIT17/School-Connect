@@ -81,6 +81,22 @@
   },
   {
     "ContainingType": "SchoolConnect_WebAPI.Controllers.AnnouncementController",
+    "Method": "GetAnnouncementsByParentId",
+    "RelativePath": "api/Announcement/GetAnnouncementsByParentId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "parentId",
+        "Type": "System.Int64",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "SchoolConnect_WebAPI.Controllers.AnnouncementController",
     "Method": "GetAnnouncementsByTeacherId",
     "RelativePath": "api/Announcement/GetAnnouncementsByTeacherId",
     "HttpMethod": "GET",

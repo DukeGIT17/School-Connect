@@ -318,7 +318,7 @@ namespace SchoolConnect_DomainLayer.Data
                 .HasMany(attRecs => attRecs.AttendanceRecords)
                 .WithOne(cls => cls.Class)
                 .HasForeignKey(a => a.ClassID)
-                .OnDelete(DeleteBehavior.Cascade)
+                .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired();
             
             modelBuilder.Entity<SubGrade>()
@@ -329,7 +329,7 @@ namespace SchoolConnect_DomainLayer.Data
                 .HasMany(subGrades => subGrades.Classes)
                 .WithOne(grade => grade.Grade)
                 .HasForeignKey(subGrade => subGrade.GradeId)
-                .OnDelete(DeleteBehavior.Cascade)
+                .OnDelete(DeleteBehavior.NoAction)
                 .IsRequired();
 
             modelBuilder.Entity<Chat>()

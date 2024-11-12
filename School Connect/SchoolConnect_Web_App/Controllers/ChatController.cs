@@ -32,8 +32,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
     }

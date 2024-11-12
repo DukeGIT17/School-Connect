@@ -1,37 +1,26 @@
-﻿@{
+﻿@model Announcement
+@{
     Layout = null;
 }
-<link rel="stylesheet" href="~/css/ParentCSS/ParentDetailedAnnouncements.css" />
+<link rel="stylesheet" href="~/css/PrincipalCSS/PrincipalDetailedAnnouncement.css" />
 
 <body>
-    <!-- Header Section -->
-    <header>
-        <h1>School Announcements</h1>
-    </header>
-
-    <!-- Content Section -->
+    <h1>School Announcements</h1>
     <div class="container">
-        @if (Model != null && Model.Any())
-        {
-            <div class="announcement-list">
-                @foreach (var announcement in Model)
-                {
-                    <div class="announcement-card">
-                        <div class="announcement-title">@announcement.Title</div>
-                        <div class="announcement-date">Posted on: @announcement.Date.ToString("MMMM dd, yyyy")</div>
-                        <div class="announcement-content">@announcement.Content</div>
-                    </div>
-                }
-            </div>
-        }
-        else
-        {
-            <p class="no-announcements">There are no announcements available at this time.</p>
-        }
-    </div>
+        <div class="announcement-list">
+            <div class="announcement-card">
+                <div class="announcement-title">@Model.Title</div>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; @DateTime.Now.Year Your School Name. All Rights Reserved.</p>
-    </footer>
+                @if (Model.TimeToPost is null)
+                {
+                    <div class="announcement-date">Posted on: @Model.DateCreated</div>
+                }
+                else
+                {
+                    <div class="announcement-date">Posted on: @Model.TimeToPost</div>
+                }
+                <div class="announcement-content">@Model.Content</div>
+            </div>
+        </div>
+    </div>
 </body>

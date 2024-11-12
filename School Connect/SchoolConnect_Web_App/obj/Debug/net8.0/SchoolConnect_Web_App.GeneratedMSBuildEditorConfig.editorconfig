@@ -26,12 +26,12 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\innoc\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_Web_App
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Home/ErrorPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFcnJvclBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/innoc/Desktop/Git Repo/School-Connect/School Connect/SchoolConnect_Web_App/Views/Login/Login.cshtml]

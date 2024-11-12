@@ -72,7 +72,6 @@ namespace SchoolConnect_Web_App.Controllers
                         ModelState.AddModelError(nameof(model.NewPassword), "Please enter a new password");
                         return View(model);
                     }
-
                     if (string.IsNullOrEmpty(model.ConfirmPassword) || string.IsNullOrWhiteSpace(model.ConfirmPassword))
                     {
                         ModelState.AddModelError(nameof(model.ConfirmPassword), "Please repeat your new password");

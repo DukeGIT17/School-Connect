@@ -13,17 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Application Files\School Logos Folder\Default Pic.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Application Files\School Logos Folder\Default Pic.png">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
@@ -37,11 +26,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application Files\Misc\" />
     <Folder Include="Application Files\Profile Images Folder\Learners\" />
-    <Folder Include="Application Files\Profile Images Folder\Principals\" />
-    <Folder Include="Application Files\Profile Images Folder\Parents\" />
-    <Folder Include="Application Files\Profile Images Folder\Teachers\" />
+    <Folder Include="Application Files\School Logos Folder\" />
   </ItemGroup>
 
 </Project>

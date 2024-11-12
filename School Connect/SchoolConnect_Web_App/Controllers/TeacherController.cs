@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolConnect_DomainLayer.Models;
 using SchoolConnect_Web_App.IServices;
 using SchoolConnect_Web_App.Models;
@@ -32,8 +31,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -48,8 +46,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -71,8 +68,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -101,8 +97,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -115,7 +110,7 @@ namespace schoolconnect.Controllers
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 if (_returnDictionary["Result"] is not Teacher teacher) throw new("Something went wrong, could not acquire teacher data from the provided dictionary.");
 
-                _returnDictionary = _announcementService.GetAnnouncementByTeacherId(id).Result;
+                _returnDictionary = _announcementService.GetAnnouncementByTeacherIdAsync(id).Result;
                 if (!(bool)_returnDictionary["Success"]) throw new(_returnDictionary["ErrorMessage"] as string);
                 if (_returnDictionary["Result"] is not IEnumerable<Announcement> announcements) throw new("Could not acquire announcements from the provided dictionary.");
 
@@ -134,8 +129,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -151,8 +145,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -177,8 +170,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -194,8 +186,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -216,8 +207,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
         
@@ -242,8 +232,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -264,8 +253,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -285,8 +273,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -306,8 +293,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
 
         }
@@ -351,8 +337,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -367,8 +352,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -387,8 +371,7 @@ namespace schoolconnect.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
     }

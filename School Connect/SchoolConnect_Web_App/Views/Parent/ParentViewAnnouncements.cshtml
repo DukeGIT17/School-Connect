@@ -1,85 +1,76 @@
-﻿@{
+﻿@model IEnumerable<ActorAnnouncementViewModel<Parent>>
+@{
     Layout = null;
 }
-<link rel="stylesheet" href="~/css/ParentCSS/ParentViewAnnouncements.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="~/css/TeacherCSS/TeacherViewAnnouncements.css" />
+<link rel="stylesheet" href="~/FontAwesome/css/all.css">
+<link rel="stylesheet" href="~/FontAwesome/css/all.min.css">
 
 
-<header>
+<div id="header">
     <h1><i class="fas fa-bullhorn"></i> Announcements</h1>
-</header>
+</div>
 <body>
     <div class="container">
         <div class="search">
-            <div class="total">Total:12</div>
-            <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div> <!-- Unicode for magnifying glass icon -->
+            <div class="total">Total:@Model.Count()</div>
+            <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
         </div>
 
-        <div class="announcement">
-            <div class="icon">&#10004;</div> <!-- Unicode for check circle icon -->
-            <div class="details">
-                <div class="from">GENERAL ANNOUNCEMENTS</div>
-                <div>Dear parents. Tomorrow is sports day. Can learners please wear...</div>
+        @foreach (var value in Model)
+        {
+            <div class="announcement">
+                @if (value.Announcement.TeacherID is not null)
+                {
+                    if (value.Announcement.TeacherID == value.Actor.Id)
+                    {
+                        <i class="fa-regular fa-circle-check icon"></i>
+                    }
+                    else if (value.Announcement.ViewedRecipients.Contains(value.Actor.IdNo))
+                    {
+                        <i class="fa-regular fa-circle-check icon"></i>
+                    }
+                    else
+                    {
+                        <i class="fa-regular fa-circle icon"></i>
+                    }
+                    <div class="details">
+                        <h4 class="title">@value.Announcement.Title</h4>
+                        <div class="content">@value.Announcement.Content</div>
+                    </div>
+                    <a asp-action="ParentDetailedAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-parentIdNo="@value.Actor.IdNo" style="display:none;"></a>
+                    if (value.Announcement.TeacherID == value.Actor.Id)
+                    {
+                        <a asp-action="DeleteAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-parentId="@value.Actor.Id">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </a>
+                    }
+                    else
+                    {
+                        <i class="fa-regular fa-trash-can opaque"></i>
+                    }
+                }
+                else
+                {
+                    if (value.Announcement.ViewedRecipients.Contains(value.Actor.IdNo))
+                    {
+                        <i class="fa-regular fa-circle-check icon"></i>
+                    }
+                    else
+                    {
+                        <i class="fa-regular fa-circle icon"></i>
+                    }
+                    <div class="details">
+                        <h4 class="title">@value.Announcement.Title</h4>
+                        <div class="content">@value.Announcement.Content</div>
+                    </div>
+                    <a asp-action="ParentDetailedAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-parentIdNo="@value.Actor.IdNo" style="display:none;"></a>
+                    <i class="fa-regular fa-trash-can opaque"></i>
+                }
             </div>
-        </div>
-
-        <div class="announcement">
-            <div class="icon">&#10004;</div>
-            <div class="details">
-                <div class="from">MATHEMATICS</div>
-                <div>Dear parents. Tomorrow is sports day. Can learners please wear...</div>
-            </div>
-        </div>
-
-        <div class="announcement">
-            <div class="icon">&#10004;</div>
-            <div class="details">
-                <div class="from">PHYSICAL SCIENCES</div>
-                <div>Dear parents. Tomorrow is sports day. Can learners please wear...</div>
-            </div>
-        </div>
-
-        <div class="announcement">
-            <div class="icon">&#9899;</div> <!-- Unicode for circle icon -->
-            <div class="details">
-                <div class="from">THCSA AL</div>
-                <div>Dear parents. Tomorrow is sports day. Can learners please wear...</div>
-            </div>
-        </div>
-
-        <div class="announcement">
-            <div class="icon">&#10004;</div>
-            <div class="details">
-                <div class="from">MATHEMATICS</div>
-                <div>Dear parents. Tomorrow is sports day. Can learners please wear...</div>
-            </div>
-        </div>
-
-        <div class="announcement">
-            <div class="icon">&#10004;</div>
-            <div class="details">
-                <div class="from">LIFE ORIENTATION</div>
-                <div>Dear parents. Tomorrow is sports day. Can learners please wear...</div>
-            </div>
-        </div>
-
-        <div class="announcement">
-            <div class="icon">&#10004;</div>
-            <div class="details">
-                <div class="from">LIFE SCIENCES</div>
-                <div>Dear parents. Tomorrow is sports day. Can learners please wear...</div>
-            </div>
-        </div>
-
-        <div class="announcement">
-            <div class="icon">&#10004;</div>
-            <div class="details">
-                <div class="from">GENERAL ANNOUNCEMENTS</div>
-                <div>Dear parents. Tomorrow is sports day. Can learners please wear...</div>
-            </div>
-        </div>
+        }
     </div>
 </body>
 
-
+<script src="~/js/Teacher/TeacherViewAnnouncement.js"></script>
 

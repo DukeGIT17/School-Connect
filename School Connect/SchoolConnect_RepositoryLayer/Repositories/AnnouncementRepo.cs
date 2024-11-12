@@ -201,6 +201,47 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 _returnDictionary["ErrorMessage"] = ex.Message;
                 return _returnDictionary;
             }
-}
+        }
+
+        public async Task<Dictionary<string, object>> GetAnnouncementsByParentId(long parentId)
+        {
+            try
+            {
+                var parent = await _context.Parents
+                    .Include(g => g.GroupsNP)!
+                    .ThenInclude(g => g.GroupNP)
+                    .Include(c => c.Children)!
+                    .ThenInclude(l => l.Learner)
+                    .ThenInclude(s => s.LearnerSchoolNP)
+                    .ThenInclude(a => a.SchoolAnnouncementsNP)
+                    .FirstOrDefaultAsync(p => p.Id == parentId);
+                if (parent is null) throw new("Could not find a parent with the specified ID.");
+
+                List<Announcement> anns = [];
+                List<Announcement> parentAnns = [];
+                parent.Children.ToList().ForEach(lp => anns.AddRange(lp.Learner.LearnerSchoolNP.SchoolAnnouncementsNP));
+                
+                foreach (var ann in anns)
+                {
+                    foreach (var group in parent.GroupsNP)
+                    {
+                        if (ann.Recipients.Contains(group.GroupNP.GroupName))
+                            parentAnns.Add(ann);
+                    }
+                }
+
+                parentAnns.ForEach(ann => ann.AnnouncementSchoolNP = null);
+
+                _returnDictionary["Success"] = true;
+                _returnDictionary["Result"] = parentAnns;
+                return _returnDictionary;
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
     }
 }

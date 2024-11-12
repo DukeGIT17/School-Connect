@@ -18,8 +18,12 @@ namespace SchoolConnect_Web_App.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult ErrorPage(string errorMessage)
         {
+            if (errorMessage.Contains("Unique Constraint Failed", StringComparison.OrdinalIgnoreCase))
+                errorMessage = "A value that is supposed to be unique has been entered. Please ensure unique values like identity numbers, staff numbers, email addresses, and phone numbers are correct.";
+
+            ViewBag.ErrorMessage = errorMessage.Replace("Inner Exception:", "");
             return View();
         }
 

@@ -28,7 +28,6 @@ namespace SchoolConnect_Web_App.Controllers
             _returnDictionary = [];
         }
 
-        [Authorize(Roles = "System Admin")]
         [HttpGet]
         public IActionResult SysAdminLandingPage(long id)
         {
@@ -41,8 +40,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -70,8 +68,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -96,8 +93,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -128,8 +124,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -171,8 +166,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -204,8 +198,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -259,7 +252,6 @@ namespace SchoolConnect_Web_App.Controllers
                 {
                     Children = [new()]
                 };
-
                 model.Learner = new()
                 {
                     Parents = [new()]
@@ -268,68 +260,72 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-
-                _returnDictionary = _schoolService.GetSchoolByIdAsync(model.SchoolID).Result;
-                if (!(bool)_returnDictionary["Success"])
-                {
-                    ModelState.AddModelError("", ex.Message);
-                    model.Parent = new()
-                    {
-                        Children = [new()]
-                    };
-
-                    model.Learner = new()
-                    {
-                        Parents = [new()]
-                    };
-                    return View(model);
-                }
-                
-                if (_returnDictionary["Result"] is School school)
-                {
-                    if (school.SchoolPrincipalNP is null)
-                    {
-                        ModelState.AddModelError("", ex.Message);
-                        model.Parent = new()
-                        {
-                            Children = [new()]
-                        };
-
-                        model.Learner = new()
-                        {
-                            Parents = [new()]
-                        };
-                        return View(model);
-                    }
-
-                    ModelState.AddModelError("", ex.Message);
-                    model.Principal = school.SchoolPrincipalNP;
-
-                    model.Parent = new()
-                    {
-                        Children = [new()]
-                    };
-
-                    model.Learner = new()
-                    {
-                        Parents = [new()]
-                    };
-                    return View(model);
-                }
-
-                ModelState.AddModelError("", ex.Message);
-                model.Parent = new()
-                {
-                    Children = [new()]
-                };
-
-                model.Learner = new()
-                {
-                    Parents = [new()]
-                };
-                return View(model);
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
+
+            /*{
+            //    Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
+
+            //    _returnDictionary = _schoolService.GetSchoolByIdAsync(model.SchoolID).Result;
+            //    if (!(bool)_returnDictionary["Success"])
+            //    {
+            //        ModelState.AddModelError("", ex.Message);
+            //        model.Parent = new()
+            //        {
+            //            Children = [new()]
+            //        };
+
+            //        model.Learner = new()
+            //        {
+            //            Parents = [new()]
+            //        };
+            //        return View(model);
+            //    }
+                
+            //    if (_returnDictionary["Result"] is School school)
+            //    {
+            //        if (school.SchoolPrincipalNP is null)
+            //        {
+            //            ModelState.AddModelError("", ex.Message);
+            //            model.Parent = new()
+            //            {
+            //                Children = [new()]
+            //            };
+
+            //            model.Learner = new()
+            //            {
+            //                Parents = [new()]
+            //            };
+            //            return View(model);
+            //        }
+
+            //        ModelState.AddModelError("", ex.Message);
+            //        model.Principal = school.SchoolPrincipalNP;
+
+            //        model.Parent = new()
+            //        {
+            //            Children = [new()]
+            //        };
+
+            //        model.Learner = new()
+            //        {
+            //            Parents = [new()]
+            //        };
+            //        return View(model);
+            //    }
+
+            //    ModelState.AddModelError("", ex.Message);
+            //    model.Parent = new()
+            //    {
+            //        Children = [new()]
+            //    };
+
+            //    model.Learner = new()
+            //    {
+            //        Parents = [new()]
+            //    };
+            //    return View(model);
+            }*/
         }
 
         [HttpGet]
@@ -353,8 +349,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -369,8 +364,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
         
@@ -390,8 +384,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
     }

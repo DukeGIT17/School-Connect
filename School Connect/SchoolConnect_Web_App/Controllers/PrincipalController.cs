@@ -33,8 +33,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -51,8 +50,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -74,8 +72,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -105,8 +102,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -139,8 +135,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -157,8 +152,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -174,8 +168,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -185,11 +178,6 @@ namespace SchoolConnect_Web_App.Controllers
         }
 
         public IActionResult PrincipalLearnerProfile()
-        {
-            return View();
-        }
-
-        public IActionResult PrincipalViewReports()
         {
             return View();
         }
@@ -215,8 +203,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -231,8 +218,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
 
@@ -248,11 +234,9 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
-        
         
         [HttpPost]
         public IActionResult PrincipalUpdateDetails(Principal principal)
@@ -269,8 +253,7 @@ namespace SchoolConnect_Web_App.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("\n\n" + ex.Message.ToUpper() + "\n\n");
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("ErrorPage", "Home", new { errorMessage = ex.Message });
             }
         }
     }

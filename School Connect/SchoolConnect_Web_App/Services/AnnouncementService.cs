@@ -3,13 +3,14 @@ using static SchoolConnect_Web_App.Services.SharedClientSideServices;
 using SchoolConnect_Web_App.IServices;
 using System.Text;
 using System.Text.Json;
+using NuGet.Protocol;
 
 namespace SchoolConnect_Web_App.Services
 {
     public class AnnouncementService : IAnnouncementService
     {
         private readonly HttpClient _httpClient;
-        private const string announcementBasePath = "/api/Announcement";
+        private const string AnnouncementBasePath = "/api/Announcement";
         private Dictionary<string, object> _returnDictionary;
 
         public AnnouncementService(HttpClient httpClient)
@@ -24,7 +25,7 @@ namespace SchoolConnect_Web_App.Services
             {
                 StringBuilder buildString = new();
                 buildString.Append("http://localhost:5293");
-                buildString.Append(announcementBasePath);
+                buildString.Append(AnnouncementBasePath);
                 buildString.Append("/Create");
 
                 var request = new HttpRequestMessage
@@ -51,7 +52,7 @@ namespace SchoolConnect_Web_App.Services
             {
                 StringBuilder buildString = new();
                 buildString.Append("http://localhost:5293");
-                buildString.Append(announcementBasePath);
+                buildString.Append(AnnouncementBasePath);
                 buildString.Append("/GetAnnouncementByPrincipalId?principalId=");
                 buildString.Append(principalId);
 
@@ -72,7 +73,7 @@ namespace SchoolConnect_Web_App.Services
             {
                 StringBuilder buildString = new();
                 buildString.Append("http://localhost:5293");
-                buildString.Append(announcementBasePath);
+                buildString.Append(AnnouncementBasePath);
                 buildString.Append("/GetAllAnnBySchool?schoolId=");
                 buildString.Append(schoolId);
 
@@ -93,7 +94,7 @@ namespace SchoolConnect_Web_App.Services
             {
                 StringBuilder buildString = new();
                 buildString.Append("http://localhost:5293");
-                buildString.Append(announcementBasePath);
+                buildString.Append(AnnouncementBasePath);
                 buildString.Append("/Delete?announcementId=");
                 buildString.Append(announcementId);
 
@@ -114,7 +115,7 @@ namespace SchoolConnect_Web_App.Services
             {
                 StringBuilder buildString = new();
                 buildString.Append("http://localhost:5293");
-                buildString.Append(announcementBasePath);
+                buildString.Append(AnnouncementBasePath);
                 buildString.Append("/GetAnnouncementById?annId=");
                 buildString.Append(announcementId);
 
@@ -129,13 +130,13 @@ namespace SchoolConnect_Web_App.Services
             }
         }
 
-        public async Task<Dictionary<string, object>> GetAnnouncementByTeacherId(long teacherId)
+        public async Task<Dictionary<string, object>> GetAnnouncementByTeacherIdAsync(long teacherId)
         {
             try
             {
                 StringBuilder buildString = new();
                 buildString.Append("http://localhost:5293");
-                buildString.Append(announcementBasePath);
+                buildString.Append(AnnouncementBasePath);
                 buildString.Append("/GetAnnouncementsByTeacherId?id=");
                 buildString.Append(teacherId);
 
@@ -156,7 +157,7 @@ namespace SchoolConnect_Web_App.Services
             {
                 StringBuilder buildString = new();
                 buildString.Append("http://localhost:5293");
-                buildString.Append(announcementBasePath);
+                buildString.Append(AnnouncementBasePath);
                 buildString.Append("/Update");
 
                 var request = new HttpRequestMessage()
@@ -168,6 +169,27 @@ namespace SchoolConnect_Web_App.Services
 
                 var response = await _httpClient.SendAsync(request);
                 return CheckSuccessStatus(response, "NoNeed");
+            }
+            catch (Exception ex)
+            {
+                _returnDictionary["Success"] = false;
+                _returnDictionary["ErrorMessage"] = ex.Message;
+                return _returnDictionary;
+            }
+        }
+
+        public async Task<Dictionary<string, object>> GetAnnouncementsByParentIdAsync(long parentId)
+        {
+            try
+            {
+                StringBuilder buildString = new();
+                buildString.Append("http://localhost:5293");
+                buildString.Append(AnnouncementBasePath);
+                buildString.Append("/GetAnnouncementsByParentId?parentId=");
+                buildString.Append(parentId);
+
+                var response = await _httpClient.GetAsync(buildString.ToString());
+                return CheckSuccessStatus(response, "Announcement");
             }
             catch (Exception ex)
             {
