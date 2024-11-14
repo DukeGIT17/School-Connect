@@ -20,53 +20,20 @@
         @foreach (var value in Model)
         {
             <div class="announcement">
-                @if (value.Announcement.TeacherID is not null)
+                @if (value.Announcement.ViewedRecipients.Contains(value.Actor.IdNo))
                 {
-                    if (value.Announcement.TeacherID == value.Actor.Id)
-                    {
-                        <i class="fa-regular fa-circle-check icon"></i>
-                    }
-                    else if (value.Announcement.ViewedRecipients.Contains(value.Actor.IdNo))
-                    {
-                        <i class="fa-regular fa-circle-check icon"></i>
-                    }
-                    else
-                    {
-                        <i class="fa-regular fa-circle icon"></i>
-                    }
-                    <div class="details">
-                        <h4 class="title">@value.Announcement.Title</h4>
-                        <div class="content">@value.Announcement.Content</div>
-                    </div>
-                    <a asp-action="ParentDetailedAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-parentIdNo="@value.Actor.IdNo" style="display:none;"></a>
-                    if (value.Announcement.TeacherID == value.Actor.Id)
-                    {
-                        <a asp-action="DeleteAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-parentId="@value.Actor.Id">
-                            <i class="fa-regular fa-trash-can"></i>
-                        </a>
-                    }
-                    else
-                    {
-                        <i class="fa-regular fa-trash-can opaque"></i>
-                    }
+                    <i class="fa-regular fa-circle-check icon"></i>
                 }
                 else
                 {
-                    if (value.Announcement.ViewedRecipients.Contains(value.Actor.IdNo))
-                    {
-                        <i class="fa-regular fa-circle-check icon"></i>
-                    }
-                    else
-                    {
-                        <i class="fa-regular fa-circle icon"></i>
-                    }
-                    <div class="details">
-                        <h4 class="title">@value.Announcement.Title</h4>
-                        <div class="content">@value.Announcement.Content</div>
-                    </div>
-                    <a asp-action="ParentDetailedAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-parentIdNo="@value.Actor.IdNo" style="display:none;"></a>
-                    <i class="fa-regular fa-trash-can opaque"></i>
+                    <i class="fa-regular fa-circle icon"></i>
                 }
+                <div class="details">
+                    <h4 class="title">@value.Announcement.Title</h4>
+                    <div class="content">@value.Announcement.Content</div>
+                </div>
+                <a asp-action="ParentDetailedAnnouncement" asp-route-id="@value.Announcement.AnnouncementId" asp-route-parentIdNo="@value.Actor.IdNo" style="display:none;"></a>
+                <i class="fa-regular fa-trash-can opaque"></i>
             </div>
         }
     </div>

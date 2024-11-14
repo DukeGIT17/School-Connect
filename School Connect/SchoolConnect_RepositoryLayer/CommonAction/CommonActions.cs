@@ -118,8 +118,7 @@ namespace SchoolConnect_RepositoryLayer.CommonAction
             Dictionary<string, object> _returnDictionary = [];
             try
             {
-
-                string fileName = Path.GetExtension(file.FileName) == ".xlsx" ? name : name + $" - {Guid.NewGuid()}" + Path.GetExtension(file.FileName);
+                string fileName = Path.GetExtension(file.FileName) == ".xlsx" ? name : name + Path.GetExtension(file.FileName);
                 using var fileStream = new FileStream($@"{ApplicationFilesPath}\{destinationFolder}\{fileName}", FileMode.Create);
                 file.CopyTo(fileStream);
 
