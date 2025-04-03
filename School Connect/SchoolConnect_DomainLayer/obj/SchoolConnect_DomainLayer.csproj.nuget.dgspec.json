@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {}
+    "C:\\Users\\tsoai\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
+    "C:\\Users\\tsoai\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj",
+        "projectUniqueName": "C:\\Users\\tsoai\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj",
         "projectName": "SchoolConnect_DomainLayer",
-        "projectPath": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj",
-        "packagesPath": "C:\\Users\\innoc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\innoc\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\obj\\",
+        "projectPath": "C:\\Users\\tsoai\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\SchoolConnect_DomainLayer.csproj",
+        "packagesPath": "C:\\Users\\tsoai\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\tsoai\\Desktop\\Git Repo\\School-Connect\\School Connect\\SchoolConnect_DomainLayer\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\innoc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\tsoai\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

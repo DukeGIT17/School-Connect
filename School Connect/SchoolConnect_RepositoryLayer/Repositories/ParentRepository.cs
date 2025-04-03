@@ -37,7 +37,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                 List<Parent> parents = [];
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-                string folderPath = @"C:\Users\innoc\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\Application Files\Misc\";
+                string folderPath = @"C:\Users\tsoai\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\Application Files\Misc\";
                 using (var stream = new FileStream(folderPath + parentSpreadsheet.FileName, FileMode.Open, FileAccess.Read))
                 using (var package = new ExcelPackage(stream))
                 {
@@ -93,7 +93,7 @@ namespace SchoolConnect_RepositoryLayer.Repositories
                     }
                 }
 
-                _returnDictionary = DeleteFile(@"C:\Users\innoc\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\Application Files\Misc\" + parentSpreadsheet.FileName);
+                _returnDictionary = DeleteFile(@"C:\Users\tsoai\Desktop\Git Repo\School-Connect\School Connect\SchoolConnect_DomainLayer\Application Files\Misc\" + parentSpreadsheet.FileName);
                 if (!(bool)_returnDictionary["Success"]) _returnDictionary["AdditionalInformation"] = _returnDictionary["ErrorMessage"];
 
                 await _context.AddRangeAsync(parents);
